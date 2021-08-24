@@ -1,4 +1,113 @@
 .container {
-  color: red;
+  margin: 0 20px;
+
+}
+
+body {
+  font-family: "メイリオ","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ ProN W3","ＭＳ Ｐゴシック",Helvetica,Arial,sans-serif;
+}
+
+header {
+  height: 90px;
+  border-bottom: 1px solid rgb(145, 141, 141);
+
+}
+
+.login {
+  text-decoration:  none;
+  color: white;
+  float: right;
+  display: inline-block;
+  background-color: rgb(49, 192, 125);
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin: 20px 0 0 0;
+
+}  
+
+.header-logo {
+  float: left;
+ font-size: 45px;
+ margin-right: 50px;
+
+}
+
+.header-left {
+  float: left;
+  margin: 20px 0 0 20px;
+
+}
+
+.searchdetail {
+  text-decoration:  none;
+  color: white;
+  display: inline-block;
+  background-color: rgb(49, 192, 125);
+  padding: 12px 15px;
+  border-radius: 10px;
+
+}
+
+.searchmap {
+  text-decoration:  none;
+  color: white;
+  display: inline-block;
+  background-color: rgb(49, 192, 125);
+  padding: 12px 15px;
+  border-radius: 10px;
+
+}
+
+.main {
   
+  background-color: #f7f7f7e7;
+
+}
+
+.contents {
+  background-color: white;
+  float: left;
+  width: 24%;
+  text-align: center;
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 10px;
+  margin: 5px;
+  box-shadow: 3px 3px rgb(158, 158, 158);
+  
+}
+
+.contents p1 {
+  font-size: 10px;
+  padding-top: 5px;
+   
+}
+
+.contents p {
+  border-bottom: 1px solid rgb(190, 190, 190);
+  margin: 0 10px 10px 10px;
+    
+}
+
+table {
+  width: 95%;
+  margin: 5px 5px;
+   
+}
+
+table,th,td{
+  border: solid 1px #aaaaaa;
+  border-collapse: collapse;
+  font-size: 13px;
+  empty-cells: hide;
+
+ }
+ 
+th {
+  background-color: rgb(224, 224, 224);
+   
+}
+
+.empty {
+  visibility: hidden;
+
 }
