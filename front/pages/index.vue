@@ -1,4 +1,5 @@
 <template>
+<v-app>
 <body>
   <header>
     <div class ="container">
@@ -9,10 +10,10 @@
       </div>
       <a class ="login" href="">ログイン</a>  
     </div>
-
+    <div>
         <v-btn @click="getApi( )">GET API</v-btn>
   　　<div>{{ message }}</div>
-
+    </div>
   </header>
   <div class ="main">
     <div class ="container">
@@ -27,6 +28,15 @@
               <th>ボール単価</th>　<td>10円/1球</td>　<td>12円/1球</td>
             </tr>
           </table>
+        
+        <v-btn 
+          color="green white--text lighten-1" 
+          @click="overlay = !overlay"
+        >
+              Show Overlay
+        </v-btn>
+        <v-overlay :value="overlay"></v-overlay>
+        
       </div>
       <div class ="contents">
         <p1>さいがごるふれんしゅうじょう</p1>
@@ -67,13 +77,15 @@
     </div>
   </div>
 </body>
+</v-app>
 </template>
 
 <script>
 export default {
   data: () => {
     return {
-      message: ''
+      name: ' ',
+      message: ' '
     }
   },
   methods: {
@@ -88,5 +100,20 @@ export default {
         })
     }
   }
+}
+</script>
+
+<script>
+export default {
+  data: () => ({
+    overlay: false,
+  }),
+    watch: {
+      overlay (val) {
+        val && setTimeout(() => {
+          this.overlay = false
+        }, 2000)
+      },
+    },
 }
 </script>
