@@ -13,48 +13,10 @@ header {
 
 }
 
-.login {
-  text-decoration:  none;
-  color: white;
-  float: right;
-  display: inline-block;
-  background-color: rgb(49, 192, 125);
-  padding: 12px 15px;
-  border-radius: 10px;
-  margin: 20px 0 0 0;
-
-}  
-
 .header-logo {
   float: left;
  font-size: 45px;
  margin-right: 50px;
-
-}
-
-.header-left {
-  float: left;
-  margin: 20px 0 0 20px;
-
-}
-
-.searchdetail {
-  text-decoration:  none;
-  color: white;
-  display: inline-block;
-  background-color: rgb(49, 192, 125);
-  padding: 12px 15px;
-  border-radius: 10px;
-
-}
-
-.searchmap {
-  text-decoration:  none;
-  color: white;
-  display: inline-block;
-  background-color: rgb(49, 192, 125);
-  padding: 12px 15px;
-  border-radius: 10px;
 
 }
 
@@ -75,13 +37,13 @@ header {
   
 }
 
-.contents p1 {
+.contents p {
   font-size: 10px;
   padding-top: 5px;
    
 }
 
-.contents p {
+.contents p1 {
   border-bottom: 1px solid rgb(190, 190, 190);
   margin: 0 10px 10px 10px;
     

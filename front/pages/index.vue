@@ -1,25 +1,21 @@
 <template>
 <v-app>
-<body>
   <header>
     <div class ="container">
-      <div class ="header-logo">LOGO</div>
-      <div class ="header-left">
-        <a class = "searchdetail" href="">詳細検索</a>
-        <a class = "searchmap" href="">地図から探す</a>
+        <div class ="header-logo">LOGO</div>
+      <div class = "float-right">
+        <v-btn >
+          ログイン
+          <v-icon>mdi-account-arrow-left-outline</v-icon>
+        </v-btn>  
       </div>
-      <a class ="login" href="">ログイン</a>  
-    </div>
-    <div>
-        <v-btn @click="getApi( )">GET API</v-btn>
-  　　<div>{{ message }}</div>
     </div>
   </header>
   <div class ="main">
     <div class ="container">
       <div class ="contents">
-        <p1>しょしゃぐりーんくらぶ</p1>
-        <p>書写グリーン倶楽部</p>
+        <p>しょしゃぐりーんくらぶ</p>
+        <p1>書写グリーン倶楽部</p1>
           <table>
             <tr>
               <td class ="empty"></td class ="empty"> <th>平日</th>　<th>土日</th>
@@ -33,14 +29,34 @@
           color="green white--text lighten-1" 
           @click="overlay = !overlay"
         >
-              Show Overlay
+              詳細
+              <br>
+                <v-icon>mdi-chevron-double-down</v-icon>
+              </br>
         </v-btn>
-        <v-overlay :value="overlay"></v-overlay>
-        
+        <div @click="overlay = false">
+        <v-overlay :value="overlay" >
+          <v-container>
+            <v-row justify = "center">
+              <v-card color ="white black--text" width ="400">
+                <v-card-title>Hello title</v-card-title>
+                <v-card-text >
+                  Hello world
+                </v-card-text>
+                <v-btn
+                  color="success"
+                  @click="overlay = false"
+                >
+                  close</v-btn>
+              </v-card>
+            </v-row>
+          </v-container>
+        </v-overlay>
+        </div>
       </div>
       <div class ="contents">
-        <p1>さいがごるふれんしゅうじょう</p1>
-        <p>才加ゴルフ練習場</p>
+        <p>さいがごるふれんしゅうじょう</p>
+        <p1>才加ゴルフ練習場</p1>
           <table>
             <tr>
               <td class ="empty"></td class ="empty"> <th>平日</th>　<th>土日</th>
@@ -51,8 +67,8 @@
           </table>
       </div>
       <div class ="contents">
-        <p1>にっけごるふくらぶきょうぐちせんたー</p1>
-        <p>ニッケゴルフ倶楽部京口センター</p>
+        <p>にっけごるふくらぶきょうぐちせんたー</p>
+        <p1>ニッケゴルフ倶楽部京口センター</p1>
           <table>
             <tr>
               <td class ="empty"></td> <th>平日</th> <th>土日</th>
@@ -63,8 +79,8 @@
           </table>
       </div>
       <div class ="contents">
-        <p1>あおやまごるふれんしゅうじょう</p1>
-        <p>青山ゴルフ練習場</p>
+        <p>あおやまごるふれんしゅうじょう</p>
+        <p1>青山ゴルフ練習場</p1>
           <table>
             <tr>
               <td class ="empty"> </td class ="empty"><th>平日</th> <th>土日</th>
@@ -76,44 +92,15 @@
       </div>
     </div>
   </div>
-</body>
 </v-app>
 </template>
 
 <script>
 export default {
-  data: () => {
-    return {
-      name: ' ',
-      message: ' '
-    }
-  },
-  methods: {
-    getApi() {
-      const url = "/api/v1/hello"
-      this.$axios.get(url)
-        .then((res) => {
-          this.message = res.data
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    }
-  }
-}
-</script>
-
-<script>
-export default {
   data: () => ({
+    absolute: true,
     overlay: false,
   }),
-    watch: {
-      overlay (val) {
-        val && setTimeout(() => {
-          this.overlay = false
-        }, 2000)
-      },
-    },
+    
 }
 </script>
