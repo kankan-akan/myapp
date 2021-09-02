@@ -18,19 +18,17 @@
     <v-container >
       <v-row>
       <v-col 
-        v-for = "n in 4"
-        :key = "n"
-        cols = "12"
-        xs = "1"
+        
+        xs = "12"
         sm = "3"
       >
         <v-card 
-          class = "text-center"
           justify = "space-around"
         >
-          <v-card-text>
-            <div class >しょしゃぐりーんくらぶ</div>
-            <div class ="text-h6">書写グリーン倶楽部</div>
+          <div id = "sample">
+            <div  v-text="message" ></div>
+          </div>
+            <v-divider class="my-2"></v-divider>
               <table>
                 <tr>
                   <td class ="empty"></td class ="empty"> <th>平日</th>　<th>土日</th>
@@ -39,42 +37,48 @@
                   <th>ボール単価</th>　<td>10円/1球</td>　<td>12円/1球</td>
                 </tr>
               </table>
-          </v-card-text>
-        <v-btn 
-          color="green white--text lighten-1" 
-          class = "ma-2"
-          @click="overlay = !overlay"
-        >
-              詳細
-              <br>
-                <v-icon>mdi-chevron-double-down</v-icon>
-              </br>
-        </v-btn>
-
-        <div @click="overlay = false">
-        <v-overlay :value="overlay" >
-          <v-container>
-            <v-col>
-              <v-card color ="white black--text" width ="400">
-                <v-card-title>Hello vue</v-card-title>
-                <v-card-text> 
-                  <div class ="black--text text-subtitle-1">
-                    Hello world
-                  </div>
-                </v-card-text>
-                <v-card-action>
-                  <v-btn
-                  color="success"
-                  class = "ma-5"
-                  @click="overlay = false"
-                  >
-                  close</v-btn>
-                </v-card-action>
-              </v-card>
-            </v-col>
-          </v-container>
-        </v-overlay>
-        </div>
+          
+          <v-card-actions class ="justify-center">
+              <v-btn 
+                block
+                color ="green white--text lighten-1" 
+                class ="ma-2"
+                @click="overlay = !overlay"
+              >
+                詳細
+                <br>
+                  <v-icon>mdi-chevron-double-down</v-icon>
+                </br>
+              </v-btn>
+          </v-card-actions>
+          <div @click ="overlay = false">
+          <v-overlay :value="overlay" >
+            <v-container>
+              <v-row >
+              <v-col >
+                <v-card 
+                  class ="white"
+                  width ="400"
+                >
+                  <v-card-text class ="black--text"> 
+                    <div>furigana</div>
+                    <div class ="text-h6">Hello world</div>
+                    <v-divider class ="grey lighten-2 my-2"></v-divider>
+                  </v-card-text>
+                  <v-card-actions class ="justify-center">
+                    <v-btn
+                    color ="success"
+                    class ="ma-5"
+                    @click="overlay = false"
+                    >
+                    close</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-col>
+              </v-row>
+            </v-container>
+          </v-overlay>
+          </div>
         </v-card>
 
       </v-col>
@@ -86,7 +90,20 @@
 </template>
 
 <script>
+
+
 export default {
+  el: "#sample",
+  data: () => ({
+    message: 'hello'
+
+  }),
+}
+</script>
+
+<script>
+export default {
+  el: "app",
   data: () => ({
     absolute: true,
     overlay: false,
