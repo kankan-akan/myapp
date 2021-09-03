@@ -25,9 +25,9 @@
         <v-card 
           justify = "space-around"
         >
-          <div id = "sample">
-            <div  v-text="message" ></div>
-          </div>
+          <v-card-text >
+            <div v-text = "message"></div>
+          </v-card-text>
             <v-divider class="my-2"></v-divider>
               <table>
                 <tr>
@@ -51,7 +51,7 @@
                 </br>
               </v-btn>
           </v-card-actions>
-          <div @click ="overlay = false">
+          <div id = "app-1" @click ="overlay = false">
           <v-overlay :value="overlay" >
             <v-container>
               <v-row >
@@ -90,24 +90,24 @@
 </template>
 
 <script>
-
-
-export default {
-  el: "#sample",
+ export default {
+  name: ' ',
   data: () => ({
     message: 'hello'
-
+    
   }),
 }
+
 </script>
+
 
 <script>
 export default {
-  el: "app",
+  name: 'app-1',
   data: () => ({
     absolute: true,
     overlay: false,
-  }),
     
+  }),
 }
 </script>
