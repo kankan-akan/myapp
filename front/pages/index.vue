@@ -19,8 +19,8 @@
     <v-container>
       <v-row>
         <v-col 
-          v-for= "(place, i) in places"
-          :key = " i "
+          v-for= "place in places"
+          :key = "place.id"
           cols = "12"
           xs = "12"
           sm = "3"
@@ -51,14 +51,18 @@
                 block
                 color ="green white--text lighten-1" 
                 class ="ma-2"
-                @click="overlay = !overlay"
+                @click= "selectedPlace = place"
               >
                 詳細
                 <br/>
                   <v-icon>mdi-chevron-double-down</v-icon>
               </v-btn>
           </v-card-actions>
-          <div @click ="overlay = false">
+        </v-card>
+        </v-col>
+      </v-row>
+
+          <div v-if = "overlay" @click = "selectedPlace = null">
           <v-overlay :value="overlay" >
             <v-container>
               <v-row >
@@ -68,21 +72,29 @@
                   width ="400"
                 >
                   <v-card-text class ="black--text"> 
-                    <div v-text= "place.ruby"></div>
                     <div 
-                      class ="text-h6"
-                      v-text= "place.place"
-                      >
-                    </div>
+                      v-if = "selectedPlace"
+                      v-text = "selectedPlace.ruby"
+                    ></div>
+                    <div 
+                      class = "text-h6"
+                      v-if = "selectedPlace"
+                      v-text = "selectedPlace.place"
+                    ></div>
+                    <div 
+                      v-if = "selectedPlace"
+                      v-text = "selectedPlace.adress"
+                    ></div>
                     <v-divider class ="grey lighten-2 my-2"></v-divider>
                   </v-card-text>
                   <v-card-actions class ="justify-center">
                     <v-btn
                     color ="success"
                     class ="ma-5"
-                    @click="overlay = false"
+                    @click = "selectedPlace = null"
                     >
-                    close</v-btn>
+                    close
+                    </v-btn>
                   </v-card-actions>
                 </v-card>
               </v-col>
@@ -90,10 +102,6 @@
             </v-container>
           </v-overlay>
           </div>
-        </v-card>
-
-        </v-col>
-      </v-row>
       
     </v-container>
   </v-main>
@@ -102,19 +110,44 @@
 
 <script>
 export default {
+  
   data: () => ({
       // modalwindow 
-    absolute: true,
-    overlay: false,
+    selectedPlace: null,
       // output 
     places: [
-      {ruby: 'しょしゃぐりーんくらぶ', place: '書写グリーン倶楽部'  },
-      {ruby: 'さいがごるふれんしゅうじょう', place: '才加ゴルフ練習場' },
-      {ruby: 'あおやまごるふれんしゅうじょう', place: '青山ゴルフ練習場' },
-      {ruby: 'にっけごるふくらぶきょうぐち', place: 'ニッケゴルフ倶楽部京口' }
+      {
+        id: '1', 
+        ruby: 'しょしゃぐりーんくらぶ', 
+        place: '書写グリーン倶楽部', 
+        adress: '兵庫県姫路市' 
+        },
+      {
+        id: '2', 
+        ruby: 'おおくぼすいじょうごるふせんたー', 
+        place: '大久保水上ゴルフセンター', 
+        adress: '兵庫県明石市'
+        },
+      {
+        id: '3', 
+        ruby: 'ごるふぷらざこうべ', 
+        place: 'ゴルフプラザ神戸', 
+        adress: '兵庫県神戸市'
+        },
+      {
+        id: '4', 
+        ruby: 'あまがさきてくのらんど', 
+        place: '尼崎テクノランド', 
+        adress: '兵庫県尼崎市'
+        },
 
-    ]
-
+    ],
   }),
+
+  computed: {
+    overlay: function () {
+      return !!this.selectedPlace
+    },
+  },
 }
 </script>
