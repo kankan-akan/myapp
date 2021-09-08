@@ -49,7 +49,7 @@
           <v-card-actions class ="justify-center">
               <v-btn 
                 block
-                color ="green white--text lighten-1" 
+                color ="green white--text lighten-1"
                 class ="ma-2"
                 @click= "selectedPlace = place"
               >
@@ -63,7 +63,7 @@
       </v-row>
 
           <div v-if = "overlay" @click = "selectedPlace = null">
-          <v-overlay :value="overlay" >
+          <v-overlay :value= "overlay">
             <v-container>
               <v-row >
               <v-col >
@@ -108,46 +108,4 @@
 </v-app>
 </template>
 
-<script>
-export default {
-  
-  data: () => ({
-      // modalwindow 
-    selectedPlace: null,
-      // output 
-    places: [
-      {
-        id: '1', 
-        ruby: 'しょしゃぐりーんくらぶ', 
-        place: '書写グリーン倶楽部', 
-        adress: '兵庫県姫路市' 
-        },
-      {
-        id: '2', 
-        ruby: 'おおくぼすいじょうごるふせんたー', 
-        place: '大久保水上ゴルフセンター', 
-        adress: '兵庫県明石市'
-        },
-      {
-        id: '3', 
-        ruby: 'ごるふぷらざこうべ', 
-        place: 'ゴルフプラザ神戸', 
-        adress: '兵庫県神戸市'
-        },
-      {
-        id: '4', 
-        ruby: 'あまがさきてくのらんど', 
-        place: '尼崎テクノランド', 
-        adress: '兵庫県尼崎市'
-        },
-
-    ],
-  }),
-
-  computed: {
-    overlay: function () {
-      return !!this.selectedPlace
-    },
-  },
-}
-</script>
+<script src ="./index.js"></script>
