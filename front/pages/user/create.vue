@@ -8,103 +8,67 @@
       <v-row>
         <v-col class ="header-logo my-auto">LOGO</v-col>
         <v-btn to ="/">home</v-btn>
-        <v-col>
-          <v-row justify ="end">
-          <v-dialog 
-            transition="fab-transition"
-            v-model="dialog"
-            persistent
-            max-width="600px"
-          >
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn 
-                
-                color="primary"
-                dark
-                v-bind="attrs"
-                v-on="on"
-              >
-                ログイン
-                <v-icon>mdi-account-arrow-left-outline</v-icon>
-              </v-btn>
-            </template>
-
-            <v-card>
-              <v-card-title>
-                 <div class="text-h5">ログイン</div>
-              </v-card-title>
-              <v-card-text>
-                <v-container>
-                  <v-row>
-                    <v-col
-                      cols="12"
-                      sm="6"
-                      md="4"
-                    >
-                      <v-text-field
-                        label="ユーザー名*"
-                        required
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12">
-                      <v-text-field
-                        label="メールアドレス*"
-                        required
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12">
-                      <v-text-field
-                        label="パスワード*"
-                        type="password"
-                        required
-                      ></v-text-field>
-                    </v-col>
-                  </v-row>
-                </v-container>
-                <small>*は必須項目です</small>
-              </v-card-text>
-              <div >
-              <v-card-actions class ="justify-center">
-                <v-spacer></v-spacer>
-                <v-btn
-                  color="blue darken-1"
-                  text
-                  @click="dialog = false"
-                >
-                  閉じる
-                </v-btn>
-                <v-btn
-                  color="blue darken-1"
-                  text
-                  @click="dialog = false"
-                >
-                  ログイン
-                </v-btn>
-              </v-card-actions>
-              </div>
-              <v-card-text>
-                <div>ユーザー登録はお済みですか？<NuxtLink to="/user/create">ー新規登録</NuxtLink></div>
-              </v-card-text>
-            </v-card>
-          </v-dialog>
-          </v-row>
-          <v-row justify ="end">
-          <v-btn 
-            class ="my-1"
-            to ="/user/create" 
-          >
-            新規登録
-          </v-btn>
-          </v-row>
-        </v-col>
-
       </v-row> 
     </v-container>
   </v-app-bar>
+
   <v-main>
     <v-card>
       <v-card-title>新規登録</v-card-title>
+      <v-card-text>
+        <v-form
+          ref="form"
+          v-model="valid"
+          lazy-validation
+        >
+          <v-text-field
+            v-model="name"
+            :counter="10"
+            :rules="nameRules"
+            label="名前（15文字以内）"
+            required
+          ></v-text-field>
 
+          <v-text-field
+            v-model="userName"
+            :counter="10"
+            :rules="UserNameRules"
+            label="＠ユーザー名（15文字以内）"
+            required
+          ></v-text-field>
+
+          <v-text-field
+            v-model="email"
+            :rules="emailRules"
+            label="メールアドレス"
+            required
+          ></v-text-field>
+
+          <v-checkbox
+            v-model="checkbox"
+            :rules="[v => !!v || 'You must agree to continue!']"
+            label="Do you agree?"
+            required
+          ></v-checkbox>
+          <v-card-action>
+            <v-btn
+              class="mr-4"
+              type="submit"
+              :disabled="!valid"
+            >
+              登録
+            </v-btn>
+
+            <v-btn
+              color="error"
+              class="mr-4"
+              @click="reset"
+            >
+              やり直す
+            </v-btn>
+          </v-card-action>
+        </v-form>
+      </v-card-text>
     </v-card>
   </v-main>
   </v-app>
