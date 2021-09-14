@@ -7,27 +7,40 @@ export default {
     valid: true,
     name: '',
     nameRules: [
-      v => !!v || '名前が空欄です',
-      v => (v && v.length <= 15) || '10文字以下で入力してください',
+      v => !!v || '入力してください',
+      v => (v && v.length <= 15) || '15文字以下で入力してください',
     ],
-    userName: '＠',
+    userName: '',
     userNameRules: [
-      v => !!v || 'ユーザー名が空欄です',
-      v => (v && v.length <= 15) || '10文字以下で入力してください',
+      v => !!v || '入力してください',
+      v => (v && v.length <= 15) || '15文字以下で入力してください',
     ],
     email: '',
     emailRules: [
-      v => !!v || 'メールアドレスが空欄です',
-      v => /.+@.+\..+/.test(v) || 'メールアドレスが正しくありません',
+      v => !!v || '入力してください',
+      v => /.+@.+\..+/.test(v) || '入力が完了していません',
     ],
-      
-    checkbox: false,
+
+    passWard: '',
+    passWardRules: [
+      v => !!v || '入力してください',
+      v => /^(?=.*[a-z])(?=.*[.?/-_])[a-zA-Z0-9\d.?/-_]{8,30}$/.test(v) || '条件を満たしていません',
+    ],
+    
+    // checkbox: false,
+    success: false,
   }),
 
   methods: {
+    //全て入力されているか
     submit () {
-      this.$refs.observer.validate()
+      if (this.$refs.form.validate()) {
+        this.success = true;
+      } else { 
+        this.success = false;
+      }
     },
+
     reset () {
       this.$refs.form.reset()
     },

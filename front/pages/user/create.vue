@@ -18,55 +18,65 @@
       <v-card-text>
         <v-form
           ref="form"
-          v-model="valid"
+          v-model ="valid"
           lazy-validation
         >
           <v-text-field
-            v-model="name"
-            :counter="10"
-            :rules="nameRules"
-            label="名前（15文字以内）"
+            v-model ="name"
+            :counter ="15"
+            :rules ="nameRules"
+            label ="氏名"
             required
           ></v-text-field>
 
           <v-text-field
-            v-model="userName"
-            :counter="10"
-            :rules="UserNameRules"
-            label="＠ユーザー名（15文字以内）"
+            v-model ="userName"
+            :counter ="15"
+            :rules ="userNameRules"
+            label ="ユーザー名（15文字以内）"
+            required
+          ></v-text-field>
+          
+          <v-text-field
+            v-model ="email"
+            :rules ="emailRules"
+            label ="メールアドレス"
             required
           ></v-text-field>
 
           <v-text-field
-            v-model="email"
-            :rules="emailRules"
-            label="メールアドレス"
+            v-model ="passWard"
+            :rules ="passWardRules"
+            label ="パスワード（半角英数字・記号(.?/-_)のみで8文字以上30文字以内）"
             required
+            autocomplete ="off"
           ></v-text-field>
 
-          <v-checkbox
-            v-model="checkbox"
-            :rules="[v => !!v || 'You must agree to continue!']"
-            label="Do you agree?"
+          <!-- <v-checkbox
+            v-model ="checkbox"
+            :rules ="[v => !!v || '新規登録には利用規約への同意が必要です。']"
+            label ="利用規約に同意"
             required
-          ></v-checkbox>
-          <v-card-action>
+          ></v-checkbox> -->
+          <v-card-actions>
             <v-btn
-              class="mr-4"
-              type="submit"
-              :disabled="!valid"
+              class ="mr-4"
+              type ="submit"
+              :disabled ="!valid"
+              @click ="submit"
             >
               登録
             </v-btn>
-
+            
             <v-btn
-              color="error"
-              class="mr-4"
-              @click="reset"
+              color ="error"
+              class ="mr-4"
+              @click ="reset"
             >
               やり直す
             </v-btn>
-          </v-card-action>
+            <span v-if ="success">登録が完了しました</span>
+          </v-card-actions>
         </v-form>
       </v-card-text>
     </v-card>
