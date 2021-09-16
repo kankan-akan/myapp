@@ -8,28 +8,22 @@
       <v-row>
         <v-col class ="header-logo my-auto">LOGO</v-col>
       
-        <v-col>
-          <v-row justify ="end">
-            
-              <v-btn 
-                to ="/login_template.html"
-                color="primary"
-                dark
-                
-              >
-                ログイン
-                <v-icon>mdi-account-arrow-left-outline</v-icon>
-              </v-btn>
+        <v-col justify ="end">
+          <v-btn 
+            to ="/login_template.html"
+            color="primary"
+            dark
+          >
+            ログイン
+             <v-icon>mdi-account-arrow-left-outline</v-icon>
+          </v-btn>
           
-          </v-row>
-          <v-row justify ="end">
           <v-btn 
             class ="my-1"
             to ="/user/create" 
           >
             新規登録
           </v-btn>
-          </v-row>
         </v-col>
 
       </v-row> 

@@ -22,6 +22,7 @@
           lazy-validation
         >
           <v-text-field
+            outlined
             v-model ="name"
             :counter ="15"
             :rules ="nameRules"
@@ -29,15 +30,17 @@
             required
           ></v-text-field>
 
-          <v-text-field
+          <!-- <v-text-field
+            outlined
             v-model ="userName"
             :counter ="15"
             :rules ="userNameRules"
-            label ="ユーザー名（15文字以内）"
+            label ="ユーザー名（半角英数字・記号(.?/-_)で15文字以内）"
             required
           ></v-text-field>
           
           <v-text-field
+            outlined
             v-model ="email"
             :rules ="emailRules"
             label ="メールアドレス"
@@ -45,13 +48,17 @@
           ></v-text-field>
 
           <v-text-field
-            v-model ="passWard"
-            :rules ="passWardRules"
-            label ="パスワード（半角英数字・記号(.?/-_)のみで8文字以上30文字以内）"
+            outlined
+            v-model ="password"
+            :rules ="passwordRules"
+            :append-icon ="show ? 'mdi-eye' : 'mdi-eye-off'"
+            :type ="show? 'text' : 'password'"
+            label ="パスワード（半角英数字・記号(.?/-_)を各１つ含む8文字以上30文字以内）"
             required
-            autocomplete ="off"
-          ></v-text-field>
-
+            
+            @click:append ="show = !show"
+          ></v-text-field> -->
+<!-- autocomple ="off" -->
           <!-- <v-checkbox
             v-model ="checkbox"
             :rules ="[v => !!v || '新規登録には利用規約への同意が必要です。']"
@@ -62,8 +69,11 @@
             <v-btn
               class ="mr-4"
               type ="submit"
-              :disabled ="!valid"
+              :disabled ="!valid || loading" 
+              :loading ="loading"
               @click ="submit"
+              large
+              outlined
             >
               登録
             </v-btn>
@@ -72,6 +82,8 @@
               color ="error"
               class ="mr-4"
               @click ="reset"
+              large
+              outlined
             >
               やり直す
             </v-btn>

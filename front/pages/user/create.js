@@ -5,6 +5,13 @@ export default {
     dialog: false,
     /* register validate */
     valid: true,
+    // eye icon
+    show: false,
+    // checkbox: false,
+    loader: 'null',
+    loading: false,
+    success: false,
+
     name: '',
     nameRules: [
       v => !!v || '入力してください',
@@ -14,30 +21,29 @@ export default {
     userNameRules: [
       v => !!v || '入力してください',
       v => (v && v.length <= 15) || '15文字以下で入力してください',
+      v => /^(?=.*[a-zA-Z])[a-zA-Z0-9\d.?/-_]{1,15}$/.test(v) || '',
     ],
     email: '',
     emailRules: [
       v => !!v || '入力してください',
-      v => /.+@.+\..+/.test(v) || '入力が完了していません',
+      v => /.+@.+\..+/.test(v) || '',
     ],
 
-    passWard: '',
-    passWardRules: [
+    password: '',
+    passwordRules: [
       v => !!v || '入力してください',
-      v => /^(?=.*[a-z])(?=.*[.?/-_])[a-zA-Z0-9\d.?/-_]{8,30}$/.test(v) || '条件を満たしていません',
+      v => /^(?=.*[a-z])(?=.*[.?/-_])[a-zA-Z0-9\d.?/-_]{8,30}$/.test(v) || '',
     ],
     
-    // checkbox: false,
-    success: false,
   }),
 
   methods: {
     //全て入力されているか
     submit () {
       if (this.$refs.form.validate()) {
-        this.success = true;
+        this.loading = true;
       } else { 
-        this.success = false;
+        this.loading = false;
       }
     },
 
