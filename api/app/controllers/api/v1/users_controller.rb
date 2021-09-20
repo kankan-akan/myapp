@@ -2,19 +2,19 @@ module api
   module v1
     class UsersController < ApplicationController
       def create 
-        post = User.create(user_params)
+        user = User.create(user_params)
 
-        if post.save
-          render json: 'SUCCESS', status:200
+        if user.save
+          render json: { status: 'SUCCESS', message: 'Loaded user' }
         else
-          render json: 'ERROR', status: 500
+          render json: { status: 'ERROR', message: 'error the user'}
         end
       end
 
       private
 
       def user_params
-        params.require(:post).permit(:name, :user_id, :email, :password)
+        params.require(:user).permit(:name, :user_id, :email, :password)
       end
     end
   end
