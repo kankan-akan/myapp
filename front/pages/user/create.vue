@@ -30,11 +30,11 @@
             required
           ></v-text-field>
 
-          <!-- <v-text-field
+          <v-text-field
             outlined
-            v-model ="userName"
+            v-model ="userId"
             :counter ="15"
-            :rules ="userNameRules"
+            :rules ="userIdRules"
             label ="ユーザー名（半角英数字・記号(.?/-_)で15文字以内）"
             required
           ></v-text-field>
@@ -57,7 +57,7 @@
             required
             
             @click:append ="show = !show"
-          ></v-text-field> -->
+          ></v-text-field>
 <!-- autocomple ="off" -->
           <!-- <v-checkbox
             v-model ="checkbox"

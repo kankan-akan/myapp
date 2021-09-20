@@ -12,17 +12,19 @@ export default {
     loading: false,
     success: false,
 
-    name: '',
+    name: '', 
     nameRules: [
       v => !!v || '入力してください',
       v => (v && v.length <= 15) || '15文字以下で入力してください',
     ],
-    userName: '',
-    userNameRules: [
+    
+    userId: '',
+    userIdRules: [
       v => !!v || '入力してください',
       v => (v && v.length <= 15) || '15文字以下で入力してください',
       v => /^(?=.*[a-zA-Z])[a-zA-Z0-9\d.?/-_]{1,15}$/.test(v) || '',
     ],
+    
     email: '',
     emailRules: [
       v => !!v || '入力してください',
@@ -37,13 +39,31 @@ export default {
     
   }),
 
+  computed: {
+    params() {
+      return {
+        user: {
+          name: this.name, 
+          userId: this.userId,
+          email: this.email,
+          password: this.password
+        }
+      }
+    }
+  },
+
   methods: {
     //全て入力されているか
     submit () {
       if (this.$refs.form.validate()) {
-        this.loading = true;
+        // this.loading = true
+        const url = "/api/v1/users"
+          this.$axios.post(url, this.params)
+          .then((res) => {
+          console.log(res)
+          })
       } else { 
-        this.loading = false;
+        this.loading = false
       }
     },
 
