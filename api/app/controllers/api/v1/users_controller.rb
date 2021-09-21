@@ -1,13 +1,13 @@
-module api
-  module v1
+module Api
+  module V1
     class UsersController < ApplicationController
       def create 
         user = User.create(user_params)
 
         if user.save
-          render json: { status: 'SUCCESS', message: 'Loaded user' }
+          render json: { status: 'SUCCESS', data: user}
         else
-          render json: { status: 'ERROR', message: 'error the user'}
+          render json: { status: 'ERROR', data: user.errors }
         end
       end
 
