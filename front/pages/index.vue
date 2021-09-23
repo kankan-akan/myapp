@@ -10,7 +10,6 @@
       
         <v-col justify ="end">
           <v-btn 
-            to ="/login_template.html"
             color="primary"
             dark
           >

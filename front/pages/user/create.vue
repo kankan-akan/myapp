@@ -1,6 +1,23 @@
 <template>
-  <v-app>
-  <v-app-bar app
+  <v-app> 
+    <v-snackbar
+    top
+    v-model ="snackbar"
+  >
+   {{ text }}
+    <template v-slot:action ="{ attrs }">
+     <v-btn
+        color ="pink"
+        text
+        v-bind ="attrs"
+        @click ="snackbar = false"
+      >
+        Close
+      </v-btn>
+    </template>
+  </v-snackbar>
+  <v-app-bar 
+    app
     height ="100"
     color ="blue white--text darken-2"
   >
@@ -30,7 +47,7 @@
             required
           ></v-text-field>
 
-          <v-text-field
+          <!-- <v-text-field
             outlined
             v-model ="userId"
             :counter ="15"
@@ -57,7 +74,7 @@
             required
             
             @click:append ="show = !show"
-          ></v-text-field>
+          ></v-text-field> -->
 <!-- autocomple ="off" -->
           <!-- <v-checkbox
             v-model ="checkbox"
@@ -87,12 +104,12 @@
             >
               やり直す
             </v-btn>
-            <span v-if ="success">登録が完了しました</span>
           </v-card-actions>
         </v-form>
       </v-card-text>
     </v-card>
   </v-main>
+
   </v-app>
 </template>
 

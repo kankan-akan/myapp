@@ -10,7 +10,6 @@ export default {
     // checkbox: false,
     loader: 'null',
     loading: false,
-    success: false,
 
     name: '', 
     nameRules: [
@@ -18,38 +17,40 @@ export default {
       v => (v && v.length <= 15) || '15文字以下で入力してください',
     ],
     
-    userId: '',
-    userIdRules: [
-      v => !!v || '入力してください',
-      v => (v && v.length <= 15) || '15文字以下で入力してください',
-      v => /^(?=.*[a-zA-Z])[a-zA-Z0-9\d.?/-_]{1,15}$/.test(v) || '',
-    ],
+    // userId: '',
+    // userIdRules: [
+    //   v => !!v || '入力してください',
+    //   v => (v && v.length <= 15) || '15文字以下で入力してください',
+    //   v => /^(?=.*[a-zA-Z])[a-zA-Z0-9\d.?/-_]{1,15}$/.test(v) || '',
+    // ],
     
-    email: '',
-    emailRules: [
-      v => !!v || '入力してください',
-      v => /.+@.+\..+/.test(v) || '',
-    ],
+    // email: '',
+    // emailRules: [
+    //   v => !!v || '入力してください',
+    //   v => /.+@.+\..+/.test(v) || '',
+    // ],
 
-    password: '',
-    passwordRules: [
-      v => !!v || '入力してください',
-      v => /^(?=.*[a-z])(?=.*[.?/-_])[a-zA-Z0-9\d.?/-_]{8,30}$/.test(v) || '',
-    ],
+    // password: '',
+    // passwordRules: [
+    //   v => !!v || '入力してください',
+    //   v => /^(?=.*[a-z])(?=.*[.?/-_])[a-zA-Z0-9\d.?/-_]{8,30}$/.test(v) || '',
+    // ],
     
+    snackbar: false,
+    text: '',
+
   }),
 
-  computed: {
+  computed:{
     params() {
       return {
-        user: {
-          name: this.name, 
-          userId: this.userId,
-          email: this.email,
-          password: this.password
-        }
+        name: this.name,
+        // user_id: this.userId,
+        // email: this.email,
+        // password: this.password
       }
     }
+
   },
 
   methods: {
@@ -60,11 +61,15 @@ export default {
         const url = "/api/v1/users"
           this.$axios.post(url, this.params)
           .then((res) => {
-          console.log(res)
+            this.text = res.data.text
           })
-      } else { 
-        this.loading = false
+          this.snackbar = true
+      
+          // .catch((err) => {
+            
+          // })
       }
+
     },
 
     reset () {
