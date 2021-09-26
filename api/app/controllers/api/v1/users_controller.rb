@@ -5,9 +5,9 @@ module Api
         user = User.create(user_params)
 
         if user.save
-          render json: { text: '☑︎登録が完了しました。', status: 200, data: user}
+          render json: {text: 'succes', status: 200, data: user}
         else
-          render json: { text: '登録に失敗しました。', status: 500, data: user.errors }
+          render json: {text: 'error', status: 500, data: user.errors }
         end
       end
 
