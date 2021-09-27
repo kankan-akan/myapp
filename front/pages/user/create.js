@@ -61,9 +61,9 @@ export default {
         const url = "/api/v1/users"
           this.$axios.post(url, this.params)
           .then((res) => {
-            this.text = res.data.text
+            console.log(res)
           })
-          this.snackbar = true
+            this.snackbar = true
       
           // .catch((err) => {
             

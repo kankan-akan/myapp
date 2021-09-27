@@ -34,7 +34,7 @@
       <v-row>
         <v-col 
           v-for= "place in places"
-          :key = "place"
+          :key = "place.id"
           cols = "12"
           xs = "12"
           sm = "3"
