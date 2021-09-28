@@ -2,14 +2,14 @@
 <v-app>
   <v-app-bar app
     height ="100"
-    color ="blue white--text darken-2"
+    color ="blue lighten-2"
   >
     <v-container>
       <v-row>
         <v-col class ="header-logo my-auto">LOGO</v-col>
         <v-col>
           <v-btn 
-            color ="white"
+            color ="indigo"
             dark
             outlined
             large
@@ -18,7 +18,7 @@
              <v-icon>mdi-account-arrow-left-outline</v-icon>
           </v-btn>
           <v-btn 
-            color ="white"
+            color =""
             class ="my-1"
             to ="/user/create" 
             outlined
