@@ -7,24 +7,26 @@
     <v-container>
       <v-row>
         <v-col class ="header-logo my-auto">LOGO</v-col>
-      
-        <v-col justify ="end">
+        <v-col>
           <v-btn 
-            color="primary"
+            color ="white"
             dark
+            outlined
+            large
           >
             ログイン
              <v-icon>mdi-account-arrow-left-outline</v-icon>
           </v-btn>
-          
           <v-btn 
+            color ="white"
             class ="my-1"
             to ="/user/create" 
+            outlined
+            large
           >
             新規登録
           </v-btn>
         </v-col>
-
       </v-row> 
     </v-container>
   </v-app-bar>
