@@ -1,35 +1,6 @@
 <template>
 <v-app>
-  <v-app-bar app
-    height ="100"
-    color ="blue lighten-2"
-  >
-    <v-container>
-      <v-row>
-        <v-col class ="header-logo my-auto">LOGO</v-col>
-        <v-col>
-          <v-btn 
-            color ="indigo"
-            dark
-            outlined
-            large
-          >
-            ログイン
-             <v-icon>mdi-account-arrow-left-outline</v-icon>
-          </v-btn>
-          <v-btn 
-            color =""
-            class ="my-1"
-            to ="/user/create" 
-            outlined
-            large
-          >
-            新規登録
-          </v-btn>
-        </v-col>
-      </v-row> 
-    </v-container>
-  </v-app-bar>
+  <Header></Header>
 
   <v-main>
     <v-container>

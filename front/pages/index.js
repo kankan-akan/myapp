@@ -1,10 +1,15 @@
+import Header from "/components/Header.vue";
+
 export default {
-  
+  components: {
+    Header
+
+  },
+
   data: () => ({
       // modalwindow 
     selectedPlace: null,
-      //login
-      dialog: false,
+      
       // output 
     places: [
       {

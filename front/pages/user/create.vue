@@ -16,18 +16,7 @@
       </v-btn>
     </template>
   </v-snackbar>
-  <v-app-bar 
-    app
-    height ="100"
-    color ="blue white--text darken-2"
-  >
-    <v-container>
-      <v-row>
-        <v-col class ="header-logo my-auto">LOGO</v-col>
-        <v-btn to ="/">home</v-btn>
-      </v-row> 
-    </v-container>
-  </v-app-bar>
+  
 
   <v-main>
     <v-card>
