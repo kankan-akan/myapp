@@ -3,8 +3,8 @@
     <v-snackbar
     top
     v-model ="snackbar"
-  >
-   {{ text }}
+   >
+    {{ text }}
     <template v-slot:action ="{ attrs }">
      <v-btn
         color ="pink"
@@ -15,8 +15,9 @@
         Close
       </v-btn>
     </template>
-  </v-snackbar>
-  
+    </v-snackbar>
+    
+  <Header />  
 
   <v-main>
     <v-card>

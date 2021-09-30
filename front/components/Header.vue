@@ -1,5 +1,4 @@
 <template>
-  <v-app>
     <v-app-bar 
       app 
       height="100" 
@@ -104,7 +103,6 @@
         </v-row>
       </v-container>
     </v-app-bar>
-  </v-app>
 </template>
 
 <script>

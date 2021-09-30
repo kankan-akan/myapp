@@ -1,8 +1,8 @@
 <template>
 <v-app>
-  <Header></Header>
+<Header />
 
-  <v-main>
+  <v-main> 
     <v-container>
       <v-row>
         <v-col 
@@ -48,13 +48,11 @@
         </v-col>
       </v-row>
 
-          <div v-if = "overlay" @click = "selectedPlace = null">
-          <!-- v-else -->
-          <!-- "overlay = false" -->
-          <v-overlay :value= "overlay">
-            <v-container>
-              <v-row >
-              <v-col >
+          <div v-if = "overlay" @click ="selectedPlace = null">
+          <v-overlay  :value= "overlay">
+            <v-container @click.stop>
+              <v-row>
+              <v-col>
                 <v-card 
                   class ="white"
                   width ="400"
