@@ -6,8 +6,9 @@
     >
       <v-container>
         <v-row class ="justify-space-between">
-          <NuxtLink to="/"
-          class="header-logo my-auto"
+          <NuxtLink 
+            to="/"
+            class="header-logo my-auto"
           >
             LOGO
           </NuxtLink>

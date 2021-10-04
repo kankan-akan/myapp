@@ -1,9 +1,8 @@
 export default {
-  
+
   data: () => ({
       // modalwindow 
     selectedPlace: null,
-      
       // output 
     places: [
       {
