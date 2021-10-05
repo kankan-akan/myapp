@@ -1,10 +1,10 @@
 <template>
   <v-app> 
     <v-snackbar
-    top
-    v-model ="snackbar"
-   >
-    {{ text }}
+      top
+      v-model ="snackbar"
+    >
+      {{ text }}
     <template v-slot:action ="{ attrs }">
      <v-btn
         color ="pink"
@@ -16,10 +16,10 @@
       </v-btn>
     </template>
     </v-snackbar>
-    
+
   <Header />  
 
-  <v-main>
+  <v-main >
     <v-card>
       <v-card-title>新規登録</v-card-title>
       <v-card-text>

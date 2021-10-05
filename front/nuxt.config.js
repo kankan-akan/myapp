@@ -45,7 +45,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
-    '@nuxtjs/suth-next',
+    '@nuxtjs/auth-next',
     
   ],
 
@@ -64,10 +64,10 @@ export default {
 
   auth: {
     redirect: {
-        login: '/users/login',
+        login: '/',
         logout: '/',
         callback: false,
-        home: '/users/profile',
+        home: '/',
     },
 
     strategies: {
@@ -81,5 +81,5 @@ export default {
     }
 
   }
-  
+
 }

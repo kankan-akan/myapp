@@ -12,7 +12,16 @@
           >
             LOGO
           </NuxtLink>
-          <div>
+          <div v-if ="$auth.loggedIn">
+            <v-btn>
+              {{ user.userId }}
+            </v-btn>
+            <v-btn @click ="logout">
+             LOGOUT
+            </v-btn>
+          </div>
+
+          <div v-else>
             <v-dialog
               transition="fab-transition"
               v-model="dialog"
@@ -41,18 +50,21 @@
                     <v-row>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
+                          v-model ="userId"
                           label="ユーザー名*"
                           required
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
                         <v-text-field
+                          v-model ="email"
                           label="メールアドレス*"
                           required
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
                         <v-text-field
+                          v-model ="password"
                           label="パスワード*"
                           type="password"
                           required
@@ -73,9 +85,10 @@
                       閉じる
                     </v-btn>
                     <v-btn 
+                      type ="submit"
                       color="blue darken-1" 
                       text 
-                      @click="dialog = false"
+                      @click="login"
                     >
                       ログイン
                     </v-btn>
@@ -109,10 +122,39 @@
 <script>
 export default {
   data: () => ({
-    //login
+    //loginwindow
     dialog: false,
+    userId: '',
+    email: '',
+    password: '',
   }),
+
+computed: {
+    params () {
+      return {
+        userId: this.userId,
+        email: this.email,
+        password: this.password
+      }
+    },
+    user () {
+      return this.$auth.user
+    },
+
+  },
+  methods: {
+    login (logininfo) {
+      debugger
+      alert('click login button')
+    },
+
+    logout() {
+      this.$auth.logout ();
+    },
+
+  },
 }
+
 </script>
 
 <style>
