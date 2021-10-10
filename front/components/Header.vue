@@ -16,7 +16,7 @@
             <v-btn>
               {{ user.userId }}
             </v-btn>
-            <v-btn @click ="logout">
+            <v-btn @click ="$auth.logout()">
              LOGOUT
             </v-btn>
           </div>
@@ -132,7 +132,7 @@ export default {
 computed: {
     params () {
       return {
-        userId: this.userId,
+        user_id: this.userId,
         email: this.email,
         password: this.password
       }
@@ -143,14 +143,15 @@ computed: {
 
   },
   methods: {
-    login (logininfo) {
-      debugger
-      alert('click login button')
+    async login () {
+      try {
+        await this.$auth.loginWith('local', this.params)
+        this.$router.push('/')
+      }catch{
+
+      }
     },
 
-    logout() {
-      this.$auth.logout ();
-    },
 
   },
 }

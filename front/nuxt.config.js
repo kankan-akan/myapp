@@ -56,7 +56,9 @@ export default {
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: 'http:localhost:3000'
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -74,7 +76,7 @@ export default {
       local: {
         endpoints: {
           login: { url: '/api/v1/auth/login', method: 'post', propertyName: 'token' },
-          logout: { url: '/api/v1/auth/logout', method: 'post' },
+          logout: { url: '/api/v1/auth/logout', method: 'delete' },
           user: false,
         },
       }
