@@ -11,30 +11,30 @@ export default {
     loader: 'null',
     loading: false,
 
-    name: '', 
+    name: 'example', 
     nameRules: [
       v => !!v || '入力してください',
       v => (v && v.length <= 15) || '15文字以下で入力してください',
     ],
     
-    // userId: '',
-    // userIdRules: [
-    //   v => !!v || '入力してください',
-    //   v => (v && v.length <= 15) || '15文字以下で入力してください',
-    //   v => /^(?=.*[a-zA-Z])[a-zA-Z0-9\d.?/-_]{1,15}$/.test(v) || '',
-    // ],
+    userId: 'example',
+    userIdRules: [
+      v => !!v || '入力してください',
+      v => (v && v.length <= 15) || '15文字以下で入力してください',
+      v => /^(?=.*[a-zA-Z])[a-zA-Z0-9\d.?/-_]{1,15}$/.test(v) || '',
+    ],
     
-    // email: '',
-    // emailRules: [
-    //   v => !!v || '入力してください',
-    //   v => /.+@.+\..+/.test(v) || '',
-    // ],
+    email: 'a@example.com',
+    emailRules: [
+      v => !!v || '入力してください',
+      v => /.+@.+\..+/.test(v) || '',
+    ],
 
-    // password: '',
-    // passwordRules: [
-    //   v => !!v || '入力してください',
-    //   v => /^(?=.*[a-z])(?=.*[.?/-_])[a-zA-Z0-9\d.?/-_]{8,30}$/.test(v) || '',
-    // ],
+    password: 'password.',
+    passwordRules: [
+      v => !!v || '入力してください',
+      v => /^(?=.*[a-z])(?=.*[.?/-_])[a-zA-Z0-9\d.?/-_]{8,30}$/.test(v) || '',
+    ],
     
     snackbar: false,
     text: '',
@@ -45,9 +45,9 @@ export default {
     params() {
       return {
         name: this.name,
-        // user_id: this.userId,
-        // email: this.email,
-        // password: this.password
+        user_id: this.userId,
+        email: this.email,
+        password: this.password
       }
     }
 
@@ -55,19 +55,24 @@ export default {
 
   methods: {
     //全て入力されているか
-    submit () {
+    async submit () {
       if (this.$refs.form.validate()) {
-        // this.loading = true
-        const url = "/api/v1/users"
-          this.$axios.post(url, this.params)
-          .then((res) => {
-            console.log(res)
+        try {
+          // this.loading = true
+          const res = await this.$axios.post('/v1/auth', this.params)
+          await this.$auth.loginWith('local', {
+            data: {
+              // user_id: this.userId,
+              email: this.email,
+              password: this.password
+            }
           })
-            this.snackbar = true
-      
-          // .catch((err) => {
-            
-          // })
+            console.log(res)
+            // this.snackbar = true
+            this.$router.push('/')
+        }catch(err) {
+            console.log(err)
+          }
       }
 
     },

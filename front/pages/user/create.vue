@@ -26,7 +26,7 @@
         <v-form
           ref="form"
           v-model ="valid"
-          lazy-validation
+          lazy-validation 
         >
           <v-text-field
             outlined
@@ -37,7 +37,7 @@
             required
           ></v-text-field>
 
-          <!-- <v-text-field
+          <v-text-field
             outlined
             v-model ="userId"
             :counter ="15"
@@ -64,7 +64,7 @@
             required
             
             @click:append ="show = !show"
-          ></v-text-field> -->
+          ></v-text-field>
 <!-- autocomple ="off" -->
           <!-- <v-checkbox
             v-model ="checkbox"
@@ -78,7 +78,7 @@
               type ="submit"
               :disabled ="!valid || loading" 
               :loading ="loading"
-              @click ="submit"
+              @click.prevent ="submit"
               large
               outlined
             >

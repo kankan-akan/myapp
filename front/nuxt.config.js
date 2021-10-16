@@ -29,8 +29,6 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -44,20 +42,23 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/proxy',
     '@nuxtjs/auth-next',
     
   ],
 
-  proxy: {
-  '/api': {
-    target: 'http://localhost:3000/'
-  }
-  },
-
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'http:localhost:3000'
+    proxy: true,
+    prefix: '/api'
+  },
+
+ proxy: {
+  '/api': {
+    target: 'http://localhost:3000',
+      pathRewrite: {
+        '^/api' : ''
+      },
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -65,19 +66,23 @@ export default {
   },
 
   auth: {
+    plugins: [
+      {src: '~/plugins/axios.js', ssr: false }
+    ],
     redirect: {
         login: '/',
         logout: '/',
         callback: false,
-        home: '/',
+        home: '/user/login',
     },
 
     strategies: {
       local: {
+        tokenType: 'bearer',
         endpoints: {
-          login: { url: '/api/v1/auth/login', method: 'post', propertyName: 'token' },
-          logout: { url: '/api/v1/auth/logout', method: 'delete' },
-          user: false,
+          login: { url: '/v1/auth/sign_in', method: 'post', propertyName: 'token' },
+          logout: { url: '/v1/auth/sign_out', method: 'delete' },
+          user: { url: '/v1/auth/user', method: 'get' }
         },
       }
     }

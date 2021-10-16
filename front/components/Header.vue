@@ -12,6 +12,8 @@
           >
             LOGO
           </NuxtLink>
+          <h2>{{ $store.state.auth.loggedIn }}</h2>
+          <p>{{ $auth.user }}</p>
           <div v-if ="$auth.loggedIn">
             <v-btn>
               {{ user.userId }}
@@ -48,13 +50,13 @@
                 <v-card-text>
                   <v-container>
                     <v-row>
-                      <v-col cols="12" sm="6" md="4">
+                      <!-- <v-col cols="12" sm="6" md="4">
                         <v-text-field
                           v-model ="userId"
                           label="ユーザー名*"
                           required
                         ></v-text-field>
-                      </v-col>
+                      </v-col> -->
                       <v-col cols="12">
                         <v-text-field
                           v-model ="email"
@@ -85,7 +87,7 @@
                       閉じる
                     </v-btn>
                     <v-btn 
-                      type ="submit"
+                      
                       color="blue darken-1" 
                       text 
                       @click="login"
@@ -120,35 +122,37 @@
 </template>
 
 <script>
+import Vuex from 'vuex';
+
 export default {
   data: () => ({
     //loginwindow
     dialog: false,
-    userId: '',
+    // userId: '',
     email: '',
     password: '',
   }),
 
-computed: {
-    params () {
-      return {
-        user_id: this.userId,
-        email: this.email,
-        password: this.password
-      }
-    },
+  computed: {
     user () {
       return this.$auth.user
-    },
-
+    }
   },
+
   methods: {
     async login () {
       try {
-        await this.$auth.loginWith('local', this.params)
+        const res = await this.$auth.loginWith('local', {
+          data: {
+            // user_id: this.userId,
+            email: this.email,
+            password: this.password
+          }
+        })
+        console.log(res)
         this.$router.push('/')
-      }catch{
-
+      }catch (err){
+        console.log(err)
       }
     },
 
