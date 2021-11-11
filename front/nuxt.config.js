@@ -31,6 +31,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/localStrage.js', ssr: false },
+    { src: '~/plugins/axios.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -46,7 +47,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     'nuxt-client-init-module',
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next',
+    '@nuxtjs/auth-next'
     
   ],
 
@@ -70,23 +71,26 @@ export default {
   },
 
   auth: {
-    plugins: [
-      {src: '~/plugins/axios.js', ssr: false }
-    ],
     redirect: {
         login: '/',
         logout: '/',
         callback: false,
-        home: '/user/login',
+        home: '/loggedIn',
     },
 
     strategies: {
       local: {
-        tokenType: 'bearer',
+      token: {
+        type: 'Bearer',
+        property: 'token'
+      },
+      user: {
+        property: false
+      },
         endpoints: {
           login: { url: '/v1/auth/sign_in', method: 'post', propertyName: 'token' },
           logout: { url: '/v1/auth/sign_out', method: 'delete' },
-          user: { url: '/v1/auth/user', method: 'get' }
+          user: { url: '/v1/auth/me', method: 'get', propertyName: false },
         },
       }
     }
