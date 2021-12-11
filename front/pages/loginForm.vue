@@ -2,7 +2,7 @@
   <v-app>
     <Header />
 <v-main>
-    <v-card>
+    <v-card max-width = "600">
                 <v-card-title>
                   <div class="text-h5">ログイン</div>
                 </v-card-title>
@@ -60,6 +60,8 @@
                     ユーザー登録はお済みですか？
                     <NuxtLink to="/user/create">ー新規登録</NuxtLink>
                   </div>
+                  <!-- <p>{{ $store.state.message }}</p>
+                  <p>{{ $store.state.count }}</p> -->
                 </v-card-text>
               </v-card>
     </v-main>
@@ -87,12 +89,11 @@ export default {
       })
       console.log(res)
       console.log(this.$auth);
-        // this.$router.push('/loggedIn')
+        // this.$router.push('/')
       }catch(err) {
         console.log(err)
       }
     },
-
 
   },
 
