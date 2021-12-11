@@ -62,7 +62,7 @@ export default {
     items: [
         { title: 'プロフィール', link: '' },
         { title: 'ユーザー設定', link: '' },
-        {title: 'ログアウト', link: '/user/logout'},
+        {title: 'ログアウト', link: '/logout'},
 
       ],
   }),
@@ -76,6 +76,8 @@ export default {
   methods: {
     
   },
+
+  
 }
 
 </script>

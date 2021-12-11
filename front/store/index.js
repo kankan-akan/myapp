@@ -1,18 +1,11 @@
-import Vuex from 'vuex'
-import createPersistedState from 'vuex-persistedstate'
 
-const initialState = {
+export const state = () => ({
 
-  loggedIn: false
-}
-
-export const store = new Vuex.Store({
-  state: initialState,
-  mutations: {},
-  actions: {},
-  getters: {},
-  plugins: [createPersistedState()],
 })
+
+export const mutations = {
+  
+}
 
 export const actions = {
   nuxtClientInit({ commit }, context) {

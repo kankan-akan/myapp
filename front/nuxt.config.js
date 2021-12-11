@@ -30,7 +30,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/localStrage.js', ssr: false },
+    { src: '~/plugins/localStorage.js', ssr: false },
+    { src: '~/plugins/axios.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -46,7 +47,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     'nuxt-client-init-module',
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next',
+    '@nuxtjs/auth'
     
   ],
 
@@ -69,24 +70,34 @@ export default {
   build: {
   },
 
+  // router: {
+  //   middleware: ['auth']
+  // },
+  
   auth: {
-    plugins: [
-      {src: '~/plugins/axios.js', ssr: false }
-    ],
     redirect: {
         login: '/',
         logout: '/',
         callback: false,
-        home: '/user/login',
+        home: '/',
     },
 
     strategies: {
       local: {
-        tokenType: 'bearer',
+      token: {
+        property: 'access_token',
+        required: true,
+        // type: 'Bearer'
+      },
+      user: {
+        property: false,
+        autoFetch: true
+      },
         endpoints: {
-          login: { url: '/v1/auth/sign_in', method: 'post', propertyName: 'token' },
+          login: { url: '/v1/auth/sign_in', method: 'post' },
           logout: { url: '/v1/auth/sign_out', method: 'delete' },
-          user: { url: '/v1/auth/user', method: 'get' }
+          // user: { url: '/v1/auth/me', method: 'get' },
+          user : false,
         },
       }
     }
