@@ -16,16 +16,37 @@
           <h2>{{ $auth.loggedIn }}</h2>
           <p>{{ $auth.user }}</p>
           <div v-if ="$auth.loggedIn">
-            <v-btn>
-              @{{ user.userId }}
-            </v-btn>
             <v-btn @click ="$auth.logout()">
              LOGOUT
             </v-btn>
+            <v-menu 
+              bottom
+              offset-y
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  color="primary"
+                  dark
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  @{{ }}
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item
+                  v-for="(item, index) in items"
+                  :key="index"
+                  :to="item.link"
+                  link
+                >
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </div>
-
           <div v-else>
-            <v-btn to ="/loggedIn">
+            <v-btn @click ="$auth.logout()">
               logout
             </v-btn>
             <v-btn
@@ -55,9 +76,15 @@
 </template>
 
 <script>
-import Vuex from 'vuex';
-
 export default {
+data: () => ({
+    items: [
+        { title: 'プロフィール', link: '' },
+        { title: 'ユーザー設定', link: '' },
+        {title: 'ログアウト', link: '/logout'},
+
+      ],
+  }),
 
   computed: {
     user () {
