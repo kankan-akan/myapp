@@ -1,7 +1,7 @@
 <template>
     <v-app-bar 
       app 
-      height="100" 
+      height="80" 
       color="blue lighten-2"
     >
       <v-container>
@@ -34,13 +34,15 @@
                 </v-btn>
               </template>
               <v-list>
-                <v-list-item
-                  v-for="(item, index) in items"
-                  :key="index"
-                  :to="item.link"
-                  link
-                >
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                <v-list-item to ="/user/plofile">
+                  <v-list-item-title>マイページ</v-list-item-title>
+                </v-list-item>
+                <v-list-item to ="/user/myAccount">
+                  <v-list-item-title>アカウント設定</v-list-item-title>
+                </v-list-item>
+                <v-divider></v-divider>
+                <v-list-item to ="/logout">
+                  <v-list-item-title>ログアウト</v-list-item-title>
                 </v-list-item>
               </v-list>
             </v-menu>
@@ -77,14 +79,6 @@
 
 <script>
 export default {
-data: () => ({
-    items: [
-        { title: 'プロフィール', link: '' },
-        { title: 'ユーザー設定', link: '' },
-        {title: 'ログアウト', link: '/logout'},
-
-      ],
-  }),
 
   computed: {
     user () {
