@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <Header />
-<v-main>
+    <v-main>
     <v-card max-width = "600">
                 <v-card-title>
                   <div class="text-h5">ログイン</div>

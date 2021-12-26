@@ -7,7 +7,7 @@
       <v-btn @click ="$auth.logout()">
         OK
       </v-btn>
-      <v-btn to="/loggedIn">
+      <v-btn to="/">
         キャンセル
       </v-btn>
     </v-container>
