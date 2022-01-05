@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
       get 'users', to: 'users#members_only'
       get '/users/index', to: 'users#index'
+
+      resources :posts, only: [:index, :show, :create, :destroy]
+
     end
   end
 end
