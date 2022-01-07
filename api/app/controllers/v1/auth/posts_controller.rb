@@ -1,8 +1,8 @@
 class V1::Auth::PostsController < ApplicationController
 
   def index
-    @post = Post.includes(:users)
-    render json: @post.as_json(include: :users)
+    @post = Post.includes(:user)
+    render json: @post.as_json(include: :user)
   end
 
   def show
@@ -21,8 +21,8 @@ class V1::Auth::PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    if @post.destroy
+    post = Post.find(params[:id])
+    if post.destroy
       render json: :destroy
     else
       render json: { status: 400 }
@@ -31,7 +31,7 @@ class V1::Auth::PostsController < ApplicationController
 
   private
    def post_params 
-    params.require(:post).permit(:content)
+    params.permit(:user_id, :content)
    end
 
 end
