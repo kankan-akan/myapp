@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       # Define routes for AdminRange within this block.
     namespace :range_auth do
       get '/ranges', to: 'ranges#ranges_only'
+      resources :outlines, controller: 'range_outlines', only: [:index, :show, :create, :update, :destroy]
     end
   end
 end
