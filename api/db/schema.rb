@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_11_054151) do
+ActiveRecord::Schema.define(version: 2022_01_13_120257) do
 
   create_table "admin_ranges", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -44,6 +44,21 @@ ActiveRecord::Schema.define(version: 2022_01_11_054151) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "range_outlines", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "city"
+    t.string "name"
+    t.text "features"
+    t.string "link"
+    t.string "address"
+    t.string "phone_number"
+    t.string "distance"
+    t.string "booths"
+    t.bigint "admin_range_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_range_id"], name: "index_range_outlines_on_admin_range_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -75,4 +90,5 @@ ActiveRecord::Schema.define(version: 2022_01_11_054151) do
   end
 
   add_foreign_key "posts", "users"
+  add_foreign_key "range_outlines", "admin_ranges"
 end
