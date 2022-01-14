@@ -1,13 +1,17 @@
 class V1::Auth::PostsController < ApplicationController
 
+  def my_post
+    @post = current_v1_auth_user.post
+    render json: @post
+  end
+
   def index
     @post = Post.includes(:user)
     render json: @post.as_json(include: :user)
   end
 
   def show
-    @post = current_v1_auth_user.post
-    # @post = Post.includes(:users).find(params[:id])
+    @post = Post.includes(:users).find(params[:id])
     render json: @post
   end
 

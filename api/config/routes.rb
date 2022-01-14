@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     namespace :auth do
       get 'users', to: 'users#members_only'
       get '/users/index', to: 'users#index'
+
+      get 'posts/my_post', to: 'posts#my_post'
       resources :posts, only: [:index, :show, :create, :destroy]
     end
 

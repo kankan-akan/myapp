@@ -11,7 +11,7 @@
       end
 
       def index
-        @user = User.includes(:posts)
+        @user = User.all
         render json: @user, status: :ok
       end
     end
