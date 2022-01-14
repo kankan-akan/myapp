@@ -1,13 +1,13 @@
 class V1::RangeAuth::RangeOutlinesController < ApplicationController
 
   def index
-    @outline = RangeOutline.all
-    render json: @outline
+    @outline = RangeOutline.includes(:equipment)
+    render json: @outline.as_json(include: :equipment)
   end
 
   def show
-    @outline = RangeOutline.find(params[:id])
-    render json: @outline
+    @outline = RangeOutline.includes(:equipment).find(params[:id])
+    render json: @outline.as_json(include: :equipment)
   end
 
   def create

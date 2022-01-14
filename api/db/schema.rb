@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_13_120257) do
+ActiveRecord::Schema.define(version: 2022_01_14_120008) do
 
   create_table "admin_ranges", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -33,6 +33,21 @@ ActiveRecord::Schema.define(version: 2022_01_13_120257) do
     t.index ["email"], name: "index_admin_ranges_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_ranges_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_admin_ranges_on_uid_and_provider", unique: true
+  end
+
+  create_table "equipment", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.boolean "uchihoudai", default: false, null: false
+    t.boolean "approach", default: false, null: false
+    t.boolean "lefty", default: false, null: false
+    t.boolean "patting", default: false, null: false
+    t.boolean "bunker", default: false, null: false
+    t.boolean "shop", default: false, null: false
+    t.boolean "restaurant", default: false, null: false
+    t.boolean "lesson", default: false, null: false
+    t.bigint "range_outline_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["range_outline_id"], name: "index_equipment_on_range_outline_id"
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -89,6 +104,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_120257) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider"
   end
 
+  add_foreign_key "equipment", "range_outlines"
   add_foreign_key "posts", "users"
   add_foreign_key "range_outlines", "admin_ranges"
 end
