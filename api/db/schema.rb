@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_14_120008) do
+ActiveRecord::Schema.define(version: 2022_01_22_114637) do
 
   create_table "admin_ranges", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -48,6 +48,18 @@ ActiveRecord::Schema.define(version: 2022_01_14_120008) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["range_outline_id"], name: "index_equipment_on_range_outline_id"
+  end
+
+  create_table "lessons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.string "coach"
+    t.text "content"
+    t.bigint "admin_range_id"
+    t.bigint "range_outline_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_range_id"], name: "index_lessons_on_admin_range_id"
+    t.index ["range_outline_id"], name: "index_lessons_on_range_outline_id"
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -105,6 +117,8 @@ ActiveRecord::Schema.define(version: 2022_01_14_120008) do
   end
 
   add_foreign_key "equipment", "range_outlines"
+  add_foreign_key "lessons", "admin_ranges"
+  add_foreign_key "lessons", "range_outlines"
   add_foreign_key "posts", "users"
   add_foreign_key "range_outlines", "admin_ranges"
 end
