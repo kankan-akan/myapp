@@ -8,5 +8,5 @@ class AdminRange < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_one :range_outline, dependent: :destroy
-  has_many :lesson, dependent: :destroy
+  has_many :lessons, dependent: :destroy
 end

@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     namespace :range_auth do
       get '/ranges', to: 'ranges#ranges_only'
       resources :outlines, controller: 'range_outlines', only: [:index, :show, :create, :update, :destroy]
+      get '/lessons/range_lesson', to: 'lessons#range_lesson'
+      resources :lessons, only: [:index, :show, :create, :update, :destroy]
     end
   end
 end
