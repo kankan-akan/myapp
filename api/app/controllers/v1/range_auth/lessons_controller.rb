@@ -6,13 +6,13 @@ class V1::RangeAuth::LessonsController < ApplicationController
   end
 
   def index
-    @lesson = Lesson.includes(:range_outline)
-    render json: @lesson.as_json(include: :range_outline)
+    @lesson = Lesson.includes(:range_outline, :review)
+    render json: @lesson.as_json(include: :range_outline, :review)
   end
 
   def show
-    @lesson = Lesson.includes(:range_outline).find(params[:id])
-    render json: @lesson.as_json(include: :range_outline)
+    @lesson = Lesson.includes(:range_outline, :review).find(params[:id])
+    render json: @lesson.as_json(include: :range_outline, :review)
   end
 
   def create
