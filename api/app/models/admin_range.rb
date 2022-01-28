@@ -7,5 +7,6 @@ class AdminRange < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  has_one :range_outline
+  has_one :range_outline, dependent: :destroy
+  has_many :lessons, dependent: :destroy
 end

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
       get 'posts/my_post', to: 'posts#my_post'
       resources :posts, only: [:index, :show, :create, :destroy]
+
+      get '/reviews/my_review', to: 'reviews#my_review'
+      resources :reviews, only: [:create, :update, :destroy]
     end
 
     mount_devise_token_auth_for 'AdminRange', at: 'range_auth', controllers: {
@@ -19,6 +22,8 @@ Rails.application.routes.draw do
     namespace :range_auth do
       get '/ranges', to: 'ranges#ranges_only'
       resources :outlines, controller: 'range_outlines', only: [:index, :show, :create, :update, :destroy]
+      get '/lessons/range_lesson', to: 'lessons#range_lesson'
+      resources :lessons, only: [:index, :show, :create, :update, :destroy]
     end
   end
 end

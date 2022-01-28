@@ -12,17 +12,19 @@ class V1::RangeAuth::RangeOutlinesController < ApplicationController
 
   def create
     @outline = RangeOutline.new(outline_params)
-    if @outline.save
-      render json: @outline, status: :created
+    @equipment = Equipment.new(equipment_params)
+    if @outline.save && @equipment.save
+      render json: { outline: @outline, equipment: @equipment }
     else
-      render json: { status: 400}
+      render json: { status: 400 }
     end
   end
 
   def update
     @outline = RangeOutline.find(params[:id])
-    if @outline.update(outline_params)
-      render json: @outline
+    @equipment = Equipment.find(params[:id])
+    if @outline.update(outline_params) && @equipment.update(equipment_params)
+      render json: { outline: @outline, equipment: @equipment }
     else
       render json: {status: 400 }
     end
@@ -39,6 +41,10 @@ class V1::RangeAuth::RangeOutlinesController < ApplicationController
 
   private
     def outline_params
-      params.permit(:city, :name, :features, :link, :address, :phone_number, :distance, :booths, :admin_range)
+      params.permit(:city, :name, :features, :link, :address, :phone_number, :distance, :booths, :admin_range_id)
+    end
+
+    def equipment_params
+      params.permit(:uchihoudai, :approach, :lefty, :patting, :bunker, :shop, :restaurant, :lesson, :range_outline_id)
     end
 end
