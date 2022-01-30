@@ -9,4 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :posts, dependent: :destroy
   has_many :reviews
+
+  has_many :lessons, through: :reservations
+  has_many :reservations
 end
