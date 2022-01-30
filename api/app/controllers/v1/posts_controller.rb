@@ -1,7 +1,7 @@
-class V1::Auth::PostsController < ApplicationController
+class V1::PostsController < ApplicationController
 
   def my_post
-    @post = current_v1_auth_user.post
+    @post = current_v1_user.post
     render json: @post
   end
 

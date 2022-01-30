@@ -1,4 +1,4 @@
-class V1::RangeAuth::RangeOutlinesController < ApplicationController
+class V1::RangeOutlinesController < ApplicationController
 
   def index
     @outline = RangeOutline.includes(:equipment)

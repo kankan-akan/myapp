@@ -1,7 +1,7 @@
-class V1::Auth::ReviewsController < ApplicationController
+class V1::ReviewsController < ApplicationController
 
   def my_review
-    @review = current_v1_auth_user.lesson.review
+    @review = current_v1_user.lesson.review
     render json: @review
   end
 

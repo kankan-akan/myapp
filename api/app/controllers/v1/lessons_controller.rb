@@ -1,7 +1,7 @@
-class V1::RangeAuth::LessonsController < ApplicationController
+class V1::LessonsController < ApplicationController
 
   def range_lesson
-    @lesson = authenticate_v1_range_auth_admin.lesson
+    @lesson = authenticate_v1_admin.lesson
     render json: @lesson
   end
 

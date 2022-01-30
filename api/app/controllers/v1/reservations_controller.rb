@@ -1,4 +1,4 @@
-class V1::Auth::ReservationsController < ApplicationController
+class V1::ReservationsController < ApplicationController
 
   def my_reservation
     @reservation = current_v1_user.reservation.includes(:lesson)

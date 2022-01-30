@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class V1::Auth::ReviewsControllerTest < ActionDispatch::IntegrationTest
+class V1::ReservationsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
