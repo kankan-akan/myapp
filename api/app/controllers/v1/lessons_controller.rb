@@ -1,18 +1,18 @@
 class V1::LessonsController < ApplicationController
 
   def range_lesson
-    @lesson = authenticate_v1_admin.lesson
-    render json: @lesson
+    @lesson = current_v1_admin.lesson.includes(:reservations, :users)
+    render json: @lesson.as_json(include: [:reservations, users: { only: :[name email] }])
   end
 
   def index
-    @lesson = Lesson.includes(:range_outline, :review)
-    render json: @lesson.as_json(include: :range_outline, :review)
+    @lesson = Lesson.includes(:range_outline)
+    render json: @lesson.as_json(include: :range_outline)
   end
 
   def show
-    @lesson = Lesson.includes(:range_outline, :review).find(params[:id])
-    render json: @lesson.as_json(include: :range_outline, :review)
+    @lesson = Lesson.includes(:range_outline, :reviews).find(params[:id])
+    render json: @lesson.as_json(include: [:range_outline, :reviews])
   end
 
   def create
@@ -47,5 +47,4 @@ class V1::LessonsController < ApplicationController
   def lesson_params
     params.permit(:title, :coach, :content, :admin_range_id, :range_outline_id)
   end
-
 end

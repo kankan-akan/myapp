@@ -2,12 +2,6 @@ class V1::ReservationsController < ApplicationController
 
   def my_reservation
     @reservation = current_v1_user.reservation.includes(:lesson)
-    render json: @reservation
-  end
-
-  def range_reservation
-    @reservation = Lesson.find(params[:lesson_id]).reservation.includes(:users)
-    render json: @reservation
   end
 
   def show

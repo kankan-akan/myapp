@@ -23,12 +23,12 @@ Rails.application.routes.draw do
 
       get '/lessons/range_lesson', to: 'lessons#range_lesson'
       resources :lessons, only: [:index, :show, :create, :update, :destroy] do
-        get '/reservations/range_reservation', to:'reservations#range_reservation'
         resources :reservations, only: [:show]
       end
 
       get '/reviews/my_review', to: 'reviews#my_review'
       resources :reviews, only: [:create, :update, :destroy]
+
       get '/reservations/my_reservation', to:'reservations#my_reservation'
       resources :reservations, only: [:create, :update, :destroy]
 
