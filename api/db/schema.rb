@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_28_164102) do
+ActiveRecord::Schema.define(version: 2022_02_01_122129) do
 
   create_table "admin_ranges", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -86,6 +86,16 @@ ActiveRecord::Schema.define(version: 2022_01_28_164102) do
     t.index ["admin_range_id"], name: "index_range_outlines_on_admin_range_id"
   end
 
+  create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "follower_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+    t.index ["user_id", "follower_id"], name: "index_relationships_on_user_id_and_follower_id", unique: true
+    t.index ["user_id"], name: "index_relationships_on_user_id"
+  end
+
   create_table "reservations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "lesson_id"
     t.bigint "user_id"
@@ -142,6 +152,7 @@ ActiveRecord::Schema.define(version: 2022_01_28_164102) do
   add_foreign_key "lessons", "range_outlines"
   add_foreign_key "posts", "users"
   add_foreign_key "range_outlines", "admin_ranges"
+  add_foreign_key "relationships", "users", column: "follower_id"
   add_foreign_key "reservations", "lessons"
   add_foreign_key "reservations", "users"
   add_foreign_key "reviews", "lessons"
