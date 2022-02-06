@@ -9,9 +9,9 @@ class V1::RelationshipsController < ApplicationController
         render json: { status: 400 }
       end
   end
-
+ 
   def destroy
-    @relationship = @user.unfollow(params[:id])
+    @relationship = @user.unfollow(@follower)
     if @relationship.destroy
       render json: { status: 200 }
     else
@@ -23,7 +23,7 @@ class V1::RelationshipsController < ApplicationController
 
     def set_user
       @user = User.find(params[:user_id])
-      @folllower = User.find(params[:follower_id])
+      @follower = User.find(params[:follower_id])
     end
 
 end
