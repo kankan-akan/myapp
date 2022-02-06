@@ -13,5 +13,10 @@ class V1::Auth::UsersController < ApplicationController
     @user = User.all
     render json: @user, status: :ok
   end
+
+  def show
+    @user = User.find(params[:id])
+    render json: @user
+  end
 end
   

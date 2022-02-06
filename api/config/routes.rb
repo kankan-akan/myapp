@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     }
     namespace :auth do
       get 'users', to: 'users#members_only'
-      get '/users/index', to: 'users#index'
+      resources :users, only: [:index, :show]
     end
 
     mount_devise_token_auth_for 'AdminRange', at: 'range_auth', controllers: {
@@ -31,6 +31,8 @@ Rails.application.routes.draw do
 
       get '/reservations/my_reservation', to:'reservations#my_reservation'
       resources :reservations, only: [:create, :update, :destroy]
+
+      resources :relationships, only: [:create, :destroy]
 
   end
 end
