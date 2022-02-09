@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
 
   has_many :likes, dependent: :destroy
 
+  has_many :bookmarks, dependent: :destroy
+  has_many :range_outlines, through: :bookmarks
+
   has_many :relationships, dependent: :destroy
   has_many :followings, through: :relationships, source: :follower
 
