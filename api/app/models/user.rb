@@ -11,7 +11,9 @@ class User < ActiveRecord::Base
   has_many :reviews
 
   has_many :lessons, through: :reservations
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
+
+  has_many :likes, dependent: :destroy
 
   has_many :relationships, dependent: :destroy
   has_many :followings, through: :relationships, source: :follower
@@ -31,6 +33,10 @@ class User < ActiveRecord::Base
 
   def unfollow(other_user)
     relationships.find_by(follower_id: other_user.id).destroy!
+  end
+
+  def unlike(other_post)
+    likes.find_by(post_id: other_post.id).destroy!
   end
   
 end

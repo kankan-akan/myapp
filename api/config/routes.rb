@@ -17,7 +17,10 @@ Rails.application.routes.draw do
     end
 
       get 'posts/my_post', to: 'posts#my_post'
-      resources :posts, only: [:index, :show, :create, :destroy]
+      resources :posts, only: [:index, :show, :create, :destroy] 
+      
+        get 'likes/like_users', to: 'likes#like_users'
+        resource :likes, only: [:create, :destroy]
 
       resources :outlines, controller: 'range_outlines', only: [:index, :show, :create, :update, :destroy]
 
