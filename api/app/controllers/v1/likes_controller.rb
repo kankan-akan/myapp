@@ -1,13 +1,13 @@
 class V1::LikesController < ApplicationController
-  before_action :set_user, except: [:create]
+  before_action :set_user, only: [:destroy]
 
   def like_users
+    @post = Post.find(params[:post_id])
     @like_users = @post.like_users
       render json: @like_users
   end
 
   def create
-    byebug
     @like = Like.new(like_params)
       if @like.save
         render json: @like
