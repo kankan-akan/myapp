@@ -22,6 +22,9 @@ Rails.application.routes.draw do
       end
       resource :likes, only: [:create, :destroy]
 
+      get '/bookmarks/my_bookmark', to: 'bookmarks#my_bookmark'
+      resource :bookmarks, only: [:create, :destroy]
+
       resources :outlines, controller: 'range_outlines', only: [:index, :show, :create, :update, :destroy]
 
       get '/lessons/range_lesson', to: 'lessons#range_lesson'

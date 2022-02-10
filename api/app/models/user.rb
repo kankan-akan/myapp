@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
 
   has_many :likes, dependent: :destroy
 
+  has_many :bookmarks, dependent: :destroy
+  has_many :range_outlines, through: :bookmarks
+
   has_many :relationships, dependent: :destroy
   has_many :followings, through: :relationships, source: :follower
 
@@ -39,4 +42,8 @@ class User < ActiveRecord::Base
     likes.find_by(post_id: other_post.id).destroy!
   end
   
+  def unbookmark(other_outline)
+    bookmarks.find_by(range_outline_id: other_outline.id).destroy!
+  end
+
 end

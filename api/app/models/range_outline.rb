@@ -4,4 +4,6 @@ class RangeOutline < ApplicationRecord
   has_one :equipment, dependent: :destroy
 
   has_many :lessons, dependent: :destroy
+
+  has_many :bookmarks, dependent: :destroy
 end
