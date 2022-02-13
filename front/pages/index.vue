@@ -16,12 +16,15 @@
           justify = "space-around"
         >
           <v-card-text class="my-0 pa-2 black--text">
+            <div v-text = "place.city"></div>
             <div v-text= "place.ruby"></div>
             <div 
               class = "text-h6"
-              v-text = "place.place"
+              v-text = "place.name"
             >
             </div>
+            <div v-text = "place.address"></div>
+            <div v-text = "place.distance"></div>
           </v-card-text>
             <v-divider class="my-2"></v-divider>
               <table>
@@ -32,7 +35,7 @@
                   <th>ボール単価</th> <td>10円/1球</td><td>12円/1球</td>
                 </tr>
               </table>
-          
+            <Equipment />
           <v-card-actions class ="justify-center">
               <v-btn 
                 block
@@ -65,13 +68,35 @@
                     <div 
                       class = "text-h6"
                       v-if = "selectedPlace"
-                      v-text = "selectedPlace.place"
+                      v-text = "selectedPlace.name"
                     ></div>
                     <div 
                       v-if = "selectedPlace"
-                      v-text = "selectedPlace.adress"
+                      v-text = "selectedPlace.address"
+                    ></div>
+                    <div 
+                      v-if = "selectedPlace"
+                      v-text = "selectedPlace.distance"
                     ></div>
                     <v-divider class ="grey lighten-2 my-2"></v-divider>
+
+                    <div 
+                      v-if = "selectedPlace"
+                      v-text = "selectedPlace.features"
+                    ></div>
+                    <div 
+                      v-if = "selectedPlace"
+                      v-text = "selectedPlace.link"
+                    ></div>
+                    <div 
+                      v-if = "selectedPlace"
+                      v-text = "selectedPlace.phone_number"
+                    ></div>
+                    <div 
+                      v-if = "selectedPlace"
+                      v-text = "selectedPlace.booths"
+                    ></div>
+
                   </v-card-text>
                   <v-card-actions class ="justify-center">
                     <v-btn
