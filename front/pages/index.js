@@ -8,7 +8,7 @@ export default {
     message: 'hello world!'
   }),
 
-  mounted() {
+  created() {
     this.$axios.get('/v1/outlines')
                     .then((res) => {this.places = res.data})
 
