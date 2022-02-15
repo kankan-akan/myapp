@@ -1,13 +1,12 @@
 <template>
 <v-app>
 <Header />
-
   <v-main> 
     <v-container>
       <v-row>
         <v-col 
-          v-for= "place in places"
-          :key = "place.id"
+          v-for= "(place, i) in outline"
+          :key = "i"
           cols = "12"
           xs = "12"
           sm = "3"
@@ -41,7 +40,7 @@
                 block
                 color ="green white--text lighten-1"
                 class ="ma-2"
-                @click= "selectedPlace = place"
+                @click= "selectedPlace = outline"
               >
                 詳細
                 <v-icon>mdi-chevron-double-down</v-icon>
@@ -100,9 +99,9 @@
                   </v-card-text>
                   <v-card-actions class ="justify-center">
                     <v-btn
-                    color ="success"
-                    class ="ma-5"
-                    @click = "selectedPlace = null"
+                      color ="success"
+                      class ="ma-5"
+                      @click = "selectedPlace = null"
                     >
                     close
                     </v-btn>

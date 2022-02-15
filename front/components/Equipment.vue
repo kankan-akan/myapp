@@ -3,7 +3,6 @@
     <v-row no-gutters>
     <v-col>
       <div class="e1" v-bind:class="{ active: isActive }">打ち放題</div>
-      <div>{{ message }}</div>
       <div class="e1">アプローチ</div>
     </v-col>
     <v-col>

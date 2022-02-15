@@ -1,22 +1,31 @@
+import { mapActions, mapState } from 'vuex';
+
 export default {
 
   data: () => ({
       // modalwindow 
-    selectedPlace: null,
+      selectedPlace: null,
       // output 
-    places: [ ],
-    message: 'hello world!'
+    // places: [ ]
   }),
 
-  created() {
-    this.$axios.get('/v1/outlines')
-                    .then((res) => {this.places = res.data})
+methods: {
+    ...mapActions({
+        getOutline: 'getOutline'
+    })
+  },
+
+  created: async function() {
+    await this.getOutline()
 
   },
 
   computed: {
+    ...mapState({
+      outline: (state) => state.outline
+    }),
     overlay: function () {
       return !!this.selectedPlace
     },
-  },
+  }
 }
