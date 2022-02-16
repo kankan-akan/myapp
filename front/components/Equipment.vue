@@ -2,7 +2,7 @@
   <v-container>
     <v-row no-gutters>
     <v-col>
-      <div class="e1" v-bind:class="{ active: isActive }">打ち放題</div>
+      <div class="e1" v-bind:class="{  }">打ち放題</div>
       <div class="e1">アプローチ</div>
     </v-col>
     <v-col>
@@ -22,13 +22,23 @@
 </template>
 
 <script>
-export default ({
-  props: [ 'message' ],
+import { mapActions, mapState } from 'vuex';
 
+export default ({
  data:()=> ({
   isActive: true
 
- })
+ }),
+
+methods: {
+   
+  },
+
+ computed: {
+   ...mapState({
+     equipment: (state) => state.equipment
+   })
+ }
 
 })
 </script>

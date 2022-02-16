@@ -1,12 +1,16 @@
 
 export const state = () => ({
-  outline: [ ]
+  outline: [ ],
+  equipment: [ ]
 
 })
 
 export const mutations = {
-  setOutline ( set, outline ){
+  setOutline ( state, outline ){
     state.outline = outline;
+  },
+  setEquipment ( state, equipment ){
+    state.equipment = equipment;
   }
 }
 
@@ -16,8 +20,9 @@ export const actions = {
   },
   async getOutline({ commit }){
     await this.$axios.get('/v1/outlines')
-    .then((res) => { 
+    .then((res) => {
       commit('setOutline', res.data)
+      commit('setEquipment', res.data.outline.equipment)
     })
   } 
 

@@ -40,7 +40,7 @@
                 block
                 color ="green white--text lighten-1"
                 class ="ma-2"
-                @click= "selectedPlace = outline"
+                @click= "selectedPlace = place"
               >
                 詳細
                 <v-icon>mdi-chevron-double-down</v-icon>
@@ -95,7 +95,10 @@
                       v-if = "selectedPlace"
                       v-text = "selectedPlace.booths"
                     ></div>
-
+                    <v-col>
+                      <v-card-title>レッスン一覧</v-card-title>
+                      <v-card-sub-title></v-card-sub-title>
+                    </v-col>
                   </v-card-text>
                   <v-card-actions class ="justify-center">
                     <v-btn
