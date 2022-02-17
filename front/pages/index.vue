@@ -95,9 +95,11 @@
                       v-if = "selectedPlace"
                       v-text = "selectedPlace.booths"
                     ></div>
-                    <v-col>
+                    <v-col
+                    
+                    >
                       <v-card-title>レッスン一覧</v-card-title>
-                      <v-card-sub-title></v-card-sub-title>
+                      <v-card-subtitle ></v-card-subtitle>
                     </v-col>
                   </v-card-text>
                   <v-card-actions class ="justify-center">

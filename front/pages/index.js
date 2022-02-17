@@ -10,18 +10,21 @@ export default {
 
 methods: {
     ...mapActions({
-        getOutline: 'getOutline'
+        getOutline: 'getOutline',
+        // getLsson: 'getlesson'
     })
   },
 
   created: async function() {
     await this.getOutline()
+    // this.getLesson()
 
   },
 
   computed: {
     ...mapState({
-      outline: (state) => state.outline
+      outline: (state) => state.outline,
+      // lesson: (state) => state.lesson
     }),
     overlay: function () {
       return !!this.selectedPlace

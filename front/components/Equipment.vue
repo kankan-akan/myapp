@@ -36,7 +36,7 @@ methods: {
 
  computed: {
    ...mapState({
-     equipment: (state) => state.equipment
+     
    })
  }
 
