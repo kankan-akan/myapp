@@ -18,14 +18,15 @@
           </v-row>
           <v-row class="justify-center">
             <div>@userid</div>
+            <div v-for="(post, i) in post" :key="i">{{ post.content }}</div>
           </v-row>
           <v-row>
-          <v-tabs v-model="tabs" fixed-tabs color="cyan">
+          <v-tabs  fixed-tabs color="cyan">
             <v-tab>post</v-tab>
             <v-tab>like</v-tab>
-            <v-tab>comment</v-tab>
-            <v-tab>reservation</v-tab>
             <v-tab>bookmark</v-tab>
+            <v-tab>reservation</v-tab>
+            <v-tab>review</v-tab>
 
             <v-tab-item>
               <v-card flat>
@@ -89,6 +90,7 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
   export default {
     data: () => ({
       items: [
@@ -107,5 +109,24 @@
       ],
       selected: [],
     }),
+
+  methods: {
+    ...mapActions ({
+      getPost: 'user/getPost'
+
+    })
+  },
+
+  created () {
+   this.getPost()
+  },
+
+  computed: {
+    ...mapState ({
+      post: (state) => state.user.post
+    })
+
+  }
+
   }
 </script>

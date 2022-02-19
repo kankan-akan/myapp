@@ -1,4 +1,5 @@
 class V1::RangeOutlinesController < ApplicationController
+  skip_before_action :authenticate_v1_user!, :authenticate_v1_admin!, except: [:index] raise: false
 
   def index
     @outline = RangeOutline.includes(:equipment)

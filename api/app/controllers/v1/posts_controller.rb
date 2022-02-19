@@ -1,7 +1,8 @@
 class V1::PostsController < ApplicationController
+  before_action :authenticate_v1_user!, except: [:index, :show]
 
   def my_post
-    @post = current_v1_user.post
+    @post = current_v1_user.posts
     render json: @post
   end
 
