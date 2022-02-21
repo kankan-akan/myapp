@@ -13,7 +13,7 @@
             LOGO
           </NuxtLink>
           <h2>{{ $store.state.auth.loggedIn }}</h2>
-          <h2>{{ $auth.loggedIn }}</h2>
+          <h3>{{ $auth.loggedIn }}</h3>
           <p>{{ $auth.userId }}</p>
           <div v-if ="$auth.loggedIn">
             <v-btn @click ="$auth.logout()">
@@ -81,9 +81,6 @@
 export default {
 
   computed: {
-    user () {
-      return this.$auth.user
-    }
   },
   method: {
     logout() {

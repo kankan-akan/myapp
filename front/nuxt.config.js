@@ -96,7 +96,7 @@ export default {
         endpoints: {
           login: { url: '/v1/auth/sign_in', method: 'post' },
           logout: { url: '/v1/auth/sign_out', method: 'delete' },
-          // user: { url: '/v1/auth/me', method: 'get' },
+          user: { url: '/v1/auth/members_only', method: 'get' },
           user : false,
         },
       }
