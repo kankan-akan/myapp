@@ -11,12 +11,14 @@ export default {
 methods: {
     ...mapActions({
         getOutline: 'getOutline',
+        getLoginUser: 'authentication/getLoginUser'
         // getLsson: 'getlesson'
     })
   },
 
   created: async function() {
     await this.getOutline()
+    this.getLoginUser()
     // this.getLesson()
 
   },
@@ -24,6 +26,7 @@ methods: {
   computed: {
     ...mapState({
       outline: (state) => state.outline,
+      // loginUser: (state) => state.authentication.loginUser
       // lesson: (state) => state.lesson
     }),
     overlay: function () {

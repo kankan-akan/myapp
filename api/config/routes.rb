@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       registrations: 'v1/auth/registrations'
     }
     namespace :auth do
-      get 'users', to: 'users#members_only'
+      get 'user', to: 'users#members_only'
       resources :users, only: [:index, :show]
     end
 
