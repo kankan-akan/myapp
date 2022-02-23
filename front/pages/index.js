@@ -18,7 +18,10 @@ methods: {
 
   created: async function() {
     await this.getOutline()
-    this.getLoginUser()
+
+    if(this.$store.state.auth.loggedIn) {
+      this.getLoginUser()
+    }
     // this.getLesson()
 
   },
@@ -26,7 +29,6 @@ methods: {
   computed: {
     ...mapState({
       outline: (state) => state.outline,
-      // loginUser: (state) => state.authentication.loginUser
       // lesson: (state) => state.lesson
     }),
     overlay: function () {

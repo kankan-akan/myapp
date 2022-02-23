@@ -14,10 +14,10 @@
             </v-avatar>
           </v-row>
           <v-row class="justify-center">
-            <div>username</div>
+            <div>{{ loginUser.name}}</div>
           </v-row>
           <v-row class="justify-center">
-            <div>@userid</div>
+            <div>@{{ loginUser.user_id }}</div>
             <div v-for="(post, i) in post" :key="i">{{ post.content }}</div>
           </v-row>
           <v-row>
@@ -123,6 +123,7 @@ import { mapActions, mapState } from 'vuex';
 
   computed: {
     ...mapState ({
+      loginUser: (state) => state.authentication.loginUser,
       post: (state) => state.user.post
     })
 

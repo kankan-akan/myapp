@@ -14,7 +14,6 @@
           </NuxtLink>
           <h2>{{ $store.state.auth.loggedIn }}</h2>
           <h3>{{ $auth.loggedIn }}</h3>
-          <p>{{ }}</p>
           <div v-if ="$auth.loggedIn">
             <v-btn @click ="$auth.logout()">
              LOGOUT
@@ -30,7 +29,7 @@
                   v-bind="attrs"
                   v-on="on"
                 >
-                  @{{  }}
+                  @{{ loginUser.name }}
                 </v-btn>
               </template>
               <v-list>
@@ -78,19 +77,20 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
 
-  computed: {
-  },
   method: {
     logout() {
       this.$auth.logout();
     },
   },
+
   computed: {
-    user() {
-   
-    }
+    ...mapState({
+      loginUser: (state) => state.authentication.loginUser
+    })
   },
 }
 

@@ -1,11 +1,8 @@
 class V1::Auth::UsersController < ApplicationController
 
   def members_only
-    render json: {
-      data: {
-        user: current_v1_user
-      }
-    }, status: 200
+    @user = current_v1_user
+    render json: @user
   end
 
   def index
