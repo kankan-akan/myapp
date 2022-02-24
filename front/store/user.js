@@ -19,7 +19,7 @@ export const mutations = {
   setReservation( state, reservation ){
     state.reservation = reservation;
   },
-  setReview(state, review ){
+  setReview( state, review ){
     state.review = review;
   }
   
@@ -36,7 +36,7 @@ export const actions = {
     })
   },
   async getLike ({ commit }) {
-    await this.$axios.get('/v1/likes/ ')
+    await this.$axios.get('/v1/likes/my_like')
     .then((res) => {
       commit('setLike', res.data)
     })
@@ -45,7 +45,7 @@ export const actions = {
     })
   },
   async getBookmark ({ commit }) {
-    await this.$axios.get('/v1/bookmarks/ ')
+    await this.$axios.get('/v1/bookmarks/my_bookmark')
     .then((res) => {
       commit('setBookmark', res.data)
     })
@@ -54,7 +54,7 @@ export const actions = {
     })
   },
   async getReservation ({ commit }) {
-    await this.$axios.get('/v1/reservations/ ')
+    await this.$axios.get('/v1/reservations/my_reservation')
     .then((res) => {
       commit('setReservation', res.data)
     })
@@ -62,8 +62,8 @@ export const actions = {
       console.log(error)
     })
   },
-  async getReview ([ commit ]) {
-    await this.$axios.get('/v1/reviews/ ')
+  async getReview ({ commit }) {
+    await this.$axios.get('/v1/reviews/my_review')
     .then((res) => {
       commit('setReview', res.data)
     })

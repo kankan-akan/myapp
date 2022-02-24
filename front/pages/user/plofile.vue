@@ -18,7 +18,6 @@
           </v-row>
           <v-row class="justify-center">
             <div>@{{ loginUser.user_id }}</div>
-            <div v-for="(post, i) in post" :key="i">{{ post.content }}</div>
           </v-row>
           <v-row>
           <v-tabs  fixed-tabs color="cyan">
@@ -29,46 +28,18 @@
             <v-tab>review</v-tab>
 
             <v-tab-item>
-              <v-card flat>
-                <v-item-group
-                  v-model="selected"
-                  multiple
-                >
-                  <v-row dense>
-                    <v-col
-                      v-for="(item, i) in items"
-                      :key="i"
-                      cols="12"
-                      sm="3"
-                      xs="3"
-                    >
-                      <v-item v-slot="{ active, toggle }">
-                        <v-img
-                          :src="`https://cdn.vuetifyjs.com/images/${item.src}`"
-                          aspect-ratio="1"
-                          class="text-right pa-1"
-                          
-                        >
-                        <v-btn icon dark>
-                          <v-icon @click="toggle">
-                            {{ active ? 'mdi-heart' : 'mdi-heart-outline' }}
-                          </v-icon>
-                        </v-btn>
-                        </v-img>
-                      </v-item>
-                    </v-col>
-                  </v-row>
-                </v-item-group>
+              <v-card>
+                <v-col v-for="(post, i) in post" :key="i">{{ post.content }}</v-col>
               </v-card>
             </v-tab-item>
             <v-tab-item>
               <v-card>
-
+                <v-col v-for="(like, i) in like" :key="i">{{ }}</v-col>
               </v-card>
             </v-tab-item>
             <v-tab-item>
               <v-card>
-
+                <v-col v-for="(bookmark, i) in bookmark" :key="i">{{ bookmark.range_outline.name }}</v-col>
               </v-card>
             </v-tab-item>
             <v-tab-item>
@@ -112,19 +83,30 @@ import { mapActions, mapState } from 'vuex';
 
   methods: {
     ...mapActions ({
-      getPost: 'user/getPost'
-
+      getPost: 'user/getPost',
+      getLike: 'user/getLike',
+      getBookmark: 'user/getBookmark',
+      getReservation: 'user/getReservation',
+      getReview: 'user/getReview'
     })
   },
 
   created () {
-   this.getPost()
+  //  this.getPost()
+  //  this.getLike()
+   this.getBookmark()
+  //  this.getReservation()
+  //  this.getReview()
   },
 
   computed: {
     ...mapState ({
       loginUser: (state) => state.authentication.loginUser,
-      post: (state) => state.user.post
+      post: (state) => state.user.post,
+      like: (state) => state.user.like,
+      bookmark: (state) => state.user.bookmark,
+      reservation: (state) => state.user.reservation,
+      review: (state) => state.user.review
     })
 
   }

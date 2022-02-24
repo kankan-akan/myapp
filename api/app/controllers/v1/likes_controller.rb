@@ -7,6 +7,11 @@ class V1::LikesController < ApplicationController
       render json: @like_users
   end
 
+  def my_like
+    @like = current_v1_user.likes.includes(:post)
+    render json: @like.as_json(include: :post)
+  end
+
   def create
     @like = Like.new(like_params)
       if @like.save
