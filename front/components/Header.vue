@@ -13,8 +13,7 @@
             LOGO
           </NuxtLink>
           <h2>{{ $store.state.auth.loggedIn }}</h2>
-          <h2>{{ $auth.loggedIn }}</h2>
-          <p>{{ $auth.userId }}</p>
+          <h3>{{ $auth.loggedIn }}</h3>
           <div v-if ="$auth.loggedIn">
             <v-btn @click ="$auth.logout()">
              LOGOUT
@@ -30,11 +29,11 @@
                   v-bind="attrs"
                   v-on="on"
                 >
-                  @{{ }}
+                  @{{ loginUser.name }}
                 </v-btn>
               </template>
               <v-list>
-                <v-list-item to ="/user/plofile">
+                <v-list-item to ="/user/profile">
                   <v-list-item-title>マイページ</v-list-item-title>
                 </v-list-item>
                 <v-list-item to ="/user/myAccount">
@@ -78,19 +77,21 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
 
-  computed: {
-    user () {
-      return this.$auth.user
-    }
-  },
   method: {
     logout() {
       this.$auth.logout();
     },
   },
 
+  computed: {
+    ...mapState({
+      loginUser: (state) => state.authentication.loginUser
+    })
+  },
 }
 
 </script>

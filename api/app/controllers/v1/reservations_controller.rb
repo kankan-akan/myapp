@@ -1,7 +1,8 @@
 class V1::ReservationsController < ApplicationController
 
   def my_reservation
-    @reservation = current_v1_user.reservation.includes(:lesson)
+    @reservation = current_v1_user.reservations.includes(:lesson)
+    render json: @reservation.as_json(include: :lesson)
   end
 
   def show

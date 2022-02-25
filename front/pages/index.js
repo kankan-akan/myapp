@@ -11,12 +11,17 @@ export default {
 methods: {
     ...mapActions({
         getOutline: 'getOutline',
+        getLoginUser: 'authentication/getLoginUser'
         // getLsson: 'getlesson'
     })
   },
 
   created: async function() {
     await this.getOutline()
+
+    if(this.$store.state.auth.loggedIn) {
+      this.getLoginUser()
+    }
     // this.getLesson()
 
   },

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       registrations: 'v1/auth/registrations'
     }
     namespace :auth do
-      get 'users', to: 'users#members_only'
+      get 'user', to: 'users#members_only'
       resources :users, only: [:index, :show]
     end
 
@@ -16,10 +16,11 @@ Rails.application.routes.draw do
       get '/ranges', to: 'ranges#ranges_only'
     end
 
-      get 'posts/my_post', to: 'posts#my_post'
+      get '/posts/my_post', to: 'posts#my_post'
       resources :posts, only: [:index, :show, :create, :destroy] do
         get 'likes/like_users', to: 'likes#like_users'
       end
+      get '/likes/my_like', to: 'likes#my_like'
       resource :likes, only: [:create, :destroy]
 
       get '/bookmarks/my_bookmark', to: 'bookmarks#my_bookmark'

@@ -69,7 +69,6 @@ export default {
           })
             console.log(res)
             // this.snackbar = true
-            this.$router.push('/')
         }catch(err) {
             console.log(err)
           }

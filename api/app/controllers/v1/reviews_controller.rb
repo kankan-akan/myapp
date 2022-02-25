@@ -1,7 +1,7 @@
 class V1::ReviewsController < ApplicationController
 
   def my_review
-    @review = current_v1_user.review
+    @review = current_v1_user.reviews
       render json: @review
   end
 
