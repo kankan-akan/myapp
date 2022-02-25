@@ -4,7 +4,7 @@
     <v-main>
       <v-card max-width="700" class="justify-center mx-auto">
         <v-container>
-          <v-card-title>plofile</v-card-title>
+          <v-card-title>profile</v-card-title>
           <v-row class="justify-center pa-3">
             <v-avatar size="120">
               <img
@@ -29,7 +29,16 @@
 
             <v-tab-item>
               <v-card>
-                <v-col v-for="(post, i) in post" :key="i">{{ post.content }}</v-col>
+                  <v-col class="pa-1" v-for="(post, i) in post" :key="i">
+                    <v-card class="pa-2">
+                      <div class="d-flex">
+                        <v-avatar size="120">
+                          <v-img :src="items.src"></v-img>
+                        </v-avatar>
+                        <v-card-text v-text="post.content"></v-card-text>
+                      </div>
+                    </v-card>
+                  </v-col>
               </v-card>
             </v-tab-item>
             <v-tab-item>
@@ -92,9 +101,9 @@ import { mapActions, mapState } from 'vuex';
   },
 
   created () {
-  //  this.getPost()
+   this.getPost()
   //  this.getLike()
-   this.getBookmark()
+  //  this.getBookmark()
   //  this.getReservation()
   //  this.getReview()
   },

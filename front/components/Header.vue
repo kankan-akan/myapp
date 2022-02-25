@@ -33,7 +33,7 @@
                 </v-btn>
               </template>
               <v-list>
-                <v-list-item to ="/user/plofile">
+                <v-list-item to ="/user/profile">
                   <v-list-item-title>マイページ</v-list-item-title>
                 </v-list-item>
                 <v-list-item to ="/user/myAccount">
