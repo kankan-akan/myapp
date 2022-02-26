@@ -28,3 +28,12 @@ th {
   visibility: hidden;
 
 }
+
+.content {
+  width: 400px;
+  overflow: hidden;
+}
+
+.open {
+  width: 800px;
+}
