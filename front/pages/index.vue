@@ -3,44 +3,49 @@
 <Header />
   <v-main> 
     <v-container>
+      <v-row >
+        <v-btn to="/post">
+          all post
+        </v-btn>
+      </v-row>
       <v-row>
         <v-col 
-          v-for= "(place, i) in outline"
-          :key = "i"
-          cols = "12"
-          xs = "12"
-          sm = "3"
+          v-for="(place, i) in outline"
+          :key="i"
+          cols="12"
+          xs="12"
+          sm="3"
         >
         <v-card 
-          justify = "space-around"
+          justify="space-around"
         >
           <v-card-text class="my-0 pa-2 black--text">
-            <div v-text = "place.city"></div>
-            <div v-text= "place.ruby"></div>
+            <div v-text="place.city"></div>
+            <div v-text="place.ruby"></div>
             <div 
-              class = "text-h6"
-              v-text = "place.name"
+              class="text-h6"
+              v-text="place.name"
             >
             </div>
-            <div v-text = "place.address"></div>
-            <div v-text = "place.distance"></div>
+            <div v-text="place.address"></div>
+            <div v-text="place.distance"></div>
           </v-card-text>
             <v-divider class="my-2"></v-divider>
               <table>
                 <tr>
-                  <td class ="empty"></td> <th>平日</th><th>土日</th>
+                  <td class="empty"></td> <th>平日</th><th>土日</th>
                 </tr>
                 <tr>
                   <th>ボール単価</th> <td>10円/1球</td><td>12円/1球</td>
                 </tr>
               </table>
             <Equipment />
-          <v-card-actions class ="justify-center">
+          <v-card-actions class="justify-center">
               <v-btn 
                 block
-                color ="green white--text lighten-1"
-                class ="ma-2"
-                @click= "selectedPlace = place"
+                color="green white--text lighten-1"
+                class="ma-2"
+                @click="selectedPlace = place"
               >
                 詳細
                 <v-icon>mdi-chevron-double-down</v-icon>
@@ -50,70 +55,92 @@
         </v-col>
       </v-row>
 
-          <div v-if = "overlay" @click ="selectedPlace = null">
-          <v-overlay  :value= "overlay">
+          <div v-if="overlay" @click="selectedPlace = null || closeContent()">
+          <v-overlay  :value="overlay">
             <v-container @click.stop>
+              <v-card 
+                class="white content "
+                :class="{ open : isOpened }"
+              >
               <v-row>
-              <v-col>
-                <v-card 
-                  class ="white"
-                  width ="400"
-                >
-                  <v-card-text class ="black--text"> 
-                    <div 
-                      v-if = "selectedPlace"
-                      v-text = "selectedPlace.ruby"
-                    ></div>
-                    <div 
-                      class = "text-h6"
-                      v-if = "selectedPlace"
-                      v-text = "selectedPlace.name"
-                    ></div>
-                    <div 
-                      v-if = "selectedPlace"
-                      v-text = "selectedPlace.address"
-                    ></div>
-                    <div 
-                      v-if = "selectedPlace"
-                      v-text = "selectedPlace.distance"
-                    ></div>
-                    <v-divider class ="grey lighten-2 my-2"></v-divider>
+                <v-col>
+                <v-card-text class="black--text"> 
+                  <div 
+                    v-if="selectedPlace"
+                    v-text="selectedPlace.ruby"
+                  ></div>
+                  <div 
+                    class="text-h6"
+                    v-if="selectedPlace"
+                    v-text="selectedPlace.name"
+                  ></div>
+                  <div 
+                    v-if="selectedPlace"
+                    v-text="selectedPlace.address"
+                  ></div>
+                  <div 
+                    v-if="selectedPlace"
+                    v-text="selectedPlace.distance"
+                  ></div>
+                  <v-divider class="grey lighten-2 my-2"></v-divider>
 
-                    <div 
-                      v-if = "selectedPlace"
-                      v-text = "selectedPlace.features"
-                    ></div>
-                    <div 
-                      v-if = "selectedPlace"
-                      v-text = "selectedPlace.link"
-                    ></div>
-                    <div 
-                      v-if = "selectedPlace"
-                      v-text = "selectedPlace.phone_number"
-                    ></div>
-                    <div 
-                      v-if = "selectedPlace"
-                      v-text = "selectedPlace.booths"
-                    ></div>
-                    <v-col
-                    
+                  <div 
+                    v-if="selectedPlace"
+                    v-text="selectedPlace.features"
+                  ></div>
+                  <div 
+                    v-if="selectedPlace"
+                    v-text="selectedPlace.link"
+                  ></div>
+                  <div 
+                    v-if="selectedPlace"
+                    v-text="selectedPlace.phone_number"
+                  ></div>
+                  <div 
+                    v-if="selectedPlace"
+                    v-text="selectedPlace.booths"
+                  ></div>
+                
+                    <v-card-title class="pa-1">レッスン一覧</v-card-title>
+                    <v-col 
+                      class="pa-1"
+                      v-for="(lesson, i) in selectedPlace.lessons" 
+                      :key="i.lessons"
                     >
-                      <v-card-title>レッスン一覧</v-card-title>
-                      <v-card-subtitle ></v-card-subtitle>
+                      <v-card @click="detailLesson()" class="white">
+                        <v-card-text class="black--text">
+                          <div v-if="selectedPlace" v-text="lesson.title"></div>
+                        </v-card-text>
+                      </v-card>
                     </v-col>
-                  </v-card-text>
-                  <v-card-actions class ="justify-center">
-                    <v-btn
-                      color ="success"
-                      class ="ma-5"
-                      @click = "selectedPlace = null"
-                    >
+                  
+                </v-card-text>
+
+                <v-card-actions class="justify-center">
+                  <v-btn
+                    color="success"
+                    class="ma-3"
+                    @click="selectedPlace = null || closeContent()"
+                  >
                     close
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-col>
-              </v-row>
+                  </v-btn>
+                </v-card-actions>
+                </v-col>
+                <transition name="accordion">
+                  <v-col
+                    v-show="isOpened"
+                    class="pa-1 black--text"
+                    v-for="(lesson, i) in selectedPlace.lessons" 
+                    :key="i.lessons"
+                  >
+                    <div v-if="selectedPlace" v-text="lesson.title"></div>
+                    <div v-if="selectedPlace" v-text="lesson.coach"></div>
+                    <div v-if="selectedPlace" v-text="lesson.content"></div>
+                  </v-col>
+                </transition>
+                </v-row>
+              </v-card>
+             
             </v-container>
           </v-overlay>
           </div>
