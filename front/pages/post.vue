@@ -1,6 +1,5 @@
 <template>
-  <v-app>
-    <v-main >
+  <v-main >
     <v-container>
       <v-row>
         <v-col
@@ -14,8 +13,7 @@
         </v-col>
       </v-row>
     </v-container>
-    </v-main>
-  </v-app>
+  </v-main>
 </template>
 
 <script>

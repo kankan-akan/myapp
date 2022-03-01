@@ -1,6 +1,4 @@
 <template>
-  <v-app>
-    <Header />
     <v-main>
       <v-card max-width="700" class="justify-center mx-auto">
         <v-container>
@@ -10,7 +8,7 @@
               <div>{{ loginUser.name }}</div>
             </template>
             <template v-slot:id>
-              <div>@{{ loginUser.user_id}}</div>
+              <div>@{{ loginUser.user_id }}</div>
             </template>
           </UserInfo>
           <!-- <v-row class="justify-center pa-3">
@@ -74,7 +72,6 @@
         </v-container>
       </v-card>
     </v-main>
-  </v-app>
 </template>
 
 <script>

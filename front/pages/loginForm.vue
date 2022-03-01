@@ -1,6 +1,5 @@
 <template>
-  <v-app>
-    <v-main>
+  <v-main>
     <v-card max-width = "600">
                 <v-card-title>
                   <div class="text-h5">ログイン</div>
@@ -63,8 +62,7 @@
                   <p>{{ $store.state.count }}</p> -->
                 </v-card-text>
               </v-card>
-    </v-main>
-  </v-app>
+  </v-main>
 </template>
 
 <script>

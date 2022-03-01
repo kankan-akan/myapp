@@ -1,12 +1,13 @@
 <template>
   <v-container>
     <v-row class="justify-center pa-3">
-      <!-- <v-avatar size="120">
+      <v-avatar size="120">
         <img
           :src="img"
-          
         >
-      </v-avatar> -->
+      </v-avatar>
+    </v-row>
+    <v-row class="justify-center">
       <slot name="name"></slot>
     </v-row>
       <v-row class="justify-center">
