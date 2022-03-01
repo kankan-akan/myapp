@@ -17,8 +17,6 @@
     </template>
     </v-snackbar>
 
-  <Header />  
-
   <v-main >
     <v-card>
       <v-card-title>新規登録</v-card-title>

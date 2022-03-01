@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <Header />
     <v-main>
       <v-card>
         <v-card-title>アカウント設定</v-card-title>

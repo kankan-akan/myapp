@@ -5,7 +5,15 @@
       <v-card max-width="700" class="justify-center mx-auto">
         <v-container>
           <v-card-title>profile</v-card-title>
-          <v-row class="justify-center pa-3">
+          <UserInfo>
+            <template v-slot:name>
+              <div>{{ loginUser.name }}</div>
+            </template>
+            <template v-slot:id>
+              <div>@{{ loginUser.user_id}}</div>
+            </template>
+          </UserInfo>
+          <!-- <v-row class="justify-center pa-3">
             <v-avatar size="120">
               <img
                 src="https://cdn.vuetifyjs.com/images/john.jpg"
@@ -14,7 +22,7 @@
             </v-avatar>
           </v-row>
           <v-row class="justify-center">
-            <div>{{ loginUser.name}}</div>
+            <div>{{ loginUser.name }}</div>
           </v-row>
           <v-row class="justify-center">
             <div>@{{ loginUser.user_id }}</div>
@@ -62,7 +70,7 @@
               </v-card>
             </v-tab-item>
           </v-tabs>
-          </v-row>
+          </v-row> -->
         </v-container>
       </v-card>
     </v-main>

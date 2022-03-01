@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <Header />
     <v-main>
     <v-card max-width = "600">
                 <v-card-title>
