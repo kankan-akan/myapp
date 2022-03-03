@@ -4,17 +4,25 @@
         <v-container>
           <v-card-title>profile</v-card-title>
           <UserInfo>
+            <template v-slot:img>
+              <img
+                src="https://cdn.vuetifyjs.com/images/john.jpg"
+              >
+            </template>
             <template v-slot:name>
               <div>{{ loginUser.name }}</div>
             </template>
             <template v-slot:id>
               <div>@{{ loginUser.user_id }}</div>
             </template>
+              <template v-for="post in post" >
+              <div slot="post">{{ post.content }}</div>
+            </template>
           </UserInfo>
           <!-- <v-row class="justify-center pa-3">
             <v-avatar size="120">
               <img
-                src="https://cdn.vuetifyjs.com/images/john.jpg"
+                
                 alt="John"
               >
             </v-avatar>
@@ -78,6 +86,7 @@
 import { mapActions, mapState } from 'vuex';
   export default {
     data: () => ({
+      title: "contents",
       items: [
         {
           src: 'backgrounds/bg.jpg',
