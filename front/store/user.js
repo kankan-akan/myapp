@@ -1,26 +1,26 @@
 export const state = () => ({
-  post: [ ],
-  like: [ ],
-  bookmark: [ ],
-  reservtion: [ ],
-  review: [ ]
+  posts: [ ],
+  likes: [ ],
+  bookmarks: [ ],
+  reservations: [ ],
+  reviews: [ ]
 })
 
 export const mutations = {
-  setPost ( state, post ){
-    state.post = post;
+  setPost ( state, posts ){
+    state.posts = posts;
   },
-  setLike ( state, like ){
-    state.like = like;
+  setLike ( state, likes ){
+    state.likes = likes;
   },
-  setBookmark ( state, bookmark ){
-    state.bookmark = bookmark;
+  setBookmark ( state, bookmarks ){
+    state.bookmarks = bookmarks;
   },
-  setReservation( state, reservation ){
-    state.reservation = reservation;
+  setReservation( state, reservations ){
+    state.reservations = reservations;
   },
-  setReview( state, review ){
-    state.review = review;
+  setReview( state, reviews ){
+    state.reviews = reviews;
   }
   
 }

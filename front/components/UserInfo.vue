@@ -1,15 +1,17 @@
 <template>
   <v-container>
-    <v-row class="justify-center pa-3">
+    <v-row class="justify-center">
       <v-avatar size="120">
-        <slot name="img"></slot>
+        <img
+          src="https://cdn.vuetifyjs.com/images/john.jpg"
+        >
       </v-avatar>
     </v-row>
     <v-row class="justify-center">
-      <slot name="name"></slot>
+      <div>{{ user.name }}</div>
     </v-row>
     <v-row class="justify-center">
-      <slot name="id"></slot>
+      <div>@{{ user.user_id }}</div>
     </v-row>
 
     <v-row>
@@ -22,45 +24,70 @@
 
         <v-tab-item>
           <v-card>
-            <v-col class="pa-1">
-              <v-card class="pa-2">
+            <v-col class="pa-1" v-for="(post, i) in posts" :key="i">
+              <v-card class="pa-2" >
                 <div class="d-flex">
-                  <!-- <v-avatar size="120">
-                    <slot name="items"></slot>
-                  </v-avatar> -->
-                  <v-card-text >
-                    <slot name="post"></slot>
+                  <v-avatar size="120">
+                    <v-img></v-img>
+                  </v-avatar>
+                  <v-card-text>
+                    <div>{{ post.content }}</div>
                   </v-card-text>
                 </div>
               </v-card>
             </v-col>
             </v-card>
         </v-tab-item>
-        <!-- <v-tab-item>
-          <v-card>
-            <v-col v-for="(like, i) in like" :key="i">{{ }}</v-col>
-          </v-card>
-        </v-tab-item>
         <v-tab-item>
           <v-card>
-            <v-col 
-              v-for="(bookmark, i) in bookmark" 
-              :key="i"
-            >
-              {{ bookmark.range_outline.name }}
+            <v-col class="pa-1" v-for="(like, i) in likes" :key="i">
+              <v-card class="pa-2" >
+                <div class="d-flex">
+                  <v-avatar size="120">
+                    <v-img></v-img>
+                  </v-avatar>
+                  <v-card-text>
+                    <div>{{ like.post.content }}</div>
+                  </v-card-text>
+                </div>
+              </v-card>
             </v-col>
           </v-card>
         </v-tab-item>
         <v-tab-item>
           <v-card>
-
+            <v-col 
+            class="pa-0"
+              v-for="(bookmark, i) in bookmarks" 
+              :key="i"
+            >
+            <v-card-text>
+              {{ bookmark.range_outline.name }}
+            </v-card-text>
+              <v-divider></v-divider>
+            </v-col>
           </v-card>
         </v-tab-item>
         <v-tab-item>
           <v-card>
-
+            <v-col class="pa-0" v-for="(reservation, i) in reservations" :key="i">
+              <v-card-text>
+                {{ reservation.lesson.title }} / {{ reservation.date }}
+              </v-card-text>
+              <v-divider></v-divider>
+            </v-col>
           </v-card>
-        </v-tab-item> -->
+        </v-tab-item>
+        <v-tab-item>
+          <v-card>
+            <v-col class="pa-0" v-for="(review, i) in reviews" :key="i">
+              <v-card-text>
+                {{ review.rate }} / {{ review.review }}
+              </v-card-text>
+              <v-divider></v-divider>
+            </v-col>
+          </v-card>
+        </v-tab-item>
       </v-tabs>
     </v-row>
   </v-container>
@@ -69,6 +96,6 @@
 <script>
 
 export default {
-
+  props: ['user', 'posts', 'likes', 'bookmarks', 'reservations', 'reviews'], 
 }
 </script>
