@@ -1,12 +1,11 @@
 <template>
     <v-main>
-      <v-card max-width="700" class="justify-center mx-auto">
-        <v-container>
+      <v-container>
+        <v-card max-width="700" class="justify-center mx-auto">
           <v-card-title>profile</v-card-title>
           <UserInfo :user="loginUser" :posts="posts" :likes="likes" :bookmarks="bookmarks" :reservations="reservations" :reviews="reviews" />
-         
-        </v-container>
-      </v-card>
+        </v-card>
+      </v-container>
     </v-main>
 </template>
 
@@ -34,11 +33,11 @@ import { mapActions, mapState } from 'vuex';
 
   methods: {
     ...mapActions ({
-      getPost: 'user/getPost',
-      getLike: 'user/getLike',
-      getBookmark: 'user/getBookmark',
-      getReservation: 'user/getReservation',
-      getReview: 'user/getReview'
+      getPost: 'myData/getPost',
+      getLike: 'myData/getLike',
+      getBookmark: 'myData/getBookmark',
+      getReservation: 'myData/getReservation',
+      getReview: 'myData/getReview'
     })
   },
 
@@ -53,11 +52,11 @@ import { mapActions, mapState } from 'vuex';
   computed: {
     ...mapState ({
       loginUser: (state) => state.authentication.loginUser,
-      posts: (state) => state.user.posts,
-      likes: (state) => state.user.likes,
-      bookmarks: (state) => state.user.bookmarks,
-      reservations: (state) => state.user.reservations,
-      reviews: (state) => state.user.reviews
+      posts: (state) => state.myData.posts,
+      likes: (state) => state.myData.likes,
+      bookmarks: (state) => state.myData.bookmarks,
+      reservations: (state) => state.myData.reservations,
+      reviews: (state) => state.myData.reviews
     })
 
   }

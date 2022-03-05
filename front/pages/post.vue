@@ -3,13 +3,13 @@
     <v-container>
       <v-row>
         <v-col
-          v-for="  (post, i) in allPost"
-          :key=" i "
-          
+          v-for="(post, i) in allPost"
+          :key=" i.user"
           cols="3"
         > 
         <div @click="user()">@{{ post.user.user_id }}</div>
           <div>{{ post.content }}</div>
+          <div>{{ post.user.id }}</div>
         </v-col>
       </v-row>
     </v-container>
@@ -28,6 +28,12 @@ export default {
       .then((res) => {
         this.allPost = res.data
       })
+  },
+
+  methods: {
+    user() {
+    this.$router.push(`/v1/users/${id}`)
+    }
   }
 
 }
