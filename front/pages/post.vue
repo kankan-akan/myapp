@@ -7,7 +7,7 @@
           :key=" i.user"
           cols="3"
         > 
-        <div @click="user()">@{{ post.user.user_id }}</div>
+        <div @click="user(post.user.id)">@{{ post.user.user_id }}</div>
           <div>{{ post.content }}</div>
           <div>{{ post.user.id }}</div>
         </v-col>
@@ -31,8 +31,8 @@ export default {
   },
 
   methods: {
-    user() {
-    this.$router.push(`/v1/users/${id}`)
+    user(id) {
+      this.$router.push(`/users/${id}`)
     }
   }
 

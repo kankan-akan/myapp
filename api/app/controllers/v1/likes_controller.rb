@@ -1,15 +1,20 @@
 class V1::LikesController < ApplicationController
   before_action :set_user, only: [:destroy]
 
-  def like_users
-    @post = Post.find(params[:post_id])
-    @like_users = @post.like_users
-      render json: @like_users
-  end
-
   def my_like
     @like = current_v1_user.likes.includes(:post)
     render json: @like.as_json(include: :post)
+  end
+
+  def user_likes
+    @user = User.find(params[:id])
+    @like = @user.likes
+    render json: @like
+  end
+
+  def index
+    @like = Like.all
+    render json: @like
   end
 
   def create

@@ -30,7 +30,7 @@
             v-model ="name"
             :counter ="15"
             :rules ="nameRules"
-            label ="氏名"
+            label ="登録名"
             required
           ></v-text-field>
 

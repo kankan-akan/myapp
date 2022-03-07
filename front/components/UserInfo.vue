@@ -1,6 +1,8 @@
 <template>
   <v-container>
-    <v-row class="justify-center">
+    <v-card-title class="pa-2">@{{ user.user_id }}</v-card-title>
+    <v-divider></v-divider>
+    <v-row class="justify-center ma-auto pt-3">
       <v-avatar size="120">
         <img
           src="https://cdn.vuetifyjs.com/images/john.jpg"
@@ -9,9 +11,6 @@
     </v-row>
     <v-row class="justify-center">
       <div>{{ user.name }}</div>
-    </v-row>
-    <v-row class="justify-center">
-      <div>@{{ user.user_id }}</div>
     </v-row>
 
     <v-row>
@@ -24,8 +23,8 @@
 
         <v-tab-item>
           <v-card>
-            <v-col class="pa-1" v-for="(post, i) in posts" :key="i">
-              <v-card class="pa-2" >
+            <v-col class="pa-1" v-for="post in posts" :key="post.id">
+              <v-card class="pa-2">
                 <div class="d-flex">
                   <v-avatar size="120">
                     <v-img></v-img>
@@ -57,7 +56,7 @@
         <v-tab-item>
           <v-card>
             <v-col 
-            class="pa-0"
+              class="pa-0"
               v-for="(bookmark, i) in bookmarks" 
               :key="i"
             >

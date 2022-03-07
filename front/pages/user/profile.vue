@@ -2,7 +2,6 @@
     <v-main>
       <v-container>
         <v-card max-width="700" class="justify-center mx-auto">
-          <v-card-title>profile</v-card-title>
           <UserInfo :user="loginUser" :posts="posts" :likes="likes" :bookmarks="bookmarks" :reservations="reservations" :reviews="reviews" />
         </v-card>
       </v-container>

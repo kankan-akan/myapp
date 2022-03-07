@@ -17,10 +17,12 @@ Rails.application.routes.draw do
     end
 
     get '/posts/my_post', to: 'posts#my_post'
+    get '/posts/user_posts/:id', to: 'posts#user_posts'
     resources :posts, only: [:index, :show, :create, :destroy] do
-      get 'likes/like_users', to: 'likes#like_users'
+      resources :likes, only: [:index]
     end
     get '/likes/my_like', to: 'likes#my_like'
+    get '/likes/user_likes/:id', to: 'likes#user_likes'
     resource :likes, only: [:create, :destroy]
 
     get '/bookmarks/my_bookmark', to: 'bookmarks#my_bookmark'
