@@ -1,5 +1,5 @@
 <template>
-  <v-app> 
+  <v-main>
     <v-snackbar
       top
       v-model ="snackbar"
@@ -17,9 +17,6 @@
     </template>
     </v-snackbar>
 
-  <Header />  
-
-  <v-main >
     <v-card>
       <v-card-title>新規登録</v-card-title>
       <v-card-text>
@@ -33,7 +30,7 @@
             v-model ="name"
             :counter ="15"
             :rules ="nameRules"
-            label ="氏名"
+            label ="登録名"
             required
           ></v-text-field>
 
@@ -98,9 +95,8 @@
         </v-form>
       </v-card-text>
     </v-card>
+    
   </v-main>
-
-  </v-app>
 </template>
 
 <script src ="./create.js"></script>

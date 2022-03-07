@@ -1,4 +1,5 @@
 <template>
+  <v-app>
     <v-app-bar 
       app 
       height="80" 
@@ -74,6 +75,10 @@
         </v-row>
       </v-container>
     </v-app-bar>
+
+    <Nuxt />
+
+  </v-app>
 </template>
 
 <script>
@@ -95,7 +100,3 @@ export default {
 }
 
 </script>
-
-<style>
-
-</style>

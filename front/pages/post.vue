@@ -1,22 +1,19 @@
 <template>
-  <v-app>
-    <Header />
-    <v-main >
+  <v-main >
     <v-container>
       <v-row>
         <v-col
-          v-for="  (post, i) in allPost"
-          :key=" i "
-          
+          v-for="(post, i) in allPost"
+          :key=" i.user"
           cols="3"
         > 
-        <div @click="user()">@{{ post.user.user_id }}</div>
+        <div @click="user(post.user.id)">@{{ post.user.user_id }}</div>
           <div>{{ post.content }}</div>
+          <div>{{ post.user.id }}</div>
         </v-col>
       </v-row>
     </v-container>
-    </v-main>
-  </v-app>
+  </v-main>
 </template>
 
 <script>
@@ -31,6 +28,12 @@ export default {
       .then((res) => {
         this.allPost = res.data
       })
+  },
+
+  methods: {
+    user(id) {
+      this.$router.push(`/users/${id}`)
+    }
   }
 
 }

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-main>
     <v-container class ="text-center">
       <div >
       ログアウトを実行します。
@@ -12,7 +12,7 @@
       </v-btn>
     </v-container>
 
-  </v-app>
+  </v-main>
 </template>
 
 <script>

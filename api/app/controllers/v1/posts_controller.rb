@@ -6,13 +6,19 @@ class V1::PostsController < ApplicationController
     render json: @post
   end
 
+  def user_posts
+    @user = User.find(params[:id])
+    @post = @user.posts
+    render json: @post
+  end
+
   def index
     @post = Post.includes(:user)
     render json: @post.as_json(include: :user)
   end
 
   def show
-    @post = Post.includes(:users).find(params[:id])
+    @post = Post.find(params[:id])
     render json: @post
   end
 
