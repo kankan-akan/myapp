@@ -13,8 +13,8 @@ class V1::PostsController < ApplicationController
   end
 
   def index
-    @post = Post.includes(:user)
-    render json: @post.as_json(include: :user)
+    @post = Post.includes(:user, :like_users)
+    render json: @post.as_json(include: [:user, :like_users])
   end
 
   def show
