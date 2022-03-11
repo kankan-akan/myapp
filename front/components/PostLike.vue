@@ -1,8 +1,11 @@
 <template>
   <v-container>
     <v-row>
-    <v-col >
-      <div>post_id:{{ post.id }}</div>
+      <v-col>
+        <div>post_id:{{ post.id }}</div>
+      </v-col>
+    </v-row>
+    <v-row>
       <v-btn
         v-if="isActive"
         icon
@@ -18,7 +21,8 @@
       >
         <v-icon>{{ 'mdi-heart-outline' }}</v-icon>
       </v-btn>
-    </v-col>
+      <!-- <div>{{ post.like_users.length }}</div> -->
+      <div>{{ countLike }}</div>
     </v-row>
   </v-container>
 </template>
@@ -30,20 +34,23 @@ export default {
   props: [ 'post' ],
 
   data: () => ({
-    isActive: false
-
+    isActive: false,
+    countLike: ' '
   }),
 
   computed: {
     ...mapState ({
       loginUser: (state) => state.authentication.loginUser
-    })
+    }),
+    
   },
 
   watch: {
+    
     },
 
   mounted() {
+    this.count()
     if (this.$auth.loggedIn) {
       this.isActive = false
         this.post.like_users.forEach((f) => {
@@ -61,10 +68,11 @@ export default {
         post_id: this.post.id
       })
       .then((res) => {
-          if(res.data.status == 200) {
-            this.isActive = true
-          }
-        })
+        if(res.data.status == 200) {
+          this.isActive = true
+        }
+        this.count()
+      })
       .catch((err) => {
         console.log(err)
       })
@@ -75,15 +83,21 @@ export default {
           user_id: this.loginUser.id,
           post_id: this.post.id
         }
-        
       })
       .then((res) => {
         if(res.data.status == 200) {
           this.isActive = false
         }
+        this.count()
       })
       .catch((err) => {
         console.log(err)
+      })
+    },
+    count() {
+      this.$axios.get(`/v1/posts/${this.post.id}/likes/count`) 
+      .then((res) => {
+        this.countLike = res.data
       })
     }
   },

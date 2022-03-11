@@ -12,9 +12,11 @@ class V1::LikesController < ApplicationController
     render json: @like
   end
 
-  # def have_like
-  #   @like = 
-  # end
+  def count
+    @post = Post.find(params[:post_id])
+    @like = @post.likes.size
+    render json: @like
+  end
 
   def index
     @like = Like.all
