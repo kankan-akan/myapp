@@ -12,6 +12,12 @@ class V1::LikesController < ApplicationController
     render json: @like
   end
 
+  def count
+    @post = Post.find(params[:post_id])
+    @like = @post.likes.size
+    render json: @like
+  end
+
   def index
     @like = Like.all
     render json: @like
@@ -20,7 +26,7 @@ class V1::LikesController < ApplicationController
   def create
     @like = Like.new(like_params)
       if @like.save
-        render json: @like
+        render json: { status: 200 }
       else
         render json: { status: 400 }
       end

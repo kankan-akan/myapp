@@ -4,12 +4,13 @@
       <v-row>
         <v-col
           v-for="(post, i) in allPost"
-          :key=" i.user"
+          :key=" i "
           cols="3"
         > 
-        <div @click="user(post.user.id)">@{{ post.user.user_id }}</div>
+          <div @click="user(post.user.id)">@{{ post.user.user_id }}</div>
           <div>{{ post.content }}</div>
-          <div>{{ post.user.id }}</div>
+          <div>user_id:{{ post.user.id }}</div>
+          <PostLike :post="post"/>
         </v-col>
       </v-row>
     </v-container>
