@@ -61,4 +61,5 @@ production:
   <<: *default
   database: myapp_production
   username: yusukekan
-  password: <%= ENV['API_DATABASE_PASSWORD'] %>
+  # password: <%= ENV['API_DATABASE_PASSWORD'] %>
+  password: yskan
