@@ -1,3 +1,11 @@
+var env = process.env.NODE_ENV || 'development';
+if (env === 'development' || env === 'test') {
+  var API_URL='http://localhost:3000'
+}
+else{
+  var API_URL=process.env.API_URL
+}
+
 export default {
   server: {
   port: 8080
@@ -59,7 +67,7 @@ export default {
 
  proxy: {
   '/api': {
-    target: 'http://localhost:3000',
+    target: API_URL,
       pathRewrite: {
         '^/api' : ''
       },
