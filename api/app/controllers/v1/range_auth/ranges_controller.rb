@@ -4,7 +4,7 @@ class V1::RangeAuth::RangesController < ApplicationController
     render json: {
       data: {
             message: "Wellcome",
-            admin: current_v1_admin
+            admin: current_v1_admin_range
           }
     }, status: 200
   end
