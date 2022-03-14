@@ -1,10 +1,3 @@
-var env = process.env.NODE_ENV || 'development';
-if (env === 'development' || env === 'test') {
-  var API_URL='http://localhost:3000'
-}
-else{
-  var API_URL=process.env.API_URL
-}
 
 export default {
   server: {
@@ -67,8 +60,8 @@ export default {
 
  proxy: {
   '/api': {
-    target: API_URL,
-    // target: 'http://localhost:3000',
+    // target: API_URL,
+    target: 'http://localhost:3000',
       pathRewrite: {
         '^/api' : ''
       },
