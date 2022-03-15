@@ -59,7 +59,7 @@ test:
 #
 production:
   <<: *default
-  database: 
-  username: 
+  database: heroku_b206585bb7b4c66
+  username: b2d1fd1d81ba37
   # password: <%= ENV['API_DATABASE_PASSWORD'] %>
-  password: 
+  password: 2cd68913
