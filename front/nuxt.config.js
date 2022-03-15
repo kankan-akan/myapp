@@ -8,7 +8,7 @@ else{
 
 export default {
   server: {
-  port: 8080
+  port: process.env.PORT || 8080
   },
 
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode

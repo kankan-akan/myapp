@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     namespace :range_auth do 
       get '/ranges', to: 'ranges#ranges_only'
     end
+    resources :hello, only: [:index]
 
     get '/posts/my_post', to: 'posts#my_post'
     get '/posts/user_posts/:id', to: 'posts#user_posts'
