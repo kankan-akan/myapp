@@ -11,13 +11,13 @@ export default {
     loader: 'null',
     loading: false,
 
-    name: 'example', 
+    name: '田中一郎', 
     nameRules: [
       v => !!v || '入力してください',
       v => (v && v.length <= 15) || '15文字以下で入力してください',
     ],
     
-    userId: 'example',
+    userId: 'ichiro_tanaka',
     userIdRules: [
       v => !!v || '入力してください',
       v => (v && v.length <= 15) || '15文字以下で入力してください',
@@ -62,7 +62,7 @@ export default {
           const res = await this.$axios.post('/v1/auth', this.params)
           await this.$auth.loginWith('local', {
             data: {
-              // user_id: this.userId,
+              user_id: this.userId,
               email: this.email,
               password: this.password
             }

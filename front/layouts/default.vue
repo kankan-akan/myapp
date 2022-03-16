@@ -30,7 +30,7 @@
                   v-bind="attrs"
                   v-on="on"
                 >
-                  @{{ loginUser.name }}
+                  @{{ loginUser.user_id }}
                 </v-btn>
               </template>
               <v-list>

@@ -102,7 +102,7 @@ export default {
         property: 'user',
       },
         endpoints: {
-          login: { url: '/v1/auth/sign_in', method: 'post' },
+          login: { url: '/v1/auth/sign_in', method: 'post', propertyName: false },
           logout: { url: '/v1/auth/sign_out', method: 'delete' },
           // user: { url: '/v1/auth/user', method: 'get' },
           user : false,
