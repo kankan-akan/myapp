@@ -2,7 +2,7 @@
     <v-main> 
       <v-container>
         <v-row >
-          <v-btn to="/post">
+          <v-btn to="/allPost">
             all post
           </v-btn>
         </v-row>

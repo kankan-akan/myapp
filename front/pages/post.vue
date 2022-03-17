@@ -1,56 +1,60 @@
 <template>
-  <v-main >
+  <v-main>
     <v-container>
-      <v-row>
-        <v-col
-          v-for="(post, i) in allPost"
-          :key=" i "
-          cols="3"
-        > 
-          <div @click="user(post.user.id)">@{{ post.user.user_id }}</div>
-          <div>{{ post.content }}</div>
-          <div>user_id:{{ post.user.id }}</div>
-          <PostLike :post="post"/>
+      <v-card>
+        <v-card-title>New Post</v-card-title>
+        <v-form 
+          ref="form"
+          v-model ="valid"
+          lazy-validation 
+        >
+        <v-col>
+          <v-textarea
+            outlined
+            v-model="content"
+            label="ご利用になった練習場はいかがでしたか？"
+            :counter="140"
+            :rules="contentRules"
+            required
+          ></v-textarea>
         </v-col>
-      </v-row>
+        </v-form>
+        <v-card-actions>
+          <v-btn @click="submit()">post</v-btn>
+        </v-card-actions>
+      </v-card>
     </v-container>
   </v-main>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 export default {
   data: () => ({
-    allPost: [ ]
+    valid: true,
+    content: '',
+    contentRules: [
+      v => !!v && (v && v.length <= 140)
+    ]
   }),
 
-  created: async function() {
-      await this.$axios.get('/v1/posts')
-      .then((res) => {
-        this.allPost = res.data
-      })
+  computed:{
+    ...mapState({
+      loginUser: (state) => state.authentication.loginUser
+    })
   },
 
-  methods: {
-    user(id) {
-      this.$router.push(`/users/${id}`)
+  methods:{
+    submit() {
+      if(this.$refs.form.validate()) {
+        this.$axios.post('/v1/posts', {
+          user_id: this.loginUser.id,
+          content: this.content
+        })
+      }
+
     }
   }
-
 }
 </script>
-
-<style scoped>
-.v-img {
-  transition: opacity .4s ease-in-out;
-}
-
-  .on-hover {
-    opacity: 0.6;
-    transition: opacity .4s ease-in-out;
-  }
-
-  .show-content {
-  color: rgba(255, 255, 255, 1) !important;
-}
-</style>

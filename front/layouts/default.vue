@@ -19,6 +19,9 @@
             <v-btn @click ="$auth.logout()">
              LOGOUT
             </v-btn>
+            <v-btn to="/post">
+              post
+            </v-btn>
             <v-menu 
               bottom
               offset-y
