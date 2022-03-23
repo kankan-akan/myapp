@@ -176,7 +176,7 @@ DEPENDENCIES
   mysql2 (>= 0.4.4, < 0.6.0)
   puma (~> 3.11)
   rack-cors
-  rails (~> 6.0, >= 6.0.3)
+  rails (~> 6.1.5)
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
@@ -185,4 +185,4 @@ RUBY VERSION
    ruby 3.0.3p157
 
 BUNDLED WITH
-   1.17.2
+   2.3.9
