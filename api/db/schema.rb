@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2022_02_09_090201) do
 
-  create_table "admin_ranges", charset: "utf8", force: :cascade do |t|
+  create_table "admin_ranges", charset: "utf8mb3", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_090201) do
     t.index ["uid", "provider"], name: "index_admin_ranges_on_uid_and_provider", unique: true
   end
 
-  create_table "bookmarks", charset: "utf8", force: :cascade do |t|
+  create_table "bookmarks", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "range_outline_id"
     t.datetime "created_at", null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_090201) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
-  create_table "equipment", charset: "utf8", force: :cascade do |t|
+  create_table "equipment", charset: "utf8mb3", force: :cascade do |t|
     t.boolean "uchihoudai", default: false, null: false
     t.boolean "approach", default: false, null: false
     t.boolean "lefty", default: false, null: false
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_090201) do
     t.index ["range_outline_id"], name: "index_equipment_on_range_outline_id"
   end
 
-  create_table "lessons", charset: "utf8", force: :cascade do |t|
+  create_table "lessons", charset: "utf8mb3", force: :cascade do |t|
     t.string "title"
     t.string "coach"
     t.text "content"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_090201) do
     t.index ["range_outline_id"], name: "index_lessons_on_range_outline_id"
   end
 
-  create_table "likes", charset: "utf8", force: :cascade do |t|
+  create_table "likes", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "post_id"
     t.datetime "created_at", null: false
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_090201) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "posts", charset: "utf8", force: :cascade do |t|
+  create_table "posts", charset: "utf8mb3", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_090201) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "range_outlines", charset: "utf8", force: :cascade do |t|
+  create_table "range_outlines", charset: "utf8mb3", force: :cascade do |t|
     t.string "city"
     t.string "name"
     t.text "features"
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_090201) do
     t.index ["admin_range_id"], name: "index_range_outlines_on_admin_range_id"
   end
 
-  create_table "relationships", charset: "utf8", force: :cascade do |t|
+  create_table "relationships", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "follower_id"
     t.datetime "created_at", null: false
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_090201) do
     t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
-  create_table "reservations", charset: "utf8", force: :cascade do |t|
+  create_table "reservations", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "lesson_id"
     t.bigint "user_id"
     t.string "date"
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_090201) do
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
-  create_table "reviews", charset: "utf8", force: :cascade do |t|
+  create_table "reviews", charset: "utf8mb3", force: :cascade do |t|
     t.string "review"
     t.float "rate"
     t.bigint "lesson_id"
@@ -136,7 +136,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_090201) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "users", charset: "utf8", force: :cascade do |t|
+  create_table "users", charset: "utf8mb3", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
