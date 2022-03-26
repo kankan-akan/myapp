@@ -10,4 +10,8 @@ ENV HOME=/${WORKDIR} \
 
 WORKDIR ${HOME}
 
-EXPOSE ${CONTAINER_PORT}
+RUN apk update
+RUN apk upgrade
+RUN npm install -g npm
+
+EXPOSE 3000
