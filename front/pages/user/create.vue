@@ -57,7 +57,7 @@
             :rules ="passwordRules"
             :append-icon ="show ? 'mdi-eye' : 'mdi-eye-off'"
             :type ="show? 'text' : 'password'"
-            label ="パスワード（半角英数字・記号(.?/-_)を各１つ含む8文字以上30文字以内）"
+            label ="パスワード（半角英数字・記号(.?/-_)を各1つ含む8文字以上30文字以内）"
             required
             
             @click:append ="show = !show"
