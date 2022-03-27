@@ -11,18 +11,18 @@ export default {
     loader: 'null',
     loading: false,
 
-    name: '田中一郎', 
+    name: 'hogeゴルフ練習場', 
     nameRules: [
       v => !!v || '入力してください',
-      v => (v && v.length <= 15) || '15文字以下で入力してください',
+      v => (v && v.length <= 20) || '',
     ],
     
-    userId: 'ichiro_tanaka',
-    userIdRules: [
-      v => !!v || '入力してください',
-      v => (v && v.length <= 15) || '15文字以下で入力してください',
-      v => /^(?=.*[a-zA-Z])[a-zA-Z0-9\d.?/-_]{1,15}$/.test(v) || '',
-    ],
+    // userId: '',
+    // userIdRules: [
+    //   v => !!v || '入力してください',
+    //   v => (v && v.length <= 15) || '15文字以下で入力してください',
+    //   v => /^(?=.*[a-zA-Z])[a-zA-Z0-9\d.?/-_]{1,15}$/.test(v) || '',
+    // ],
     
     email: 'a@example.com',
     emailRules: [
@@ -45,7 +45,7 @@ export default {
     params() {
       return {
         name: this.name,
-        user_id: this.userId,
+        // user_id: this.userId,
         email: this.email,
         password: this.password
       }
@@ -59,11 +59,10 @@ export default {
       if (this.$refs.form.validate()) {
         try {
           // this.loading = true
-          const res = await this.$axios.post('/v1/auth', this.params)
+          const res = await this.$axios.post('/v1/range_auth', this.params)
           await this.$auth.loginWith('local', {
             data: {
               name: this.name,
-              user_id: this.userId,
               email: this.email,
               password: this.password
             }

@@ -15,7 +15,7 @@
           </NuxtLink>
           <h2>{{ $store.state.auth.loggedIn }}</h2>
           <h3>{{ $auth.loggedIn }}</h3>
-          <v-btn to="/rangeAuth">
+          <v-btn to="/rangeLogin">
             練習場管理者はこちら
           </v-btn>
           <div v-if ="$auth.loggedIn">
