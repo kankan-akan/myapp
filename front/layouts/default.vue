@@ -82,7 +82,7 @@
       </v-container>
     </v-app-bar>
 
-    <Nuxt />
+    <!-- <Nuxt /> -->
 
   </v-app>
 </template>
