@@ -60,14 +60,16 @@ export default {
         try {
           // this.loading = true
           const res = await this.$axios.post('/v1/range_auth', this.params)
-          await this.$auth.loginWith('local', {
+          await this.$axios.post('/v1/auth/sign_in', {
             data: {
-              name: this.name,
+            // user_id: this.userId,
               email: this.email,
               password: this.password
             }
-          })
+            })
             console.log(res)
+            console.log(this.$auth);
+            this.$router.push('/rangeIndex')
             // this.snackbar = true
         }catch(err) {
             console.log(err)
