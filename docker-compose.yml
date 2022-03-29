@@ -24,7 +24,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./api:/$WORKDIR
+      - ./api:/app
     depends_on:
       - db
 
@@ -36,9 +36,9 @@ services:
         CONTAINER_PORT: 3000
     command: npm run dev
     volumes:
-      - ./front:/$WORKDIR
+      - ./front:/app
     ports:
-      - "8080:3000"
+      - "8080:8080"
     depends_on:
       - api
 
