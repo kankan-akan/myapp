@@ -78,11 +78,9 @@ export default {
     async login () {
       try {
       const res = await this.$auth.loginWith('local', {
-        data: {
         // user_id: this.userId,
           email: this.email,
           password: this.password
-        }
       })
       console.log(res)
       console.log(this.$auth);

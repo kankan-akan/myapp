@@ -81,9 +81,9 @@ export default {
   build: {
   },
 
-  // router: {
-  //   middleware: ['auth']
-  // },
+  router: {
+    middleware: ['rangeAuth']
+  },
   
   auth: {
     redirect: {

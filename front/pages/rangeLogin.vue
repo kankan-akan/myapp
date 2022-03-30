@@ -63,7 +63,7 @@ import { mapActions } from 'vuex';
 
 export default {
   data: () => ({
-    // name: 'hogeゴルフ練習場',
+    name: 'hogeゴルフ練習場',
     email: 'a@example.com',
     password: 'password.',
   }),
@@ -78,15 +78,12 @@ export default {
     async login () {
       try {
         // this.setLogin(this.data)
-        const res = await this.$auth.post('/v1/auth/sign_in', {
-        data: {
-        // user_id: this.userId,
+        const res = await this.$axios.post('/v1/range_auth/sign_in', {
+          // name: this.name,
           email: this.email,
           password: this.password
-        }
         })
         console.log(res)
-        console.log(this.$auth);
         this.$router.push('/rangeIndex')
       }catch(err) {
         console.log(err)

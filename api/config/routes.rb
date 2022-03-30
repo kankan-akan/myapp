@@ -13,8 +13,10 @@ Rails.application.routes.draw do
       registrations: 'v1/range_auth/registrations'
     }
     namespace :range_auth do 
-      get '/ranges', to: 'ranges#ranges_only'
+      get '/range', to: 'ranges#ranges_only'
+      resources :ranges,  only: [:index]
     end
+
     resources :hello, only: [:index]
 
     get '/posts/my_post', to: 'posts#my_post'
