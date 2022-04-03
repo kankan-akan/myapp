@@ -1,10 +1,8 @@
 <template>
   <v-main>
-    
     <v-container>
       <div>Index board</div>
-      <div>{{ $store.state.rangeAuth.isLoggedIn }}</div>
-    
+      <RangeInfo />
     </v-container>
   </v-main>
 </template>
@@ -12,8 +10,6 @@
 <script>
 
 export default {
-  layout: 'rangeAdmin',
-
   data:() => ({
   }),
 

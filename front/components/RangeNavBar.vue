@@ -42,8 +42,8 @@
   export default {
     data:() => ({
     items:[
-      { title: '基本情報', to: "/rangeInfo" },
-      { title: '開講レッスン', to: "/rangelesson" }
+      { title: '基本情報', to: "/rangeAdmin/info" },
+      { title: '開講レッスン', to: "/rangeAdmin/lesson" }
     ],
   }),
 
@@ -51,6 +51,7 @@
     logout () {
       this.$store.commit('rangeAuth/setIsLoggedIn', false)
       this.$router.push('/')
+      // this.$router.replace('/')
     }
     // async logout () {
     //   try {
