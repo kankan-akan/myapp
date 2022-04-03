@@ -1,7 +1,7 @@
 <template>
   <v-app>
     
-    <Header />
+    <RangeHeader />
 
     <Nuxt />
 

@@ -67,7 +67,7 @@ export default {
               password: this.password
             })
             console.log(res)
-            this.$router.push('/rangeIndex')
+            this.$router.push('/rangeInfo')
             // this.snackbar = true
         }catch(err) {
             console.log(err)

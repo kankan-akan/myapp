@@ -1,11 +1,14 @@
 export const state = () => ({
   loginRange: [ ],
-  loggedIn: false
+  isLoggedIn: false
 })
 
 export const mutations = {
   setLogin (state, loginRange ) {
     state.loginRange = loginRange
+  },
+  setIsLoggedIn (state, isLoggedIn) {
+    state.isLoggedIn = isLoggedIn
   }
 }
 
@@ -17,6 +20,7 @@ export const actions = {
       })
     .then((res) => {
       commit('setLogin', res.data)
+      commit('setIsLoggedIn', true)
     })
     }
 

@@ -75,20 +75,25 @@ export default {
      ...mapActions({
       setLogin: 'rangeAuth/setLogin'
     }),
-    async login () {
-      try {
-        // this.setLogin(this.data)
-        const res = await this.$axios.post('/v1/range_auth/sign_in', {
-          // name: this.name,
-          email: this.email,
-          password: this.password
-        })
-        console.log(res)
-        this.$router.push('/rangeIndex')
-      }catch(err) {
-        console.log(err)
-      }
+    login() {
+       this.$store.commit('rangeAuth/setIsLoggedIn', true)
+       this.$router.push('/rangeInfo')
     },
+    // async login () {
+    //   try {
+    //     // this.setLogin(this.data)
+    //     const res = await this.$axios.post('/v1/range_auth/sign_in', {
+    //       // name: this.name,
+    //       email: this.email,
+    //       password: this.password
+    //     })
+    //     console.log(res)
+    //     this.$store.commit('rangeAuth/setIsLoggedIn', true)
+    //     this.$router.push('/rangeIndex')
+    //   }catch(err) {
+    //     console.log(err)
+    //   }
+    // },
 
   },
 
