@@ -13,6 +13,10 @@ export default {
   data:() => ({
   }),
 
+  computed: {
+    range
+  },
+
   methods: {
     // async logout () {
     //   try {

@@ -53,10 +53,10 @@ ActiveRecord::Schema.define(version: 2022_02_09_090201) do
     t.boolean "shop", default: false, null: false
     t.boolean "restaurant", default: false, null: false
     t.boolean "lesson", default: false, null: false
-    t.bigint "range_outline_id"
+    t.bigint "admin_range_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["range_outline_id"], name: "index_equipment_on_range_outline_id"
+    t.index ["admin_range_id"], name: "index_equipment_on_admin_range_id"
   end
 
   create_table "lessons", charset: "utf8", force: :cascade do |t|
@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_090201) do
 
   add_foreign_key "bookmarks", "range_outlines"
   add_foreign_key "bookmarks", "users"
-  add_foreign_key "equipment", "range_outlines"
+  add_foreign_key "equipment", "admin_ranges"
   add_foreign_key "lessons", "admin_ranges"
   add_foreign_key "lessons", "range_outlines"
   add_foreign_key "likes", "posts"

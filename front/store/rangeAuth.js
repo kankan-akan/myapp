@@ -1,14 +1,18 @@
 export const state = () => ({
-  loginRange: [ ],
-  isLoggedIn: false
+  loginData: [ ],
+  isLoggedIn: false,
+  loginRange: [ ]
 })
 
 export const mutations = {
-  setLogin (state, loginRange ) {
-    state.loginRange = loginRange
+  setLogin (state, loginData) {
+    state.loginRange = loginData
   },
   setIsLoggedIn (state, isLoggedIn) {
     state.isLoggedIn = isLoggedIn
+  },
+  setLoginRange (state, loginRange) {
+    state.loginRange = loginRange
   }
 }
 
@@ -22,6 +26,12 @@ export const actions = {
       commit('setLogin', res.data)
       commit('setIsLoggedIn', true)
     })
-    }
+    },
+  getLoginRange({ commit }) {
+    this.$axios.get('/v1/range_auth/range')
+    .then((res) => {
+      commit('setLoginRange', res.data)
+    })
+  }
 
 }

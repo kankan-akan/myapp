@@ -77,7 +77,7 @@ export default {
     }),
     login() {
        this.$store.commit('rangeAuth/setIsLoggedIn', true)
-       this.$router.push('/rangeInfo')
+       this.$router.push('/rangeAdmin/info')
     },
     // async login () {
     //   try {
@@ -89,7 +89,7 @@ export default {
     //     })
     //     console.log(res)
     //     this.$store.commit('rangeAuth/setIsLoggedIn', true)
-    //     this.$router.push('/rangeIndex')
+    //     this.$router.push('/rangeAdmin/info')
     //   }catch(err) {
     //     console.log(err)
     //   }
