@@ -14,7 +14,7 @@ export default {
   }),
 
   computed: {
-    range
+    
   },
 
   methods: {

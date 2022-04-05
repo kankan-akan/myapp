@@ -130,6 +130,7 @@
             persistent-hint
           ></v-text-field>
         </v-col>
+          <h5>'＊'は必須項目です</h5>
           <v-card-actions>
             <v-btn
               class ="mr-4"
@@ -158,6 +159,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
 
   data: () => ({
@@ -203,6 +206,9 @@ export default {
   }),
 
   computed:{
+    ...mapState({
+      loginRange: (state) => state.rangeAuth.loginRange
+    }),
     params() {
       return {
         city: this.city,
@@ -221,7 +227,7 @@ export default {
         shop: this.shop,
         restaurant: this.restaurant,
         lesson: this.lesson,
-        admin_range_id: this.id
+        
       }
     }
 
@@ -231,7 +237,25 @@ export default {
     //全て入力されているか
     async submit () {
       if (this.$refs.form.validate()) {
-        await this.$axios.post('/v1/outlines', this.params)
+        await this.$axios.post('/v1/outlines', {
+          city: this.city,
+          name: this.name,
+          address: this.address,
+          distance: this.distance,
+          features: this.features,
+          booths: this.booths,
+          link: this.link,
+          phone_number: this.phoneNumber,
+          uchihoudai: this.uchihoudai,
+          approach: this.approach,
+          lefty: this.lefty,
+          patting: this.patting,
+          bunker:this.bunker,
+          shop: this.shop,
+          restaurant: this.restaurant,
+          lesson: this.lesson,
+          admin_range_id: this.loginRange.id
+        })
         .then((res) => {
           console.log(res)
           // this.snackbar = true

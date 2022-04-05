@@ -25,7 +25,24 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
+
 export default {
 
+methods: {
+  ...mapActions({
+    getLoginRange: 'rangeAuth/getLoginRange'
+  })
+},
+
+created() {
+  this.getLoginRange()
+},
+
+computed: {
+    ...mapState({
+      loginRange: (state) => state.rangeAuth.loginRange
+    })
+}
 }
 </script>

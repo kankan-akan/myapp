@@ -28,8 +28,8 @@ export const actions = {
       
     })
   },
-  async getLesson({ commit }){
-    await this.$axios.get('/v1/lessons/ ')
+  async getLesson({ commit }, id){
+    await this.$axios.get('/v1/lessons/range_lesson')
     .then((res) => {
       commit('setLesson', res.data)
     })
