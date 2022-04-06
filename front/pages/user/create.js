@@ -61,8 +61,8 @@ export default {
           // this.loading = true
           const res = await this.$axios.post('/v1/auth', this.params)
           await this.$auth.loginWith('local', {
-              name: this.name,
-              user_id: this.userId,
+              // name: this.name,
+              // user_id: this.userId,
               email: this.email,
               password: this.password
           })

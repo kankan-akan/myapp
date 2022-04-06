@@ -48,7 +48,7 @@
             persistent-hint
           ></v-text-field>
         </v-col>
-        <div class="px-3">設備</div>
+        <div class="px-3">＊設備</div>
         <v-row class="px-3">
           <v-col>
             <v-checkbox

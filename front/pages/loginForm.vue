@@ -69,7 +69,7 @@
 export default {
 
   data: () => ({
-    // userId: '',
+    // userId: 'ichiro_tanaka',
     email: 'a@example.com',
     password: 'password.',
   }),
@@ -78,13 +78,14 @@ export default {
     async login () {
       try {
       const res = await this.$auth.loginWith('local', {
+        data:{
         // user_id: this.userId,
           email: this.email,
           password: this.password
+        }
       })
       console.log(res)
-      console.log(this.$auth);
-        // this.$router.push('/')
+      console.log(this.$auth)
       }catch(err) {
         console.log(err)
       }

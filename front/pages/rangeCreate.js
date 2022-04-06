@@ -61,12 +61,12 @@ export default {
           // this.loading = true
           const res = await this.$axios.post('/v1/range_auth', this.params)
           await this.$axios.post('/v1/range_auth/sign_in', {
-            // user_id: this.userId,
               // name: this.name,
               email: this.email,
               password: this.password
             })
             console.log(res)
+            this.$store.commit('rangeAuth/setIsLoggedIn', true)
             this.$router.push('/rangeAdmin/info')
             // this.snackbar = true
         }catch(err) {

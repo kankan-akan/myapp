@@ -16,8 +16,37 @@
           </NuxtLink>
           
           <h2>{{ $store.state.rangeAuth.isLoggedIn }}</h2>
+          <div>{{ loginRange.name }}</div>
           <v-btn to="/rangeLogin">練習場管理者はこちら</v-btn>
-          
+          <v-menu 
+              bottom
+              offset-y
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  class="align-self-center"
+                  color="white"
+                  v-bind="attrs"
+                  v-on="on"
+                  large
+                  icon
+                >
+                <v-icon >{{ 'mdi-cog' }}</v-icon>
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item to ="">
+                  <v-list-item-title>マイページ</v-list-item-title>
+                </v-list-item>
+                <v-list-item to ="/rangeAdmin/account">
+                  <v-list-item-title>管理者アカウント設定</v-list-item-title>
+                </v-list-item>
+                <v-divider></v-divider>
+                <v-list-item to ="">
+                  <v-list-item-title>ログアウト</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
         </v-row>
       </v-container>
     </v-app-bar>

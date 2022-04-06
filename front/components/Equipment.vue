@@ -2,20 +2,20 @@
   <v-container>
     <v-row no-gutters>
     <v-col>
-      <div class="e1" v-bind:class="{  }">打ち放題</div>
-      <div class="e1">アプローチ</div>
+      <div class="e1" v-bind:class="{ 'active' : equipment.uchihoudai }">打ち放題</div>
+      <div class="e1" v-bind:class="{ 'active' : equipment.approach }">アプローチ</div>
     </v-col>
     <v-col>
-      <div class="e1">左打席</div>
-      <div class="e1">パター</div>
+      <div class="e1" v-bind:class="{ 'active' : equipment.lefty }">左打席</div>
+      <div class="e1" v-bind:class="{ 'active' : equipment.patting }">パター</div>
     </v-col>
     <v-col>
-      <div class="e1">バンカー</div>
-      <div class="e1">ショップ</div>
+      <div class="e1" v-bind:class="{ 'active' : equipment.bunker }">バンカー</div>
+      <div class="e1" v-bind:class="{ 'active' : equipment.shop }">ショップ</div>
     </v-col>
     <v-col>
-      <div class="e1">レストラン</div>
-      <div class="e1">レッスン</div>
+      <div class="e1" v-bind:class="{ 'active' : equipment.restaurant }">レストラン</div>
+      <div class="e1" v-bind:class="{ 'active' : equipment.lesson }">レッスン</div>
     </v-col>
     </v-row>
   </v-container>
@@ -24,7 +24,9 @@
 <script>
 import { mapActions, mapState } from 'vuex';
 
-export default ({
+export default {
+  props:[ 'equipment' ],
+
  data:()=> ({
   isActive: true
 
@@ -40,7 +42,7 @@ methods: {
    })
  }
 
-})
+}
 </script>
 
 

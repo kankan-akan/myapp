@@ -1,8 +1,23 @@
 <template>
   <v-main>
     <v-container>
-      <div>Index board</div>
-      <RangeInfo />
+      <v-row class="justify-start">
+        <v-col>
+          <h2>基本情報</h2>
+        </v-col>
+          <v-col>
+            <v-btn>
+              <v-icon>{{ 'mdi-pen' }}</v-icon>
+              編集
+            </v-btn>
+          </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+        <RangeInfo />
+      </v-col>
+      </v-row>
+      
     </v-container>
   </v-main>
 </template>
@@ -18,17 +33,7 @@ export default {
   },
 
   methods: {
-    // async logout () {
-    //   try {
-    //     const res = await this.$axios.delete('/v1/range_auth/sign_out')
-    //     console.log(res)
-    //     this.$store.commit('rangeAuth/setIsLoggedIn', false)
-    //     this.$router.push('/')
-    //   }
-    //   catch(err){
-    //     console.log(err)
-    //   }
-    // }
+    
   }
 }
 </script>
