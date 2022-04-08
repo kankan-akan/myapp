@@ -1,7 +1,8 @@
 export const state = () => ({
   loginData: [ ],
   isLoggedIn: false,
-  loginRange: [ ]
+  loginRange: [ ],
+  rangeData: [ ]
 })
 
 export const mutations = {
@@ -13,6 +14,9 @@ export const mutations = {
   },
   setLoginRange (state, loginRange) {
     state.loginRange = loginRange
+  },
+  setRangeData (state, rangeData) {
+    state.rangeData = rangeData
   }
 }
 

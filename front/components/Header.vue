@@ -21,7 +21,11 @@
             <v-btn @click ="$auth.logout()">
              LOGOUT
             </v-btn>
-            <v-btn to="/post">post</v-btn>
+            <v-btn icon large to="/post">
+              <v-icon>
+                {{ 'mdi-pencil-plus' }}
+              </v-icon>
+            </v-btn>
             <v-menu 
               bottom
               offset-y

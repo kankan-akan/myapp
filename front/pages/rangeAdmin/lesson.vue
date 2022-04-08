@@ -20,7 +20,7 @@ computed: {
     lesson: (state) => state.lesson
   }),
   lesson() {
-  this.getLesson()
+    this.getLesson()
   }
 },
 

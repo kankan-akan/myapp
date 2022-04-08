@@ -18,7 +18,7 @@
           <h2>{{ $store.state.rangeAuth.isLoggedIn }}</h2>
           <div>{{ loginRange.name }}</div>
           <v-btn to="/rangeLogin">練習場管理者はこちら</v-btn>
-          <v-menu 
+            <v-menu 
               bottom
               offset-y
             >
@@ -57,21 +57,22 @@
 import { mapActions, mapState } from 'vuex';
 
 export default {
-
-methods: {
-  ...mapActions({
-    getLoginRange: 'rangeAuth/getLoginRange'
-  })
-},
-
-created() {
-  this.getLoginRange()
-},
-
-computed: {
+  
+  computed: {
     ...mapState({
       loginRange: (state) => state.rangeAuth.loginRange
+    }),
+  },
+
+    created() {
+    this.getLoginRange()
+  },
+
+  methods: {
+    ...mapActions({
+      getLoginRange: 'rangeAuth/getLoginRange'
     })
-}
+  },
+
 }
 </script>

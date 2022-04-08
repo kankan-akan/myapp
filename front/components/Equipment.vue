@@ -25,22 +25,14 @@
 import { mapActions, mapState } from 'vuex';
 
 export default {
-  props:[ 'equipment' ],
+  props: [ 'equipment' ],
 
- data:()=> ({
-  isActive: true
-
- }),
+  data:()=> ({
+  }),
 
 methods: {
    
   },
-
- computed: {
-   ...mapState({
-     
-   })
- }
 
 }
 </script>
