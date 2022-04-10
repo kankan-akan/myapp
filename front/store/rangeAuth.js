@@ -36,6 +36,12 @@ export const actions = {
     .then((res) => {
       commit('setLoginRange', res.data)
     })
+  },
+  getRangeData({ commit, state }) {
+    this.$axios.get(`/v1/outlines/${state.loginRange.id}`)
+    .then((res) => {
+      commit('setRangeData', res.data)
+    })
   }
 
 }

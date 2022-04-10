@@ -25,7 +25,7 @@
 import { mapActions, mapState } from 'vuex';
 
 export default {
-  props: [ 'equipment' ],
+  props: ['equipment'],
 
   data:()=> ({
   }),

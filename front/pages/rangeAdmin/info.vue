@@ -15,9 +15,11 @@
           </v-col>
       </v-row>
       <v-row>
-        <v-col cols="10">
+        <v-col 
+          cols="10"
+        >
         <!-- <RangeInfo /> -->
-        <!-- <Equipment :equipment="rangeData.equipment" /> -->
+        <Equipment :equipment="rangeData.equipment" />
       </v-col>
       </v-row>
       
@@ -26,7 +28,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapActions,mapState } from 'vuex';
 
 export default {
   data:() => ({
@@ -35,28 +37,22 @@ export default {
 
   computed: {
     ...mapState({
-    loginRange: (state) => state.rangeAuth.loginRange,
-    rangeData: (state) => state.rangeAuth.rangeData
+      loginRange: (state) => state.rangeAuth.loginRange,
+      rangeData: (state) => state.rangeAuth.rangeData,
     }),
     
   },
 
   methods: {
+    ...mapActions({
+      getRangeData: 'rangeAuth/getRangeData',
+    })
   },
 
   created() {
-    console.log(this.loginRange.id)
-    //   this.$axios.get(`/v1/outlines/${this.loginRange.id}`)
-    // .then((res) => {
-    //   // console.log(res)
-    //   commit('rangeAuth/setRangeData', res.data)
-    //   this.rangeData = res.data
-    // })
-    
+    this.getRangeData()
+      
   },
 
-  mounted() {
-    console.log(this.loginRange.id)
-  }
 }
 </script>
