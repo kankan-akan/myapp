@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container v-if="equipment">
     <v-row no-gutters>
     <v-col>
       <div class="e1" v-bind:class="{ 'active' : equipment.uchihoudai }">打ち放題</div>
@@ -19,11 +19,10 @@
     </v-col>
     </v-row>
   </v-container>
+  <div v-else>equipment is undefined</div>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
-
 export default {
   props: ['equipment'],
 
@@ -41,7 +40,7 @@ methods: {
 <style scoped>
 .active {
   color: white;
-  background-color: rgb(99, 204, 0);
+  background-color: rgb(32, 192, 0);
 
 }
 
@@ -49,8 +48,11 @@ methods: {
   text-align: center;
   margin: 1px;
   font-size: 10px;
+  font-weight: 800;
   border: 1.5px solid rgb(172, 172, 172);
   border-radius: 9px;
+  height: 25px;
+  line-height: 25px;
 
 }
 </style>

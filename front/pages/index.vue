@@ -37,7 +37,7 @@
                     <th>ボール単価</th> <td>10円/1球</td><td>12円/1球</td>
                   </tr>
                 </table>
-              <Equipment :data="place" />
+              <Equipment :equipment="place.equipment" />
             <v-card-actions class="justify-center">
                 <v-btn 
                   block
@@ -88,7 +88,7 @@
                     <th>ボール単価</th> <td>10円/1球</td><td>12円/1球</td>
                   </tr>
                 </table>
-                    <Equipment :data="selectedPlace" />
+                    <Equipment :equipment="selectedPlace.equipment" />
                     <div
                       v-if="selectedPlace" 
                       style="white-space:pre-wrap; word-wrap:break-word;"
