@@ -2,7 +2,7 @@ export const state = () => ({
   loginData: [ ],
   isLoggedIn: false,
   loginRange: [ ],
-  rangeData: [ ]
+  rangeData: null
 })
 
 export const mutations = {

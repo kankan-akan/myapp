@@ -1,6 +1,8 @@
 <template>
 <div>
   <v-navigation-drawer 
+    class="light-blue lighten-5"
+    floating
     permanent
     app 
     clipped 

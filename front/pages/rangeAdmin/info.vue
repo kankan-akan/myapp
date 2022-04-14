@@ -7,25 +7,29 @@
           <div>基本情報</div>
         </v-col>
         <v-col>
-          <v-btn>
-            <v-icon>{{ 'mdi-pen' }}</v-icon>
-            編集
-          </v-btn>
-          <p>{{ loginRange.id }}</p>
+          <RangeInfo />
         </v-col>
       </v-row>
 
-      
-      <v-row dense>
-      <v-col cols="10" >
-        <v-card color="grey lighten-5">
+      <template v-if="rangeData == null">
+        <v-row>
+          <v-col class="d-flex justify-center">
+            <h2>基本情報を登録してください。</h2>
+          </v-col>
+        </v-row>
+      </template>
+
+      <template v-else>
+      <v-row dense class="justify-center">
+      <v-col cols="10">
+        <v-card>
           <v-card-text>
             <v-row>
               <v-col cols="2">
-              <div>市町村</div>
+              <h3>市町村</h3>
               </v-col>
               <v-col>
-                <h3>{{ rangeData.city }}</h3>
+                <div class="content">{{ rangeData.city }}</div>
               </v-col>
             </v-row>
           </v-card-text>
@@ -40,7 +44,7 @@
               <h3>練習場名</h3>
               </v-col>
               <v-col>
-                <h3>{{ rangeData.name }}</h3>
+                <div class="content">{{ rangeData.name }}</div>
               </v-col>
             </v-row>
           </v-card-text>
@@ -55,7 +59,7 @@
               <h3>所在地</h3>
               </v-col>
               <v-col>
-                <h3>{{ rangeData.address }}</h3>
+                <div class="content">{{ rangeData.address }}</div>
               </v-col>
             </v-row>
           </v-card-text>
@@ -70,7 +74,7 @@
               <h3>広さ(距離)</h3>
               </v-col>
               <v-col>
-                <h3>{{ rangeData.distance }}  yd</h3>
+                <div class="content">{{ rangeData.distance }}  yd</div>
               </v-col>
             </v-row>
           </v-card-text>
@@ -84,8 +88,7 @@
               <v-col cols="2">
                 <h3>設備</h3>
               </v-col>
-            <v-col>
-              <!-- <RangeInfo /> -->
+            <v-col cols="9">
               <Equipment :equipment="rangeData.equipment" />
             </v-col>
             </v-row>
@@ -102,6 +105,7 @@
               </v-col>
               <v-col>
                 <div 
+                  class="content"
                   style="white-space:pre-wrap; word-wrap:break-word;"
                 >{{ rangeData.features }}</div>
               </v-col>
@@ -118,7 +122,7 @@
               <h3>打席数</h3>
               </v-col>
               <v-col>
-                <h3>{{ rangeData.booths }}  打席</h3>
+                <div class="content">{{ rangeData.booths }}  打席</div>
               </v-col>
             </v-row>
           </v-card-text>
@@ -133,7 +137,7 @@
               <h3>HPリンク</h3>
               </v-col>
               <v-col>
-                <h3>{{ rangeData.link }}</h3>
+                <div class="content">{{ rangeData.link }}</div>
               </v-col>
             </v-row>
           </v-card-text>
@@ -148,15 +152,14 @@
                 <h3>電話番号</h3>
               </v-col>
               <v-col>
-                <h3>{{ rangeData.phone_number }}</h3>
+                <div class="content">{{ rangeData.phone_number }}</div>
               </v-col>
             </v-row>
           </v-card-text>
         </v-card>
       </v-col>
       </v-row>
-
-    <div>{{ rangeData }}</div>
+      </template>
     
     </v-container>
   </v-main>
@@ -166,9 +169,6 @@
 import { mapActions,mapState } from 'vuex';
 
 export default {
-  data:() => ({
-
-  }),
 
   computed: {
     ...mapState({
@@ -193,7 +193,7 @@ export default {
 </script>
 
 <style scoped>
-.border {
-  border-bottom: 1px solid silver;
+.content {
+  font-size: 18px;
 }
 </style>

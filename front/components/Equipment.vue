@@ -46,11 +46,11 @@ methods: {
 
 .e1 {
   text-align: center;
-  margin: 1px;
+  margin: 2px;
   font-size: 10px;
   font-weight: 800;
   border: 1.5px solid rgb(172, 172, 172);
-  border-radius: 9px;
+  border-radius: 12px;
   height: 25px;
   line-height: 25px;
 
