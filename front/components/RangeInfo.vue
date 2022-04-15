@@ -61,7 +61,6 @@
               v-model ="name"
               :rules ="[rules.required]"
               label ="＊ゴルフ場名"
-              value="aaaa"
               required
             ></v-text-field>
           </v-col>
@@ -281,7 +280,7 @@ export default {
     //全て入力されているか
     async register () {
       if (this.$refs.form.validate()) {
-        await this.$axios.post('/v1/outlines', {
+        await this.$axios.post('/v1/outlines', { 
           city: this.city,
           name: this.name,
           address: this.address,
@@ -302,7 +301,7 @@ export default {
         })
         .then((res) => {
           console.log(res)
-          // this.snackbar = true
+          this.dialog = false
         })
         .catch((err) => {
           console.log(err)

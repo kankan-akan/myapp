@@ -1,8 +1,9 @@
 export const state = () => ({
-  loginData: [ ],
+  loginData: null,
   isLoggedIn: false,
-  loginRange: [ ],
-  rangeData: null
+  loginRange: null,
+  rangeData: null,
+  lessons: null
 })
 
 export const mutations = {
@@ -17,6 +18,9 @@ export const mutations = {
   },
   setRangeData (state, rangeData) {
     state.rangeData = rangeData
+  },
+  setLesson ( state, lessons ){
+    state.lessons = lessons;
   }
 }
 
@@ -42,6 +46,12 @@ export const actions = {
     .then((res) => {
       commit('setRangeData', res.data)
     })
-  }
+  },
+   getLesson({ commit }){
+     this.$axios.get('/v1/lessons/range_lesson')
+    .then((res) => {
+      commit('setLesson', res.data)
+    })
+  } 
 
 }

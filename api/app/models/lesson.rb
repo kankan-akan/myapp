@@ -4,6 +4,6 @@ class Lesson < ApplicationRecord
 
   has_many :reviews, dependent: :destroy
 
-  has_many :users, through: :reservations
   has_many :reservations
+  has_many :users, through: :reservations
 end
