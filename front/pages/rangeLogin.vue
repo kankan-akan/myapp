@@ -59,8 +59,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-
 export default {
   data: () => ({
     name: 'hogeゴルフ練習場',
@@ -72,13 +70,6 @@ export default {
   },
 
   methods: {
-     ...mapActions({
-      setLogin: 'rangeAuth/setLogin'
-    }),
-    // login() {
-    //    this.$store.commit('rangeAuth/setIsLoggedIn', true)
-    //    this.$router.push('/rangeAdmin/info')
-    // },
     async login () {
       try {
         // this.setLogin(this.data)

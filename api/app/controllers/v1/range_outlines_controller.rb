@@ -1,6 +1,11 @@
 class V1::RangeOutlinesController < ApplicationController
   # before_action :authenticate_v1_admin_range!, except: [:index]
 
+  def range_info
+    @outline = current_v1_admin_range.range_outline.includes(:equipment)
+    render json: @outline.as_json(include: :equipment)
+  end
+
   def index
     @outline = RangeOutline.includes(:equipment, :lessons)
     render json: @outline.as_json(include: [:equipment, :lessons])

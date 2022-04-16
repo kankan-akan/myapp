@@ -1,5 +1,4 @@
 export const state = () => ({
-  loginData: null,
   isLoggedIn: false,
   loginRange: null,
   rangeData: null,
@@ -7,9 +6,6 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setLogin (state, loginData) {
-    state.loginRange = loginData
-  },
   setIsLoggedIn (state, isLoggedIn) {
     state.isLoggedIn = isLoggedIn
   },
@@ -25,24 +21,24 @@ export const mutations = {
 }
 
 export const actions = {
-  setLogin ({ commit }, data) {
-      this.$axios.post('/v1/range_auth/sign_in', {
-        email: data.email,
-        password: data.password
-      })
-    .then((res) => {
-      commit('setLogin', res.data)
-      commit('setIsLoggedIn', true)
-    })
-    },
+  // setLogin ({ commit }, data) {
+  //     this.$axios.post('/v1/range_auth/sign_in', {
+  //       email: data.email,
+  //       password: data.password
+  //     })
+  //   .then((res) => {
+  //     commit('setLogin', res.data)
+  //     commit('setIsLoggedIn', true)
+  //   })
+  //   },
   getLoginRange({ commit }) {
     this.$axios.get('/v1/range_auth/range')
     .then((res) => {
       commit('setLoginRange', res.data)
     })
   },
-  getRangeData({ commit, state }) {
-    this.$axios.get(`/v1/outlines/${state.loginRange.id}`)
+  getRangeData({ commit,state }) {
+    this.$axios.get(`/v1/range_outlines/${state.loginRange.id}`)
     .then((res) => {
       commit('setRangeData', res.data)
     })

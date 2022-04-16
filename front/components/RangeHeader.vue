@@ -66,11 +66,13 @@ export default {
 
     created() {
     this.getLoginRange()
+    this.getRangeData()
   },
 
   methods: {
     ...mapActions({
-      getLoginRange: 'rangeAuth/getLoginRange'
+      getLoginRange: 'rangeAuth/getLoginRange',
+      getRangeData: 'rangeAuth/getRangeData'
     })
   },
 

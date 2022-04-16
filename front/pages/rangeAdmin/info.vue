@@ -1,7 +1,6 @@
 <template>
   <v-main >
     <v-container >
-      
       <v-row>
         <v-col>
           <div>基本情報</div>
@@ -11,7 +10,7 @@
         </v-col>
       </v-row>
 
-      <template v-if="rangeData == null">
+      <template v-if="rangeData == ''">
         <v-row>
           <v-col class="d-flex justify-center">
             <h2>基本情報を登録してください。</h2>
@@ -180,13 +179,12 @@ export default {
 
   methods: {
     ...mapActions({
-      getRangeData: 'rangeAuth/getRangeData',
+      // getRangeData: 'rangeAuth/getRangeData',
     })
   },
 
   mounted() {
-    this.getRangeData()
-      
+    // this.getRangeData()
   },
 
 }

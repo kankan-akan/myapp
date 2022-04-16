@@ -54,11 +54,9 @@ export default {
   },
 
   methods: {
-    //全て入力されているか
     async submit () {
       if (this.$refs.form.validate()) {
         try {
-          // this.loading = true
           const res = await this.$axios.post('/v1/range_auth', this.params)
           await this.$axios.post('/v1/range_auth/sign_in', {
               // name: this.name,
@@ -68,7 +66,6 @@ export default {
             console.log(res)
             this.$store.commit('rangeAuth/setIsLoggedIn', true)
             this.$router.push('/rangeAdmin/info')
-            // this.snackbar = true
         }catch(err) {
             console.log(err)
           }

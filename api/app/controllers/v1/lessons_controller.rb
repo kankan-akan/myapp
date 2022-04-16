@@ -2,7 +2,7 @@ class V1::LessonsController < ApplicationController
 
   def range_lesson
     @lesson = current_v1_admin_range.lessons.includes(:reservations, :users)
-    render json: @lesson.as_json(include: [:reservations, users: { only: [:name, :email] }])
+    render json: @lesson.as_json(include: [:reservations, users: { only: [:name, :email]}])
   end
 
   def index

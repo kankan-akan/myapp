@@ -3,7 +3,12 @@
   <template  v-if="!rangeData">
     <v-row>
       <v-col>
-          <v-btn>loading...</v-btn>
+          <v-btn>
+            <v-progress-circular
+              indeterminate
+              color="amber"
+            ></v-progress-circular>
+          </v-btn>
       </v-col>
     </v-row>
   </template>
@@ -16,7 +21,7 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn 
-          v-if="rangeData == null"
+          v-if="rangeData == ''"
           v-on="on"
           v-bind="attrs"
         >
@@ -33,7 +38,7 @@
         </v-btn>
       </template>
       <v-card>
-        <v-card-title v-if="rangeData == null" class="text-h5 cyan lighten-3">
+        <v-card-title v-if="rangeData == ''" class="text-h5 cyan lighten-3">
           登録
         </v-card-title>
         <v-card-title v-else class="text-h5 cyan lighten-3">
@@ -172,7 +177,7 @@
             <h5>'＊'は必須項目です</h5>
             <v-card-actions>
               <v-btn
-                v-if="rangeData == null"
+                v-if="rangeData == ''"
                 class="mr-4"
                 type="submit"
                 :disabled="!valid" 
@@ -185,7 +190,6 @@
               <v-btn
                 v-else
                 class="mr-4"
-                type="submit"
                 :disabled="!valid"
                 @click="edit()"
                 large
@@ -213,7 +217,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState,mapActions } from 'vuex';
 
 export default {
 
@@ -243,8 +247,8 @@ export default {
     restaurant: this.$store.state.rangeAuth.rangeData.equipment.restaurant,
     lesson: this.$store.state.rangeAuth.rangeData.equipment.lesson,
 
-  cities: [ '相生市', '赤穂市', '明石市', '朝来市', '芦屋市', '尼崎市', '淡路市', '伊丹市', '市川町', '猪名川町', '稲美町', '小野市', '加古川市', '加西市', '加東市', '神河町', '香美町', '上郡町', '川西市','神戸市', '佐用町', '三田市', '宍粟市', '新温泉町', '洲本市', '太子町', '多可町', '高砂市', '宝塚市', 'たつの市', '丹波市', '丹波篠山市', '豊岡市', '西宮市', '西脇市', '播磨町', '姫路市', '福崎町', '三木市', '南あわじ市', '養父市' ]
-    }
+    cities: [ '相生市', '赤穂市', '明石市', '朝来市', '芦屋市', '尼崎市', '淡路市', '伊丹市', '市川町', '猪名川町', '稲美町', '小野市', '加古川市', '加西市', '加東市', '神河町', '香美町', '上郡町', '川西市','神戸市', '佐用町', '三田市', '宍粟市', '新温泉町', '洲本市', '太子町', '多可町', '高砂市', '宝塚市', 'たつの市', '丹波市', '丹波篠山市', '豊岡市', '西宮市', '西脇市', '播磨町', '姫路市', '福崎町', '三木市', '南あわじ市', '養父市' ]
+      }
   },
 
   computed:{
@@ -269,15 +273,16 @@ export default {
         bunker:this.bunker,
         shop: this.shop,
         restaurant: this.restaurant,
-        lesson: this.lesson,
-        
+        lesson: this.lesson
       }
     }
 
   },
 
   methods: {
-    //全て入力されているか
+    ...mapActions({
+      getRangeData: 'rangeAuth/getRangeData',
+    }),
     async register () {
       if (this.$refs.form.validate()) {
         await this.$axios.post('/v1/outlines', { 
@@ -302,6 +307,7 @@ export default {
         .then((res) => {
           console.log(res)
           this.dialog = false
+          this.getRangeData()
         })
         .catch((err) => {
           console.log(err)
@@ -316,6 +322,7 @@ export default {
         .then((res) => {
           console.log(res)
           this.dialog = false
+          this.getRangeData()
         })
         .catch((err) => {
           consolo.log(err)

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     }
     namespace :range_auth do 
       get '/range', to: 'ranges#ranges_only'
+      get '/range_info', to: 'ranges#range_info'
       resources :ranges,  only: [:index]
     end
 

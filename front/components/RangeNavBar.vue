@@ -50,22 +50,22 @@
   }),
 
   methods: {
-    logout () {
-      this.$store.commit('rangeAuth/setIsLoggedIn', false)
-      this.$router.push('/')
-      // this.$router.replace('/')
-    }
-    // async logout () {
-    //   try {
-    //     const res = await this.$axios.delete('/v1/range_auth/sign_out')
-    //     console.log(res)
-    //     this.$store.commit('rangeAuth/setIsLoggedIn', false)
-    //     this.$router.push('/')
-    //   }
-    //   catch(err){
-    //     console.log(err)
-    //   }
+    // logout () {
+    //   this.$store.commit('rangeAuth/setIsLoggedIn', false)
+    //   this.$router.push('/')
+    //   this.$router.replace('/')
     // }
+    async logout () {
+      try {
+        const res = await this.$axios.delete('/v1/range_auth/sign_out')
+        console.log(res)
+        this.$store.commit('rangeAuth/setIsLoggedIn', false)
+        this.$router.push('/')
+      }
+      catch(err){
+        console.log(err)
+      }
+    }
   }
   
   }
