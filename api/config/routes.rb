@@ -14,7 +14,6 @@ Rails.application.routes.draw do
     }
     namespace :range_auth do 
       get '/range', to: 'ranges#ranges_only'
-      get '/range_info', to: 'ranges#range_info'
       resources :ranges,  only: [:index]
     end
 
@@ -34,6 +33,7 @@ Rails.application.routes.draw do
     resource :bookmarks, only: [:create, :destroy]
 
     resources :outlines, controller: 'range_outlines', only: [:index, :show, :create, :update, :destroy]
+    # get '/range_outlines/range_info', to: 'range_outlines#range_info'
 
     get '/lessons/range_lesson', to: 'lessons#range_lesson'
     resources :lessons, only: [:index, :show, :create, :update, :destroy] do

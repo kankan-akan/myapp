@@ -1,5 +1,6 @@
-export default {
+import { mapActions } from 'vuex';
 
+export default {
   data: () => ({
     /* open dialog */
     dialog: false,
@@ -50,29 +51,30 @@ export default {
         password: this.password
       }
     }
-
   },
 
   methods: {
+    ...mapActions({
+      getLoginRange: 'rangeAuth/getLoginRange'
+    }),
     async submit () {
       if (this.$refs.form.validate()) {
         try {
           const res = await this.$axios.post('/v1/range_auth', this.params)
           await this.$axios.post('/v1/range_auth/sign_in', {
-              // name: this.name,
-              email: this.email,
-              password: this.password
-            })
-            console.log(res)
-            this.$store.commit('rangeAuth/setIsLoggedIn', true)
-            this.$router.push('/rangeAdmin/info')
+            // name: this.name,
+            email: this.email,
+            password: this.password
+          })
+          console.log(res)
+          this.$store.commit('rangeAuth/setLoginRange', res.data)
+          this.$store.commit('rangeAuth/setIsLoggedIn', true)
+          this.$router.push('/rangeAdmin/info')
         }catch(err) {
-            console.log(err)
-          }
+          console.log(err)
+        }
       }
-
     },
-
     reset () {
       this.$refs.form.reset()
     },

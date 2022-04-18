@@ -5,15 +5,24 @@
         <v-col>
           <div>基本情報</div>
         </v-col>
-        <v-col>
-          <RangeInfo />
+        <template v-if="rangeData == null">
+          <v-col >
+          <RangeAddInfo />
         </v-col>
+        </template>
+        
+        <template v-else>
+          <v-col>
+            <RangeEditInfo />
+          </v-col>
+        </template>
+        
       </v-row>
 
-      <template v-if="rangeData == ''">
+      <template v-if="rangeData == null">
         <v-row>
-          <v-col class="d-flex justify-center">
-            <h2>基本情報を登録してください。</h2>
+          <v-col class="d-flex justify-center ">
+            <h2 class="grey--text lighten-1">基本情報を登録してください。</h2>
           </v-col>
         </v-row>
       </template>
@@ -165,26 +174,15 @@
 </template>
 
 <script>
-import { mapActions,mapState } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
 
   computed: {
     ...mapState({
-      loginRange: (state) => state.rangeAuth.loginRange,
+      loginRange: (state) => state.rangeAuth.loginRange.data,
       rangeData: (state) => state.rangeAuth.rangeData,
-    }),
-    
-  },
-
-  methods: {
-    ...mapActions({
-      // getRangeData: 'rangeAuth/getRangeData',
     })
-  },
-
-  mounted() {
-    // this.getRangeData()
   },
 
 }

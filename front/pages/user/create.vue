@@ -16,7 +16,7 @@
       </v-btn>
     </template>
     </v-snackbar>
-
+    <v-col cols="10">
     <v-card>
       <v-card-title>新規登録</v-card-title>
       <v-card-text>
@@ -59,7 +59,6 @@
             :type ="show? 'text' : 'password'"
             label ="パスワード（半角英数字・記号(.?/-_)を各1つ含む8文字以上30文字以内）"
             required
-            
             @click:append ="show = !show"
           ></v-text-field>
 <!-- autocomple ="off" -->
@@ -81,7 +80,6 @@
             >
               登録
             </v-btn>
-            
             <v-btn
               color ="error"
               class ="mr-4"
@@ -95,7 +93,7 @@
         </v-form>
       </v-card-text>
     </v-card>
-    
+    </v-col>
   </v-main>
 </template>
 

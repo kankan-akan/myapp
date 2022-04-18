@@ -38,7 +38,7 @@ export const actions = {
     })
   },
   getRangeData({ commit,state }) {
-    this.$axios.get(`/v1/range_outlines/${state.loginRange.id}`)
+    this.$axios.get(`/v1/outlines/${state.loginRange.data.id}`)
     .then((res) => {
       commit('setRangeData', res.data)
     })
