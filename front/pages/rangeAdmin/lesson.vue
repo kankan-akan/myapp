@@ -44,7 +44,7 @@
 
 <script>
 // (:title, :coach, :content, :admin_range_id, :range_outline_id)
-import { mapActions, mapState } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
   
@@ -55,16 +55,5 @@ export default {
     })
   },
 
-  created() {
-    this.getLesson()
-
-  },
-
-  methods: {
-    ...mapActions({
-      getLesson: 'rangeAuth/getLesson'
-    }),
-
-  }
 }
 </script>

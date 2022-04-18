@@ -1,5 +1,3 @@
-import { mapActions } from 'vuex';
-
 export default {
   data: () => ({
     /* open dialog */
@@ -13,33 +11,23 @@ export default {
     loading: false,
 
     name: 'hogeゴルフ練習場', 
-    nameRules: [
-      v => !!v || '入力してください',
-      v => (v && v.length <= 20) || '',
-    ],
-    
+    nameRules: [ v => !!v || '入力してください' ],
     // userId: '',
     // userIdRules: [
     //   v => !!v || '入力してください',
     //   v => (v && v.length <= 15) || '15文字以下で入力してください',
     //   v => /^(?=.*[a-zA-Z])[a-zA-Z0-9\d.?/-_]{1,15}$/.test(v) || '',
     // ],
-    
     email: 'a@example.com',
     emailRules: [
       v => !!v || '入力してください',
       v => /.+@.+\..+/.test(v) || '',
     ],
-
     password: 'password.',
     passwordRules: [
       v => !!v || '入力してください',
       v => /^(?=.*[a-z])(?=.*[.?/-_])[a-zA-Z0-9\d.?/-_]{8,30}$/.test(v) || '',
-    ],
-    
-    snackbar: false,
-    text: '',
-
+    ]
   }),
 
   computed:{
@@ -54,9 +42,6 @@ export default {
   },
 
   methods: {
-    ...mapActions({
-      getLoginRange: 'rangeAuth/getLoginRange'
-    }),
     async submit () {
       if (this.$refs.form.validate()) {
         try {

@@ -26,9 +26,9 @@
           <v-col cols="3">
             <v-select
               outlined
-              v-model ="city"
-              :rules ="cityRules"
-              label ="＊市町村名"
+              v-model="city"
+              :rules="[rules.required]"
+              label="＊市町村名"
               :items="cities"
               required
             ></v-select>
@@ -36,18 +36,18 @@
           <v-col>
             <v-text-field
               outlined
-              v-model ="name"
-              :rules ="nameRules"
-              label ="＊ゴルフ場名"
+              v-model="name"
+              :rules="[rules.required]"
+              label="＊ゴルフ場名"
               required
             ></v-text-field>
           </v-col>
           <v-col>
             <v-text-field
               outlined
-              v-model ="address"
-              :rules ="addressRules"
-              label ="＊所在地"
+              v-model="address"
+              :rules="[rules.required]"
+              label="＊所在地"
               required
               hint="例: 兵庫県神戸市中央区99-99"
               persistent-hint
@@ -56,9 +56,9 @@
           <v-col cols="3">
             <v-text-field
               outlined
-              v-model ="distance"
-              :rules ="distanceRules"
-              label ="＊広さ(距離)"
+              v-model="distance"
+              :rules="[rules.required]"
+              label="＊広さ(距離)"
               required
               suffix="yd"
               hint="(半角入力)"
@@ -111,17 +111,17 @@
           <v-col>
             <v-textarea
               outlined
-              v-model ="features"
-              label ="特徴"
+              v-model="features"
+              label="特徴"
               height="200"
             ></v-textarea>
           </v-col>
           <v-col cols="3">
             <v-text-field
               outlined
-              v-model ="booths"
-              :rules ="boothsRules"
-              label ="＊打席数"
+              v-model="booths"
+              :rules="[rules.required]"
+              label="＊打席数"
               required
               suffix="打席"
             ></v-text-field>
@@ -129,8 +129,8 @@
           <v-col>
             <v-text-field
               outlined
-              v-model ="link"
-              label ="ホームページリンク"
+              v-model="link"
+              label="ホームページリンク"
               hint="例: www.example.com/page"
               persistent-hint
             ></v-text-field>
@@ -138,9 +138,9 @@
           <v-col>
             <v-text-field
               outlined
-              v-model ="phoneNumber"
-              :rules ="phoneNumberRules"
-              label ="＊電話番号(固定電話)"
+              v-model="phone_number"
+              :rules="[rules.required, rules.phoneNumber]"
+              label="＊電話番号(固定電話)"
               required
               hint="例: 078-123-1234(半角入力)"
               persistent-hint
@@ -159,8 +159,8 @@
                 登録
               </v-btn>
               <v-btn
-                color ="error"
-                class ="mr-4"
+                color="error"
+                class="mr-4"
                 @click="dialog = false"
                 large
                 outlined
@@ -188,15 +188,6 @@ export default {
         required: v => !!v || '入力してください' ,
         phoneNumber: v => /^\d{1,4}-\d{3}-\d{4}$/.test(v) || '入力が正しくありません' 
       },
-      cityRules: [ v => !!v || '入力してください' ],
-      nameRules: [ v => !!v || '入力してください' ],
-      addressRules: [ v => !!v || '入力してください' ],
-      distanceRules: [ v => !!v || '入力してください' ],
-      boothsRules: [ v => !!v || '入力してください' ],
-      phoneNumberRules: [ 
-        v => !!v || '入力してください',
-        v => /^\d{1,4}-\d{3}-\d{4}$/.test(v) || '入力が正しくありません' 
-      ],
       cities: [ '相生市', '赤穂市', '明石市', '朝来市', '芦屋市', '尼崎市', '淡路市', '伊丹市', '市川町', '猪名川町', '稲美町', '小野市', '加古川市', '加西市', '加東市', '神河町', '香美町', '上郡町', '川西市','神戸市', '佐用町', '三田市', '宍粟市', '新温泉町', '洲本市', '太子町', '多可町', '高砂市', '宝塚市', 'たつの市', '丹波市', '丹波篠山市', '豊岡市', '西宮市', '西脇市', '播磨町', '姫路市', '福崎町', '三木市', '南あわじ市', '養父市' ],
       city: this.city,
       name: this.name,

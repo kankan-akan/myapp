@@ -27,7 +27,7 @@
             <v-select
               outlined
               v-model ="city"
-              :rules ="cityRules"
+              :rules ="[rules.required]"
               label ="＊市町村名"
               :items="cities"
               required
@@ -37,7 +37,7 @@
             <v-text-field
               outlined
               v-model ="name"
-              :rules ="nameRules"
+              :rules ="[rules.required]"
               label ="＊ゴルフ場名"
               required
             ></v-text-field>
@@ -46,7 +46,7 @@
             <v-text-field
               outlined
               v-model ="address"
-              :rules ="addressRules"
+              :rules ="[rules.required]"
               label ="＊所在地"
               required
               hint="例: 兵庫県神戸市中央区99-99"
@@ -57,7 +57,7 @@
             <v-text-field
               outlined
               v-model ="distance"
-              :rules ="distanceRules"
+              :rules ="[rules.required]"
               label ="＊広さ(距離)"
               required
               suffix="yd"
@@ -111,17 +111,17 @@
           <v-col>
             <v-textarea
               outlined
-              v-model ="features"
-              label ="特徴"
+              v-model="features"
+              label="特徴"
               height="200"
             ></v-textarea>
           </v-col>
           <v-col cols="3">
             <v-text-field
               outlined
-              v-model ="booths"
-              :rules ="boothsRules"
-              label ="＊打席数"
+              v-model="booths"
+              :rules="[rules.required]"
+              label="＊打席数"
               required
               suffix="打席"
             ></v-text-field>
@@ -129,8 +129,8 @@
           <v-col>
             <v-text-field
               outlined
-              v-model ="link"
-              label ="ホームページリンク"
+              v-model="link"
+              label="ホームページリンク"
               hint="例: www.example.com/page"
               persistent-hint
             ></v-text-field>
@@ -138,9 +138,9 @@
           <v-col>
             <v-text-field
               outlined
-              v-model ="phoneNumber"
-              :rules ="phoneNumberRules"
-              label ="＊電話番号(固定電話)"
+              v-model="phone_number"
+              :rules="[rules.required, rules.phoneNumber]"
+              label="＊電話番号(固定電話)"
               required
               hint="例: 078-123-1234(半角入力)"
               persistent-hint
@@ -183,15 +183,10 @@ export default {
       dialog: false,
       /* register validate */
       valid: true,
-      cityRules: [ v => !!v || '入力してください' ],
-      nameRules: [ v => !!v || '入力してください' ],
-      addressRules: [ v => !!v || '入力してください' ],
-      distanceRules: [ v => !!v || '入力してください' ],
-      boothsRules: [ v => !!v || '入力してください' ],
-      phoneNumberRules: [ 
-        v => !!v || '入力してください',
-        v => /^\d{1,4}-\d{3}-\d{4}$/.test(v) || '入力が正しくありません' 
-      ],
+      rules: {
+        required: v => !!v || '入力してください' ,
+        phoneNumber: v => /^\d{1,4}-\d{3}-\d{4}$/.test(v) || '入力が正しくありません' 
+      },
       city: this.$store.state.rangeAuth.rangeData.city,
       name: this.$store.state.rangeAuth.rangeData.name, 
       address: this.$store.state.rangeAuth.rangeData.address,
@@ -199,7 +194,7 @@ export default {
       features:this.$store.state.rangeAuth.rangeData.features,
       booths: this.$store.state.rangeAuth.rangeData.booths,
       link: this.$store.state.rangeAuth.rangeData.link,
-      phoneNumber: this.$store.state.rangeAuth.rangeData.phone_number,
+      phone_number: this.$store.state.rangeAuth.rangeData.phone_number,
       uchihoudai: this.$store.state.rangeAuth.rangeData.equipment.uchihoudai,
       approach: this.$store.state.rangeAuth.rangeData.equipment.approach,
       lefty: this.$store.state.rangeAuth.rangeData.equipment.lefty,

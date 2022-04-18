@@ -20,7 +20,7 @@
             <div>{{ loginRange.name }}</div>
           </template>
           
-          <v-btn to="/rangeLogin">練習場管理者はこちら</v-btn>
+          <v-btn to="/rangeLogin">練習場管理者の方はこちら</v-btn>
             <v-menu 
               bottom
               offset-y
@@ -69,12 +69,14 @@ export default {
 
   methods: {
     ...mapActions({
-      getRangeData: 'rangeAuth/getRangeData'
+      getRangeData: 'rangeAuth/getRangeData',
+      getLesson: 'rangeAuth/getLesson'
     })
   },
 
   mounted () {
     this.getRangeData()
+    this.getLesson()
   }
 
 }
