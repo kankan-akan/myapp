@@ -60,6 +60,8 @@
         const res = await this.$axios.delete('/v1/range_auth/sign_out')
         console.log(res)
         this.$store.commit('rangeAuth/setIsLoggedIn', false)
+        this.$store.commit('rangeAuth/setLoginRange', null)
+        this.$store.commit('rangeAuth/setRangeData', null)
         this.$router.push('/')
       }
       catch(err){

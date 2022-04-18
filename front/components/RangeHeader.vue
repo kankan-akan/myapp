@@ -14,9 +14,12 @@
           >
             LOGO
           </NuxtLink>
+
+          <template v-if="loginRange">
+            <h2>{{ $store.state.rangeAuth.isLoggedIn }}</h2>
+            <div>{{ loginRange.name }}</div>
+          </template>
           
-          <h2>{{ $store.state.rangeAuth.isLoggedIn }}</h2>
-          <div>{{ loginRange.name }}</div>
           <v-btn to="/rangeLogin">練習場管理者はこちら</v-btn>
             <v-menu 
               bottom
@@ -60,21 +63,19 @@ export default {
   
   computed: {
     ...mapState({
-      loginRange: (state) => state.rangeAuth.loginRange
+      loginRange: (state) => state.rangeAuth.loginRange.data
     }),
-  },
-
-    created() {
-    this.getLoginRange()
-    this.getRangeData()
   },
 
   methods: {
     ...mapActions({
-      getLoginRange: 'rangeAuth/getLoginRange',
       getRangeData: 'rangeAuth/getRangeData'
     })
   },
+
+  mounted () {
+    this.getRangeData()
+  }
 
 }
 </script>

@@ -1,19 +1,4 @@
 <template>
-<div>
-  <template  v-if="!rangeData">
-    <v-row>
-      <v-col>
-          <v-btn>
-            <v-progress-circular
-              indeterminate
-              color="amber"
-            ></v-progress-circular>
-          </v-btn>
-      </v-col>
-    </v-row>
-  </template>
-  
-  <template v-else>
   <v-row >
     <v-dialog
       v-model="dialog"
@@ -21,15 +6,6 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn 
-          v-if="rangeData == ''"
-          v-on="on"
-          v-bind="attrs"
-        >
-          <v-icon>{{ 'mdi-pen' }}</v-icon>
-          登録
-        </v-btn>
-        <v-btn 
-          v-else
           v-on="on"
           v-bind="attrs"
         >
@@ -38,10 +14,7 @@
         </v-btn>
       </template>
       <v-card>
-        <v-card-title v-if="rangeData == ''" class="text-h5 cyan lighten-3">
-          登録
-        </v-card-title>
-        <v-card-title v-else class="text-h5 cyan lighten-3">
+        <v-card-title class="text-h5 cyan lighten-3">
           編集
         </v-card-title>
         <v-card-text>
@@ -54,7 +27,7 @@
             <v-select
               outlined
               v-model ="city"
-              :rules ="[rules.required]"
+              :rules ="cityRules"
               label ="＊市町村名"
               :items="cities"
               required
@@ -64,7 +37,7 @@
             <v-text-field
               outlined
               v-model ="name"
-              :rules ="[rules.required]"
+              :rules ="nameRules"
               label ="＊ゴルフ場名"
               required
             ></v-text-field>
@@ -73,7 +46,7 @@
             <v-text-field
               outlined
               v-model ="address"
-              :rules ="[rules.required]"
+              :rules ="addressRules"
               label ="＊所在地"
               required
               hint="例: 兵庫県神戸市中央区99-99"
@@ -84,7 +57,7 @@
             <v-text-field
               outlined
               v-model ="distance"
-              :rules ="[rules.required]"
+              :rules ="distanceRules"
               label ="＊広さ(距離)"
               required
               suffix="yd"
@@ -147,11 +120,10 @@
             <v-text-field
               outlined
               v-model ="booths"
-              :rules ="[rules.required]"
+              :rules ="boothsRules"
               label ="＊打席数"
               required
               suffix="打席"
-
             ></v-text-field>
           </v-col>
           <v-col>
@@ -167,7 +139,7 @@
             <v-text-field
               outlined
               v-model ="phoneNumber"
-              :rules ="[rules.required, rules.phoneNumber]"
+              :rules ="phoneNumberRules"
               label ="＊電話番号(固定電話)"
               required
               hint="例: 078-123-1234(半角入力)"
@@ -177,18 +149,6 @@
             <h5>'＊'は必須項目です</h5>
             <v-card-actions>
               <v-btn
-                v-if="rangeData == ''"
-                class="mr-4"
-                type="submit"
-                :disabled="!valid" 
-                @click="register()"
-                large
-                outlined
-              >
-                登録
-              </v-btn>
-              <v-btn
-                v-else
                 class="mr-4"
                 :disabled="!valid"
                 @click="edit()"
@@ -212,43 +172,44 @@
       </v-card>
     </v-dialog>
   </v-row>
-  </template>
-</div>
 </template>
 
 <script>
 import { mapState,mapActions } from 'vuex';
 
 export default {
-
   data: function () {
     return {
-    dialog: false,
-    /* register validate */
-    valid: true,
-    rules: {
-      required: v => !!v || '入力してください' ,
-      phoneNumber: v => /^\d{1,4}-\d{3}-\d{4}$/.test(v) || '入力が正しくありません' 
-    },
-    city: '神戸市',
-    name: this.$store.state.rangeAuth.rangeData.name, 
-    address: this.$store.state.rangeAuth.rangeData.address,
-    distance: this.$store.state.rangeAuth.rangeData.distance,
-    features:this.$store.state.rangeAuth.rangeData.features,
-    booths: this.$store.state.rangeAuth.rangeData.booths,
-    link: this.$store.state.rangeAuth.rangeData.link,
-    phoneNumber: this.$store.state.rangeAuth.rangeData.phone_number,
-    uchihoudai: this.$store.state.rangeAuth.rangeData.equipment.uchihoudai,
-    approach: this.$store.state.rangeAuth.rangeData.equipment.approach,
-    lefty: this.$store.state.rangeAuth.rangeData.equipment.lefty,
-    patting: this.$store.state.rangeAuth.rangeData.equipment.patting,
-    bunker: this.$store.state.rangeAuth.rangeData.equipment.bunker,
-    shop: this.$store.state.rangeAuth.rangeData.equipment.shop,
-    restaurant: this.$store.state.rangeAuth.rangeData.equipment.restaurant,
-    lesson: this.$store.state.rangeAuth.rangeData.equipment.lesson,
-
-    cities: [ '相生市', '赤穂市', '明石市', '朝来市', '芦屋市', '尼崎市', '淡路市', '伊丹市', '市川町', '猪名川町', '稲美町', '小野市', '加古川市', '加西市', '加東市', '神河町', '香美町', '上郡町', '川西市','神戸市', '佐用町', '三田市', '宍粟市', '新温泉町', '洲本市', '太子町', '多可町', '高砂市', '宝塚市', 'たつの市', '丹波市', '丹波篠山市', '豊岡市', '西宮市', '西脇市', '播磨町', '姫路市', '福崎町', '三木市', '南あわじ市', '養父市' ]
-      }
+      dialog: false,
+      /* register validate */
+      valid: true,
+      cityRules: [ v => !!v || '入力してください' ],
+      nameRules: [ v => !!v || '入力してください' ],
+      addressRules: [ v => !!v || '入力してください' ],
+      distanceRules: [ v => !!v || '入力してください' ],
+      boothsRules: [ v => !!v || '入力してください' ],
+      phoneNumberRules: [ 
+        v => !!v || '入力してください',
+        v => /^\d{1,4}-\d{3}-\d{4}$/.test(v) || '入力が正しくありません' 
+      ],
+      city: this.$store.state.rangeAuth.rangeData.city,
+      name: this.$store.state.rangeAuth.rangeData.name, 
+      address: this.$store.state.rangeAuth.rangeData.address,
+      distance: this.$store.state.rangeAuth.rangeData.distance,
+      features:this.$store.state.rangeAuth.rangeData.features,
+      booths: this.$store.state.rangeAuth.rangeData.booths,
+      link: this.$store.state.rangeAuth.rangeData.link,
+      phoneNumber: this.$store.state.rangeAuth.rangeData.phone_number,
+      uchihoudai: this.$store.state.rangeAuth.rangeData.equipment.uchihoudai,
+      approach: this.$store.state.rangeAuth.rangeData.equipment.approach,
+      lefty: this.$store.state.rangeAuth.rangeData.equipment.lefty,
+      patting: this.$store.state.rangeAuth.rangeData.equipment.patting,
+      bunker: this.$store.state.rangeAuth.rangeData.equipment.bunker,
+      shop: this.$store.state.rangeAuth.rangeData.equipment.shop,
+      restaurant: this.$store.state.rangeAuth.rangeData.equipment.restaurant,
+      lesson: this.$store.state.rangeAuth.rangeData.equipment.lesson,
+      cities: [ '相生市', '赤穂市', '明石市', '朝来市', '芦屋市', '尼崎市', '淡路市', '伊丹市', '市川町', '猪名川町', '稲美町', '小野市', '加古川市', '加西市', '加東市', '神河町', '香美町', '上郡町', '川西市','神戸市', '佐用町', '三田市', '宍粟市', '新温泉町', '洲本市', '太子町', '多可町', '高砂市', '宝塚市', 'たつの市', '丹波市', '丹波篠山市', '豊岡市', '西宮市', '西脇市', '播磨町', '姫路市', '福崎町', '三木市', '南あわじ市', '養父市' ]
+    }
   },
 
   computed:{
@@ -283,37 +244,6 @@ export default {
     ...mapActions({
       getRangeData: 'rangeAuth/getRangeData',
     }),
-    async register () {
-      if (this.$refs.form.validate()) {
-        await this.$axios.post('/v1/outlines', { 
-          city: this.city,
-          name: this.name,
-          address: this.address,
-          distance: this.distance,
-          features: this.features,
-          booths: this.booths,
-          link: this.link,
-          phone_number: this.phoneNumber,
-          uchihoudai: this.uchihoudai,
-          approach: this.approach,
-          lefty: this.lefty,
-          patting: this.patting,
-          bunker:this.bunker,
-          shop: this.shop,
-          restaurant: this.restaurant,
-          lesson: this.lesson,
-          admin_range_id: this.loginRange.id
-        })
-        .then((res) => {
-          console.log(res)
-          this.dialog = false
-          this.getRangeData()
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-      }
-    },
     async edit () {
       if (this.$refs.form.validate()) {
         await this.$axios.put(`/v1/outlines/${this.loginRange.id}`,
