@@ -18,26 +18,26 @@ default: &default
   host: <%= ENV.fetch('MYSQL_HOST') { 'db' } %>
 
 development:
-  <<: *default
-  # adapter: mysql2
-  # encoding: utf8
-  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  # username: yusukekan
-  # password: yskan
-  # host: localhost
+  # <<: *default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: yusukekan
+  password: yskan
+  host: localhost
   database: myapp_development  #docker起動時必要
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  # adapter: mysql2
-  # encoding: utf8
-  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  # username: yusukekan
-  # password: yskan
-  # host: localhost
+  # <<: *default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: yusukekan
+  password: yskan
+  host: localhost
   database: myapp_test  #docker起動時必要
 
 # As with config/secrets.yml, you never want to store sensitive information,

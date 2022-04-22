@@ -42,6 +42,7 @@ export default {
   plugins: [
     { src: '~/plugins/localStorage.js', ssr: false },
     { src: '~/plugins/axios.js', ssr: false },
+    { src: '~/plugins/dayjs', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -57,9 +58,18 @@ export default {
     // https://go.nuxtjs.dev/axios
     'nuxt-client-init-module',
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
-    
+    '@nuxtjs/auth',
+    '@nuxtjs/dayjs'
   ],
+
+  dayjs: {
+    locales: ['ja'],
+    defaultTimeZone: 'Asia/Tokyo',
+    plugins: [
+      'utc', // import 'dayjs/plugin/utc'
+      'timezone' // import 'dayjs/plugin/timezone'
+    ] // Your Day.js plugin
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
@@ -81,9 +91,9 @@ export default {
   build: {
   },
 
-  // router: {
-  //   middleware: ['auth']
-  // },
+  router: {
+    middleware: ['rangeAuth']
+  },
   
   auth: {
     redirect: {

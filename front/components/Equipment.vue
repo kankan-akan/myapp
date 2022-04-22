@@ -1,62 +1,58 @@
 <template>
-  <v-container>
+  <v-container v-if="equipment">
     <v-row no-gutters>
     <v-col>
-      <div class="e1" v-bind:class="{  }">打ち放題</div>
-      <div class="e1">アプローチ</div>
+      <div class="e1" v-bind:class="{ 'active' : equipment.uchihoudai }">打ち放題</div>
+      <div class="e1" v-bind:class="{ 'active' : equipment.approach }">アプローチ</div>
     </v-col>
     <v-col>
-      <div class="e1">左打席</div>
-      <div class="e1">パター</div>
+      <div class="e1" v-bind:class="{ 'active' : equipment.lefty }">左打席</div>
+      <div class="e1" v-bind:class="{ 'active' : equipment.patting }">パター</div>
     </v-col>
     <v-col>
-      <div class="e1">バンカー</div>
-      <div class="e1">ショップ</div>
+      <div class="e1" v-bind:class="{ 'active' : equipment.bunker }">バンカー</div>
+      <div class="e1" v-bind:class="{ 'active' : equipment.shop }">ショップ</div>
     </v-col>
     <v-col>
-      <div class="e1">レストラン</div>
-      <div class="e1">レッスン</div>
+      <div class="e1" v-bind:class="{ 'active' : equipment.restaurant }">レストラン</div>
+      <div class="e1" v-bind:class="{ 'active' : equipment.lesson }">レッスン</div>
     </v-col>
     </v-row>
   </v-container>
+  <div v-else>equipment is undefined</div>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+export default {
+  props: ['equipment'],
 
-export default ({
- data:()=> ({
-  isActive: true
-
- }),
+  data:()=> ({
+  }),
 
 methods: {
    
   },
 
- computed: {
-   ...mapState({
-     
-   })
- }
-
-})
+}
 </script>
 
 
 <style scoped>
 .active {
   color: white;
-  background-color: rgb(99, 204, 0);
+  background-color: rgb(32, 192, 0);
 
 }
 
 .e1 {
   text-align: center;
-  margin: 1px;
+  margin: 2px;
   font-size: 10px;
+  font-weight: 800;
   border: 1.5px solid rgb(172, 172, 172);
-  border-radius: 9px;
+  border-radius: 12px;
+  height: 25px;
+  line-height: 25px;
 
 }
 </style>

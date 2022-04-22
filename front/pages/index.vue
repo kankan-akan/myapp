@@ -26,7 +26,7 @@
               >
               </div>
               <div v-text="place.address"></div>
-              <div v-text="place.distance"></div>
+              <div>{{ place.distance }}yd</div>
             </v-card-text>
               <v-divider class="my-2"></v-divider>
                 <table>
@@ -37,7 +37,7 @@
                     <th>ボール単価</th> <td>10円/1球</td><td>12円/1球</td>
                   </tr>
                 </table>
-              <Equipment />
+              <Equipment :equipment="place.equipment" />
             <v-card-actions class="justify-center">
                 <v-btn 
                   block
@@ -57,7 +57,7 @@
             <v-overlay  :value="overlay">
               <v-container @click.stop>
                 <v-card 
-                  class="white content "
+                  class="white content"
                   :class="{ open : isOpened }"
                 >
                 <v-row>
@@ -65,7 +65,7 @@
                   <v-card-text class="black--text"> 
                     <div 
                       v-if="selectedPlace"
-                      v-text="selectedPlace.ruby"
+                      v-text="selectedPlace.city"
                     ></div>
                     <div 
                       class="text-h6"
@@ -78,26 +78,30 @@
                     ></div>
                     <div 
                       v-if="selectedPlace"
-                      v-text="selectedPlace.distance"
-                    ></div>
+                    >{{ selectedPlace.distance }}yd</div>
                     <v-divider class="grey lighten-2 my-2"></v-divider>
-
+                    <table>
+                  <tr>
+                    <td class="empty"></td> <th>平日</th><th>土日</th>
+                  </tr>
+                  <tr>
+                    <th>ボール単価</th> <td>10円/1球</td><td>12円/1球</td>
+                  </tr>
+                </table>
+                    <Equipment :equipment="selectedPlace.equipment" />
+                    <div
+                      v-if="selectedPlace" 
+                      style="white-space:pre-wrap; word-wrap:break-word;"
+                    >{{ selectedPlace.features }}</div>
                     <div 
                       v-if="selectedPlace"
-                      v-text="selectedPlace.features"
-                    ></div>
+                    >ホームページ: {{ selectedPlace.link }}</div>
                     <div 
                       v-if="selectedPlace"
-                      v-text="selectedPlace.link"
-                    ></div>
+                    >電話番号: {{ selectedPlace.phone_number }}</div>
                     <div 
                       v-if="selectedPlace"
-                      v-text="selectedPlace.phone_number"
-                    ></div>
-                    <div 
-                      v-if="selectedPlace"
-                      v-text="selectedPlace.booths"
-                    ></div>
+                    >打席数: {{ selectedPlace.booths }}打席</div>
                   
                       <v-card-title class="pa-1">レッスン一覧</v-card-title>
                       <v-col 

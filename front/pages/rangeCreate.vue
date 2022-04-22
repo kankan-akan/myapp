@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <v-snackbar
+    <!-- <v-snackbar
       top
       v-model ="snackbar"
     >
@@ -15,51 +15,52 @@
         Close
       </v-btn>
     </template>
-    </v-snackbar>
-    <v-col cols="10">
+    </v-snackbar> -->
+
     <v-card>
       <v-card-title>新規登録</v-card-title>
       <v-card-text>
         <v-form
           ref="form"
-          v-model ="valid"
+          v-model="valid"
           lazy-validation 
         >
           <v-text-field
             outlined
-            v-model ="name"
-            :counter ="15"
-            :rules ="nameRules"
-            label ="登録名"
+            v-model="name"
+            :counter="15"
+            :rules="nameRules"
+            label="登録名"
             required
           ></v-text-field>
 
-          <v-text-field
+          <!-- <v-text-field
             outlined
             v-model ="userId"
             :counter ="15"
             :rules ="userIdRules"
             label ="ユーザー名（半角英数字・記号(.?/-_)で15文字以内）"
             required
-          ></v-text-field>
+          ></v-text-field> -->
           
           <v-text-field
             outlined
-            v-model ="email"
-            :rules ="emailRules"
-            label ="メールアドレス"
+            v-model="email"
+            :rules="emailRules"
+            label="メールアドレス"
             required
           ></v-text-field>
 
           <v-text-field
             outlined
-            v-model ="password"
-            :rules ="passwordRules"
-            :append-icon ="show ? 'mdi-eye' : 'mdi-eye-off'"
-            :type ="show? 'text' : 'password'"
-            label ="パスワード（半角英数字・記号(.?/-_)を各1つ含む8文字以上30文字以内）"
+            v-model="password"
+            :rules="passwordRules"
+            :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="show? 'text' : 'password'"
+            label="パスワード（半角英数字・記号(.?/-_)を各1つ含む8文字以上30文字以内）"
             required
-            @click:append ="show = !show"
+            
+            @click:append="show = !show"
           ></v-text-field>
 <!-- autocomple ="off" -->
           <!-- <v-checkbox
@@ -71,19 +72,19 @@
           <v-card-actions>
             <v-btn
               class ="mr-4"
-              type ="submit"
-              :disabled ="!valid || loading" 
-              :loading ="loading"
-              @click.prevent ="submit"
+              :disabled="!valid" 
+              :loading="loading"
+              @click="submit"
               large
               outlined
             >
               登録
             </v-btn>
+            
             <v-btn
-              color ="error"
-              class ="mr-4"
-              @click ="reset"
+              color="error"
+              class="mr-4"
+              @click="reset"
               large
               outlined
             >
@@ -93,8 +94,8 @@
         </v-form>
       </v-card-text>
     </v-card>
-    </v-col>
+    
   </v-main>
 </template>
 
-<script src ="./create.js"></script>
+<script src ="./rangeCreate.js"></script>

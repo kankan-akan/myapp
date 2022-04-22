@@ -13,8 +13,10 @@ Rails.application.routes.draw do
       registrations: 'v1/range_auth/registrations'
     }
     namespace :range_auth do 
-      get '/ranges', to: 'ranges#ranges_only'
+      get '/range', to: 'ranges#ranges_only'
+      resources :ranges,  only: [:index]
     end
+
     resources :hello, only: [:index]
 
     get '/posts/my_post', to: 'posts#my_post'
@@ -31,6 +33,7 @@ Rails.application.routes.draw do
     resource :bookmarks, only: [:create, :destroy]
 
     resources :outlines, controller: 'range_outlines', only: [:index, :show, :create, :update, :destroy]
+    # get '/range_outlines/range_info', to: 'range_outlines#range_info'
 
     get '/lessons/range_lesson', to: 'lessons#range_lesson'
     resources :lessons, only: [:index, :show, :create, :update, :destroy] do

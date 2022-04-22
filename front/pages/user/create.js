@@ -61,11 +61,10 @@ export default {
           // this.loading = true
           const res = await this.$axios.post('/v1/auth', this.params)
           await this.$auth.loginWith('local', {
-            data: {
-              user_id: this.userId,
+              // name: this.name,
+              // user_id: this.userId,
               email: this.email,
               password: this.password
-            }
           })
             console.log(res)
             // this.snackbar = true

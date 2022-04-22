@@ -9,7 +9,7 @@ class CreateEquipment < ActiveRecord::Migration[5.2]
       t.boolean :shop,          null: false, default: false
       t.boolean :restaurant,  null: false, default: false
       t.boolean :lesson,        null: false, default: false
-      t.references :range_outline, foreign_key: true
+      t.references :admin_range, foreign_key: true
 
       t.timestamps
     end

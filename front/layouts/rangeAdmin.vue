@@ -1,7 +1,7 @@
 <template>
   <v-app>
     
-    <Header />
+    <RangeHeader />
 
     <Nuxt />
 
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "default"
+  name: "rangeAdmin"
 
 }
 </script>

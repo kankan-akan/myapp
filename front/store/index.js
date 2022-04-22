@@ -1,8 +1,6 @@
-
 export const state = () => ({
   outline: [ ],
   equipment: [ ],
-  lesson: [ ]
 
 })
 
@@ -10,16 +8,14 @@ export const mutations = {
   setOutline ( state, outline ){
     state.outline = outline;
   },
-  
-  setLesson ( state, lesson ){
-    state.lesson = lesson;
-  }
 
 }
 
 export const actions = {
   nuxtClientInit({ commit }, context) {
-    
+    const data = JSON.parse(localStorage.getItem('persisted-key')) || []
+      commit('rangeAuth/setLoginRange', data.rangeAuth.loginRange)
+      commit('rangeAuth/setRangeData', data.rangeAuth.rangeData)
   },
   async getOutline({ commit }){
     await this.$axios.get('/v1/outlines')
@@ -28,11 +24,5 @@ export const actions = {
       
     })
   },
-  async getLesson({ commit }){
-    await this.$axios.get('/v1/lessons/ ')
-    .then((res) => {
-      commit('setLesson', res.data)
-    })
-  } 
 
 }
