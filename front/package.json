@@ -12,9 +12,9 @@
   "dependencies": {
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.13.6",
-    "@nuxtjs/dayjs": "^1.4.1",
     "@nuxtjs/proxy": "^2.1.0",
     "core-js": "^3.15.1",
+    "moment": "^2.29.3",
     "nuxt": "^2.15.7",
     "nuxt-client-init-module": "^0.3.0",
     "vuex-persistedstate": "^4.1.0"
