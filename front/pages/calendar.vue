@@ -5,14 +5,6 @@
         <v-col cols="10">
           <v-sheet>
             <h2>予約一覧</h2>
-            <v-btn
-              class="mr-4"
-              @click="setToday"
-              text
-              outlined
-            >
-              今日
-            </v-btn>
             <v-btn 
               color="grey darken-2"
               @click="previousWeek" 
@@ -35,12 +27,13 @@
               </v-icon>
             </v-btn>
           </v-sheet>
+
           <v-sheet>
             <table >
               <thead>
                 <tr>
                   <td class="date"></td>
-                  <template v-for="date in dateList">
+                  <template v-for="date in dateList" >
                     <th :key="date">
                       {{ date }}
                     </th>
@@ -48,27 +41,122 @@
                 </tr>
               </thead>
               <tbody>
-                <template v-for="hourlyWorkList in hourlyWorkList">
-                  <tr :key="hourlyWorkList.time">
-                    <td class="time">{{hourlyWorkList.time}} ~</td>
-                    <td
-                      v-for="(work, i) in hourlyWorkList.workList" 
-                      :key="hourlyWorkList.time + '_' + i"
-                    >
-                      <a 
+                <template v-for="(time, key) in startTime" >
+                  <tr :key="key">
+                    <td  class="d1">{{ time }} ~</td>
+                    <td>
+                      <a
+                        v-if="isActive(dateList[key], time)"
                         class="d-flex justify-center"
-                        @mouseover="sendReservation(dateList[i], hourlyWorkList.time, work)"
                       >
-                        {{ showWorkStatus(work) }}
+                        x
+                      </a>
+                      <a 
+                        v-else
+                        class="d-flex justify-center"
+                        @mouseover="sendReservation(dateList[key], time)"
+                      >
+                        o
                       </a>
                     </td>
+                    <!-- <td>
+                      <a
+                        v-if="isActive(dateList[key], time)"
+                        class="d-flex justify-center"
+                      >
+                        x
+                      </a>
+                      <a 
+                        v-else
+                        class="d-flex justify-center"
+                        @mouseover="sendReservation(dateList[key], time)"
+                      >
+                        o
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        v-if="isActive(dateList[key], time)"
+                        class="d-flex justify-center"
+                      >
+                        x
+                      </a>
+                      <a 
+                        v-else
+                        class="d-flex justify-center"
+                        @mouseover="sendReservation(dateList[key], time)"
+                      >
+                        o
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        v-if="isActive(dateList[key], time)"
+                        class="d-flex justify-center"
+                      >
+                        x
+                      </a>
+                      <a 
+                        v-else
+                        class="d-flex justify-center"
+                        @mouseover="sendReservation(dateList[key], time)"
+                      >
+                        o
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        v-if="isActive(dateList[key], time)"
+                        class="d-flex justify-center"
+                      >
+                        x
+                      </a>
+                      <a 
+                        v-else
+                        class="d-flex justify-center"
+                        @mouseover="sendReservation(dateList[key], time)"
+                      >
+                        o
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        v-if="isActive(dateList[key], time)"
+                        class="d-flex justify-center"
+                      >
+                        x
+                      </a>
+                      <a 
+                        v-else
+                        class="d-flex justify-center"
+                        @mouseover="sendReservation(dateList[key], time)"
+                      >
+                        o
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        v-if="isActive(dateList[key], time)"
+                        class="d-flex justify-center"
+                      >
+                        x
+                      </a>
+                      <a 
+                        v-else
+                        class="d-flex justify-center"
+                        @mouseover="sendReservation(dateList[key], time)"
+                      >
+                        o
+                      </a>
+                    </td> -->
                   </tr>
-                </template>
+                  </template>
               </tbody>
             </table>
             <v-col>{{ text }}</v-col>
           </v-sheet>
-         
+
+         <v-col>{{ startDate }}</v-col>
         </v-col>
       </v-row>
     </v-container>
@@ -78,33 +166,16 @@
 <script>
 import moment from 'moment';
  moment.locale('ja');
-
   export default {
     data: () => ({
       text: '',
       dateList: [],
       weekNumber: 7,
-      hourlyWorkList: [
-        // {
-        //     time: "11:00" ,
-        //     workList: this.setWorkList()
-        //   },
-        //   {
-        //     time: "12:00" ,
-        //     workList: this.setWorkList()
-        //   },
-        //   {
-        //     time: "13:00" ,
-        //     workList: this.setWorkList()
-        // }
-      ]
+      startTime: [ "11:00" ,"12:00" ,"13:00" ]
     }),
-
     created () {
       this.setDateList(this.startDate)
-      this.setHourlyWorkList()
     },
-
     computed: {
       startDate: {
         get() {
@@ -112,21 +183,10 @@ import moment from 'moment';
         },
         set(date) {
           this.setDateList(date)
-          this.setHourlyWorkList()
         }
       }
     },
-
     methods: {
-      setToday() {
-        this.setHourlyWorkList()
-        this.dateList = []
-        const date = moment()
-        this.dateList.push(date.format('MM/DD(dd)'))
-        for (let i = 0; i < (this.weekNumber - 1); i++ ) {
-          this.dateList.push(date.add(1, 'day').format('MM/DD(dd)'))
-        }
-      },
       nextWeek() {
         this.startDate = this.startDate.add(this.weekNumber, 'day')
       },
@@ -141,47 +201,20 @@ import moment from 'moment';
           this.dateList.push(date.add(1, 'day').format('MM/DD(dd)'))
         }
       },
-      setWorkList() {
-        //ダミー配列データ生成
-        var array = [];
-        for (let i = 0; i < this.weekNumber; i++) {
-          array.push(Math.random() < 0.5);
+      isActive(date, time) {
+        const today = moment().startOf('day').format('MM/DD(dd)')
+        if (date < today) {
+          return true
         }
-        return array
       },
-      setHourlyWorkList() {
-        this.hourlyWorkList = [
-          {
-            time: "11:00" ,
-            workList: this.setWorkList()
-          },
-          {
-            time: "12:00" ,
-            workList: this.setWorkList()
-          },
-          {
-            time: "13:00" ,
-            workList: this.setWorkList()
-        }]
-      },
-      sendReservation(date, time, work) {
+      sendReservation(date, time) {
         this.text = []
-        if (work == true) {
           this.text = date + time
-        } else {
-          this.text = "この日程は選択できません。"
-        }
-
       },
-      showWorkStatus(work) {
-        return work ? "o" : "x"
+      showWork(isActive) {
+        return  isActive ? "x" : "o"
       }
-    
-    },
-
-  mounted() {
-  }
-
+    }
   }
 </script>
 
@@ -195,15 +228,18 @@ import moment from 'moment';
   th {
     border-bottom: solid 2px #d8d8d8;
     background-color: rgb(227, 240, 255);
+
   }
 
   .date {
     border-bottom: solid 2.5px #d8d8d8;
     border-right: solid 2.5px #d8d8d8;
+
   }
 
-  .time {
+  .d1 {
     border-right: solid 2.5px #d8d8d8;
+
   }
 
 </style>
