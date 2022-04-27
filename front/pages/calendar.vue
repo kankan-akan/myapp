@@ -54,7 +54,7 @@
                       <a 
                         v-else
                         class="d-flex justify-center"
-                        @mouseover="sendReservation(dateList[key], time)"
+                        @mouseover="selectedDay(dateList[key], time)"
                       >
                         o
                       </a>
@@ -166,6 +166,7 @@
 <script>
 import moment from 'moment';
  moment.locale('ja');
+
   export default {
     data: () => ({
       text: '',
@@ -207,13 +208,11 @@ import moment from 'moment';
           return true
         }
       },
-      sendReservation(date, time) {
+      selectedDay(date, time) {
         this.text = []
           this.text = date + time
       },
-      showWork(isActive) {
-        return  isActive ? "x" : "o"
-      }
+      
     }
   }
 </script>
