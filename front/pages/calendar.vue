@@ -41,122 +41,29 @@
                 </tr>
               </thead>
               <tbody>
-                <template v-for="(time, key) in startTime" >
-                  <tr :key="key">
-                    <td  class="d1">{{ time }} ~</td>
-                    <td>
-                      <a
-                        v-if="isActive(dateList[key], time)"
-                        class="d-flex justify-center"
-                      >
-                        x
-                      </a>
-                      <a 
-                        v-else
-                        class="d-flex justify-center"
-                        @mouseover="selectedDay(dateList[key], time)"
-                      >
-                        o
-                      </a>
-                    </td>
-                    <!-- <td>
-                      <a
-                        v-if="isActive(dateList[key], time)"
-                        class="d-flex justify-center"
-                      >
-                        x
-                      </a>
-                      <a 
-                        v-else
-                        class="d-flex justify-center"
-                        @mouseover="sendReservation(dateList[key], time)"
-                      >
-                        o
-                      </a>
-                    </td>
-                    <td>
-                      <a
-                        v-if="isActive(dateList[key], time)"
-                        class="d-flex justify-center"
-                      >
-                        x
-                      </a>
-                      <a 
-                        v-else
-                        class="d-flex justify-center"
-                        @mouseover="sendReservation(dateList[key], time)"
-                      >
-                        o
-                      </a>
-                    </td>
-                    <td>
-                      <a
-                        v-if="isActive(dateList[key], time)"
-                        class="d-flex justify-center"
-                      >
-                        x
-                      </a>
-                      <a 
-                        v-else
-                        class="d-flex justify-center"
-                        @mouseover="sendReservation(dateList[key], time)"
-                      >
-                        o
-                      </a>
-                    </td>
-                    <td>
-                      <a
-                        v-if="isActive(dateList[key], time)"
-                        class="d-flex justify-center"
-                      >
-                        x
-                      </a>
-                      <a 
-                        v-else
-                        class="d-flex justify-center"
-                        @mouseover="sendReservation(dateList[key], time)"
-                      >
-                        o
-                      </a>
-                    </td>
-                    <td>
-                      <a
-                        v-if="isActive(dateList[key], time)"
-                        class="d-flex justify-center"
-                      >
-                        x
-                      </a>
-                      <a 
-                        v-else
-                        class="d-flex justify-center"
-                        @mouseover="sendReservation(dateList[key], time)"
-                      >
-                        o
-                      </a>
-                    </td>
-                    <td>
-                      <a
-                        v-if="isActive(dateList[key], time)"
-                        class="d-flex justify-center"
-                      >
-                        x
-                      </a>
-                      <a 
-                        v-else
-                        class="d-flex justify-center"
-                        @mouseover="sendReservation(dateList[key], time)"
-                      >
-                        o
-                      </a>
-                    </td> -->
-                  </tr>
-                  </template>
-              </tbody>
-            </table>
-            <v-col>{{ text }}</v-col>
+                <tr v-for="(time, i) in startTime" :key="i">
+                  <td class="d1">{{ time }} ~</td>
+                  <td v-for="(date, j) in dateList" :key="j">
+                    <a
+                      v-if="isActive(date, time)"
+                      class="d-flex justify-center"
+                    >
+                      x
+                    </a>
+                    <a
+                      v-else
+                      class="d-flex justify-center"
+                      @mouseover="selectedDay(date, time)"
+                    >
+                      o
+                    </a>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+          <v-col>{{ text }}</v-col>
           </v-sheet>
-
-         <v-col>{{ startDate }}</v-col>
+          <v-col>{{ startDate }}</v-col>
         </v-col>
       </v-row>
     </v-container>
