@@ -33,6 +33,10 @@
                 <div
                   style="white-space:pre-wrap; word-wrap:break-word;"
                 >{{ lesson.content }}</div>
+                <div>レッスン時間: {{ }}</div>
+                <div>開始時間: {{ }}</div>
+                <div>休業日: {{ }}</div>
+
               </v-card-text>
             </v-card>
           </v-col>

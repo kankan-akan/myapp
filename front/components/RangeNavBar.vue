@@ -45,7 +45,8 @@
     data:() => ({
     items:[
       { title: '基本情報', to: "/rangeAdmin/info" },
-      { title: '開講レッスン', to: "/rangeAdmin/lesson" }
+      { title: '開講レッスン', to: "/rangeAdmin/lesson" },
+      { title: '予約状況', to: "/rangeAdmin/status" }
     ],
   }),
 

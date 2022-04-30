@@ -51,6 +51,48 @@
                 height="200"
               ></v-textarea>
             </v-col>
+
+            <v-col cols="3">
+              <v-text-field
+                outlined
+                v-model ="lessonTime"
+                :rules ="[rules.required]"
+                label ="＊レッスン時間"
+                suffix="分"
+                required
+              ></v-text-field>
+            </v-col>
+
+            <v-col>
+              <template v-for="(time, index) in startTime" >
+                <div :key="index">
+                  <input type="text">
+                  <v-btn 
+                    @click="del(index)" 
+                    text
+                  >
+                    <v-icon>{{ 'mdi-close' }}</v-icon>
+                  </v-btn>
+                </div>
+              </template>
+              <v-btn
+                @click="add()"
+                text
+              >
+                <v-icon>{{ 'mdi-plus-circle-outline' }}</v-icon>
+              </v-btn>
+            </v-col>
+
+            <v-col>
+              <v-select
+                v-model="date"
+                :items="items"
+                chips
+                label="休業日"
+                multiple
+                outlined
+              ></v-select>
+            </v-col>
             <h5>'＊'は必須項目です</h5>
             <v-card-actions>
               <v-btn
@@ -93,7 +135,11 @@ export default {
     },
     title: '',
     coach: '',
-    content: ''
+    content: '',
+    lessonTime: '',
+    date: [],
+    items: ['月', '火', '水', '木', '金', '土', '日'],
+    startTime: ''
   }),
 
   computed: {
@@ -125,7 +171,13 @@ export default {
           console.log(err)
         })
       }
-    }
+    },
+    add(){
+      this.startTime.push('')
+    },
+    del(index){
+      this.startTime.splice(index, 1)
+    },
   }
 
 }
