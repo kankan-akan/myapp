@@ -132,7 +132,7 @@ import { mapState } from 'vuex';
       dateList: [],
       weekNumber: 7,
       startTime: [ "11:00" ,"12:00" ,"13:00" ],
-      holiday: []
+      holiday: ['月', '火' ]
     }),
     created () {
       this.setDateList(this.startDate)
@@ -177,16 +177,13 @@ import { mapState } from 'vuex';
       },
       isActive(day, time) {
         const today = moment().startOf('day').format('MM/DD(dd)')
-        if (day < today) {
-          return true
-        }
-          // const date = day.chrAt(6)
-          // this.holiday.find((f) =>{
-          // if(date == f.holiday) {
-            // return true
-          // }
-          // })
-        
+          if (day < today) {
+            return true
+          }
+        const date = day.charAt(6)
+          if(this.holiday.includes(date)) {
+            return true
+          }
       },
       //  test(date) {
       //   this.a = []

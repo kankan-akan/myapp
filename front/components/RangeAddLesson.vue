@@ -63,29 +63,34 @@
               ></v-text-field>
             </v-col>
 
-            <v-col>
-              <template v-for="(time, index) in startTime" >
-                <div :key="index">
-                  <input type="text">
-                  <v-btn 
-                    @click="del(index)" 
-                    text
-                  >
-                    <v-icon>{{ 'mdi-close' }}</v-icon>
-                  </v-btn>
-                </div>
-              </template>
+            <v-col class="d-flex align-center">
+              <div style="font-size: 18px;">開始時間</div>
+              <input class="input" type="time" v-model="text" />
               <v-btn
                 @click="add()"
                 text
+                outlined
               >
-                <v-icon>{{ 'mdi-plus-circle-outline' }}</v-icon>
+                追加
               </v-btn>
+            </v-col>
+            <v-col class="d-flex align-center overflow-x-auto">
+              <div class="d-flex align-center">
+                <template v-for="(time, index) in startTime">
+                  <v-chip
+                    :key="index"
+                    close
+                    @click:close="del(index)"
+                  >
+                    <h3>{{ time }}</h3>
+                  </v-chip>
+                </template>
+              </div>
             </v-col>
 
             <v-col>
               <v-select
-                v-model="date"
+                v-model="holiday"
                 :items="items"
                 chips
                 label="休業日"
@@ -137,9 +142,10 @@ export default {
     coach: '',
     content: '',
     lessonTime: '',
-    date: [],
+    holiday: [],
     items: ['月', '火', '水', '木', '金', '土', '日'],
-    startTime: ''
+    text: '',
+    startTime: [ '09:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00' ]
   }),
 
   computed: {
@@ -173,7 +179,10 @@ export default {
       }
     },
     add(){
-      this.startTime.push('')
+      if(this.text !== '') {
+        this.startTime.push(this.text)
+        this.text = ''
+      }
     },
     del(index){
       this.startTime.splice(index, 1)
@@ -182,3 +191,12 @@ export default {
 
 }
 </script>
+
+<style scoped>
+.input {
+  padding: 10px; 
+  margin: 5px 5px 5px 20px;
+  background-color: rgb(233, 246, 255);
+  border-radius: 15px;
+}
+</style>

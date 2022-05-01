@@ -62,6 +62,17 @@
               ></v-text-field>
             </v-col>
 
+            <v-col class="d-flex align-center">
+              <div style="font-size: 18px;">開始時間</div>
+              <input class="input" type="time" v-model="text" />
+              <v-btn
+                @click="add()"
+                text
+                outlined
+              >
+                追加
+              </v-btn>
+            </v-col>
             <v-col class="d-flex align-center overflow-x-auto">
               <div class="d-flex align-center">
                 <template v-for="(time, index) in startTime" >
@@ -74,18 +85,8 @@
                   </v-chip>
                 </template>
               </div>
-              <v-col class="d-flex align-center" cols="2">
-                <v-text-field type="time" v-model="text" outlined dense></v-text-field>
-              </v-col>
-              <v-btn
-                @click="add()"
-                text
-                outlined
-              >
-                追加
-              </v-btn>
             </v-col>
-              <v-col>{{ startTime }}</v-col>
+            <v-col>{{ startTime }}</v-col>
 
             <v-col>
               <v-select
@@ -144,7 +145,8 @@ export default {
       date: [],
       items: ['月', '火', '水', '木', '金', '土', '日'],
       text: '',
-      startTime: [ "09:00", "10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17:00" ]
+      startTime: [ '09:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00' ]
+
     }
   },
 
@@ -179,8 +181,10 @@ export default {
       }
     },
     add(){
-      this.startTime.push(this.text)
-      this.text = ''
+      if(this.text !== '') {
+        this.startTime.push(this.text)
+        this.text = ''
+      }
     },
     del(index){
       this.startTime.splice(index, 1)
@@ -192,8 +196,10 @@ export default {
 </script>
 
 <style scoped>
-.time-chip {
-  overflow-x: auto;
-  max-width: 400px;
+.input {
+  padding: 8px; 
+  margin: 5px 5px 5px 20px;
+  background-color: rgb(233, 246, 255);
+  border-radius: 15px;
 }
 </style>
