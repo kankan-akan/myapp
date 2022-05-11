@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <v-container>
+    <v-container v-if="$store.state.rangeAuth.rangeData">
       <v-row>
         <v-col>
           <div>開講レッスン一覧</div>
@@ -12,7 +12,7 @@
       <template v-if="lessons == ''">
         <v-row>
           <v-col class="d-flex justify-center">
-            <h3 class="grey--text lighten-1">レッスンを新規作成してください。</h3>
+            <h2 class="grey--text lighten-1" style="margin: 20px;">レッスンを新規作成して下さい。</h2>
           </v-col>
         </v-row>
       </template>
@@ -33,17 +33,21 @@
                 <div
                   style="white-space:pre-wrap; word-wrap:break-word;"
                 >{{ lesson.content }}</div>
-                <div>レッスン時間: {{ }}</div>
-                <div>開始時間: {{ }}</div>
-                <div>休業日: {{ }}</div>
-
+                  <div>レッスン時間: {{ lesson.calendar.lesson_time }}</div>
+                  <div>開始時間: {{ lesson.calendar.start_time }}</div>
+                  <div>休業日: {{ lesson.calendar.holiday }}</div>
               </v-card-text>
             </v-card>
           </v-col>
         </v-row>
       </template>
-  </v-container>
-</v-main>
+    </v-container>
+    <v-container v-else>
+      <v-col class="d-flex justify-center" style="margin: 20px;">
+        <h2 class="grey--text lighten-1">基本情報を登録して下さい。</h2>
+      </v-col>
+    </v-container>
+  </v-main>
 </template>
 
 <script>
@@ -54,7 +58,6 @@ export default {
   
   computed: {
     ...mapState({
-      loginRange: (state) => state.rangeAuth.loginRange,
       lessons: (state) => state.rangeAuth.lessons
     })
   },

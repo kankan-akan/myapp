@@ -29,7 +29,9 @@ methods: {
       this.getLoginUser()
     }
     // this.getLesson()
-
+        this.$store.commit('rangeAuth/setIsLoggedIn', false)
+        this.$store.commit('rangeAuth/setLoginRange', null)
+        this.$store.commit('rangeAuth/setRangeData', null)
   },
 
   computed: {

@@ -150,7 +150,6 @@
             <v-card-actions>
               <v-btn
                 class="mr-4"
-                type="submit"
                 :disabled="!valid" 
                 @click="register()"
                 large
@@ -176,7 +175,7 @@
 </template>
 
 <script>
-import { mapState,mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   data: function () {
@@ -189,22 +188,22 @@ export default {
         phoneNumber: v => /^\d{1,4}-\d{3}-\d{4}$/.test(v) || '入力が正しくありません' 
       },
       cities: [ '相生市', '赤穂市', '明石市', '朝来市', '芦屋市', '尼崎市', '淡路市', '伊丹市', '市川町', '猪名川町', '稲美町', '小野市', '加古川市', '加西市', '加東市', '神河町', '香美町', '上郡町', '川西市','神戸市', '佐用町', '三田市', '宍粟市', '新温泉町', '洲本市', '太子町', '多可町', '高砂市', '宝塚市', 'たつの市', '丹波市', '丹波篠山市', '豊岡市', '西宮市', '西脇市', '播磨町', '姫路市', '福崎町', '三木市', '南あわじ市', '養父市' ],
-      city: this.city,
-      name: this.name,
-      address: this.address,
-      distance: this.distance,
-      features: this.features,
-      booths: this.booths,
-      link: this.link,
-      phone_number: this.phoneNumber,
-      uchihoudai: this.uchihoudai,
-      approach: this.approach,
-      lefty: this.lefty,
-      patting: this.patting,
-      bunker:this.bunker,
-      shop: this.shop,
-      restaurant: this.restaurant,
-      lesson: this.lesson
+      city: '',
+      name: '',
+      address: '',
+      distance: '',
+      features: '',
+      booths: '',
+      link: '',
+      phone_number: '',
+      uchihoudai: false,
+      approach: false,
+      lefty: false,
+      patting: false,
+      bunker: false,
+      shop: false,
+      restaurant: false,
+      lesson: false
     }
   },
 
@@ -228,7 +227,7 @@ export default {
           features: this.features,
           booths: this.booths,
           link: this.link,
-          phone_number: this.phoneNumber,
+          phone_number: this.phone_number,
           uchihoudai: this.uchihoudai,
           approach: this.approach,
           lefty: this.lefty,
@@ -241,8 +240,8 @@ export default {
         })
         .then((res) => {
           console.log(res)
-          this.dialog = false
           this.getRangeData()
+          this.dialog = false
         })
         .catch((err) => {
           console.log(err)

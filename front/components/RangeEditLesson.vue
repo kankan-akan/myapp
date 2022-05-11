@@ -1,129 +1,130 @@
 <template>
   <v-dialog
-      v-model="dialog"
-      width="900"
-    >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          v-on="on"
-          v-bind="attrs"
+    v-model="dialog"
+    width="900"
+  >
+    <template v-slot:activator="{ on, attrs }">
+      <v-btn
+        v-on="on"
+        v-bind="attrs"
+      >
+        <v-icon>{{ 'mdi-pen' }}</v-icon>
+        編集
+      </v-btn>
+    </template>
+    <v-card>
+      <v-card-title class="text-h5 light-blue lighten-4">
+        編集
+      </v-card-title>
+      <v-card-text>
+        <v-form
+          ref="form"
+          v-model ="valid"
+          lazy-validation 
         >
-          <v-icon>{{ 'mdi-pen' }}</v-icon>
-          編集
-        </v-btn>
-      </template>
-      <v-card>
-        <v-card-title class="text-h5 light-blue lighten-4">
-          編集
-        </v-card-title>
-        <v-card-text>
-          <v-form
-            ref="form"
-            v-model ="valid"
-            lazy-validation 
-          >
-            <v-col>
-              <v-text-field
-                outlined
-                v-model ="title"
-                :rules ="[rules.required]"
-                label ="＊タイトル"
-                required
-              ></v-text-field>
-            </v-col>
+          <v-col>
+            <v-text-field
+              outlined
+              v-model ="title"
+              :rules ="[rules.required]"
+              label ="＊タイトル"
+              required
+            ></v-text-field>
+          </v-col>
 
-            <v-col>
-              <v-text-field
-                outlined
-                v-model ="coach"
-                :rules ="[rules.required]"
-                label ="＊指導担当者名"
-                required
-              ></v-text-field>
-            </v-col>
+          <v-col>
+            <v-text-field
+              outlined
+              v-model ="coach"
+              :rules ="[rules.required]"
+              label ="＊指導担当者名"
+              required
+            ></v-text-field>
+          </v-col>
 
-            <v-col>
-              <v-textarea
-                outlined
-                v-model ="content"
-                label ="特徴"
-                height="200"
-              ></v-textarea>
-            </v-col>
+          <v-col>
+            <v-textarea
+              outlined
+              v-model ="content"
+              label ="特徴"
+              height="200"
+            ></v-textarea>
+          </v-col>
 
-            <v-col cols="3">
-              <v-text-field
-                outlined
-                v-model ="lessonTime"
-                :rules ="[rules.required]"
-                label ="＊レッスン時間"
-                suffix="分"
-                required
-              ></v-text-field>
-            </v-col>
+          <v-col cols="3">
+            <v-text-field
+              outlined
+              v-model ="lessonTime"
+              :rules ="[rules.required]"
+              label ="＊レッスン時間"
+              suffix="分"
+              required
+            ></v-text-field>
+          </v-col>
 
-            <v-col class="d-flex align-center">
-              <div style="font-size: 18px;">開始時間</div>
-              <input class="input" type="time" v-model="text" />
-              <v-btn
-                @click="add()"
-                text
-                outlined
-              >
-                追加
-              </v-btn>
-            </v-col>
-            <v-col class="d-flex align-center overflow-x-auto">
-              <div class="d-flex align-center">
-                <template v-for="(time, index) in startTime" >
-                  <v-chip
-                    :key="index"
-                    close
-                    @click:close="del(index)"
-                  >
-                    <h3>{{ time }}</h3>
-                  </v-chip>
-                </template>
-              </div>
-            </v-col>
-            <v-col>{{ startTime }}</v-col>
+          <v-col class="d-flex align-center">
+            <div style="font-size: 18px;">開始時間</div>
+            <input class="input" type="time" v-model="text" />
+            <v-btn
+              @click="add()"
+              text
+              outlined
+            >
+              追加
+            </v-btn>
+          </v-col>
+          <v-col class="d-flex align-center overflow-x-auto">
+            <div class="d-flex align-center">
+              <template v-for="(time, index) in startTime" >
+                <v-chip
+                  :key="index"
+                  close
+                  @click:close="del(index)"
+                >
+                  <h3>{{ time }}</h3>
+                </v-chip>
+              </template>
+            </div>
+          </v-col>
+          <v-col>{{ startTime }}</v-col>
 
-            <v-col>
-              <v-select
-                v-model="date"
-                :items="items"
-                chips
-                label="休業日"
-                multiple
-                outlined
-              ></v-select>
-            </v-col>
-            <h5>'＊'は必須項目です</h5>
-            <div>{{ selectedLesson.id }}</div>
-            <v-card-actions>
-              <v-btn
-                class="mr-4"
-                :disabled="!valid" 
-                @click="edit()"
-                large
-                outlined
-              >
-                登録
-              </v-btn>
-              <v-btn
-                color ="error"
-                class ="mr-4"
-                @click="dialog = false"
-                large
-                outlined
-              >
-                閉じる
-              </v-btn>
-            </v-card-actions>
-          </v-form>
-        </v-card-text>
-      </v-card>
-    </v-dialog>
+          <v-col>
+            <v-select
+              v-model="holiday"
+              :items="items"
+              chips
+              label="休業日"
+              multiple
+              outlined
+            ></v-select>
+          </v-col>
+          <h5>'＊'は必須項目です</h5>
+          <div>{{ test }}</div>
+          <div>{{ selectedLesson.id }}</div>
+          <v-card-actions>
+            <v-btn
+              class="mr-4"
+              :disabled="!valid" 
+              @click="edit()"
+              large
+              outlined
+            >
+              登録
+            </v-btn>
+            <v-btn
+              color ="error"
+              class ="mr-4"
+              @click="dialog = false"
+              large
+              outlined
+            >
+              閉じる
+            </v-btn>
+          </v-card-actions>
+        </v-form>
+      </v-card-text>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>
@@ -141,24 +142,29 @@ export default {
       title: this.selectedLesson.title,
       coach: this.selectedLesson.coach,
       content: this.selectedLesson.content,
-      lessonTime: '',
-      date: [],
+      lessonTime: this.selectedLesson.calendar.lesson_time,
+      holiday: [],
       items: ['月', '火', '水', '木', '金', '土', '日'],
       text: '',
-      startTime: [ '09:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00' ]
-
+      startTime: [],
+      test: []
     }
   },
 
   computed: {
     ...mapState({
-      loginRange: (state) => state.rangeAuth.loginRange,
-      rangeData: (state) => state.rangeAuth.rangeData
+      loginRange: (state) => state.rangeAuth.loginRange.data,
+      rangeData: (state) => state.rangeAuth.rangeData,
     })
   },
 
+  mounted() {
+    // this.setStartTime()
+    // this.setHoliday()
+  },
+
  methods: {
-   ...mapActions({
+    ...mapActions({
      getLesson: 'rangeAuth/getLesson'
    }),
     edit() {
@@ -168,12 +174,17 @@ export default {
           coach: this.coach,
           content: this.content,
           admin_range_id: this.loginRange.id,
-          range_outline_id: this.rangeData.id
+          range_outline_id: this.rangeData.id,
+          calendar_attributes: {
+            lesson_time: this.lessonTime,
+            start_time: this.startTime,
+            holiday: this.holiday
+          }
         })
         .then((res) => {
           console.log(res)
-          this.dialog = false
           this.getLesson()
+          this.dialog = false
         })
         .catch((err) => {
           console.log(err)
@@ -189,8 +200,23 @@ export default {
     del(index){
       this.startTime.splice(index, 1)
     },
+    setStartTime() {
+      if (this.selectedLesson.calendar.start_time) {
+      this.startTime = []
+      const time = this.selectedLesson.calendar.start_time
+      const start_time = time.split( ',' )
+      this.startTime = start_time
+      }
+    },
+    setHoliday() {
+      if(this.selectedLesson.calendar.holiday) {
+        this.holiday = []
+        const date = this.selectedLesson.calendar.holiday
+        const holiday = date.split( ',' )
+        this.holiday = holiday
+      }
+    }
   }
-
 
 }
 </script>

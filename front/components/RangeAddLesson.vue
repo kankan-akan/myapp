@@ -150,7 +150,7 @@ export default {
 
   computed: {
     ...mapState({
-      loginRange: (state) => state.rangeAuth.loginRange,
+      loginRange: (state) => state.rangeAuth.loginRange.data,
       rangeData: (state) => state.rangeAuth.rangeData
     })
   },
@@ -166,12 +166,17 @@ export default {
           coach: this.coach,
           content: this.content,
           admin_range_id: this.loginRange.id,
-          range_outline_id: this.rangeData.id
+          range_outline_id: this.rangeData.id,
+          calendar_attributes: {
+            lesson_time: this.lessonTime,
+            start_time: this.startTime,
+            holiday: this.holiday
+          }
         })
         .then((res) => {
           console.log(res)
-          this.dialog = false
           this.getLesson()
+          this.dialog = false
         })
         .catch((err) => {
           console.log(err)

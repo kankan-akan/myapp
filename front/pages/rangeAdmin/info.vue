@@ -21,8 +21,8 @@
 
       <template v-if="rangeData == null">
         <v-row>
-          <v-col class="d-flex justify-center ">
-            <h2 class="grey--text lighten-1">基本情報を登録してください。</h2>
+          <v-col class="d-flex justify-center">
+            <h2 class="grey--text lighten-1" style="margin: 20px;">基本情報を登録して下さい。</h2>
           </v-col>
         </v-row>
       </template>

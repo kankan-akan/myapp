@@ -132,7 +132,12 @@ import { mapState } from 'vuex';
       dateList: [],
       weekNumber: 7,
       startTime: [ "11:00" ,"12:00" ,"13:00" ],
-      holiday: ['月', '火' ]
+      holiday: ['月', '火' ],
+      st1: '',
+      st2: '',
+      sun: false,
+      mon: false,
+      tue: false
     }),
     created () {
       this.setDateList(this.startDate)
