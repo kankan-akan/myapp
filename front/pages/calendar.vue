@@ -32,7 +32,7 @@
             <table >
               <thead>
                 <tr>
-                  <td class="date"></td>
+                  <td class="date">開始時間</td>
                   <template v-for="date in dateList" >
                     <th :key="date">
                       {{ date }}
@@ -112,6 +112,120 @@
           </div>
           <v-col>{{ text }}</v-col>
           </v-sheet>
+
+          <v-sheet>
+            <table >
+              <thead>
+                <tr>
+                  <td class="date">開始時間</td>
+                  <template v-for="date in dateList" >
+                    <th :key="date">
+                      {{ date }}
+                    </th>
+                  </template>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="d1">{{ st1 }} ~</td>
+                  <td v-for="(date, j) in dateList" :key="j">
+                    <a
+                      v-if="isActive(date, time)"
+                      class="d-flex justify-center"
+                    >
+                      <v-icon>{{ 'mdi-close' }}</v-icon>
+                    </a>
+                    <v-tooltip
+                      v-else
+                      right
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <a 
+                          class="d-flex justify-center"
+                          @mouseover="selectedDay(date, time)"
+                          @click="overlay = !overlay"
+                          v-bind="attrs"
+                          v-on="on"
+                        >
+                          <v-icon>{{ 'mdi-circle-outline' }}</v-icon>
+                        </a>
+                      </template>
+                      <span>{{ text }}</span>
+                    </v-tooltip>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="d1">{{ st2 }} ~</td>
+                  <td v-for="(date, j) in dateList" :key="j">
+                    <a
+                      v-if="isActive(date, time)"
+                      class="d-flex justify-center"
+                    >
+                      <v-icon>{{ 'mdi-close' }}</v-icon>
+                    </a>
+                    <v-tooltip
+                      v-else
+                      right
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <a 
+                          class="d-flex justify-center"
+                          @mouseover="selectedDay(date, time)"
+                          @click="overlay = !overlay"
+                          v-bind="attrs"
+                          v-on="on"
+                        >
+                          <v-icon>{{ 'mdi-circle-outline' }}</v-icon>
+                        </a>
+                      </template>
+                      <span>{{ text }}</span>
+                    </v-tooltip>
+                  </td>
+                </tr>
+
+            </tbody>
+          </table>
+          <div v-if="overlay" @click="overlay = false">
+            <v-overlay
+              :value="overlay"
+              max-width="300"
+            >
+              <v-card class="white content">
+                <v-container @click.stop>
+                <v-card-title class="text-h5 black--text">
+                  予約しますか？
+                </v-card-title>
+
+                <v-card-text class="black--text">
+                  <div>日時: {{ text }}</div>
+                  <div>予約者: {{ }}</div>
+                </v-card-text>
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+
+                  <v-btn
+                    color="green darken-1"
+                    text
+                    @click="overlay = false"
+                  >
+                    キャンセル
+                  </v-btn>
+
+                  <v-btn
+                    color="green darken-1"
+                    text
+                    @click="overlay = false"
+                  >
+                    予約
+                  </v-btn>
+                </v-card-actions>
+                </v-container>
+              </v-card>
+            </v-overlay>
+          </div>
+          <v-col>{{ text }}</v-col>
+          </v-sheet>
           <v-col>{{ startDate }}</v-col>
         </v-col>
       </v-row>
@@ -131,10 +245,8 @@ import { mapState } from 'vuex';
       text: '',
       dateList: [],
       weekNumber: 7,
-      startTime: [ "11:00" ,"12:00" ,"13:00" ],
-      holiday: ['月', '火' ],
-      st1: '',
-      st2: '',
+      startTime: [ "11:00" ,"12:00" ,"13:00"],
+      holiday: ['月', '火'],
       sun: false,
       mon: false,
       tue: false

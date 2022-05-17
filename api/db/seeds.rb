@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-AdminRange.create!(
+AdminRange.create(
   name: "hogeゴルフ練習場",
   email: "a@example.com",
   password: "password."
@@ -42,9 +42,11 @@ Lesson.create!(
   content: "初心者におすすめのレッスンです。",
   admin_range_id: 1,
   range_outline_id: 1,
-  calendar_attributes: [
-    lesson_time: "60",
-    start_time: ["09:00", "10:00"],
-    holiday: ["火", "水"]
-  ]
+  # calendar_attributes: [
+  #   lesson_time: "60",
+  #   start_time1: "09:00", 
+  #   start_time2: "10:00",
+  #   tue: true,
+  #   wed: true
+  # ]
 )
