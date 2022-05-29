@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "AdminRange", type: :request do
+RSpec.describe "AdminRanges", type: :request do
   describe "Test AdminRange" do
     before do
       admin_range = create(:admin_range)

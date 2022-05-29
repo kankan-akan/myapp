@@ -1,5 +1,5 @@
 class V1::PostsController < ApplicationController
-  # before_action :authenticate_v1_user!, except: [:index, :show]
+  # before_action :authenticate_v1_user!, except: [:user_posts, :index, :show]
 
   def my_post
     @post = current_v1_user.posts

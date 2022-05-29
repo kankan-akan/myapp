@@ -28,6 +28,6 @@ RSpec.describe "RangeOutlines", type: :request do
       delete "/v1/outlines/#{@outline.id}"
       expect(response).to have_http_status "200"
     end
-
   end
+  
 end

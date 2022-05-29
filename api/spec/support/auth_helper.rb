@@ -18,6 +18,16 @@ module AuthHelper
     @auth_token = nil
   end
 
+  def login(user)
+    @user = user
+    @auth_token = @user.create_new_auth_token
+  end
+
+  def logout
+    @user = nil
+    @auth_token = nil
+  end
+
   private
 
   def add_auth_headers(args)

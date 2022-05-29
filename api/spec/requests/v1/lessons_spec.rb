@@ -10,32 +10,32 @@ RSpec.describe "Lessons", type: :request do
     end
 
     context "range_lesson" do
-      it "status 200" do 
+      it "管理者の全レッスンを取得できる" do 
         get '/v1/lessons/range_lesson'
         expect(response).to have_http_status "200"
       end
     end
 
     context "create" do
-      it "status 200" do
+      it "レッスンを作成できる" do
         post '/v1/lessons'
         expect(response).to have_http_status "200"
       end
     end
 
     context "update" do
-      it "status 200" do
+      it "レッスンを更新できる" do
         put "/v1/lessons/#{@lesson.id}"
-      expect(response).to have_http_status "200"
+        expect(response).to have_http_status "200"
       end
     end
 
     context "destroy" do
-      it "status 200" do
+      it "レッスンを削除できる" do
        delete "/v1/lessons/#{@lesson.id}"
        expect(response).to have_http_status "200"
       end
     end
-    
+
   end
 end
