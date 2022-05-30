@@ -1,5 +1,5 @@
 class V1::BookmarksController < ApplicationController
-  # before_action: authenticate_v1_user!
+  before_action :authenticate_v1_user!
   before_action :set_user, only: [:destroy]
 
   def my_bookmark
