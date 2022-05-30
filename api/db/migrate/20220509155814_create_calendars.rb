@@ -17,7 +17,7 @@ class CreateCalendars < ActiveRecord::Migration[6.1]
       t.boolean :sun, default: false
       t.boolean :mon, default: false
       t.boolean :tue, default: false
-      t.boolean :wen, default: false
+      t.boolean :wed, default: false
       t.boolean :thu, default: false
       t.boolean :fri, default: false
       t.boolean :sat, default: false

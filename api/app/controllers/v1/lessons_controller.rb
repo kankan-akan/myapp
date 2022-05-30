@@ -13,7 +13,7 @@ class V1::LessonsController < ApplicationController
   def show
     @lesson = Lesson.find(params[:id])
     calendar = Calendar.where(lesson_id: params[:id]).select(:lesson_time, :lesson_id)
-    date = Calendar.where(lesson_id: params[:id]).select(:sun, :mon, :tue, :wen, :thu, :fri, :sat)
+    date = Calendar.where(lesson_id: params[:id]).select(:sun, :mon, :tue, :wed, :thu, :fri, :sat)
     start_times = Calendar.where(lesson_id: params[:id]).pluck(:start_time1, :start_time2, :start_time3, :start_time4, :start_time5, :start_time6, :start_time7, :start_time8, :start_time9,:start_time10, :start_time11, :start_time12).flatten.compact
     render json: { lesson: @lesson, calendar: calendar, date: date, start_times: start_times }
   end
@@ -61,7 +61,7 @@ class V1::LessonsController < ApplicationController
   # end
 
   def lesson_params
-    params.permit(:title, :coach, :content, :admin_range_id, :range_outline_id, calendar_attributes: [:lesson_time, :start_time1, :start_time2, :start_time3, :start_time4, :start_time5, :start_time6,:start_time7, :start_time8, :start_time9, :start_time10, :start_time11, :start_time12, :sun, :mon, :tue, :wen, :thu, :fri, :sat, :lesson_id])
+    params.permit(:title, :coach, :content, :admin_range_id, :range_outline_id, calendar_attributes: [:lesson_time, :start_time1, :start_time2, :start_time3, :start_time4, :start_time5, :start_time6,:start_time7, :start_time8, :start_time9, :start_time10, :start_time11, :start_time12, :sun, :mon, :tue, :wed, :thu, :fri, :sat, :lesson_id])
   end
 
 end

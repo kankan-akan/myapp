@@ -16,7 +16,7 @@ FactoryBot.define do
     sun { false }
     mon { false }
     tue { true }
-    wen { true }
+    wed { true }
     thu { false }
     fri { false }
     sat { false }
