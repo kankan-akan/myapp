@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_09_090201) do
+ActiveRecord::Schema.define(version: 2022_05_09_155814) do
 
   create_table "admin_ranges", charset: "utf8", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -42,6 +42,33 @@ ActiveRecord::Schema.define(version: 2022_02_09_090201) do
     t.datetime "updated_at", null: false
     t.index ["range_outline_id"], name: "index_bookmarks_on_range_outline_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "calendars", charset: "utf8", force: :cascade do |t|
+    t.string "lesson_time"
+    t.string "start_time1"
+    t.string "start_time2"
+    t.string "start_time3"
+    t.string "start_time4"
+    t.string "start_time5"
+    t.string "start_time6"
+    t.string "start_time7"
+    t.string "start_time8"
+    t.string "start_time9"
+    t.string "start_time10"
+    t.string "start_time11"
+    t.string "start_time12"
+    t.boolean "sun", default: false
+    t.boolean "mon", default: false
+    t.boolean "tue", default: false
+    t.boolean "wen", default: false
+    t.boolean "thu", default: false
+    t.boolean "fri", default: false
+    t.boolean "sat", default: false
+    t.bigint "lesson_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lesson_id"], name: "index_calendars_on_lesson_id"
   end
 
   create_table "equipment", charset: "utf8", force: :cascade do |t|
@@ -168,6 +195,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_090201) do
 
   add_foreign_key "bookmarks", "range_outlines"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "calendars", "lessons"
   add_foreign_key "equipment", "admin_ranges"
   add_foreign_key "lessons", "admin_ranges"
   add_foreign_key "lessons", "range_outlines"

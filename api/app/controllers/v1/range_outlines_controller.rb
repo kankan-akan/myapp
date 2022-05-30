@@ -28,7 +28,7 @@ class V1::RangeOutlinesController < ApplicationController
 
   def update
     @outline = RangeOutline.find(params[:id])
-    @equipment = Equipment.find(params[:id])
+    @equipment = Equipment.find_by(params[:admin_range_id])
     if @outline.update(outline_params) && @equipment.update(equipment_params)
       render json: { outline: @outline, equipment: @equipment }
     else
@@ -38,7 +38,7 @@ class V1::RangeOutlinesController < ApplicationController
 
   def destroy
     @outline = RangeOutline.find(params[:id])
-    @equipment = Equipment.find(params[:id])
+    @equipment = Equipment.find_by(params[:admin_range_id])
     if @outline.destroy && @equipment.destroy
       render json: { status: 200 }
     else

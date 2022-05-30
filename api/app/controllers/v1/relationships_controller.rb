@@ -1,4 +1,5 @@
 class V1::RelationshipsController < ApplicationController
+  # before_action :authenticate_v1_user!
   before_action :set_user
 
   def create

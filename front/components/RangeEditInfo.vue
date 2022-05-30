@@ -209,7 +209,7 @@ export default {
 
   computed:{
     ...mapState({
-      loginRange: (state) => state.rangeAuth.loginRange,
+      loginRange: (state) => state.rangeAuth.loginRange.data,
       rangeData: (state) => state.rangeAuth.rangeData
     }),
     params() {
@@ -221,7 +221,7 @@ export default {
         features: this.features,
         booths: this.booths,
         link: this.link,
-        phone_number: this.phoneNumber,
+        phone_number: this.phone_number,
         uchihoudai: this.uchihoudai,
         approach: this.approach,
         lefty: this.lefty,
@@ -246,11 +246,11 @@ export default {
         )
         .then((res) => {
           console.log(res)
-          this.dialog = false
           this.getRangeData()
+          this.dialog = false
         })
         .catch((err) => {
-          consolo.log(err)
+          console.log(err)
         })
       }
     },

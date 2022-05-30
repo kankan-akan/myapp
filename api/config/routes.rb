@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     get '/reservations/my_reservation', to:'reservations#my_reservation'
     resources :reservations, only: [:create, :update, :destroy]
 
-    resources :relationships, only: [:create, :destroy]
+    resource :relationships, only: [:create, :destroy]
 
   end
 end

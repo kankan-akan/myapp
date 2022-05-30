@@ -25,7 +25,6 @@ class User < ActiveRecord::Base
   has_many :followers, through: :passive_relationships, source: :user
 
   def follow(other_user)
-    byebug
     return if self == other_user
     relationships.find_or_create_by!(follower_id: other_user.id)
   end

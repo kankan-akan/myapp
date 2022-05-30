@@ -24,14 +24,7 @@
 
 <script>
 export default {
-  props: ['equipment'],
-
-  data:()=> ({
-  }),
-
-methods: {
-   
-  },
+  props: ['equipment']
 
 }
 </script>

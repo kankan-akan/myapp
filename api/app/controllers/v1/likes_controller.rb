@@ -1,5 +1,6 @@
 class V1::LikesController < ApplicationController
   before_action :set_user, only: [:destroy]
+  # before_action :authenticate_v1_user!, except: [:user_likes, :count, :index]
 
   def my_like
     @like = current_v1_user.likes.includes(:post)
@@ -8,7 +9,7 @@ class V1::LikesController < ApplicationController
 
   def user_likes
     @user = User.find(params[:id])
-    @like = @user.likes
+    @like = @user.likes.find_by(params[:user_id])
     render json: @like
   end
 
@@ -48,7 +49,7 @@ class V1::LikesController < ApplicationController
     end
 
     def like_params
-      params.require(:like).permit(:user_id, :post_id)
+      params.permit(:user_id, :post_id)
     end
 
 end
