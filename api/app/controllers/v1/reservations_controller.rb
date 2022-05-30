@@ -1,4 +1,5 @@
 class V1::ReservationsController < ApplicationController
+  # before_action :authenticate_v1_user!
 
   def my_reservation
     @reservation = current_v1_user.reservations.includes(:lesson)
@@ -21,7 +22,7 @@ class V1::ReservationsController < ApplicationController
 
   def update
     @reservation = Reservation.find(params[:id])
-      if @reservation.update
+      if @reservation.update(reservation_params)
         render json: @reservation
       else
         render json: { status: 400 }
@@ -30,7 +31,7 @@ class V1::ReservationsController < ApplicationController
 
   def destroy
     @reservation = Reservation.find(params[:id])
-      if @reservaton.destroy
+      if @reservation.destroy
         render json: @reservation
       else
         render json: { status: 400 }
