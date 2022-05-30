@@ -1,4 +1,5 @@
 class V1::ReviewsController < ApplicationController
+  before_action :authenticate_v1_user!
 
   def my_review
     @review = current_v1_user.reviews
@@ -16,7 +17,7 @@ class V1::ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-      if @review.update
+      if @review.update(review_params)
         render json: @review
       else
         render json: { status: 400 }
