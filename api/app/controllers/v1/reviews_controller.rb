@@ -1,5 +1,5 @@
 class V1::ReviewsController < ApplicationController
-  before_action :authenticate_v1_user!
+  # before_action :authenticate_v1_user!
 
   def my_review
     @review = current_v1_user.reviews
