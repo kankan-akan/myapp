@@ -36,40 +36,40 @@ jobs:
           - v1-dependencies-
 
       - run:
-        name: Wait for DB
-        command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+          name: Wait for DB
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
 
       - run:
-        name: Install bundle dependencies
-        command: bundle install --path=vendor/bundle --jobs 4 --retry 3
+          name: Install bundle dependencies
+          command: bundle install --path=vendor/bundle --jobs 4 --retry 3
 
-        - run:
+      - run:
           name: Install yarn
           command: |
             yarn install
 
       - save_cache:
-        paths:
-          - ./vendor/bundle
-        key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
       - run:
-        name: rails db:migrate
-        command: bundle exec rails db:migrate
+          name: rails db:migrate
+          command: bundle exec rails db:migrate
       - run:
-        name: Database setup
-        command: bundle exec rails db:schema:load --trace
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
       - run:
-        name: Rspec
-        command: bundle exec rspec
+          name: Rspec
+          command: bundle exec rspec
 
       # collect reports
       - store_test_results:
-        path: /tmp/test-results
+          path: /tmp/test-results
       - store_artifacts:
-        path: /tmp/test-results
-        destination: test-results
+          path: /tmp/test-results
+          destination: test-results
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
