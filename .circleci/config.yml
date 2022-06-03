@@ -31,19 +31,19 @@ jobs:
     steps:
       - checkout
       # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      # - restore_cache:
+      #     keys:
+      #       - v1-dependencies-{{ checksum "Gemfile.lock" }}
+      #       # fallback to using the latest cache if no exact match is found
+      #       - v1-dependencies-
 
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
 
-      - run:
-          name: Install bundle dependencies
-          command: bundle install --path=vendor/bundle --jobs 4 --retry 3
+      # - run:
+      #     name: Install bundle dependencies
+      #     command: bundle install --path=vendor/bundle --jobs 4 --retry 3
 
       - run:
           name: Install yarn
