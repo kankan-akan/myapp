@@ -19,41 +19,25 @@ jobs:
           RAILS_ENV: test
           DB_HOST: 127.0.0.1
           DB_USERNAME: 'root'
-          DB_PASSWORD: ''
+          DB_PASSWORD: 'rootpassword'
       - image: cimg/mysql:5.7
         environment:
-          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_ROOT_PASSWORD: 'rootpassword'
           MYSQL_DATABASE: myapp_test
+          MYSQL_USER: 'root'
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
 
     executor: ruby/default
 
     steps:
       - checkout
-      # Download and cache dependencies
-      # - restore_cache:
-      #     keys:
-      #       - v1-dependencies-{{ checksum "Gemfile.lock" }}
-      #       # fallback to using the latest cache if no exact match is found
-      #       - v1-dependencies-
+      - run:
+          name: bundle install
+          command: bundle install --path vendor/bundle
 
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
-
-      # - run:
-      #     name: Install bundle dependencies
-      #     command: bundle install --path=vendor/bundle --jobs 4 --retry 3
-
-      - run:
-          name: Install yarn
-          command: |
-            yarn install
-
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
       - run:

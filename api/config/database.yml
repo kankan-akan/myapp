@@ -37,8 +37,9 @@ test:
   # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   # username: yusukekan
   # password: yskan
-  # host: localhost
-  database: myapp_test  #docker起動時必要
+  # host: localhost 
+  host: 127.0.0.1 #circleci
+  database: myapp_test  #docker/circleci起動時必要
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
