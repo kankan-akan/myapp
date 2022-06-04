@@ -8,24 +8,9 @@ orbs:
   ruby: circleci/ruby@1.4.0
   node: circleci/node@5.0.2
 
-commands:
-  setup:
-    steps:
-      - checkout
-      - ruby/install-deps
-      - node/install-packages:
-          pkg-manager: yarn
-          cache-key: "yarn.lock"
-
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  build:
-    docker:
-      - image: cimg/ruby:3.0.3
-    steps:
-      - setup
-
   test:
     working_directory: ~/myapp
 
@@ -46,20 +31,19 @@ jobs:
 
     steps:
       - checkout
-      - setup
 
-      # - run:
-      #     name: bundle install
-      #     command: bundle config set --local path 'vendor/bundle'
+      - run:
+          name: bundle install
+          command: bundle config set --local path 'vendor/bundle'
 
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
 
       # Database setup
-      - run:
-          name: rails db:migrate
-          command: bundle exec rails db:migrate
+      # - run:
+      #     name: rails db:migrate
+      #     command: bundle exec rails db:migrate
       - run:
           name: Database setup
           command: bundle exec rails db:schema:load --trace
@@ -80,7 +64,4 @@ workflows:
   version: 2.1
   workflow:
     jobs:
-      - build
       - test:
-          requires:
-            - build
