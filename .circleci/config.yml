@@ -8,6 +8,15 @@ orbs:
   ruby: circleci/ruby@1.4.0
   node: circleci/node@5.0.2
 
+commands:
+  setup:
+    steps:
+      - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          # cache-key: "yarn.lock"
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -50,10 +59,10 @@ jobs:
       # Database setup
       - run:
           name: rails db:migrate
-          command: bundle exec rake db:migrate
+          command: bundle exec rails db:migrate
       - run:
           name: Database setup
-          command: bundle exec rake db:schema:load --trace
+          command: bundle exec rails db:schema:load --trace
       - run:
           name: Rspec
           command: bundle exec rspec
