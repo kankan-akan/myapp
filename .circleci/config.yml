@@ -58,10 +58,10 @@ jobs:
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
 
       - run:
-        name: データベースのセットアップ
-        command: bundle exec rails db:schema:load --trace
-        # RSpec を並列実行します。
-        - ruby/rspec-test
+          name: データベースのセットアップ
+          command: bundle exec rails db:schema:load --trace
+          # RSpec を並列実行します。
+          - ruby/rspec-test
 
       # Database setup
       # - run:
