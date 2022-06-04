@@ -20,7 +20,7 @@ jobs:
       - ruby/install-deps
       - node/install-packages:
           pkg-manager: yarn
-          cache-key: "yarn.lock"
+          # cache-key: "yarn.lock"
 
   test:
     working_directory: ~/myapp
@@ -61,7 +61,7 @@ jobs:
           name: データベースのセットアップ
           command: bundle exec rails db:schema:load --trace
           # RSpec を並列実行します。
-      - ruby/rspec-test
+            - ruby/rspec-test
 
       # Database setup
       # - run:
