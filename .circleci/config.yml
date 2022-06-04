@@ -14,18 +14,11 @@ jobs:
   build:
     docker:
       - image: cimg/ruby:3.0.3
-
-    steps:
-      - checkout
-      - ruby/install-deps
-      - node/install-packages:
-          pkg-manager: yarn
-          # cache-key: "yarn.lock"
+   steps:
+    - setup
 
   test:
     working_directory: ~/myapp
-
-    parallelism: 3
 
     docker:
       - image: cimg/ruby:3.0.3
@@ -44,10 +37,7 @@ jobs:
 
     steps:
       - checkout
-      - ruby/install-deps
-      - node/install-packages:
-          pkg-manager: yarn
-          # cache-key: "yarn.lock"
+      - setup
 
       # - run:
       #     name: bundle install
@@ -60,10 +50,10 @@ jobs:
       # Database setup
       - run:
           name: rails db:migrate
-          command: bundle exec rails db:migrate
+          command: bundle exec rake db:migrate
       - run:
           name: Database setup
-          command: bundle exec rails db:schema:load --trace
+          command: bundle exec rake db:schema:load --trace
       - run:
           name: Rspec
           command: bundle exec rspec
@@ -82,7 +72,6 @@ workflows:
   workflow:
     jobs:
       - build
-
       - test:
           requires:
             - build
