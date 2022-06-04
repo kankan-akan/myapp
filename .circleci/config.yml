@@ -46,7 +46,7 @@ jobs:
       #     command: bundle exec rails db:migrate
       - run:
           name: Database setup
-          command: bundle exec rails db:schema:load --trace
+          command: bundle exec rake db:schema:load --trace
       - run:
           name: Rspec
           command: bundle exec rspec
