@@ -14,8 +14,8 @@ jobs:
   build:
     docker:
       - image: cimg/ruby:3.0.3
-   steps:
-    - setup
+    steps:
+      - setup
 
   test:
     working_directory: ~/myapp
