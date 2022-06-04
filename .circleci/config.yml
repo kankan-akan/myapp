@@ -57,22 +57,16 @@ jobs:
           name: Wait for DB
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
 
-      - run:
-          name: データベースのセットアップ
-          command: bundle exec rails db:schema:load --trace
-          # RSpec を並列実行します。
-            - ruby/rspec-test
-
       # Database setup
-      # - run:
-      #     name: rails db:migrate
-      #     command: bundle exec rails db:migrate
-      # - run:
-      #     name: Database setup
-      #     command: bundle exec rails db:schema:load --trace
-      # - run:
-      #     name: Rspec
-      #     command: bundle exec rspec
+      - run:
+          name: rails db:migrate
+          command: bundle exec rails db:migrate
+      - run:
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
+      - run:
+          name: Rspec
+          command: bundle exec rspec
 
       # collect reports
       - store_test_results:
