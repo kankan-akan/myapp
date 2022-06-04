@@ -24,7 +24,6 @@ jobs:
         environment:
           MYSQL_ROOT_PASSWORD: 'rootpassword'
           MYSQL_DATABASE: myapp_test
-          MYSQL_USER: 'root'
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
 
     executor: ruby/default
@@ -33,7 +32,7 @@ jobs:
       - checkout
       - run:
           name: bundle install
-          command: bundle install --path vendor/bundle
+          command: bundle config set --local path 'vendor/bundle'
 
       - run:
           name: Wait for DB
