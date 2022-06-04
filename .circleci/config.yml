@@ -6,12 +6,26 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/orb-intro/
 orbs:
   ruby: circleci/ruby@1.4.0
+  node: circleci/node@5.0.2
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
+  build:
+    docker:
+      - image: cimg/ruby:3.0.3
+
+    steps:
+      - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
+
   test:
     working_directory: ~/myapp
+
+    parallelism: 3
 
     docker:
       - image: cimg/ruby:3.0.3
@@ -30,24 +44,35 @@ jobs:
 
     steps:
       - checkout
-      - run:
-          name: bundle install
-          command: bundle config set --local path 'vendor/bundle'
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
+
+      # - run:
+      #     name: bundle install
+      #     command: bundle config set --local path 'vendor/bundle'
 
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
 
+      - run:
+        name: データベースのセットアップ
+        command: bundle exec rails db:schema:load --trace
+        # RSpec を並列実行します。
+        - ruby/rspec-test
+
       # Database setup
-      - run:
-          name: rails db:migrate
-          command: bundle exec rails db:migrate
-      - run:
-          name: Database setup
-          command: bundle exec rails db:schema:load --trace
-      - run:
-          name: Rspec
-          command: bundle exec rspec
+      # - run:
+      #     name: rails db:migrate
+      #     command: bundle exec rails db:migrate
+      # - run:
+      #     name: Database setup
+      #     command: bundle exec rails db:schema:load --trace
+      # - run:
+      #     name: Rspec
+      #     command: bundle exec rspec
 
       # collect reports
       - store_test_results:
@@ -60,6 +85,10 @@ jobs:
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   version: 2.1
-  worlflow:
+  workflow:
     jobs:
-      - test
+      - build
+
+      - test:
+        requires:
+          - build
