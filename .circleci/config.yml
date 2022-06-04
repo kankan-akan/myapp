@@ -90,5 +90,5 @@ workflows:
       - build
 
       - test:
-        requires:
-          - build
+          requires:
+            - build
