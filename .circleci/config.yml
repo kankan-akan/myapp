@@ -47,7 +47,7 @@ jobs:
       - ruby/install-deps
       - node/install-packages:
           pkg-manager: yarn
-          cache-key: "yarn.lock"
+          # cache-key: "yarn.lock"
 
       # - run:
       #     name: bundle install
