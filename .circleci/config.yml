@@ -31,6 +31,10 @@ jobs:
 
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - gem-cache-v1-{{ checksum "~/myapp/api/Gemfile.lock" }}
+            - gem-cache-v1-
 
       - run:
           name: bundle install
@@ -39,6 +43,11 @@ jobs:
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+
+      - save_cache:
+          key: gem-cache-v1-{{ checksum "~/myapp/api/Gemfile.lock" }}
+          paths:
+            - ~/myapp/api/vendor/bundle
 
       # Database setup
       # - run:
