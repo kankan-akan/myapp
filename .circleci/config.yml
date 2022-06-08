@@ -12,7 +12,7 @@ orbs:
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   build:
-    # working_directory: ~/myapp
+    working_directory: ~/myapp
 
     docker:
       - image: cimg/ruby:3.0.3
@@ -38,7 +38,11 @@ jobs:
 
       - run:
           name: bundle install
-          command: bundle config set --local path 'vendor/bundle'
+          command: |
+            gem install bundler
+            bundle config set path 'vendor/bundle'
+            bundle install --jobs=4 --retry=3
+          working_directory: ~/myapp/api
 
       - run:
           name: Wait for DB
@@ -50,15 +54,30 @@ jobs:
             - ~/myapp/api/vendor/bundle
 
       # Database setup
+      - run:
+          name: database setup
+          command: bundle exec rails db:schema:load --trace
+          working_directory: ~/myapp/api
+
+      # - run:
+      #     name: rails db:create
+      #     command: bundle exec rails db:create
+      #     working_directory: ~/myapp/api
+
       # - run:
       #     name: rails db:migrate
       #     command: bundle exec rails db:migrate
-      - run:
-          name: Database setup
-          command: bundle exec rails db:schema:load --trace
+      #     working_directory: ~/myapp/api
+
       - run:
           name: Rspec
           command: bundle exec rspec
+          working_directory: ~/myapp/api
+
+      - run:
+          name: create directory to store test results
+          command: mkdir /tmp/test-results
+          working_directory: ~/myapp/api
 
       # collect reports
       - store_test_results:
