@@ -38,6 +38,7 @@ test:
   # username: yusukekan
   # password: yskan
   # host: localhost 
+  
   host: 127.0.0.1 #circleci
   database: myapp_test  #docker/circleci起動時必要
 
@@ -62,6 +63,7 @@ test:
 #
 production:
   <<: *default
+  # encoding: utf8mb4
   database: heroku_b206585bb7b4c66
   username: b2d1fd1d81ba37
   # password: <%= ENV['API_DATABASE_PASSWORD'] %>

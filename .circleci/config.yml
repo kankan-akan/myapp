@@ -21,7 +21,7 @@ jobs:
           DB_HOST: 127.0.0.1
           DB_USERNAME: 'root'
           DB_PASSWORD: 'rootpassword'
-      - image: cimg/mysql:5.7
+      - image: cimg/mysql:8.0
         environment:
           MYSQL_ROOT_PASSWORD: 'rootpassword'
           MYSQL_DATABASE: myapp_test

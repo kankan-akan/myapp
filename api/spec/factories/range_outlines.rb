@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :range_outline do
-    sequence(:city) { |n| "test#{n}city" }
+    sequence(:city) { |n| "test#{n}市" }
     sequence(:name) { |n| "Example#{n}" }
     features { "example content" }
     link { "https://www.example.com" }

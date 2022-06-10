@@ -10,7 +10,7 @@ jobs:
         DB_HOST: 127.0.0.1
         DB_USERNAME: root
         DB_PASSWORD: rootpassword
-    - image: cimg/mysql:5.7
+    - image: cimg/mysql:8.0
       environment:
         MYSQL_ROOT_PASSWORD: rootpassword
         MYSQL_DATABASE: myapp_test
@@ -37,8 +37,12 @@ jobs:
         paths:
         - ~/myapp/api/vendor/bundle
     - run:
-        name: database setup
-        command: bundle exec rails db:schema:load --trace
+        name: rails db:create
+        command: bundle exec rails db:create
+        working_directory: ~/myapp/api
+    - run:
+        name: rails db:migrate
+        command: bundle exec rails db:migrate
         working_directory: ~/myapp/api
     - run:
         name: Rspec
@@ -83,7 +87,7 @@ workflows:
 #           DB_HOST: 127.0.0.1
 #           DB_USERNAME: 'root'
 #           DB_PASSWORD: 'rootpassword'
-#       - image: cimg/mysql:5.7
+#       - image: cimg/mysql:8.0
 #         environment:
 #           MYSQL_ROOT_PASSWORD: 'rootpassword'
 #           MYSQL_DATABASE: myapp_test
@@ -116,20 +120,20 @@ workflows:
 #             - ~/myapp/api/vendor/bundle
 # 
 #       # Database setup
+#       # - run:
+#       #     name: database setup
+#       #     command: bundle exec rails db:schema:load --trace
+#       #     working_directory: ~/myapp/api
+# 
 #       - run:
-#           name: database setup
-#           command: bundle exec rails db:schema:load --trace
+#           name: rails db:create
+#           command: bundle exec rails db:create
 #           working_directory: ~/myapp/api
 # 
-#       # - run:
-#       #     name: rails db:create
-#       #     command: bundle exec rails db:create
-#       #     working_directory: ~/myapp/api
-# 
-#       # - run:
-#       #     name: rails db:migrate
-#       #     command: bundle exec rails db:migrate
-#       #     working_directory: ~/myapp/api
+#       - run:
+#           name: rails db:migrate
+#           command: bundle exec rails db:migrate
+#           working_directory: ~/myapp/api
 # 
 #       - run:
 #           name: Rspec
