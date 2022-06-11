@@ -13,6 +13,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     volumes:
       - mysql-data:/var/lib/mysql
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
 
   api:
     build:
