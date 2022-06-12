@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :range_outline do
     sequence(:city) { |n| "test#{n}市" }
-    sequence(:name) { |n| "example練習場#{n}" }
+    sequence(:name) { |n| "Example#{n}" }
     features { "example content" }
     link { "https://www.example.com" }
     address { "examle-city test99-99" }
