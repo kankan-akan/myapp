@@ -62,33 +62,27 @@
             ></v-text-field>
           </v-col>
 
-          <v-col class="d-flex align-center">
+          <v-col>
             <div style="font-size: 18px;">開始時間</div>
-            <input class="input" type="time" v-model="text" />
-            <v-btn
-              @click="add()"
-              text
-              outlined
-            >
-              追加
-            </v-btn>
           </v-col>
-          <v-col class="d-flex align-center overflow-x-auto">
+          <v-col class="d-flex align-center overflow-x-auto" >
             <div class="d-flex align-center">
-              <template v-for="(time, index) in startTime" >
-                <v-chip
-                  :key="index"
-                  close
-                  @click:close="del(index)"
-                >
-                  <h3>{{ time }}</h3>
-                </v-chip>
-              </template>
+              <input class="input" type="time" v-model="startTime1" />
+              <input class="input" type="time" v-model="startTime2" />
+              <input class="input" type="time" v-model="startTime3" />
+              <input class="input" type="time" v-model="startTime4" />
+              <input class="input" type="time" v-model="startTime5" />
+              <input class="input" type="time" v-model="startTime6" />
+              <input class="input" type="time" v-model="startTime7" />
+              <input class="input" type="time" v-model="startTime8" />
+              <input class="input" type="time" v-model="startTime9" />
+              <input class="input" type="time" v-model="startTime10" />
+              <input class="input" type="time" v-model="startTime11" />
+              <input class="input" type="time" v-model="startTime12" />
             </div>
           </v-col>
-          <v-col>{{ startTime }}</v-col>
 
-          <v-col>
+          <v-col style="margin-top: 36px;">
             <v-select
               v-model="holiday"
               :items="items"
@@ -145,8 +139,18 @@ export default {
       lessonTime: this.selectedLesson.calendar.lesson_time,
       holiday: [],
       items: ['月', '火', '水', '木', '金', '土', '日'],
-      text: '',
-      startTime: [],
+      startTime1: this.selectedLesson.calendar.start_time1,
+      startTime2: this.selectedLesson.calendar.start_time2,
+      startTime3: this.selectedLesson.calendar.start_time3,
+      startTime4: this.selectedLesson.calendar.start_time4,
+      startTime5: this.selectedLesson.calendar.start_time5,
+      startTime6: this.selectedLesson.calendar.start_time6,
+      startTime7: this.selectedLesson.calendar.start_time7,
+      startTime8: this.selectedLesson.calendar.start_time8,
+      startTime9: this.selectedLesson.calendar.start_time9,
+      startTime10: this.selectedLesson.calendar.start_time10,
+      startTime11: this.selectedLesson.calendar.start_time11,
+      startTime12: this.selectedLesson.calendar.start_time12,
       test: []
     }
   },
@@ -177,7 +181,18 @@ export default {
           range_outline_id: this.rangeData.id,
           calendar_attributes: {
             lesson_time: this.lessonTime,
-            start_time: this.startTime,
+            start_time1: this.startTime1, 
+            start_time2: this.startTime2, 
+            start_time3: this.startTime3, 
+            start_time4: this.startTime4, 
+            start_time5: this.startTime5, 
+            start_time6: this.startTime6, 
+            start_time7: this.startTime7, 
+            start_time8: this.startTime8, 
+            start_time9: this.startTime9, 
+            start_time10: this.startTime10, 
+            start_time11: this.startTime11, 
+            start_time12: this.startTime12, 
             holiday: this.holiday
           }
         })
@@ -189,23 +204,6 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-      }
-    },
-    add(){
-      if(this.text !== '') {
-        this.startTime.push(this.text)
-        this.text = ''
-      }
-    },
-    del(index){
-      this.startTime.splice(index, 1)
-    },
-    setStartTime() {
-      if (this.selectedLesson.calendar.start_time) {
-      this.startTime = []
-      const time = this.selectedLesson.calendar.start_time
-      const start_time = time.split( ',' )
-      this.startTime = start_time
       }
     },
     setHoliday() {
@@ -223,8 +221,8 @@ export default {
 
 <style scoped>
 .input {
-  padding: 8px; 
-  margin: 5px 5px 5px 20px;
+  padding: 12px; 
+  margin: 5px;
   background-color: rgb(233, 246, 255);
   border-radius: 15px;
 }

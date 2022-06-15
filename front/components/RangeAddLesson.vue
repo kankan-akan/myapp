@@ -65,26 +65,21 @@
 
             <v-col class="d-flex align-center">
               <div style="font-size: 18px;">開始時間</div>
-              <input class="input" type="time" v-model="text" />
-              <v-btn
-                @click="add()"
-                text
-                outlined
-              >
-                追加
-              </v-btn>
             </v-col>
             <v-col class="d-flex align-center overflow-x-auto">
               <div class="d-flex align-center">
-                <template v-for="(time, index) in startTime">
-                  <v-chip
-                    :key="index"
-                    close
-                    @click:close="del(index)"
-                  >
-                    <h3>{{ time }}</h3>
-                  </v-chip>
-                </template>
+                <input class="input" type="time" v-model="startTime1" />
+                <input class="input" type="time" v-model="startTime2" />
+                <input class="input" type="time" v-model="startTime3" />
+                <input class="input" type="time" v-model="startTime4" />
+                <input class="input" type="time" v-model="startTime5" />
+                <input class="input" type="time" v-model="startTime6" />
+                <input class="input" type="time" v-model="startTime7" />
+                <input class="input" type="time" v-model="startTime8" />
+                <input class="input" type="time" v-model="startTime9" />
+                <input class="input" type="time" v-model="startTime10" />
+                <input class="input" type="time" v-model="startTime11" />
+                <input class="input" type="time" v-model="startTime12" />
               </div>
             </v-col>
 
@@ -144,8 +139,18 @@ export default {
     lessonTime: '',
     holiday: [],
     items: ['月', '火', '水', '木', '金', '土', '日'],
-    text: '',
-    startTime: [ '09:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00' ]
+    startTime1: '09:00',
+    startTime2: '10:00',
+    startTime3: '11:00',
+    startTime4: '13:00',
+    startTime5: '',
+    startTime6: '',
+    startTime7: '',
+    startTime8: '',
+    startTime9: '',
+    startTime10: '',
+    startTime11: '',
+    startTime12: '',
   }),
 
   computed: {
@@ -169,7 +174,18 @@ export default {
           range_outline_id: this.rangeData.id,
           calendar_attributes: {
             lesson_time: this.lessonTime,
-            start_time: this.startTime,
+            start_time1: this.startTime1, 
+            start_time2: this.startTime2, 
+            start_time3: this.startTime3, 
+            start_time4: this.startTime4, 
+            start_time5: this.startTime5, 
+            start_time6: this.startTime6, 
+            start_time7: this.startTime7, 
+            start_time8: this.startTime8, 
+            start_time9: this.startTime9, 
+            start_time10: this.startTime10, 
+            start_time11: this.startTime11, 
+            start_time12: this.startTime12, 
             holiday: this.holiday
           }
         })
@@ -182,16 +198,7 @@ export default {
           console.log(err)
         })
       }
-    },
-    add(){
-      if(this.text !== '') {
-        this.startTime.push(this.text)
-        this.text = ''
-      }
-    },
-    del(index){
-      this.startTime.splice(index, 1)
-    },
+    }
   }
 
 }
