@@ -83,14 +83,67 @@
           </v-col>
 
           <v-col style="margin-top: 36px;">
-            <v-select
-              v-model="holiday"
-              :items="items"
-              chips
-              label="休業日"
-              multiple
-              outlined
-            ></v-select>
+            <div style="font-size: 18px;">休業日</div>
+          </v-col>
+          <v-col class="d-flex align-center">
+            <p>選択した曜日：</p>
+            <p v-if="sun" class="youbi">{{ sun }}</p>
+            <p v-if="mon" class="youbi">{{ mon }}</p>
+            <p v-if="tue" class="youbi">{{ tue }}</p>
+            <p v-if="wed" class="youbi">{{ wed }}</p>
+            <p v-if="thu" class="youbi">{{ thu }}</p>
+            <p v-if="fri" class="youbi">{{ fri }}</p>
+            <p v-if="sat" class="youbi">{{ sat }}</p>
+          </v-col>
+          <v-col class="d-flex align-center">
+            <v-checkbox
+              class="youbi"
+              v-model="sun"
+              label="日"
+              value="日"
+            ></v-checkbox>
+
+            <v-checkbox
+              class="youbi"
+              v-model="mon"
+              label="月"
+              value="月"
+            ></v-checkbox>
+
+            <v-checkbox
+              class="youbi"
+              v-model="tue"
+              label="火"
+              value="火"
+            ></v-checkbox>
+
+            <v-checkbox
+              class="youbi"
+              v-model="wed"
+              label="水"
+              value="水"
+            ></v-checkbox>
+
+            <v-checkbox
+              class="youbi"
+              v-model="thu"
+              label="木"
+              value="木"
+            ></v-checkbox>
+
+            <v-checkbox
+              class="youbi"
+              v-model="fri"
+              label="金"
+              value="金"
+            ></v-checkbox>
+
+            <v-checkbox
+              class="youbi"
+              v-model="sat"
+              label="土"
+              value="土"
+            ></v-checkbox>
           </v-col>
           <h5>'＊'は必須項目です</h5>
           <div>{{ test }}</div>
@@ -137,8 +190,6 @@ export default {
       coach: this.selectedLesson.coach,
       content: this.selectedLesson.content,
       lessonTime: this.selectedLesson.calendar.lesson_time,
-      holiday: [],
-      items: ['月', '火', '水', '木', '金', '土', '日'],
       startTime1: this.selectedLesson.calendar.start_time1,
       startTime2: this.selectedLesson.calendar.start_time2,
       startTime3: this.selectedLesson.calendar.start_time3,
@@ -151,6 +202,13 @@ export default {
       startTime10: this.selectedLesson.calendar.start_time10,
       startTime11: this.selectedLesson.calendar.start_time11,
       startTime12: this.selectedLesson.calendar.start_time12,
+      sun: this.selectedLesson.calendar.sun,
+      mon: this.selectedLesson.calendar.mon,
+      tue: this.selectedLesson.calendar.tue,
+      wed: this.selectedLesson.calendar.wed,
+      thu: this.selectedLesson.calendar.thu,
+      fri: this.selectedLesson.calendar.fri,
+      sat: this.selectedLesson.calendar.sat,
       test: []
     }
   },
@@ -193,7 +251,13 @@ export default {
             start_time10: this.startTime10, 
             start_time11: this.startTime11, 
             start_time12: this.startTime12, 
-            holiday: this.holiday
+            sun: this.sun,
+            mon: this.mon,
+            tue: this.tue,
+            wed: this.wed,
+            thu: this.thu,
+            fri: this.fri,
+            sat: this.sat
           }
         })
         .then((res) => {
@@ -220,10 +284,14 @@ export default {
 </script>
 
 <style scoped>
-.input {
-  padding: 12px; 
-  margin: 5px;
-  background-color: rgb(233, 246, 255);
-  border-radius: 15px;
-}
+  .input {
+    padding: 12px; 
+    margin: 5px;
+    background-color: rgb(233, 246, 255);
+    border-radius: 15px;
+  }
+
+  .youbi {
+    margin-right: 20px;
+  }
 </style>

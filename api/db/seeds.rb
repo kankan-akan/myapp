@@ -41,12 +41,14 @@ Lesson.create!(
   coach: "佐藤和雄", 
   content: "初心者におすすめのレッスンです。",
   admin_range_id: 1,
-  range_outline_id: 1,
-  # calendar_attributes: [
-  #   lesson_time: "60",
-  #   start_time1: "09:00", 
-  #   start_time2: "10:00",
-  #   tue: true,
-  #   wed: true
-  # ]
+  range_outline_id: 1
+)
+
+Calendar.create!(
+  lesson_time: "60",
+  start_time1: "09:00", 
+  start_time2: "10:00",
+  tue: "火",
+  wed: "水",
+  lesson_id: 1
 )
