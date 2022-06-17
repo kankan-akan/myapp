@@ -113,7 +113,6 @@
           <v-col>{{ text }}</v-col>
           </v-sheet>
           <v-col>{{ startDate }}</v-col>
-          <v-col>{{ a }}</v-col>
         </v-col>
       </v-row>
     </v-container>
@@ -127,18 +126,12 @@ import { mapState } from 'vuex';
 
   export default {
     data: () => ({
-      a: [],
       overlay: false,
       text: '',
       dateList: [],
       weekNumber: 7,
       startTime: [ "11:00" ,"12:00" ,"13:00"],
-      holiday: ['月', '火'],
-      holi: [3, 5],
-      youbi: '',
-      sun: false,
-      mon: false,
-      tue: false
+      holiday: ['月', '火']
     }),
     created () {
       this.setDateList(this.startDate)
@@ -151,8 +144,7 @@ import { mapState } from 'vuex';
           // .then((res) => {
           //   console.log(res)
           //   this.holiday = res.data
-          // }),
-        this.test1()
+          // })
     },
     computed: {
       ...mapState({
@@ -191,17 +183,6 @@ import { mapState } from 'vuex';
           if(this.holiday.includes(date)) {
             return true
           }
-      },
-      //  test(date) {
-      //   this.a = []
-      //   this.a = 
-      //     },
-      test1() {
-        this.a = []
-        console.log(this.holi.length)
-       
-          this.a.push(moment().set('day', this.holi).format('dd'))
-        
       },
       selectedDay(date, time) {
         this.text = []

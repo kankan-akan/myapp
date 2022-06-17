@@ -13,9 +13,9 @@ class V1::LessonsController < ApplicationController
   def show
     @lesson = Lesson.find(params[:id])
     calendar = Calendar.where(lesson_id: params[:id]).select(:lesson_time, :lesson_id)
-    date = Calendar.where(lesson_id: params[:id]).select(:sun, :mon, :tue, :wed, :thu, :fri, :sat)
+    holiday = Calendar.where(lesson_id: params[:id]).pluck(:sun, :mon, :tue, :wed, :thu, :fri, :sat).flatten.compact
     start_times = Calendar.where(lesson_id: params[:id]).pluck(:start_time1, :start_time2, :start_time3, :start_time4, :start_time5, :start_time6, :start_time7, :start_time8, :start_time9,:start_time10, :start_time11, :start_time12).flatten.compact
-    render json: { lesson: @lesson, calendar: calendar, date: date, start_times: start_times }
+    render json: { lesson: @lesson, calendar: calendar, holiday: holiday, start_times: start_times }
   end
 
   # def show
