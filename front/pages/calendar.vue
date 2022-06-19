@@ -15,7 +15,7 @@
               </v-icon>
               1週間前
             </v-btn>
-            <strong>{{startDate.format('MM')}}月</strong>
+            <strong>{{startDate.format('YY/MM')}}月</strong>
             <v-btn 
               color="grey darken-2"
               @click="nextWeek" 
@@ -130,7 +130,7 @@ import { mapState } from 'vuex';
       text: '',
       dateList: [],
       weekNumber: 7,
-      startTime: [ "11:00" ,"12:00" ,"13:00"],
+      startTime: [ "11:00", "12:00", "13:00"],
       holiday: ['月', '火']
     }),
     created () {
@@ -169,17 +169,17 @@ import { mapState } from 'vuex';
       setDateList () {
         this.dateList = []
         const date = moment(this.startDate)
-        this.dateList.push(date.format('MM/DD(dd)'))
+        this.dateList.push(date.format('YY/MM/DD(dd)'))
         for (let i = 0; i < (this.weekNumber - 1); i++ ) {
-          this.dateList.push(date.add(1, 'day').format('MM/DD(dd)'))
+          this.dateList.push(date.add(1, 'day').format('YY/MM/DD(dd)'))
         }
       },
       isActive(day, time) {
-        const today = moment().startOf('day').format('MM/DD(dd)')
+        const today = moment().startOf('day').format('YY/MM/DD(dd)')
           if (day < today) {
             return true
           }
-        const date = day.charAt(6)
+        const date = day.charAt(9)
           if(this.holiday.includes(date)) {
             return true
           }
@@ -197,7 +197,6 @@ import { mapState } from 'vuex';
           })
           .then((res) => {
             console.log(res)
-
             this.overlay = false
           })
         }
