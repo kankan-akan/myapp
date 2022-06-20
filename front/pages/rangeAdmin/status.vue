@@ -1,183 +1,77 @@
 <template>
   <v-main>
-    <v-container>
-      <v-row>
-        <v-col cols="10">
-          <v-sheet>
-            <v-btn 
-              color="grey darken-2"
-              @click="previousWeek" 
-              outlined
-            >
-              <v-icon small>
-                mdi-chevron-left
-              </v-icon>
-              1週間前
-            </v-btn>
-            <strong>{{startDate.format('YY/MM')}}月</strong>
-            <v-btn 
-              color="grey darken-2"
-              @click="nextWeek" 
-              outlined
-            >
-              1週間後
-              <v-icon small>
-                mdi-chevron-right
-              </v-icon>
-            </v-btn>
-          </v-sheet>
+    <v-container v-if="$store.state.rangeAuth.rangeData">
+      <template v-if="lessons == ''">
+        <v-row>
+          <v-col class="d-flex justify-center">
+            <h2 class="grey--text lighten-1" style="margin: 20px;">レッスンを新規作成して下さい。</h2>
+          </v-col>
+        </v-row>
+      </template>
 
-          <v-sheet>
-            <table>
-              <thead>
-                <tr>
-                  <td class="date">開始時間</td>
-                  <template v-for="date in dateList" >
-                    <th :key="date">
-                      {{ date }}
-                    </th>
-                  </template>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(time, i) in startTime" :key="i">
-                  <td class="d1">{{ time }} ~</td>
-                  <td v-for="(date, j) in dateList" :key="j">
-                    <a
-                      v-if="isActive(date, time)"
-                      class="d-flex justify-center"
-                    >
-                      <v-icon>{{ 'mdi-close' }}</v-icon>
-                    </a>
-                    <v-tooltip
-                      v-else
-                      right
-                    >
-                      <template v-slot:activator="{ on, attrs }">
-                        <a 
-                          class="d-flex justify-center"
-                          @mouseover="selectedDay(date, time)"
-                          @click="getReservation()"
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          <v-icon>{{ 'mdi-circle-outline' }}</v-icon>
-                        </a>
-                      </template>
-                      <span>{{ text }}</span>
-                    </v-tooltip>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </v-sheet>
+      <template v-else>
+        <v-row class="justify-center">
+          <v-col
+            v-for="(lesson, i) in lessons"
+            :key="i"
+            cols="10"
+          >
+            <v-card @click="status(lesson.id)">
+              <v-card-title>{{ lesson.title }}</v-card-title>
+              <v-card-subtitle>{{ lesson.coach }}</v-card-subtitle>
+              <v-card-text>
+                <v-col class="d-flex align-center">
+                  <p class="youbi">レッスン開始時間:</p>
+                  <p v-if="lesson.calendar.sun" class="youbi">{{ lesson.calendar.sun }}</p>
+                  <p v-if="lesson.calendar.mon" class="youbi">{{ lesson.calendar.mon }}</p>
+                  <p v-if="lesson.calendar.tue" class="youbi">{{ lesson.calendar.tue }}</p>
+                  <p v-if="lesson.calendar.wed" class="youbi">{{ lesson.calendar.wed }}</p>
+                  <p v-if="lesson.calendar.thu" class="youbi">{{ lesson.calendar.thu }}</p>
+                  <p v-if="lesson.calendar.fri" class="youbi">{{ lesson.calendar.fri }}</p>
+                  <p v-if="lesson.calendar.sat" class="youbi">{{ lesson.calendar.sat }}</p>
+                </v-col>
+                <v-col>休業日: {{ lesson.calendar.holiday }}</v-col>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </template>
+    </v-container>
 
-        </v-col>
-      </v-row>
+    <v-container v-else>
+      <v-col class="d-flex justify-center" style="margin: 20px;">
+        <h2 class="grey--text lighten-1">基本情報を登録して下さい。</h2>
+      </v-col>
     </v-container>
   </v-main>
 </template>
 
 <script>
-import moment from 'moment';
 import { mapState } from 'vuex';
-  moment.locale('ja');
 
   export default {
     data: () => ({
-      overlay: false,
-      text: '',
-      dateList: [],
-      weekNumber: 7,
-      startTime: [ "11:00", "12:00", "13:00"],
-      holiday: ['月', '火']
+      
     }),
     created () {
-      this.setDateList(this.startDate)
-      // this.$axios.get('/v1/開始時間')
-          // .then((res) => {
-          //   console.log(res)
-          //   this.startTime = res.data
-          // })
-      // this.$axios.get('/v1/休業日')
-          // .then((res) => {
-          //   console.log(res)
-          //   this.holiday = res.data
-          // })
+      
     },
     computed: {
       ...mapState({
-       
+      lessons: (state) => state.rangeAuth.lessons
       }),
-      startDate: {
-        get() {
-          return moment()
-        },
-        set(date) {
-          this.setDateList(date)
-        }
-      }
     },
     methods: {
-      nextWeek() {
-        this.startDate = this.startDate.add(this.weekNumber, 'day')
-      },
-      previousWeek() {
-        this.startDate = this.startDate.subtract(this.weekNumber, 'day')
-      },
-      setDateList () {
-        this.dateList = []
-        const date = moment(this.startDate)
-        this.dateList.push(date.format('YY/MM/DD(dd)'))
-        for (let i = 0; i < (this.weekNumber - 1); i++ ) {
-          this.dateList.push(date.add(1, 'day').format('YY/MM/DD(dd)'))
-        }
-      },
-      isActive(day, time) {
-        const today = moment().startOf('day').format('YY/MM/DD(dd)')
-          if (day < today) {
-            return true
-          }
-        const date = day.charAt(9)
-          if(this.holiday.includes(date)) {
-            return true
-          }
-      },
-      selectedDay(date, time) {
-        this.text = []
-        this.text = date + time
-      },
-      getReservation() {
-        // this.$axios.get('/v1/reservation', {
-        //   date: this.text
-        // })
-      }
+     status(id) {
+       this.$router.push(`/rangeAdmin/reservation/${id}`)
+     }
     }
   }
 </script>
-
+  
 <style scoped>
-  table,th,td{
-    border: solid 1px #d8d8d8;
-    padding: 5px;
-
-  }
-
-  th {
-    border-bottom: solid 2px #d8d8d8;
-    background-color: rgb(227, 240, 255);
-
-  }
-
-  .date {
-    border-bottom: solid 2.5px #d8d8d8;
-    border-right: solid 2.5px #d8d8d8;
-
-  }
-
-  .d1 {
-    border-right: solid 2.5px #d8d8d8;
-
+  .youbi {
+    margin-right: 20px;
   }
 
 </style>
