@@ -36,19 +36,38 @@ Equipment.create!(
   admin_range_id: 1
 )
 
-Lesson.create!(
-  title: "初心者向けレッスン",
-  coach: "佐藤和雄", 
-  content: "初心者におすすめのレッスンです。",
-  admin_range_id: 1,
-  range_outline_id: 1
-)
+Lesson.create!([
+  {
+    title: "初心者向けレッスン",
+    coach: "佐藤和雄", 
+    content: "初心者におすすめのレッスンです。",
+    admin_range_id: 1,
+    range_outline_id: 1
+  },
+  {
+    title: "中級者向けレッスン",
+    coach: "田中花子",
+    content: "100切りを目指したい方におすすめのレッスンです。",
+    admin_range_id: 1,
+    range_outline_id: 1 
+  }
+])
 
-Calendar.create!(
-  lesson_time: "60",
-  start_time1: "09:00", 
-  start_time2: "10:00",
-  tue: "火",
-  wed: "水",
-  lesson_id: 1
-)
+Calendar.create!([
+  {
+    lesson_time: "60",
+    start_time1: "09:00", 
+    start_time2: "10:00",
+    tue: "火",
+    wed: "水",
+    lesson_id: 1
+  },
+  {
+    lesson_time: "60",
+    start_time1: "14:00",
+    start_time2: "15:00",
+    sun: "日",
+    mon: "月",
+    lesson_id: 1
+  }
+])

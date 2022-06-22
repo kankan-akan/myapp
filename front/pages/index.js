@@ -5,7 +5,7 @@ export default {
   data: () => ({
     // modalwindow 
     selectedPlace: null,
-    isOpened: false
+    isOpened: {}
   }),
 
 methods: {
@@ -14,9 +14,13 @@ methods: {
         getLoginUser: 'authentication/getLoginUser'
         // getLsson: 'getlesson'
     }),
-    detailLesson() {
-      this.isOpened = !this.isOpened
+    showLesson(key) {
+      // this.isOpened = !this.isOpened
+      this.$set(this.isOpened, key, !this.isOpened[key])
     },
+    // detailLesson(id) {
+    //   this.$router.push(`/lessons/${id}`)
+    // },
     closeContent() {
       this.isOpened = false
     }
