@@ -3,9 +3,7 @@ import { mapActions, mapState } from 'vuex';
 export default {
 
   data: () => ({
-    // modalwindow 
-    selectedPlace: null,
-    isOpened: {}
+    dialog: false
   }),
 
 methods: {
@@ -21,9 +19,6 @@ methods: {
     // detailLesson(id) {
     //   this.$router.push(`/lessons/${id}`)
     // },
-    closeContent() {
-      this.isOpened = false
-    }
   },
 
   created: async function() {
@@ -42,9 +37,6 @@ methods: {
     ...mapState({
       outline: (state) => state.outline,
       // lesson: (state) => state.lesson
-    }),
-    overlay() {
-      return !!this.selectedPlace
-    },
+    })
   }
 }

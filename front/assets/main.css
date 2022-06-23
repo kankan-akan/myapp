@@ -30,10 +30,7 @@ th {
 }
 
 .content {
-  width: 400px;
+  width: 100px;
   overflow: hidden;
 }
 
-.open {
-  width: 800px;
-}
