@@ -6,6 +6,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.create!([
+  {
+    name: "近藤太一",
+    user_id: "taichi_kondo"
+    email: "a@example.com",
+    password: "password."
+  },
+  {
+    name: "田中俊介",
+    user_id: "shun.tanaka",
+    email: "b@examle.com",
+    password: "password."
+  }
+])
+
 AdminRange.create(
   name: "hogeゴルフ練習場",
   email: "a@example.com",
@@ -68,6 +83,6 @@ Calendar.create!([
     start_time2: "15:00",
     sun: "日",
     mon: "月",
-    lesson_id: 1
+    lesson_id: 2
   }
 ])

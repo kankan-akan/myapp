@@ -3,7 +3,8 @@ import { mapActions, mapState } from 'vuex';
 export default {
 
   data: () => ({
-    dialog: false
+    dialog: false,
+    panel: []
   }),
 
 methods: {
@@ -12,13 +13,12 @@ methods: {
         getLoginUser: 'authentication/getLoginUser'
         // getLsson: 'getlesson'
     }),
-    showLesson(key) {
-      // this.isOpened = !this.isOpened
-      this.$set(this.isOpened, key, !this.isOpened[key])
+    showLesson(id) {
+      this.$router.push(`/lessons/${id}`)
     },
-    // detailLesson(id) {
-    //   this.$router.push(`/lessons/${id}`)
-    // },
+    nonePanel() {
+      this.panel = []
+    }
   },
 
   created: async function() {

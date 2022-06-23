@@ -24,12 +24,12 @@
           </v-sheet>
 
           <v-sheet>
-            <table>
+            <table class="date">
               <thead>
                 <tr>
-                  <td class="date">開始時間</td>
+                  <td class="start">開始時間</td>
                   <template v-for="date in dateList" >
-                    <th :key="date">
+                    <th class="th-date" :key="date">
                       {{ date }}
                     </th>
                   </template>
@@ -37,8 +37,8 @@
               </thead>
               <tbody>
                 <tr v-for="(time, i) in selectedStatus.start_times" :key="i">
-                  <td class="d1">{{ time }} ~</td>
-                  <td v-for="(date, j) in dateList" :key="j">
+                  <td class="td-date time">{{ time }} ~</td>
+                  <td class="td-date" v-for="(date, j) in dateList" :key="j">
                     <a
                       v-if="setHoliday(date)"
                       class="d-flex justify-center"
@@ -168,27 +168,8 @@ import { mapState } from 'vuex';
 </script>
 
 <style scoped>
-  table,th,td{
-    border: solid 1px #d8d8d8;
-    padding: 5px;
-
-  }
-
   th {
-    border-bottom: solid 2px #d8d8d8;
     background-color: rgb(227, 255, 235);
-
+    
   }
-
-  .date {
-    border-bottom: solid 2.5px #d8d8d8;
-    border-right: solid 2.5px #d8d8d8;
-
-  }
-
-  .d1 {
-    border-right: solid 2.5px #d8d8d8;
-
-  }
-
 </style>
