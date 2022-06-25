@@ -9,7 +9,7 @@
 User.create!([
   {
     name: "近藤太一",
-    user_id: "taichi_kondo"
+    user_id: "taichi_kondo",
     email: "a@example.com",
     password: "password."
   },

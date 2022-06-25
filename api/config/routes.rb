@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create, :update, :destroy]
 
     get '/reservations/my_reservation', to:'reservations#my_reservation'
+    get '/reservations/search/:id', to:'reservations#search_reservation'
     resources :reservations, only: [:create, :update, :destroy]
 
     resource :relationships, only: [:create, :destroy]

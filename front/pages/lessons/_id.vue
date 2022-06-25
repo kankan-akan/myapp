@@ -84,7 +84,7 @@
 
                 <v-card-text class="black--text">
                   <div>日時: {{ text }}</div>
-                  <div>予約者: {{  }}</div>
+                  <div>予約者: {{ this.loginUser.name }}</div>
                 </v-card-text>
 
                 <v-card-actions>
@@ -187,9 +187,9 @@ import { mapState } from 'vuex';
       sendReservation() {
         if(this.$auth.loggedIn) {
           this.$axios.post('/v1/reservations', {
-            // lesson_id: ,
-            // user_id: this.loginUser.id,
-            // date: this.text
+            lesson_id: this.selectedLesson.lesson.id,
+            user_id: this.loginUser.id,
+            date: this.text
           })
           .then((res) => {
             console.log(res)

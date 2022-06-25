@@ -159,9 +159,9 @@ import { mapState } from 'vuex';
         this.text = date + time
       },
       getStatus() {
-        // this.$axios.get('/v1/reservation/', {
-        //   date: this.text
-        // })
+        this.$axios.get(`/v1/reservation/search/${this.selectedStatus.lesson.id}`, {
+          date: 'this.text'
+        })
       }
     }
   }

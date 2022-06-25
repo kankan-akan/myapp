@@ -6,6 +6,12 @@ class V1::ReservationsController < ApplicationController
     render json: @reservation.as_json(include: :lesson)
   end
 
+  def search_reservation
+    @lesson = Lesson.find(params[:id])
+    @reservation = @lesson.reservations.where(params[:date])
+    render json: @reservation
+  end
+
   def show
     @reservation = Reservation.find(params[:id])
       render json: @reservation
