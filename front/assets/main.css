@@ -5,13 +5,13 @@
  
  }
 
-table {
+.table-price {
   width: 95%;
   margin: 5px 5px;
    
 }
 
-table,th,td{
+.table-price,.th-price,.td-price{
   border: solid 1px #aaaaaa;
   border-collapse: collapse;
   font-size: 13px;
@@ -19,12 +19,12 @@ table,th,td{
 
  }
  
-th {
+.th-price {
   background-color: rgb(224, 224, 224);
    
 }
 
-.empty {
+.empty-price {
   visibility: hidden;
 
 }
@@ -34,8 +34,9 @@ th {
   overflow: hidden;
 }
 
-.date,.th-date,.td-date {
+.table-date,.th-date,.td-date {
   border: solid 1px #d8d8d8;
+  border-collapse: collapse;
   padding: 5px;
 
 }

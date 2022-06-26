@@ -3,7 +3,7 @@
     <v-container>
       <v-row>
         <v-col cols="10">
-          <v-sheet>
+          <v-col>
             <v-btn 
               color="grey darken-2"
               @click="previousWeek" 
@@ -21,10 +21,10 @@
               1週間後
               <v-icon small>mdi-chevron-right</v-icon>
             </v-btn>
-          </v-sheet>
+          </v-col>
 
           <v-sheet>
-            <table class="date">
+            <table class="table-date">
               <thead>
                 <tr>
                   <td class="start">開始時間</td>
@@ -82,34 +82,33 @@
         </v-col>
       </v-row>
         
-      
-        <v-simple-table
-          fixed-header
-          height="300px"
-        >
-          <template v-slot:default>
-            <thead>
-              <tr>
-                <th class="text-left">
-                  Date
-                </th>
-                <th class="text-left">
-                  User
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="(item, i) in selectedStatus"
-                :key="i"
-              >
-                <td>{{ item.date }}</td>
-                <td>{{ item.user_id }}</td>
-              </tr>
-            </tbody>
-          </template>
-        </v-simple-table>
-      
+      <v-row>
+        <v-col cols="10">
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-left">
+                    予約日時
+                  </th>
+                  <th class="text-left">
+                    予約者名
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="(item,i) in selectedStatus"
+                  :key="i"
+                >
+                  <td>{{ item.date }}</td>
+                  <td>{{ item.user_id }}</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </v-col>
+      </v-row>
     </v-container>
   </v-main>
 </template>

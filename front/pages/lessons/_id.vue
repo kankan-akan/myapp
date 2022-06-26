@@ -29,7 +29,7 @@
           </v-sheet>
 
           <v-sheet>
-            <table class="date">
+            <table class="table-date">
               <thead>
                 <tr>
                   <td class="start">開始時間</td>

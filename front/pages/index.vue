@@ -25,12 +25,12 @@
               <div>{{ place.distance }}yd</div>
             </v-card-text>
             <v-divider class="my-2"></v-divider>
-            <table>
+            <table class="table-price">
               <tr>
-                <td class="empty"></td> <th>平日</th><th>土日</th>
+                <td class="empty"></td> <th class="th-price">平日</th><th class="th-price">土日</th>
               </tr>
               <tr>
-                <th>ボール単価</th> <td>10円/1球</td><td>12円/1球</td>
+                <th class="th-price">ボール単価</th> <td class="td-price">10円/1球</td><td class="td-price">12円/1球</td>
               </tr>
             </table>
 
@@ -63,12 +63,12 @@
                   
                     <v-divider class="grey lighten-2 my-2"></v-divider>
                   
-                    <table>
+                    <table class="table-price">
                       <tr>
-                        <td class="empty"></td> <th>平日</th><th>土日</th>
+                        <td class="empty-price"></td> <th class="th-price">平日</th><th class="th-price">土日</th>
                       </tr>
                       <tr>
-                        <th>ボール単価</th> <td>10円/1球</td><td>12円/1球</td>
+                        <th class="th-price">ボール単価</th> <td class="td-price">10円/1球</td><td class="td-price">12円/1球</td>
                       </tr>
                     </table>
 
