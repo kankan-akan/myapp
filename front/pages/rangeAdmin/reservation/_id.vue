@@ -36,7 +36,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(time, i) in selectedStatus.start_times" :key="i">
+                <tr v-for="(time, i) in status.start_times" :key="i">
                   <td class="td-date time">{{ time }} ~</td>
                   <td class="td-date" v-for="(date, j) in dateList" :key="j">
                     <a
@@ -55,7 +55,7 @@
                           v-if="isActive(date)"
                           class="d-flex justify-center"
                           @mouseover="selectedDay(date, time)"
-                          @click="getStatus()"
+                          @click="getStatus(date, time)"
                           v-bind="attrs"
                           v-on="on"
                         >
@@ -65,7 +65,7 @@
                           v-else
                           class="d-flex justify-center"
                           @mouseover="selectedDay(date, time)"
-                          @click="getStatus()"
+                          @click="getStatus(date, time)"
                           v-bind="attrs"
                           v-on="on"
                         >
@@ -79,9 +79,37 @@
               </tbody>
             </table>
           </v-sheet>
-
         </v-col>
       </v-row>
+        
+      
+        <v-simple-table
+          fixed-header
+          height="300px"
+        >
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th class="text-left">
+                  Date
+                </th>
+                <th class="text-left">
+                  User
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(item, i) in selectedStatus"
+                :key="i"
+              >
+                <td>{{ item.date }}</td>
+                <td>{{ item.user_id }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+      
     </v-container>
   </v-main>
 </template>
@@ -97,22 +125,23 @@ import { mapState } from 'vuex';
       text: '',
       dateList: [],
       weekNumber: 7,
-      selectedStatus: {
-        start_times: [ "11:00", "12:00", "13:00"],
-        holiday: ['月', '火'],
-      },
-      // selectedStatus: []
+      // status: {
+      //   start_times: [ "11:00", "12:00", "13:00"],
+      //   holiday: ['月', '火'],
+      // },
+      status: [],
+      selectedStatus: []
     }),
     created () {
       this.setDateList(this.startDate)
-      // this.$axios.get(`/v1/lessons/${this.$route.params.id}`)
-      //     .then((res) => {
-      //       console.log(res)
-      //       this.selectedStatus = res.data
-      //     })
-      //     .catch((err) => {
-      //       console.log(err)
-      //     })
+      this.$axios.get(`/v1/lessons/${this.$route.params.id}`)
+          .then((res) => {
+            console.log(res)
+            this.status = res.data
+          })
+          .catch((err) => {
+            console.log(err)
+          })
     },
     computed: {
       ...mapState({
@@ -144,7 +173,7 @@ import { mapState } from 'vuex';
       },
       setHoliday(day) {
         const date = day.charAt(9)
-        if (this.selectedStatus.holiday.includes(date)) {
+        if (this.status.holiday.includes(date)) {
           return true
         }
       },
@@ -158,10 +187,20 @@ import { mapState } from 'vuex';
         this.text = []
         this.text = date + time
       },
-      getStatus() {
-        this.$axios.get(`/v1/reservation/search/${this.selectedStatus.lesson.id}`, {
-          date: 'this.text'
+      getStatus(date, time) {
+        this.selectedDay(date, time)
+        this.$axios.get(`/v1/reservations/search/${this.status.lesson.id}`, {
+          params: {
+            date: this.text
+          }
         })
+          .then((res) => {
+            console.log(res)
+            this.selectedStatus = res.data
+          })
+          .catch((err) => {
+            console.log(err)
+          })
       }
     }
   }

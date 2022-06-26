@@ -8,7 +8,7 @@ class V1::ReservationsController < ApplicationController
 
   def search_reservation
     @lesson = Lesson.find(params[:id])
-    @reservation = @lesson.reservations.where(params[:date])
+    @reservation = @lesson.reservations.where('date LIKE ?', "#{params[:date]}")
     render json: @reservation
   end
 

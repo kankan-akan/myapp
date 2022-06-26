@@ -101,7 +101,7 @@
                   <v-btn
                     color="green darken-1"
                     text
-                    @click="overlay = false"
+                    @click="sendReservation()"
                   >
                     予約
                   </v-btn>

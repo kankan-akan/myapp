@@ -86,3 +86,16 @@ Calendar.create!([
     lesson_id: 2
   }
 ])
+
+Reservation.create!([
+  {
+    lesson_id: 1,
+    user_id: 1,
+    date: "22/01/23(日)10:00"
+  },
+  {
+    lesson_id: 1,
+    user_id: 1,
+    date: "22/06/30(木)09:00"
+  }
+])
