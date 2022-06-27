@@ -2,8 +2,8 @@ class V1::LessonsController < ApplicationController
   # before_action :authenticate_v1_admin_range!, except: [:index]
 
   def range_lesson
-    @lesson = current_v1_admin_range.lessons.includes(:calendar, :reservations, :users)
-    render json: @lesson.as_json(include: [:calendar, :reservations, users: { only: [:name, :email]}])
+    @lesson = current_v1_admin_range.lessons.includes(:calendar, :reservations)
+    render json: @lesson.as_json(include: [:calendar, :reservations])
   end
 
   def index

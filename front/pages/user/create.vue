@@ -53,6 +53,14 @@
 
           <v-text-field
             outlined
+            v-model ="phoneNumber"
+            :rules ="phoneNumberRules"
+            label ="電話番号"
+            required
+          ></v-text-field>
+
+          <v-text-field
+            outlined
             v-model ="password"
             :rules ="passwordRules"
             :append-icon ="show ? 'mdi-eye' : 'mdi-eye-off'"

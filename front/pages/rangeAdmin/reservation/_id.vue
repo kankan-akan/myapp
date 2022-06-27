@@ -94,6 +94,9 @@
                   <th class="text-left">
                     予約者名
                   </th>
+                  <th class="text-left">
+                    連絡先(電話番号)
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -102,7 +105,8 @@
                   :key="i"
                 >
                   <td>{{ item.date }}</td>
-                  <td>{{ item.user_id }}</td>
+                  <td>{{ item.user.name }}</td>
+                  <td>{{ item.user.phone_number }}</td>
                 </tr>
               </tbody>
             </template>

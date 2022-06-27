@@ -183,6 +183,7 @@ ActiveRecord::Schema.define(version: 2022_05_09_155814) do
     t.string "name"
     t.string "user_id"
     t.string "email"
+    t.string "phone_number"
     t.string "image"
     t.text "tokens"
     t.datetime "created_at", null: false

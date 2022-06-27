@@ -11,12 +11,14 @@ User.create!([
     name: "近藤太一",
     user_id: "taichi_kondo",
     email: "a@example.com",
+    phone_number: "090-1234-1234",
     password: "password."
   },
   {
     name: "田中俊介",
     user_id: "shun.tanaka",
     email: "b@examle.com",
+    phone_number: "090-7980-7887",
     password: "password."
   }
 ])

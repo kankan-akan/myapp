@@ -83,8 +83,9 @@
                 </v-card-title>
 
                 <v-card-text class="black--text">
-                  <div>日時: {{ text }}</div>
-                  <div>予約者: {{ this.loginUser.name }}</div>
+                  <v-col class="text-h5">日時: {{ text }}</v-col>
+                  <v-col>予約者: {{ this.loginUser.name }}</v-col>
+                  <v-col>電話番号: {{ this.loginUser.phone_number }}</v-col>
                 </v-card-text>
 
                 <v-card-actions>
