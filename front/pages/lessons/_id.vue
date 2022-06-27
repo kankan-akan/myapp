@@ -1,6 +1,12 @@
 <template>
   <v-main>
     <v-container>
+      <div v-if="selectedLesson == ''">Lesson is undefined.</div>
+      <template v-else>
+        <v-col>{{ selectedLesson.lesson.title }}</v-col>
+        <v-col>{{ selectedLesson.lesson.coach }}</v-col>
+        <v-col>{{ selectedLesson.lesson.content }}</v-col>
+      </template>
       <v-row>
         <v-col cols="10">
           <v-sheet>
@@ -133,19 +139,21 @@ import { mapState } from 'vuex';
       weekNumber: 7,
       // startTime: [ "11:00", "12:00", "13:00"],
       // holiday: ['月', '火'],
-      selectedLesson: []
+      // selectedLesson: []
     }),
     created () {
       this.setDateList(this.startDate)
       this.$axios.get(`/v1/lessons/${this.$route.params.id}`)
           .then((res) => {
             console.log(res)
-            this.selectedLesson = res.data
+            // this.selectedLesson = res.data
+            this.$store.commit('setSelectedLesson', res.data)
           })
     },
     computed: {
       ...mapState({
-        loginUser: (state) => state.authentication.loginUser
+        loginUser: (state) => state.authentication.loginUser,
+        selectedLesson: (state) => state.selectedLesson
       }),
       startDate: {
         get() {
