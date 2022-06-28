@@ -1,6 +1,12 @@
 <template>
   <v-main>
     <v-container>
+      <div v-if="selectedLesson == ''">Lesson is undefined.</div>
+      <template v-else>
+        <v-col>{{ selectedLesson.lesson.title }}</v-col>
+        <v-col>{{ selectedLesson.lesson.coach }}</v-col>
+        <v-col>{{ selectedLesson.lesson.content }}</v-col>
+      </template>
       <v-row>
         <v-col cols="10">
           <v-sheet>
@@ -29,21 +35,21 @@
           </v-sheet>
 
           <v-sheet>
-            <table >
+            <table class="table-date">
               <thead>
                 <tr>
-                  <td class="date">開始時間</td>
+                  <td class="start">開始時間</td>
                   <template v-for="date in dateList" >
-                    <th :key="date">
+                    <th class="th-date" :key="date">
                       {{ date }}
                     </th>
                   </template>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(time, i) in startTime" :key="i">
-                  <td class="d1">{{ time }} ~</td>
-                  <td v-for="(date, j) in dateList" :key="j">
+                <tr v-for="(time, i) in selectedLesson.start_times" :key="i">
+                  <td class="td-date time">{{ time }} ~</td>
+                  <td class="td-date" v-for="(date, j) in dateList" :key="j">
                     <a
                       v-if="isActive(date, time)"
                       class="d-flex justify-center"
@@ -83,8 +89,9 @@
                 </v-card-title>
 
                 <v-card-text class="black--text">
-                  <div>日時: {{ text }}</div>
-                  <div>予約者: {{ }}</div>
+                  <v-col class="text-h5">日時: {{ text }}</v-col>
+                  <v-col>予約者: {{ this.loginUser.name }}</v-col>
+                  <v-col>電話番号: {{ this.loginUser.phone_number }}</v-col>
                 </v-card-text>
 
                 <v-card-actions>
@@ -101,7 +108,7 @@
                   <v-btn
                     color="green darken-1"
                     text
-                    @click="overlay = false"
+                    @click="sendReservation()"
                   >
                     予約
                   </v-btn>
@@ -130,25 +137,23 @@ import { mapState } from 'vuex';
       text: '',
       dateList: [],
       weekNumber: 7,
-      startTime: [ "11:00", "12:00", "13:00"],
-      holiday: ['月', '火']
+      // startTime: [ "11:00", "12:00", "13:00"],
+      // holiday: ['月', '火'],
+      // selectedLesson: []
     }),
     created () {
       this.setDateList(this.startDate)
-      // this.$axios.get('/v1/開始時間')
-          // .then((res) => {
-          //   console.log(res)
-          //   this.startTime = res.data
-          // })
-      // this.$axios.get('/v1/休業日')
-          // .then((res) => {
-          //   console.log(res)
-          //   this.holiday = res.data
-          // })
+      this.$axios.get(`/v1/lessons/${this.$route.params.id}`)
+          .then((res) => {
+            console.log(res)
+            // this.selectedLesson = res.data
+            this.$store.commit('setSelectedLesson', res.data)
+          })
     },
     computed: {
       ...mapState({
-        loginUser: (state) => state.authentication.loginUser
+        loginUser: (state) => state.authentication.loginUser,
+        selectedLesson: (state) => state.selectedLesson
       }),
       startDate: {
         get() {
@@ -174,13 +179,13 @@ import { mapState } from 'vuex';
           this.dateList.push(date.add(1, 'day').format('YY/MM/DD(dd)'))
         }
       },
-      isActive(day, time) {
+      isActive(day) {
         const today = moment().startOf('day').format('YY/MM/DD(dd)')
           if (day < today) {
             return true
           }
         const date = day.charAt(9)
-          if(this.holiday.includes(date)) {
+          if(this.selectedLesson.holiday.includes(date)) {
             return true
           }
       },
@@ -191,9 +196,9 @@ import { mapState } from 'vuex';
       sendReservation() {
         if(this.$auth.loggedIn) {
           this.$axios.post('/v1/reservations', {
-            // lesson_id: ,
-            // user_id: this.loginUser.id,
-            // date: this.text
+            lesson_id: this.selectedLesson.lesson.id,
+            user_id: this.loginUser.id,
+            date: this.text
           })
           .then((res) => {
             console.log(res)
@@ -206,27 +211,4 @@ import { mapState } from 'vuex';
 </script>
 
 <style scoped>
-  table,th,td{
-    border: solid 1px #d8d8d8;
-    padding: 5px;
-
-  }
-
-  th {
-    border-bottom: solid 2px #d8d8d8;
-    background-color: rgb(227, 240, 255);
-
-  }
-
-  .date {
-    border-bottom: solid 2.5px #d8d8d8;
-    border-right: solid 2.5px #d8d8d8;
-
-  }
-
-  .d1 {
-    border-right: solid 2.5px #d8d8d8;
-
-  }
-
 </style>

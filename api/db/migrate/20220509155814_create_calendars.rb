@@ -14,13 +14,13 @@ class CreateCalendars < ActiveRecord::Migration[6.1]
       t.string :start_time10
       t.string :start_time11
       t.string :start_time12
-      t.boolean :sun, default: false
-      t.boolean :mon, default: false
-      t.boolean :tue, default: false
-      t.boolean :wed, default: false
-      t.boolean :thu, default: false
-      t.boolean :fri, default: false
-      t.boolean :sat, default: false
+      t.string :sun
+      t.string :mon
+      t.string :tue
+      t.string :wed
+      t.string :thu
+      t.string :fri
+      t.string :sat
       t.references :lesson, foreign_key: true
     
       t.timestamps

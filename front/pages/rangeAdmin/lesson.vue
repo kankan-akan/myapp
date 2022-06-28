@@ -33,9 +33,9 @@
                 <div
                   style="white-space:pre-wrap; word-wrap:break-word;"
                 >{{ lesson.content }}</div>
-                  <div>レッスン時間: {{ lesson.calendar.lesson_time }}</div>
+                  <!-- <div>レッスン時間: {{ lesson.calendar.lesson_time }}</div>
                   <div>開始時間: {{ lesson.calendar.start_time }}</div>
-                  <div>休業日: {{ lesson.calendar.holiday }}</div>
+                  <div>休業日: {{ lesson.calendar.holiday }}</div> -->
               </v-card-text>
             </v-card>
           </v-col>

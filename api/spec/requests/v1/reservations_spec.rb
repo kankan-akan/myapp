@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Reservations", type: :request do
-  describe "Test lesson(ログインしたユーザー)" do
+  describe "Test reservation(ログインしたユーザー)" do
     before do
       user = create(:user)
       login user
@@ -31,7 +31,7 @@ RSpec.describe "Reservations", type: :request do
 
     context "update" do 
       it "予約を変更できる" do
-        put "/v1/reservations/#{@reservation.id}", params: { date: "1/24 10:00" }
+        put "/v1/reservations/#{@reservation.id}", params: { date: "22/1/24(月)10:00" }
         expect(response).to have_http_status "200"
       end
     end
@@ -43,5 +43,21 @@ RSpec.describe "Reservations", type: :request do
       end
     end
 
+  end
+
+  describe "Test reservation(管理者ログイン)" do
+    before do
+      admin_range = create(:admin_range)
+      login admin_range
+      @lesson = create(:lesson)
+    end
+
+    context "search_reservation" do
+      it "予約状況を日付で検索できる" do
+        reservation = create(:reservation)
+        get "/v1/reservations/search/#{@lesson.id}", params: { date: "'22/1/23(日)10:00'" }
+        expect(response).to have_http_status "200"
+      end
+    end
   end
 end

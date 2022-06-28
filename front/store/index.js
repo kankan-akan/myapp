@@ -1,14 +1,16 @@
 export const state = () => ({
   outline: [ ],
   equipment: [ ],
-
+  selectedLesson: []
 })
 
 export const mutations = {
   setOutline ( state, outline ){
     state.outline = outline;
   },
-
+  setSelectedLesson (state, selectedLesson ) {
+    state.selectedLesson = selectedLesson
+  }
 }
 
 export const actions = {

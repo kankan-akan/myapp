@@ -6,6 +6,23 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.create!([
+  {
+    name: "近藤太一",
+    user_id: "taichi_kondo",
+    email: "a@example.com",
+    phone_number: "090-1234-1234",
+    password: "password."
+  },
+  {
+    name: "田中俊介",
+    user_id: "shun.tanaka",
+    email: "b@examle.com",
+    phone_number: "090-7980-7887",
+    password: "password."
+  }
+])
+
 AdminRange.create(
   name: "hogeゴルフ練習場",
   email: "a@example.com",
@@ -36,17 +53,51 @@ Equipment.create!(
   admin_range_id: 1
 )
 
-Lesson.create!(
-  title: "初心者向けレッスン",
-  coach: "佐藤和雄", 
-  content: "初心者におすすめのレッスンです。",
-  admin_range_id: 1,
-  range_outline_id: 1,
-  # calendar_attributes: [
-  #   lesson_time: "60",
-  #   start_time1: "09:00", 
-  #   start_time2: "10:00",
-  #   tue: true,
-  #   wed: true
-  # ]
-)
+Lesson.create!([
+  {
+    title: "初心者向けレッスン",
+    coach: "佐藤和雄", 
+    content: "初心者におすすめのレッスンです。",
+    admin_range_id: 1,
+    range_outline_id: 1
+  },
+  {
+    title: "中級者向けレッスン",
+    coach: "田中花子",
+    content: "100切りを目指したい方におすすめのレッスンです。",
+    admin_range_id: 1,
+    range_outline_id: 1 
+  }
+])
+
+Calendar.create!([
+  {
+    lesson_time: "60",
+    start_time1: "09:00", 
+    start_time2: "10:00",
+    tue: "火",
+    wed: "水",
+    lesson_id: 1
+  },
+  {
+    lesson_time: "60",
+    start_time1: "14:00",
+    start_time2: "15:00",
+    sun: "日",
+    mon: "月",
+    lesson_id: 2
+  }
+])
+
+Reservation.create!([
+  {
+    lesson_id: 1,
+    user_id: 1,
+    date: "22/01/23(日)10:00"
+  },
+  {
+    lesson_id: 1,
+    user_id: 1,
+    date: "22/06/30(木)09:00"
+  }
+])

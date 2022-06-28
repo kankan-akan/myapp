@@ -3,9 +3,8 @@ import { mapActions, mapState } from 'vuex';
 export default {
 
   data: () => ({
-    // modalwindow 
-    selectedPlace: null,
-    isOpened: false
+    dialog: false,
+    panel: []
   }),
 
 methods: {
@@ -14,11 +13,11 @@ methods: {
         getLoginUser: 'authentication/getLoginUser'
         // getLsson: 'getlesson'
     }),
-    detailLesson() {
-      this.isOpened = !this.isOpened
+    showLesson(id) {
+      this.$router.push(`/lessons/${id}`)
     },
-    closeContent() {
-      this.isOpened = false
+    nonePanel() {
+      this.panel = []
     }
   },
 
@@ -38,9 +37,6 @@ methods: {
     ...mapState({
       outline: (state) => state.outline,
       // lesson: (state) => state.lesson
-    }),
-    overlay() {
-      return !!this.selectedPlace
-    },
+    })
   }
 }

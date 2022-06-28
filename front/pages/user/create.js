@@ -10,32 +10,31 @@ export default {
     // checkbox: false,
     loader: 'null',
     loading: false,
-
     name: '田中一郎', 
     nameRules: [
       v => !!v || '入力してください',
       v => (v && v.length <= 15) || '15文字以下で入力してください',
     ],
-    
     userId: 'ichiro_tanaka',
     userIdRules: [
       v => !!v || '入力してください',
       v => (v && v.length <= 15) || '15文字以下で入力してください',
       v => /^(?=.*[a-zA-Z])[a-zA-Z0-9\d.?/-_]{1,15}$/.test(v) || '',
     ],
-    
-    email: 'a@example.com',
+    email: 'a1@example.com',
     emailRules: [
       v => !!v || '入力してください',
       v => /.+@.+\..+/.test(v) || '',
     ],
-
+    phoneNumber: '090-1122-3344',
+    phoneNumberRules: [
+      v => !!v || '入力してください'
+    ],
     password: 'password.',
     passwordRules: [
       v => !!v || '入力してください',
       v => /^(?=.*[a-z])(?=.*[.?/-_])[a-zA-Z0-9\d.?/-_]{8,30}$/.test(v) || '',
     ],
-    
     snackbar: false,
     text: '',
 
@@ -47,6 +46,7 @@ export default {
         name: this.name,
         user_id: this.userId,
         email: this.email,
+        phone_number: this.phoneNumber,
         password: this.password
       }
     }

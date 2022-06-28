@@ -90,7 +90,7 @@ import { mapState } from 'vuex'
 
 export default {
 
-  method: {
+  methods: {
     logout() {
       this.$auth.logout();
     },

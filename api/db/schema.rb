@@ -58,13 +58,13 @@ ActiveRecord::Schema.define(version: 2022_05_09_155814) do
     t.string "start_time10"
     t.string "start_time11"
     t.string "start_time12"
-    t.boolean "sun", default: false
-    t.boolean "mon", default: false
-    t.boolean "tue", default: false
-    t.boolean "wed", default: false
-    t.boolean "thu", default: false
-    t.boolean "fri", default: false
-    t.boolean "sat", default: false
+    t.string "sun"
+    t.string "mon"
+    t.string "tue"
+    t.string "wed"
+    t.string "thu"
+    t.string "fri"
+    t.string "sat"
     t.bigint "lesson_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -183,6 +183,7 @@ ActiveRecord::Schema.define(version: 2022_05_09_155814) do
     t.string "name"
     t.string "user_id"
     t.string "email"
+    t.string "phone_number"
     t.string "image"
     t.text "tokens"
     t.datetime "created_at", null: false

@@ -6,17 +6,15 @@
           <div>基本情報</div>
         </v-col>
         <template v-if="rangeData == null">
-          <v-col >
-          <RangeAddInfo />
-        </v-col>
+          <v-col>
+            <RangeAddInfo />
+          </v-col>
         </template>
-        
         <template v-else>
           <v-col>
             <RangeEditInfo />
           </v-col>
         </template>
-        
       </v-row>
 
       <template v-if="rangeData == null">
@@ -26,7 +24,6 @@
           </v-col>
         </v-row>
       </template>
-
       <template v-else>
       <v-row dense class="justify-center">
       <v-col cols="10">
