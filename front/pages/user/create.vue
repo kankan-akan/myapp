@@ -5,16 +5,16 @@
       v-model="snackbar"
     >
       {{ text }}
-    <template v-slot:action="{ attrs }">
-     <v-btn
-        color="pink"
-        text
-        v-bind="attrs"
-        @click="snackbar = false"
-      >
-        Close
-      </v-btn>
-    </template>
+      <template v-slot:action="{ attrs }">
+      <v-btn
+          color="pink"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
     </v-snackbar>
     <v-col cols="10">
     <v-card>

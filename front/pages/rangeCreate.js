@@ -1,3 +1,5 @@
+import { mapActions } from 'vuex';
+
 export default {
   data: () => ({
     /* open dialog */
@@ -42,6 +44,9 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      getLoginRange: 'rangeAuth/getLoginRange'
+    }),
     async submit () {
       if (this.$refs.form.validate()) {
         try {
@@ -52,7 +57,7 @@ export default {
             password: this.password
           })
           console.log(res)
-          this.$store.commit('rangeAuth/setLoginRange', res.data)
+          this.getLoginRange()
           this.$store.commit('rangeAuth/setIsLoggedIn', true)
           this.$router.push('/rangeAdmin/info')
         }catch(err) {

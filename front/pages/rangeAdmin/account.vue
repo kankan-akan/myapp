@@ -18,7 +18,7 @@
           ></v-text-field>
         </v-col>
 
-        <v-divider class="mb-3"></v-divider>
+        <!-- <v-divider class="mb-3"></v-divider>
 
         <v-col>
           <v-text-field
@@ -29,7 +29,7 @@
             label="ユーザー名（半角英数字・記号(.?/-_)で15文字以内"
             required
           ></v-text-field>
-        </v-col>
+        </v-col> -->
 
         <v-divider class="mb-3"></v-divider>
 
@@ -43,7 +43,7 @@
           ></v-text-field>
         </v-col>
 
-        <v-divider class="mb-3"></v-divider>
+        <!-- <v-divider class="mb-3"></v-divider>
 
         <v-col>
           <v-text-field
@@ -52,7 +52,7 @@
             label="電話番号"
             required
           ></v-text-field>
-        </v-col>
+        </v-col> -->
 
         <!-- <v-divider class="mb-3"></v-divider> -->
 
@@ -69,22 +69,23 @@
           ></v-text-field>
         </v-col> -->
         <v-btn
-          class="mr-4"
-          :disabled="!valid || loading" 
-          :loading="loading"
-          @click.prevent="editInfo"
-          large
-          outlined
-        >
-          登録
-        </v-btn>
+              class="mr-4"
+              
+              :disabled="!valid || loading" 
+              :loading="loading"
+              @click.prevent="editInfo"
+              large
+              outlined
+            >
+              登録
+            </v-btn>
       </v-form>
     </v-container>
   </v-main>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
   data: function () {
@@ -96,20 +97,20 @@ export default {
       // eye icon
       show: false,
       loading: false,
-      name: this.$store.state.authentication.loginUser.name, 
+      name: this.$store.state.rangeAuth.loginRange.name, 
       nameRules: [
       ],
-      userId: this.$store.state.authentication.loginUser.user_id,
-      userIdRules: [
-        v => (v && v.length <= 15) || '15文字以下で入力してください',
-        v => /^(?=.*[a-zA-Z])[a-zA-Z0-9\d.?/-_]{1,15}$/.test(v) || '',
-      ],
-      email: this.$store.state.authentication.loginUser.email,
+      // userId: this.$store.state.authentication.loginUser.user_id,
+      // userIdRules: [
+      //   v => (v && v.length <= 15) || '15文字以下で入力してください',
+      //   v => /^(?=.*[a-zA-Z])[a-zA-Z0-9\d.?/-_]{1,15}$/.test(v) || '',
+      // ],
+      email: this.$store.state.rangeAuth.loginRange.email,
       emailRules: [
         v => !!v || '入力してください',
         v => /.+@.+\..+/.test(v) || '',
       ],
-      phoneNumber: this.$store.state.authentication.loginUser.phone_number,
+      // phoneNumber: ’’,
       // password: 'password.',
       // passwordRules: [
       //   v => !!v || '入力してください',
@@ -118,23 +119,19 @@ export default {
     }
   },
 
-  computed: {
-      ...mapState({
-        loginUser: (state) => state.authentication.loginUser
-      }),
-  },
-
   methods: {
+    ...mapActions({
+      getLoginRange: 'rangeAuth/getLoginRange'
+    }),
     async editInfo () {
       if (this.$refs.form.validate()) {
         try {
-        const res = await this.$axios.put('/v1/auth', {
+        const res = await this.$axios.put('/v1/range_auth', {
             name: this.name,
-            user_id: this.userId,
-            email: this.email,
-            phone_number: this.phoneNumber,
+            email: this.email
         })
         console.log(res)
+        this.getLoginRange()
         }catch(err) {
           console.log(err)
         }

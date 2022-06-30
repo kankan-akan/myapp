@@ -71,6 +71,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   data: () => ({
     valid: true,
@@ -90,6 +92,9 @@ export default {
   }),
 
   methods: {
+    ...mapActions({
+      getLoginRange: 'rangeAuth/getLoginRange'
+    }),
     async login () {
       if (this.$refs.form.validate()) {
         try {
@@ -100,7 +105,7 @@ export default {
             password: this.password
           })
           console.log(res)
-          this.$store.commit('rangeAuth/setLoginRange', res.data)
+          this.getLoginRange()
           this.$store.commit('rangeAuth/setIsLoggedIn', true)
           this.$router.push('/rangeAdmin/info')
         }catch(err) {
