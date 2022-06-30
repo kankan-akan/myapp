@@ -4,6 +4,7 @@ FactoryBot.define do
     sequence(:name) { |n| "Test User#{n}" }
     sequence(:uid) { |n| "testuser#{n}@example.com" }
     email { uid }
+    sequence(:phone_number) {|n| "090-1234-12#{n}" }
     password { "password." }
   end
 end
