@@ -8,6 +8,50 @@
         v-model="valid"
         lazy-validation
       >
+        <v-col class="text-center">
+          <v-file-input
+            v-model="inputImage"
+            accept="image/png, image/jpeg, image/bmp"
+            hide-input
+            prepend-icon="mdi-camera-plus-outline"
+            @change="uploadImage()"
+          ></v-file-input>
+          <template v-if="avatar == null">
+            <v-avatar size="200">
+              <img v-if="preImage" :src="preImage">
+              <img v-else :src="icon">
+            </v-avatar>
+            <v-chip
+              v-if="preImage"
+              @click="deletePreImage()"
+            >
+              cancel
+            </v-chip>
+          </template>
+          <template v-else>
+            <v-avatar size="200">
+              <img v-if="preImage" :src="preImage">
+              <img v-else :src="avatar">
+            </v-avatar>
+            <v-chip
+              v-if="preImage"
+              @click="deletePreImage()"
+            >
+              cancel
+            </v-chip>
+            <v-btn
+              v-else
+              small
+              icon
+              @click="deleteAvatar()"
+            >
+              <v-icon small>{{ 'mdi-close' }}</v-icon>
+            </v-btn>
+          </template>
+        </v-col>
+        
+        <v-divider class="mb-3"></v-divider>
+
         <v-col>
           <v-text-field
             outlined
@@ -89,6 +133,7 @@ import { mapState } from 'vuex';
 export default {
   data: function () {
     return {
+      icon: require('@/assets/image/avatardefault.png'),
       /* open dialog */
       dialog: false,
       /* register validate */
@@ -115,31 +160,61 @@ export default {
       //   v => !!v || '入力してください',
       //   v => /^(?=.*[a-z])(?=.*[.?/-_])[a-zA-Z0-9\d.?/-_]{8,30}$/.test(v) || '',
       // ],
+      avatar: this.$store.state.authentication.loginUser.avatar.url,
+      // avatar: null,
+      // avatar: 'https://cdn.vuetifyjs.com/images/john.jpg',
+      preImage: null,
+      inputImage: null
     }
   },
 
   computed: {
-      ...mapState({
-        loginUser: (state) => state.authentication.loginUser
-      }),
+    ...mapState({
+      loginUser: (state) => state.authentication.loginUser
+    }),
   },
 
   methods: {
     async editInfo () {
       if (this.$refs.form.validate()) {
-        try {
-        const res = await this.$axios.put('/v1/auth', {
-            name: this.name,
-            user_id: this.userId,
-            email: this.email,
-            phone_number: this.phoneNumber,
+        const formData = new FormData()
+          formData.append('name', this.name)
+          formData.append('user_id', this.userId)
+          formData.append('email', this.email)
+          formData.append('phone_number', this.phoneNumber)
+          if (this.avatar !== '') {
+            formData.append('avatar', this.inputImage)
+          }
+        await this.$axios.put('/v1/auth', formData, { 
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
         })
-        console.log(res)
-        }catch(err) {
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
           console.log(err)
-        }
+        })
       }
     },
+    uploadImage(){
+      if (this.avatar == null) {
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.preImage = e.target.result;
+      }
+      reader.readAsDataURL(this.inputImage);
+    },
+    deletePreImage() {
+      this.preImage = null
+    },
+    deleteAvatar() {
+      this.avatar = null
+      this.inputImage = null
+    }
   }
 }
 </script>

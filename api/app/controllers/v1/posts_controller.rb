@@ -42,7 +42,7 @@ class V1::PostsController < ApplicationController
 
   private
    def post_params 
-    params.permit(:user_id, :content)
+    params.permit(:user_id, :content, :range, { images: [] })
    end
 
 end

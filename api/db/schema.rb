@@ -110,6 +110,8 @@ ActiveRecord::Schema.define(version: 2022_05_09_155814) do
 
   create_table "posts", charset: "utf8", force: :cascade do |t|
     t.text "content"
+    t.string "range"
+    t.json "images"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -184,14 +186,14 @@ ActiveRecord::Schema.define(version: 2022_05_09_155814) do
     t.string "user_id"
     t.string "email"
     t.string "phone_number"
-    t.string "image"
+    t.string "avatar"
     t.text "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token"
-    t.index ["email"], name: "index_users_on_email"
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
-    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
   add_foreign_key "bookmarks", "range_outlines"
