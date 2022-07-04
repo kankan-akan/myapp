@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 2022_05_09_155814) do
   create_table "posts", charset: "utf8", force: :cascade do |t|
     t.text "content"
     t.string "range"
-    t.json "images"
+    t.string "image"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

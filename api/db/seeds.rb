@@ -12,7 +12,8 @@ User.create!([
     user_id: "taichi_kondo",
     email: "a@example.com",
     phone_number: "090-1234-1234",
-    password: "password."
+    password: "password.",
+    avatar: Rails.root.join('app/assets/images/youngman_25.png').open
   },
   {
     name: "田中俊介",

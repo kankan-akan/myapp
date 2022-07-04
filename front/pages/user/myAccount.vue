@@ -12,17 +12,20 @@
           <v-file-input
             v-model="inputImage"
             accept="image/png, image/jpeg, image/bmp"
-            hide-input
+            
             prepend-icon="mdi-camera-plus-outline"
-            @change="uploadImage()"
+            label="画像を選択してください"
+            @change="uploadImage"
           ></v-file-input>
           <template v-if="avatar == null">
-            <v-avatar size="200">
-              <img v-if="preImage" :src="preImage">
-              <img v-else :src="icon">
+            <v-avatar v-if="preImage !== ''" size="200">
+              <img :src="preImage">
+            </v-avatar>
+            <v-avatar v-else size="200" color="indigo">
+              <v-icon dark size="120">mdi-account</v-icon>
             </v-avatar>
             <v-chip
-              v-if="preImage"
+              v-if="preImage !== ''"
               @click="deletePreImage()"
             >
               cancel
@@ -30,11 +33,11 @@
           </template>
           <template v-else>
             <v-avatar size="200">
-              <img v-if="preImage" :src="preImage">
+              <img v-if="preImage !== ''" :src="preImage">
               <img v-else :src="avatar">
             </v-avatar>
             <v-chip
-              v-if="preImage"
+              v-if="preImage !== ''"
               @click="deletePreImage()"
             >
               cancel
@@ -163,8 +166,8 @@ export default {
       avatar: this.$store.state.authentication.loginUser.avatar.url,
       // avatar: null,
       // avatar: 'https://cdn.vuetifyjs.com/images/john.jpg',
-      preImage: null,
-      inputImage: null
+      inputImage: null,
+      preImage: ''
     }
   },
 
@@ -182,7 +185,7 @@ export default {
           formData.append('user_id', this.userId)
           formData.append('email', this.email)
           formData.append('phone_number', this.phoneNumber)
-          if (this.avatar !== '') {
+          if (this.inputImage !== '') {
             formData.append('avatar', this.inputImage)
           }
         await this.$axios.put('/v1/auth', formData, { 
@@ -198,18 +201,33 @@ export default {
         })
       }
     },
-    uploadImage(){
-      if (this.avatar == null) {
-        return;
+    // uploadImage(){
+    //   if (this.avatar == null) {
+    //     return;
+    //   }
+    //   const reader = new FileReader();
+    //   reader.onload = (e) => {
+    //     this.preImage = e.target.result;
+    //   }
+    //   reader.readAsDataURL(this.inputImage);
+    // },
+    uploadImage(file) {
+      if (file !== undefined && file !== null) {
+        if (file.name.lastIndexOf('.') <= 0) {
+          return
+        }
+        const fr = new FileReader()
+        fr.readAsDataURL(file)
+        fr.addEventListener('load', () => {
+          this.preImage = fr.result
+        })
+      } else {
+        this.preImage = ''
       }
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.preImage = e.target.result;
-      }
-      reader.readAsDataURL(this.inputImage);
     },
     deletePreImage() {
-      this.preImage = null
+      this.preImage = ''
+      this.inputImage = null
     },
     deleteAvatar() {
       this.avatar = null
