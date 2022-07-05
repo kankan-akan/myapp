@@ -33,16 +33,17 @@ import { mapState } from 'vuex';
 export default {
   props: [ 'post' ],
 
-  data: () => ({
-    isActive: false,
-    countLike: ' '
-  }),
+  data: function () {
+    return {
+      isActive: false,
+      countLike: this.post.like_users.length
+    }
+  },
 
   computed: {
     ...mapState ({
       loginUser: (state) => state.authentication.loginUser
     }),
-    
   },
 
   watch: {
@@ -50,7 +51,6 @@ export default {
     },
 
   mounted() {
-    this.count()
     if (this.$auth.loggedIn) {
       this.isActive = false
         this.post.like_users.forEach((f) => {
@@ -71,7 +71,7 @@ export default {
         if(res.data.status == 200) {
           this.isActive = true
         }
-        this.count()
+        this.increment()
       })
       .catch((err) => {
         console.log(err)
@@ -88,17 +88,23 @@ export default {
         if(res.data.status == 200) {
           this.isActive = false
         }
-        this.count()
+        this.decrement()
       })
       .catch((err) => {
         console.log(err)
       })
     },
-    count() {
-      this.$axios.get(`/v1/posts/${this.post.id}/likes/count`) 
-      .then((res) => {
-        this.countLike = res.data
-      })
+    // count() {
+    //   this.$axios.get(`/v1/posts/${this.post.id}/likes/count`) 
+    //   .then((res) => {
+    //     this.countLike = res.data
+    //   })
+    // },
+    increment() {
+      this.countLike++
+    },
+    decrement() {
+      this.countLike--
     }
   },
 

@@ -136,7 +136,6 @@ import { mapState } from 'vuex';
 export default {
   data: function () {
     return {
-      icon: require('@/assets/image/avatardefault.png'),
       /* open dialog */
       dialog: false,
       /* register validate */

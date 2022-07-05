@@ -8,8 +8,9 @@
           cols="3"
         > 
           <div @click="user(post.user.id)">@{{ post.user.user_id }}</div>
-          <div>{{ post.content }}</div>
           <div>user_id:{{ post.user.id }}</div>
+          <v-img aspect-ratio="1" :src="post.image.url"></v-img>
+          <div>{{ post.content }}</div>
           <PostLike :post="post"/>
         </v-col>
       </v-row>
