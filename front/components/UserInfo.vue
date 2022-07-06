@@ -1,16 +1,37 @@
 <template>
   <v-container>
+    <div class="d-flex flex-no-wrap justify-space-between">
     <v-card-title class="pa-2">@{{ user.user_id }}</v-card-title>
-    <v-divider></v-divider>
-    <v-row class="justify-center ma-auto pt-3">
-      <v-avatar size="120">
-        <img
-          src="https://cdn.vuetifyjs.com/images/john.jpg"
+    <template v-if="loginUser.id !== user.id">
+        <v-btn
+          v-if="follow" 
+          @click="unFollowUser()"
+          @mouseover="mouseover()"
+          @mouseleave="mouseleave()"
         >
+          {{ message }}
+        </v-btn>
+        <v-btn v-else @click="followUser()">
+          フォローする
+        </v-btn>
+      </template>
+    </div>
+
+    <v-divider></v-divider>
+
+    <v-row class="justify-center ma-auto pt-3">
+      
+      <v-avatar v-if="user.avatar.url" size="120">
+        <img :src="user.avatar.url">
+      </v-avatar>
+      <v-avatar v-else size="120" color="indigo">
+        <v-icon dark size="80">mdi-account</v-icon>
       </v-avatar>
     </v-row>
-    <v-row class="justify-center">
-      <div>{{ user.name }}</div>
+    <v-row>
+      <v-col class="d-flex justify-center text-subtitle1">
+       {{ user.name }}
+      </v-col>
     </v-row>
 
     <v-row>
@@ -26,11 +47,12 @@
             <v-col class="pa-1" v-for="post in posts" :key="post.id">
               <v-card class="pa-2">
                 <div class="d-flex">
-                  <v-avatar size="120">
-                    <v-img></v-img>
+                  <v-avatar tile size="120">
+                    <img :src="post.image.url">
                   </v-avatar>
+              
                   <v-card-text>
-                    <div>{{ post.content }}</div>
+                    <div class="kaigyo">{{ post.content }}</div>
                   </v-card-text>
                 </div>
               </v-card>
@@ -46,7 +68,7 @@
                     <v-img></v-img>
                   </v-avatar>
                   <v-card-text>
-                    <div>{{ like.post.content }}</div>
+                    <div class="kaigyo">{{ like.post.content }}</div>
                   </v-card-text>
                 </div>
               </v-card>
@@ -93,8 +115,58 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 
 export default {
   props: ['user', 'posts', 'likes', 'bookmarks', 'reservations', 'reviews'], 
+
+  data:() => ({
+    follow: false,
+    message: 'フォロー中',
+    color: 'blue white--text'
+  }),
+
+  computed: {
+    ...mapState({
+      loginUser: (state) => state.authentication.loginUser
+    })
+  },
+
+  methods: {
+    mouseover() {
+      this.color = 'red white--text'
+      this.message = 'フォロー解除'
+    },
+    mouseleave() {
+      this.color = 'blue white--text'
+      this.message = 'フォロー中'
+    },
+    followUser () {
+      this.$axios.post('/v1/relationships', {
+        user_id: this.loginUser.id,
+        follower_id: this.user.id
+      })
+      .then((res) => {
+        console.log(res)
+        this.follow = true
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
+    unFollowUser () {
+      this.$axios.delete('/v1/relationships', {
+        user_id: this.loginUser.id,
+        follower_id: this.user.id
+      })
+      .then((res) => {
+        console.log(res)
+        this.follow = false
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    }
+  }
 }
 </script>

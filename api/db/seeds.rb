@@ -13,18 +13,56 @@ User.create!([
     email: "a@example.com",
     phone_number: "090-1234-1234",
     password: "password.",
-    avatar: Rails.root.join('app/assets/images/youngman_25.png').open
+    avatar: Rails.root.join('app/assets/images/avatar/youngman_25.png').open
   },
   {
     name: "田中俊介",
     user_id: "shun.tanaka",
     email: "b@examle.com",
     phone_number: "090-7980-7887",
+    password: "password.",
+    avatar: Rails.root.join('app/assets/images/avatar/golf_jou_man_edit.jpeg').open
+  },
+  {
+    name: "佐藤はな",
+    user_id: "flower_sato",
+    email: "c@example.com",
+    phone_number: "090-6789-6789",
     password: "password."
   }
 ])
 
-AdminRange.create(
+Post.create!([
+  {
+    content: "examle post1",
+    image: Rails.root.join('app/assets/images/post/IMG_1164_2.jpeg').open,
+    user_id: 1
+  },
+  {
+    content: "example post2",
+    image: Rails.root.join('app/assets/images/post/IMG_2190.jpeg').open,
+    user_id: 2
+  },
+  {
+    content: "250ydくらいで広めの練習場だった。崖の上まで届くと300yd！\n待合室は冷房が効いていて快適。",
+    image: Rails.root.join('app/assets/images/post/IMG_2138.jpg').open,
+    user_id: 1
+  },
+  {
+    content: "example post4",
+    user_id: 3,
+  },
+  {
+    content: "example post5",
+    user_id: 3
+  },
+  {
+    content: "examle post 6",
+    user_id: 2
+  }
+])
+
+AdminRange.create!(
   name: "hogeゴルフ練習場",
   email: "a@example.com",
   password: "password."

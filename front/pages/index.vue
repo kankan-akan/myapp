@@ -74,9 +74,7 @@
 
                     <Equipment :equipment="place.equipment" />
 
-                    <v-col
-                      style="white-space:pre-wrap; word-wrap:break-word;"
-                    >{{ place.features }}</v-col>
+                    <v-col class="kaigyo">{{ place.features }}</v-col>
                     <v-col>ホームページ: {{ place.link }}</v-col>
                     <v-col>電話番号: {{ place.phone_number }}</v-col>
                     <v-col>打席数: {{ place.booths }}打席</v-col>

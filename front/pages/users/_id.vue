@@ -2,7 +2,7 @@
   <v-main>
     <v-container>
       <v-card max-width="700" class="justify-center mx-auto">
-        <UserInfo :user="selectedUser" :posts="userPosts" :likes="userLikes"/>
+        <UserInfo v-if="selectedUser.avatar !== undefined" :user="selectedUser" :posts="userPosts" :likes="userLikes"/>
       </v-card>
     </v-container>
   </v-main>

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row dense>
       <v-col class="d-flex align-center justify-end">
         <div>post_id:{{ post.id }}</div>
         <v-btn
