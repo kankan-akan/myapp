@@ -1,28 +1,25 @@
 <template>
   <v-container>
     <v-row>
-      <v-col>
+      <v-col class="d-flex align-center justify-end">
         <div>post_id:{{ post.id }}</div>
+        <v-btn
+          v-if="isActive"
+          icon
+          color="pink"
+          @click="unlike()"
+        >
+          <v-icon>{{ 'mdi-heart' }}</v-icon>
+        </v-btn>
+        <v-btn
+          v-else 
+          icon
+          @click="postLike()"
+        >
+          <v-icon>{{ 'mdi-heart-outline' }}</v-icon>
+        </v-btn>
+        <div class="grey--text text--darken-1">{{ countLike }}</div>
       </v-col>
-    </v-row>
-    <v-row>
-      <v-btn
-        v-if="isActive"
-        icon
-        color="pink"
-        @click="unlike()"
-      >
-        <v-icon>{{ 'mdi-heart' }}</v-icon>
-      </v-btn>
-      <v-btn
-        v-else 
-        icon
-        @click="postLike()"
-      >
-        <v-icon>{{ 'mdi-heart-outline' }}</v-icon>
-      </v-btn>
-      <!-- <div>{{ post.like_users.length }}</div> -->
-      <div>{{ countLike }}</div>
     </v-row>
   </v-container>
 </template>

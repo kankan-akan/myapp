@@ -7,11 +7,25 @@
           :key=" i "
           cols="3"
         > 
-          <div @click="user(post.user.id)">@{{ post.user.user_id }}</div>
-          <div>user_id:{{ post.user.id }}</div>
-          <v-img aspect-ratio="1" :src="post.image.url"></v-img>
-          <div>{{ post.content }}</div>
-          <PostLike :post="post"/>
+          <v-card>
+            <v-card-title>
+              <div class="d-flex align-end">
+                <v-avatar size="40px">
+                  <img :src="post.user.avatar.url">
+                </v-avatar>
+                  <div class="text-h6" @click="user(post.user.id)">@{{ post.user.user_id }}</div>
+              </div>
+            </v-card-title>
+
+            <v-card-text>
+              <v-col>{{ post.content }}</v-col>
+              <div>user_id:{{ post.user.id }}</div>
+            </v-card-text>
+
+            <PostLike :post="post"/>
+
+            <v-img :src="post.image.url"></v-img>
+          </v-card>
         </v-col>
       </v-row>
     </v-container>
