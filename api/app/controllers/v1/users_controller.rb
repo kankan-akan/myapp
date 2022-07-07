@@ -6,7 +6,7 @@ class V1::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    render json: @user
+    @user = User.includes(:followers, :followings).find(params[:id])
+    render json: @user.as_json(include: [followers: { only: [:id, :name, :user_id] }, followings: { only: [:id, :name, :user_id] } ])
   end
 end

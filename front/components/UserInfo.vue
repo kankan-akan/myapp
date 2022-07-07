@@ -4,7 +4,8 @@
     <v-card-title class="pa-2">@{{ user.user_id }}</v-card-title>
     <template v-if="loginUser.id !== user.id">
         <v-btn
-          v-if="follow" 
+          v-if="follow"
+          :color="color"
           @click="unFollowUser()"
           @mouseover="mouseover()"
           @mouseleave="mouseleave()"
@@ -19,20 +20,33 @@
 
     <v-divider></v-divider>
 
-    <v-row class="justify-center ma-auto pt-3">
-      
-      <v-avatar v-if="user.avatar.url" size="120">
-        <img :src="user.avatar.url">
-      </v-avatar>
-      <v-avatar v-else size="120" color="indigo">
-        <v-icon dark size="80">mdi-account</v-icon>
-      </v-avatar>
-    </v-row>
-    <v-row>
-      <v-col class="d-flex justify-center text-subtitle1">
-       {{ user.name }}
+    <div class="d-flex justify-space-around">
+      <div class="ma-4">
+        <v-avatar v-if="user.avatar.url" size="120">
+          <img :src="user.avatar.url">
+        </v-avatar>
+        <v-avatar v-else size="120" color="indigo">
+          <v-icon dark size="80">mdi-account</v-icon>
+        </v-avatar>
+      </div>
+      <v-col>
+        <v-col class="text-h5 mx-1">{{ user.name }}</v-col>
+        <div>
+          <v-row>
+            <v-col >
+              <div class="d-flex justify-center">フォロー中</div>
+              <div class="d-flex justify-center">{{ user.followings.length }}</div>
+            </v-col>
+            <v-col>
+              <div class="d-flex justify-center">フォロワー</div>
+              <div class="d-flex justify-center">{{ user.followers.length }}</div>
+            </v-col>
+          </v-row>
+        </div>
       </v-col>
-    </v-row>
+    </div>
+      
+    
 
     <v-row>
       <v-tabs  fixed-tabs color="cyan">
@@ -130,6 +144,17 @@ export default {
     ...mapState({
       loginUser: (state) => state.authentication.loginUser
     })
+  },
+
+  mounted() {
+    if (this.$auth.loggedIn) {
+      this.follow = false
+      this.user.followers.forEach((f) => {
+        if (this.loginUser.id === f.id) {
+          this.follow = true
+        }
+      })
+    }
   },
 
   methods: {

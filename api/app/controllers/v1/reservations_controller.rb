@@ -9,7 +9,7 @@ class V1::ReservationsController < ApplicationController
   def search_reservation
     @lesson = Lesson.find(params[:id])
     @reservation = @lesson.reservations.where('date LIKE ?', "#{params[:date]}").includes(:user)
-    render json: @reservation.as_json(include: [user: { only: [:name, :phone_number] }] )
+    render json: @reservation.as_json(include: [user: { only: [:name, :phone_number] } ])
   end
 
   def show
