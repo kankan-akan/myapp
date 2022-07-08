@@ -14,7 +14,7 @@ class V1::PostsController < ApplicationController
 
   def index
     @post = Post.includes(:user, :like_users)
-    render json: @post.as_json(include: [:user, :like_users])
+    render json: @post.as_json(include: [{user: { only: [:id, :name, :user_id, :avatar] }}, {like_users: { only: [:id, :name, :user_id, :avatar] }} ])
   end
 
   def show

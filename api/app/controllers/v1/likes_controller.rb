@@ -4,7 +4,7 @@ class V1::LikesController < ApplicationController
 
   def my_like
     @like = current_v1_user.likes.includes(:post)
-    render json: @like.as_json(include: :post)
+    render json: @like.as_json(include: [{post: { include: [like_users: { only: [:id, :name, :user_id, :avatar]} ] }} ])
   end
 
   def user_likes

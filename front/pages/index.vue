@@ -14,15 +14,22 @@
         >
           <v-card justify="space-around">
             <v-card-text class="my-0 pa-2 black--text">
-              <div v-text="place.city"></div>
-              <div v-text="place.ruby"></div>
-              <div 
-                class="text-h6"
-                v-text="place.name"
-              >
+              <div class="d-flex justify-space-between">
+                <div>
+                  <div v-text="place.city"></div>
+                  <div v-text="place.ruby"></div>
+                  <div 
+                    class="text-h6"
+                    v-text="place.name"
+                  >
+                  </div>
+                  <div v-text="place.address"></div>
+                  <div>{{ place.distance }}yd</div>
+                </div>
+                <v-btn icon>
+                  <v-icon>mdi-bookmark-outline</v-icon>
+                </v-btn>
               </div>
-              <div v-text="place.address"></div>
-              <div>{{ place.distance }}yd</div>
             </v-card-text>
             <v-divider class="my-2"></v-divider>
             <table class="table-price">

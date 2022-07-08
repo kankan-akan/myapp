@@ -62,6 +62,7 @@
                   <v-card-text>
                     <div class="kaigyo">{{ like.post.content }}</div>
                   </v-card-text>
+                  <PostLike :post=like.post />
                 </div>
               </v-card>
             </v-col>
