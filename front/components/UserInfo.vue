@@ -56,8 +56,8 @@
             <v-col class="pa-1" v-for="(like, i) in likes" :key="i">
               <v-card class="pa-2" >
                 <div class="d-flex">
-                  <v-avatar size="120">
-                    <v-img></v-img>
+                  <v-avatar tile size="120">
+                    <img :src="like.post.image.url">
                   </v-avatar>
                   <v-card-text>
                     <div class="kaigyo">{{ like.post.content }}</div>
@@ -113,9 +113,6 @@ export default {
   props: ['user', 'posts', 'likes', 'bookmarks', 'reservations', 'reviews'], 
 
   data:() => ({
-    follow: false,
-    message: 'フォロー中',
-    color: 'blue white--text'
   }),
 
   computed: {
@@ -124,52 +121,8 @@ export default {
     })
   },
 
-  mounted() {
-    if (this.$auth.loggedIn) {
-      this.follow = false
-      this.user.followers.forEach((f) => {
-        if (this.loginUser.id === f.id) {
-          this.follow = true
-        }
-      })
-    }
-  },
-
   methods: {
-    mouseover() {
-      this.color = 'red white--text'
-      this.message = 'フォロー解除'
-    },
-    mouseleave() {
-      this.color = 'blue white--text'
-      this.message = 'フォロー中'
-    },
-    followUser () {
-      this.$axios.post('/v1/relationships', {
-        user_id: this.loginUser.id,
-        follower_id: this.user.id
-      })
-      .then((res) => {
-        console.log(res)
-        this.follow = true
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-    },
-    unFollowUser () {
-      this.$axios.delete('/v1/relationships', {
-        user_id: this.loginUser.id,
-        follower_id: this.user.id
-      })
-      .then((res) => {
-        console.log(res)
-        this.follow = false
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-    }
+    
   }
 }
 </script>
