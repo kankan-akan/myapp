@@ -2,20 +2,7 @@
   <v-container>
     <div class="d-flex flex-no-wrap justify-space-between">
     <v-card-title class="pa-2">@{{ user.user_id }}</v-card-title>
-    <template v-if="loginUser.id !== user.id">
-        <v-btn
-          v-if="follow"
-          :color="color"
-          @click="unFollowUser()"
-          @mouseover="mouseover()"
-          @mouseleave="mouseleave()"
-        >
-          {{ message }}
-        </v-btn>
-        <v-btn v-else @click="followUser()">
-          フォローする
-        </v-btn>
-      </template>
+    <FollowButton :user=user />
     </div>
 
     <v-divider></v-divider>
@@ -32,16 +19,7 @@
       <v-col>
         <v-col class="text-h5 mx-1">{{ user.name }}</v-col>
         <div>
-          <v-row>
-            <v-col >
-              <div class="d-flex justify-center">フォロー中</div>
-              <div class="d-flex justify-center">{{ user.followings.length }}</div>
-            </v-col>
-            <v-col>
-              <div class="d-flex justify-center">フォロワー</div>
-              <div class="d-flex justify-center">{{ user.followers.length }}</div>
-            </v-col>
-          </v-row>
+          <FollowCount :user=user />
         </div>
       </v-col>
     </div>

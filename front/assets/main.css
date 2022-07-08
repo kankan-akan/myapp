@@ -62,3 +62,8 @@
   white-space: pre-wrap; 
   word-wrap: break-word;
 }
+
+.cursor {
+  cursor: pointer;
+
+}

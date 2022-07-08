@@ -76,8 +76,4 @@ export default {
   color: rgba(255, 255, 255, 1) !important;
 }
 
-.cursor {
-  cursor: pointer;
-
-}
 </style>
