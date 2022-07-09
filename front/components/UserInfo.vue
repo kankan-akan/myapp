@@ -77,6 +77,7 @@
             >
             <v-card-text>
               {{ bookmark.range_outline.name }}
+              <BookmarkButton :outline="bookmark.range_outline" />
             </v-card-text>
               <v-divider></v-divider>
             </v-col>

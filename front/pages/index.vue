@@ -26,9 +26,9 @@
                   <div v-text="place.address"></div>
                   <div>{{ place.distance }}yd</div>
                 </div>
-                <v-btn icon>
-                  <v-icon>mdi-bookmark-outline</v-icon>
-                </v-btn>
+
+                <BookmarkButton :outline="place" />
+
               </div>
             </v-card-text>
             <v-divider class="my-2"></v-divider>
