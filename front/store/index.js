@@ -1,7 +1,10 @@
 export const state = () => ({
-  outline: [ ],
-  equipment: [ ],
-  selectedLesson: []
+  outline: [],
+  equipment: [],
+  selectedLesson: [],
+  selectedUser: [],
+  userPosts: [],
+  userLikes: []
 })
 
 export const mutations = {
@@ -10,6 +13,15 @@ export const mutations = {
   },
   setSelectedLesson (state, selectedLesson ) {
     state.selectedLesson = selectedLesson
+  },
+  setSelectedUser (state, selectedUser) {
+    state.selectedUser = selectedUser
+  },
+  setUserPosts (state, userPosts) {
+    state.userPosts = userPosts 
+  },
+  setUserLikes (state, userLikes) {
+    state.userLikes = userLikes
   }
 }
 
