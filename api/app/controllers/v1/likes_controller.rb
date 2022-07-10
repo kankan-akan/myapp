@@ -9,15 +9,15 @@ class V1::LikesController < ApplicationController
 
   def user_likes
     @user = User.find(params[:id])
-    @like = @user.likes.find_by(params[:user_id])
-    render json: @like
+    @like = @user.likes.includes(:post)
+    render json: @like.as_json(include: [{post: { include: [like_users: { only: [:id, :name, :user_id, :avatar]} ] }} ])
   end
 
-  def count
-    @post = Post.find(params[:post_id])
-    @like = @post.likes.size
-    render json: @like
-  end
+  # def count
+  #   @post = Post.find(params[:post_id])
+  #   @like = @post.likes.size
+  #   render json: @like
+  # end
 
   def index
     @like = Like.all

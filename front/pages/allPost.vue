@@ -27,7 +27,10 @@
             <v-img max-width="150px" max-height="180px" :src="post.image.url"></v-img>
           </div>
           <v-divider></v-divider>
+          <div class="pa-2 d-flex justify-end align-center">
             <PostLike :post="post"/>
+          </div>
+         
           <!-- <v-avatar tile size="210" class="mx-auto">
             <v-img  :src="post.image.url"></v-img>
           </v-avatar> -->

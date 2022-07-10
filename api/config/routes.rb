@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     get '/posts/user_posts/:id', to: 'posts#user_posts'
     resources :posts, only: [:index, :show, :create, :destroy] do
       resources :likes, only: [:index]
-      get '/likes/count', to:'likes#count'
+      # get '/likes/count', to:'likes#count'
     end
     get '/likes/my_like', to: 'likes#my_like'
     get '/likes/user_likes/:id', to: 'likes#user_likes'

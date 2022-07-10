@@ -2,7 +2,7 @@
   <v-container>
     <div class="d-flex flex-no-wrap justify-space-between">
     <v-card-title class="pa-2">@{{ user.user_id }}</v-card-title>
-    <FollowButton :user=user />
+    <FollowButton :user="user" />
     </div>
 
     <v-divider></v-divider>
@@ -19,7 +19,7 @@
       <v-col>
         <v-col class="text-h5 mx-1">{{ user.name }}</v-col>
         <div>
-          <FollowCount :user=user />
+          <FollowCount :user="user" />
         </div>
       </v-col>
     </div>
@@ -35,48 +35,56 @@
         <v-tab>review</v-tab>
 
         <v-tab-item>
-          <v-card>
+          <v-container>
             <v-col class="pa-1" v-for="post in posts" :key="post.id">
               <v-card class="pa-2">
                 <div class="d-flex">
-                  <v-avatar tile size="120">
+                  <v-avatar tile size="140">
                     <img :src="post.image.url">
                   </v-avatar>
-              
+                  <div>
                   <v-card-text>
                     <div class="kaigyo">{{ post.content }}</div>
                   </v-card-text>
+                  <div class="like-btn">
+                    <PostLike :post="post" />
+                  </div>
+                  </div>
                 </div>
               </v-card>
             </v-col>
-            </v-card>
+          </v-container>
         </v-tab-item>
         <v-tab-item>
-          <v-card>
+          <v-container>
             <v-col class="pa-1" v-for="(like, i) in likes" :key="i">
-              <v-card class="pa-2" >
+              <v-card class="pa-2">
                 <div class="d-flex">
-                  <v-avatar tile size="120">
+                  <v-avatar tile size="140">
                     <img :src="like.post.image.url">
                   </v-avatar>
                   <v-card-text>
                     <div class="kaigyo">{{ like.post.content }}</div>
+                    <div class="like-btn">
+                      <PostLike :post="like.post" />
+                    </div>
                   </v-card-text>
-                  <PostLike :post=like.post />
                 </div>
               </v-card>
             </v-col>
-          </v-card>
+          </v-container>
         </v-tab-item>
         <v-tab-item>
           <v-card>
             <v-col 
-              class="pa-0"
+              class="pa-1"
               v-for="(bookmark, i) in bookmarks" 
               :key="i"
             >
             <v-card-text>
-              {{ bookmark.range_outline.name }}
+              <div>{{ bookmark.range_outline.city }}</div>
+              <div>{{ bookmark.range_outline.name }}</div>
+              <div>{{ bookmark.range_outline.address }}</div>
               <BookmarkButton :outline="bookmark.range_outline" />
             </v-card-text>
               <v-divider></v-divider>

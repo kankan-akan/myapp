@@ -67,3 +67,10 @@
   cursor: pointer;
 
 }
+
+.like-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 4px;
+
+}
