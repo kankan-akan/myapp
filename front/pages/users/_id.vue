@@ -2,14 +2,14 @@
   <v-main>
     <v-container>
       <v-card max-width="700" class="justify-center mx-auto">
-        <UserInfo v-if="userLikes !== undefined" :user="selectedUser" :posts="userPosts" :likes="userLikes" />
+        <UserInfo v-if="userLikes !== undefined" :user="selectedUser" :posts="userPosts" :likes="userLikes" :bookmarks="bookmarks" :reservations="reservations" :reviews="reviews"/>
       </v-card>
     </v-container>
   </v-main>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   data: () => ({
@@ -20,9 +20,13 @@ export default {
 
   computed: {
     ...mapState({
+      loginUser: (state) => state.authentication.loginUser,
       selectedUser: (state) => state.selectedUser,
       userPosts: (state) => state.userPosts,
-      userLikes: (state) => state.userLikes
+      userLikes: (state) => state.userLikes,
+      bookmarks: (state) => state.myData.bookmarks,
+      reservations: (state) => state.myData.reservations,
+      reviews: (state) => state.myData.reviews
     })
   },
 
@@ -42,6 +46,19 @@ export default {
         // this.userLikes = res.data
         this.$store.commit('setUserLikes', res.data)
       })
+      if (this.loginUser.id == this.$route.params.id) {
+        this.getBookmark()
+        this.getReservation()
+        this.getReview()
+      }
+  },
+
+  methods: {
+    ...mapActions({
+      getBookmark: 'myData/getBookmark',
+      getReservation: 'myData/getReservation',
+      getReview: 'myData/getReview'
+    })
   }
 
 }

@@ -7,8 +7,8 @@ class V1::PostsController < ApplicationController
   end
 
   def user_posts
-    @user = User.find(params[:id])
-    @post = @user.posts.includes(:like_users)
+    # @user = User.find(params[:id])
+    @post = User.find(params[:id]).posts.includes(:like_users)
     render json: @post.as_json(include: [like_users: { only: [:id, :name, :user_id, :avatar]} ])
   end
 

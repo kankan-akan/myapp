@@ -23,16 +23,17 @@
         </div>
       </v-col>
     </div>
-      
-    
 
     <v-row>
       <v-tabs  fixed-tabs color="cyan">
         <v-tab>post</v-tab>
         <v-tab>like</v-tab>
-        <v-tab>bookmark</v-tab>
-        <v-tab>reservation</v-tab>
-        <v-tab>review</v-tab>
+        <template v-if="loginUser.id == user.id">
+          <v-tab>bookmark</v-tab>
+          <v-tab>reservation</v-tab>
+          <v-tab>review</v-tab>
+        </template>
+
 
         <v-tab-item>
           <v-container>
@@ -129,10 +130,6 @@ export default {
     ...mapState({
       loginUser: (state) => state.authentication.loginUser
     })
-  },
-
-  methods: {
-    
   }
 }
 </script>
