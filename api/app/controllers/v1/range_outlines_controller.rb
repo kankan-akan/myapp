@@ -8,7 +8,7 @@ class V1::RangeOutlinesController < ApplicationController
 
   def index
     @outline = RangeOutline.includes(:equipment, :lessons)
-    render json: @outline.as_json(include: [:equipment, :lessons, {bookmark_users: { only: [:id, :name, :user_id, :avatar] }} ])
+    render json: @outline.as_json(include: [:equipment, :lessons, {bookmark_users: { only: [:id, :name, :user_id, :avatar]} } ])
   end
 
   def show

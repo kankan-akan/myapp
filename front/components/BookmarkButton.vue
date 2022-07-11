@@ -3,6 +3,7 @@
     <v-btn
       v-if="isActive"
       icon
+      color="amber"
       @click="deleteBookmark()"
     >
       <v-icon>mdi-bookmark</v-icon>

@@ -80,15 +80,20 @@
             <v-col 
               class="pa-1"
               v-for="(bookmark, i) in bookmarks" 
-              :key="i"
+              :key="bookmark.id"
             >
-            <v-card-text>
-              <div>{{ bookmark.range_outline.city }}</div>
-              <div>{{ bookmark.range_outline.name }}</div>
-              <div>{{ bookmark.range_outline.address }}</div>
-              <BookmarkButton :outline="bookmark.range_outline" />
-            </v-card-text>
-              <v-divider></v-divider>
+              <v-card-text class="d-flex justify-space-between">
+                <div>
+                  <div class="grey--text text--darken-2">{{ bookmark.range_outline.city }}</div>
+                  <div class="my-1 text-h5">{{ bookmark.range_outline.name }}</div>
+                  <div class="grey--text text--darken-2">{{ bookmark.range_outline.address }}</div>
+                </div>
+                <div class="d-flex">
+                  <DetailIndex class="align-center" :place="bookmark.range_outline" />
+                  <BookmarkButton :outline="bookmark.range_outline" />
+                </div>
+              </v-card-text>
+              <v-divider v-if="i < bookmark.length -1" :key="i"></v-divider>
             </v-col>
           </v-card>
         </v-tab-item>
