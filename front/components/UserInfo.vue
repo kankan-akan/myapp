@@ -100,8 +100,9 @@
         <v-tab-item>
           <v-card>
             <v-col class="pa-0" v-for="(reservation, i) in reservations" :key="i">
-              <v-card-text>
-                {{ reservation.lesson.title }} / {{ reservation.date }}
+              <v-card-text class="d-flex justify-space-between">
+                <div>{{ reservation.lesson.title }} / {{ reservation.date }}</div>
+                <DeleteReservation :reservation="reservation" />
               </v-card-text>
               <v-divider></v-divider>
             </v-col>
