@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(version: 2022_05_09_155814) do
 
   create_table "reviews", charset: "utf8", force: :cascade do |t|
     t.string "title"
-    t.string "review"
+    t.string "content"
     t.float "rate"
     t.integer "reservation_id", null: false
     t.bigint "lesson_id"

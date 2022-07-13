@@ -2,33 +2,23 @@
   <div>
     <v-dialog
       v-model="dialog"
-      persistent
       max-width="550"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-          v-if="isActive"
-          rounded
           outlined
-          color="blue"
-          @click="dialog = true"
+          depressed
+          color="green white--text lighten-1"
           v-bind="attrs"
           v-on="on"
+          @click="dialog = true"
         >
-          レビューを書く
-        </v-btn>
-        <v-btn
-          v-else
-          rounded
-          outline
-          disabled
-        >
-          レビュー済み
+          編集
         </v-btn>
       </template>
       <v-card>
         <v-card-title class="text-h5">
-        
+          レビューを編集
         </v-card-title>
         <v-card-text>
           <v-form
@@ -57,7 +47,7 @@
                   hover
                   size="30"
                 ></v-rating>
-                <div class="grey--text text--darken-1">({{ rate }})</div>
+                <span class="grey--text text--darken-1">({{ rate }})</span>
               </div>
             </v-col>
 
@@ -78,7 +68,7 @@
           <v-btn
             color="blue"
             text
-            @click="postReview()"
+            @click="updateReview(review.id)"
           >
             送信
           </v-btn>
@@ -92,68 +82,87 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    
+    <v-menu offset-y>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          outlined
+          depressed
+          color="red"
+          v-bind="attrs"
+          v-on="on"
+        >
+          削除
+        </v-btn>
+      </template>
+      <v-list>
+        <v-list-item>
+          <v-list-item-title 
+            class="cursor" 
+            @click="deleteReview(review.id)"
+          >
+            レビューを削除
+          </v-list-item-title>
+        </v-list-item>  
+      </v-list>
+    </v-menu>
   </div>
 </template>
 
 <script>
-import { mapActions,mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
-  props: ['reservation'],
+  props: ['review'],
 
-  data:() => ({
-    dialog: false,
-    valid: true,
-    disabled: false,
-    isActive: true,
-    rules: [v => !!v || '入力してください'],
-    title: '',
-    content: '',
-    rate: 3
-  }),
-
-  computed: {
-    ...mapState ({
-      loginUser: (state) => state.authentication.loginUser,
-      reviews: (state) => state.myData.reviews
-    })
+  data: function () {
+    return {
+      dialog: false,
+      valid: true,
+      rules: [v => !!v || '入力してください'],
+      title: this.review.title,
+      rate: this.review.rate,
+      content: this.review.content
+    }
   },
 
-  mounted() {
-    if (this.$store.state.auth.loggedIn) {
-      this.isActive = true
-      this.reviews.forEach((f) => {
-        if (this.reservation.id === f.reservation_id) {
-          this.isActive = false
-        }
-      })
-    }
+  computed: {
+    ...mapState({
+      loginUser: (state) => state.authentication.loginUser
+    })
   },
 
   methods: {
     ...mapActions({
       getReview: 'myData/getReview'
     }),
-    postReview() {
-      if (this.$refs.form.validate()) {
-        this.$axios.post('/v1/reviews', {
-          title: this.title,
-          content: this.content,
-          rate: this.rate,
-          user_id: this.loginUser.id,
-          lesson_id: this.reservation.lesson_id,
-          reservation_id: this.reservation.id
-        })
-        .then((res) => {
-          console.log(res)
-          this.dialog = false
-          this.getReview()
-
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-      }
+    updateReview(id) {
+      this.$axios.put(`/v1/reviews/${id}`, {
+        title: this.title,
+        rate: this.rate,
+        content: this.content,
+        user_id: this.loginUser.id,
+        lesson_id: this.review.lesson_id,
+        reservation_id: this.review.reservation_id
+      })
+      .then((res) => {
+        console.log(res)
+        this.dialog = false
+        this.getReview()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
+    deleteReview(id) {
+      this.$axios.delete(`/v1/reviews/${id}`)
+      .then((res) => {
+        console.log(res)
+        this.getReview()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     }
   }
 }
