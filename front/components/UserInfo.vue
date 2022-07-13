@@ -102,7 +102,11 @@
             <v-col class="pa-0" v-for="(reservation, i) in reservations" :key="i">
               <v-card-text class="d-flex justify-space-between">
                 <div>{{ reservation.lesson.title }} / {{ reservation.date }}</div>
-                <DeleteReservation :reservation="reservation" />
+                <div>
+                  <PostReview class="mb-2" :reservation="reservation" />
+                  <DeleteReservation :reservation="reservation" />
+                </div>
+
               </v-card-text>
               <v-divider></v-divider>
             </v-col>
@@ -112,7 +116,8 @@
           <v-card>
             <v-col class="pa-0" v-for="(review, i) in reviews" :key="i">
               <v-card-text>
-                {{ review.rate }} / {{ review.review }}
+                <div>{{ review.rate }} / {{ review.review }}</div>
+
               </v-card-text>
               <v-divider></v-divider>
             </v-col>

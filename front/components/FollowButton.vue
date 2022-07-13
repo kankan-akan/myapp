@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   props: [ 'user' ],
@@ -47,6 +47,9 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      getLoginUser: 'authentication/getLoginUser'
+    }),
     mouseover() {
       this.color = 'red white--text'
       this.message = 'フォロー解除'
@@ -63,6 +66,7 @@ export default {
       .then((res) => {
         console.log(res)
         this.follow = true
+        this.getLoginUser()
       })
       .catch((err) => {
         console.log(err)
@@ -70,12 +74,15 @@ export default {
     },
     unFollowUser () {
       this.$axios.delete('/v1/relationships', {
-        user_id: this.loginUser.id,
-        follower_id: this.user.id
+        params: {
+          user_id: this.loginUser.id,
+          follower_id: this.user.id
+        }
       })
       .then((res) => {
         console.log(res)
         this.follow = false
+        this.getLoginUser()
       })
       .catch((err) => {
         console.log(err)

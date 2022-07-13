@@ -35,7 +35,7 @@ export default {
   },
 
   mounted() {
-    if (this.$auth.loggedIn) {
+    if (this.$store.state.auth.loggedIn) {
       this.isActive = false
       this.outline.bookmark_users.forEach((f) => {
         if (this.loginUser.id === f.id) {

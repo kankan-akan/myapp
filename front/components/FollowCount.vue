@@ -54,6 +54,7 @@
               </div>
               <v-dialog
                 v-model="followerDialog"
+                scrollable
                 max-width="450"
               >
                 <v-card>

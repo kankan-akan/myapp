@@ -3,7 +3,7 @@ class V1::ReviewsController < ApplicationController
 
   def my_review
     @review = current_v1_user.reviews
-      render json: @review
+    render json: @review
   end
 
   def create
@@ -36,7 +36,7 @@ class V1::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.permit(:review, :rate, :lesson_id, :user_id)
+    params.permit(:title, :review, :rate, :lesson_id, :user_id, :reservation_id)
   end
 
 end
