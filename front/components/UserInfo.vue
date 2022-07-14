@@ -107,6 +107,7 @@
                   <v-btn
                     text
                     color="primary"
+                    @click="showLesson(reservation.lesson.id)"
                   >
                     詳細
                   </v-btn>
@@ -163,6 +164,12 @@ export default {
     ...mapState({
       loginUser: (state) => state.authentication.loginUser
     })
+  },
+
+  methods: {
+    showLesson(id) {
+      this.$router.push(`/lessons/${id}`)
+    }
   }
 }
 </script>
