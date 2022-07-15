@@ -7,7 +7,7 @@
           <template v-else>
             <div class="text-h4">{{ selectedLesson.lesson.title }}</div>
             <div class="text-h6">{{ selectedLesson.lesson.coach }}プロ</div>
-            <div>{{ selectedLesson.lesson.content }}</div>
+            <div class="mt-6 ml-3">{{ selectedLesson.lesson.content }}</div>
           </template>
 
           <h2 class="my-2 mt-6">予約日一覧</h2>
@@ -139,13 +139,13 @@
               size="25"
               readonly
             ></v-rating>
+            <span>({{ rating }})</span>
           </div>
-          
-        <v-col
-          v-for="(review, i) in selectedLesson.lesson.reviews"
-          :key="i"
-        >
-          <v-col class="text-h6">{{ review.title }}</v-col>
+          <v-col
+            v-for="(review, i) in selectedLesson.lesson.reviews"
+            :key="i"
+          >
+            <v-col class="text-h6">{{ review.title }}</v-col>
             <v-rating
               class="ml-2"
               v-model="review.rate"
@@ -157,7 +157,7 @@
               readonly
             ></v-rating>
             <v-col class="kaigyo">{{ review.content }}</v-col>
-        </v-col>
+          </v-col>
         </v-col>
       </v-row>
 

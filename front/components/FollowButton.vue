@@ -32,7 +32,23 @@ export default {
   computed: {
     ...mapState({
       loginUser: (state) => state.authentication.loginUser
-    })
+    }),
+    userFollow() {
+      return this.$store.state.authentication.loginUser
+    },
+  },
+
+  watch: {
+    userFollow() {
+      if (this.$auth.loggedIn) {
+        this.follow = false
+        this.loginUser.followings.forEach((f) => {
+          if (this.user.id === f.id) {
+            this.follow = true
+          }
+        })
+      }
+    }
   },
 
   mounted() {
