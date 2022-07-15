@@ -101,8 +101,21 @@
           <v-card>
             <v-col class="pa-0" v-for="(reservation, i) in reservations" :key="i">
               <v-card-text class="d-flex justify-space-between">
-                <div>{{ reservation.lesson.title }} / {{ reservation.date }}</div>
-                <DeleteReservation :reservation="reservation" />
+                <div>
+                  <div class="text-h6">{{ reservation.lesson.title }}</div>
+                  <div class="text-subtitle-1">{{ reservation.date }}</div>
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="showLesson(reservation.lesson.id)"
+                  >
+                    詳細
+                  </v-btn>
+                </div>
+                <div>
+                  <PostReview class="mb-2" :reservation="reservation" />
+                  <DeleteReservation :reservation="reservation" />
+                </div>
               </v-card-text>
               <v-divider></v-divider>
             </v-col>
@@ -112,7 +125,22 @@
           <v-card>
             <v-col class="pa-0" v-for="(review, i) in reviews" :key="i">
               <v-card-text>
-                {{ review.rate }} / {{ review.review }}
+                <div class="d-flex justify-space-between">
+                  <div class="ml-3 d-flex align-end">レッスン名：{{ review.lesson.title }}</div>
+                  <ReviewButton :review="review" />
+                </div>
+                <v-col class="text-h6">{{ review.title }}</v-col>
+                <v-rating
+                  class="ml-3"
+                  v-model="review.rate"
+                  background-color="grey"
+                  color="yellow accent-4"
+                  dense
+                  half-increments
+                  size="25"
+                  readonly
+                ></v-rating>
+                <v-col class="kaigyo">{{ review.content }}</v-col>
               </v-card-text>
               <v-divider></v-divider>
             </v-col>
@@ -136,6 +164,12 @@ export default {
     ...mapState({
       loginUser: (state) => state.authentication.loginUser
     })
+  },
+
+  methods: {
+    showLesson(id) {
+      this.$router.push(`/lessons/${id}`)
+    }
   }
 }
 </script>

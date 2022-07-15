@@ -2,8 +2,8 @@ class V1::ReviewsController < ApplicationController
   # before_action :authenticate_v1_user!
 
   def my_review
-    @review = current_v1_user.reviews
-      render json: @review
+    @review = current_v1_user.reviews.includes(:lesson)
+    render json: @review.as_json(include: :lesson)
   end
 
   def create
@@ -36,7 +36,7 @@ class V1::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.permit(:review, :rate, :lesson_id, :user_id)
+    params.permit(:title, :content, :rate, :lesson_id, :user_id, :reservation_id)
   end
 
 end

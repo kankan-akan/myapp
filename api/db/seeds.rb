@@ -18,7 +18,7 @@ User.create!([
   {
     name: "田中俊介",
     user_id: "shun.tanaka",
-    email: "b@examle.com",
+    email: "b@example.com",
     phone_number: "090-7980-7887",
     password: "password.",
     avatar: Rails.root.join('app/assets/images/avatar/golf_jou_man_edit.jpeg').open
@@ -29,8 +29,41 @@ User.create!([
     email: "c@example.com",
     phone_number: "090-6789-6789",
     password: "password."
+  },
+  {
+    name: "小林幸子", 
+    user_id: "sachiko_ko", 
+    email: "d@example.com", 
+    phone_number: "090-1122-2211", 
+    password: "password.",
+    avatar: Rails.root.join('app/assets/images/avatar/sports_golf_woman.png').open
+  },
+  {
+    name: "山本大輔", 
+    user_id: "dai_dai", 
+    email: "e@example.com", 
+    phone_number: "090-2232-2344", 
+    password: "password.",
+    avatar: Rails.root.join('app/assets/images/avatar/yaruki_moeru_man.png').open
+  },
+  {
+    name: "小島太郎", 
+    user_id: "kojima_dayo", 
+    email: "f@example.com", 
+    phone_number: "090-3343-4454", 
+    password: "password."
   }
 ])
+
+Relationship.create!([
+  {user_id: 1, follower_id: 2}, {user_id: 1, follower_id: 3}, {user_id: 1, follower_id: 4}, {user_id: 1, follower_id: 5}, {user_id: 1, follower_id: 6},
+  {user_id: 2, follower_id: 1}, {user_id: 2, follower_id: 4}, {user_id: 2, follower_id: 5}, {user_id: 2, follower_id: 6},
+  {user_id: 3, follower_id: 2}, {user_id: 3, follower_id: 4}, {user_id: 3, follower_id: 5}, {user_id: 3, follower_id: 6},
+  {user_id: 4, follower_id: 1}, {user_id: 4, follower_id: 2}, {user_id: 4, follower_id: 3}, {user_id: 4, follower_id: 6},
+  {user_id: 5, follower_id: 1}, {user_id: 5, follower_id: 2}, {user_id: 5, follower_id: 3},
+  {user_id: 6, follower_id: 2}, {user_id: 6, follower_id: 3}, {user_id: 6, follower_id:4}
+])
+
 
 Post.create!([
   {
@@ -45,7 +78,7 @@ Post.create!([
   },
   {
     content: "250ydくらいで広めの練習場だった。崖の上まで届くと300yd！\n待合室は冷房が効いていて快適。",
-    image: Rails.root.join('app/assets/images/post/IMG_2138.jpg').open,
+    image: Rails.root.join('app/assets/images/post/IMG_2139.jpg').open,
     user_id: 1
   },
   {
@@ -137,6 +170,6 @@ Reservation.create!([
   {
     lesson_id: 1,
     user_id: 1,
-    date: "22/06/30(木)09:00"
+    date: "22/07/30(土)09:00"
   }
 ])
