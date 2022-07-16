@@ -35,7 +35,6 @@ export const actions = {
     await this.$axios.get('/v1/outlines')
     .then((res) => {
       commit('setOutline', res.data)
-      
     })
   },
 
