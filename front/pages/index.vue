@@ -1,11 +1,12 @@
 <template>
   <v-main> 
     <v-container>
-      <v-row >
+      <v-row>
         <v-btn to="/allPost">all post</v-btn>
       </v-row>
-      <v-row justify="center">
-        <v-col cols="8">
+      <v-row>
+        <v-col cols="6">
+          <div class="text-subtitle-1">市町村から検索</div>
           <v-autocomplete
             v-model="city"
             :items="cities"
@@ -13,21 +14,25 @@
             clearable
             deletable-chips
             multiple
+            solo
+            rounded
             label="市町村を選択"
           ></v-autocomplete>
         </v-col>
-        <v-col cols="8">
+        <!-- <v-col cols="6">
+          <div class="text-subtitle-1">練習場名から検索</div>
           <v-autocomplete
             v-model="range"
             :loading="loading"
             :items="items"
             clearable
+            solo
+            rounded
             label="練習場名を入力"
           ></v-autocomplete>
-        </v-col>
+        </v-col> -->
       </v-row>
-    <v-col>{{ filteredOutlines }}</v-col>
-    <v-col>outline:{{ outline }}</v-col>
+    <!-- <v-col>{{ filteredOutlines }}</v-col> -->
       <v-row>
         <v-col 
           v-for="(place, i) in filteredOutlines"
@@ -51,7 +56,7 @@
                   <div>{{ place.distance }}yd</div>
                 </div>
 
-                <!-- <BookmarkButton :outline="place" /> -->
+                <BookmarkButton :outline="place" />
 
               </div>
             </v-card-text>
