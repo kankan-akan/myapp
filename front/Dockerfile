@@ -10,6 +10,10 @@ ENV HOME=/${WORKDIR} \
 
 WORKDIR ${HOME}
 
+# aws
+COPY package.json .
+COPY . .
+
 RUN apk update
 RUN apk upgrade
 RUN npm install -g npm

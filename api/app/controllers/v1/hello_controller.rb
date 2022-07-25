@@ -1,7 +1,8 @@
 class V1::HelloController < ApplicationController
 
   def index
-    render json: { message: 'Hello' }
+    head 200
+    # render json: { status: 200 }
   end
 
 end
