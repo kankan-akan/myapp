@@ -39,9 +39,10 @@ export default {
     if(this.$store.state.auth.loggedIn) {
       this.getLoginUser()
     }
-    this.$store.commit('rangeAuth/setIsLoggedIn', false)
-    this.$store.commit('rangeAuth/setLoginRange', null)
-    this.$store.commit('rangeAuth/setRangeData', null)
+    // this.$store.commit('rangeAuth/setIsLoggedIn', false)
+    // this.$store.commit('rangeAuth/setLoginRange', null)
+    // this.$store.commit('rangeAuth/setRangeData', null)
+    // this.$store.commit('setOutline', null)
   },
 
   methods: {
