@@ -30,10 +30,6 @@ export default {
     }
   },
 
-  watch: {
-    
-  },
-
   created: async function() {
     await this.getOutline()
     if(this.$store.state.auth.loggedIn) {
@@ -48,7 +44,7 @@ export default {
   methods: {
     ...mapActions({
       getOutline: 'getOutline',
-      getLoginUser: 'authentication/getLoginUser'
+      getLoginUser: 'myData/getLoginUser'
     }),
     showLesson(id) {
       this.$router.push(`/lessons/${id}`)

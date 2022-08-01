@@ -4,7 +4,7 @@
       <div >
       ログアウトを実行します。
       </div>
-      <v-btn @click ="$auth.logout()">
+      <v-btn @click ="logout()">
         OK
       </v-btn>
       <v-btn to="/">
@@ -22,7 +22,7 @@ export default {
   methods: {
     logout() {
       this.$auth.logout()
-      this.$store.commmit('myData/loginUser', false)
+      this.$store.commit('myData/setLoginUser', null)
     },
   },
  
