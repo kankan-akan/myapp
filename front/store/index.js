@@ -28,8 +28,8 @@ export const mutations = {
 export const actions = {
   nuxtClientInit({ commit }, context) {
     const data = JSON.parse(localStorage.getItem('persisted-key')) || []
-      commit('rangeAuth/setLoginRange', data.rangeAuth.loginRange)
-      commit('rangeAuth/setRangeData', data.rangeAuth.rangeData)
+      // commit('rangeAuth/setLoginRange', data.rangeAuth.loginRange)
+      // commit('rangeAuth/setRangeData', data.rangeAuth.rangeData)
   },
   async getOutline({ commit }){
     await this.$axios.get('/v1/outlines')

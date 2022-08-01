@@ -90,12 +90,13 @@ export default {
   methods: {
     logout() {
       this.$auth.logout();
-    },
+      this.$store.commmit('myData/loginUser', false)
+    }
   },
 
   computed: {
     ...mapState({
-      loginUser: (state) => state.authentication.loginUser
+      loginUser: (state) => state.myData.loginUser
     })
   },
 }

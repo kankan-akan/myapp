@@ -205,7 +205,7 @@ import { mapState } from 'vuex';
 
     computed: {
       ...mapState({
-        loginUser: (state) => state.authentication.loginUser,
+        loginUser: (state) => state.myData.loginUser,
         selectedLesson: (state) => state.selectedLesson
       }),
       startDate: {

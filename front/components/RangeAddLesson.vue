@@ -213,7 +213,7 @@ export default {
 
   computed: {
     ...mapState({
-      loginRange: (state) => state.rangeAuth.loginRange.data,
+      loginRange: (state) => state.rangeAuth.loginRange,
       rangeData: (state) => state.rangeAuth.rangeData
     })
   },

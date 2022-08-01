@@ -21,7 +21,8 @@ export default {
 
   methods: {
     logout() {
-      this.$auth.logout();
+      this.$auth.logout()
+      this.$store.commmit('myData/loginUser', false)
     },
   },
  

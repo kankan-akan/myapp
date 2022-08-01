@@ -138,18 +138,15 @@ import { mapState } from 'vuex';
     created () {
       this.setDateList(this.startDate)
       this.$axios.get(`/v1/lessons/${this.$route.params.id}`)
-          .then((res) => {
-            console.log(res)
-            this.status = res.data
-          })
-          .catch((err) => {
-            console.log(err)
-          })
+        .then((res) => {
+          console.log(res)
+          this.status = res.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
     computed: {
-      ...mapState({
-       
-      }),
       startDate: {
         get() {
           return moment()
