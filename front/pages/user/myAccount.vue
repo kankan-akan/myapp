@@ -143,26 +143,26 @@ export default {
       // eye icon
       show: false,
       loading: false,
-      name: this.$store.state.authentication.loginUser.name, 
+      name: this.$store.state.myData.loginUser.name, 
       nameRules: [
       ],
-      userId: this.$store.state.authentication.loginUser.user_id,
+      userId: this.$store.state.myData.loginUser.user_id,
       userIdRules: [
         v => (v && v.length <= 15) || '15文字以下で入力してください',
         v => /^(?=.*[a-zA-Z])[a-zA-Z0-9\d.?/-_]{1,15}$/.test(v) || '',
       ],
-      email: this.$store.state.authentication.loginUser.email,
+      email: this.$store.state.myData.loginUser.email,
       emailRules: [
         v => !!v || '入力してください',
         v => /.+@.+\..+/.test(v) || '',
       ],
-      phoneNumber: this.$store.state.authentication.loginUser.phone_number,
+      phoneNumber: this.$store.state.myData.loginUser.phone_number,
       // password: 'password.',
       // passwordRules: [
       //   v => !!v || '入力してください',
       //   v => /^(?=.*[a-z])(?=.*[.?/-_])[a-zA-Z0-9\d.?/-_]{8,30}$/.test(v) || '',
       // ],
-      avatar: this.$store.state.authentication.loginUser.avatar.url,
+      avatar: this.$store.state.myData.loginUser.avatar.url,
       // avatar: null,
       // avatar: 'https://cdn.vuetifyjs.com/images/john.jpg',
       inputImage: null,

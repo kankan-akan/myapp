@@ -2,64 +2,40 @@
   <div>
     <v-app-bar 
       app
-      clipped-left
-      color="blue lighten-2"
+      color="light-blue lighten-5"
     >
-      <v-row class ="justify-space-between">
+      <v-app-bar-nav-icon 
+        v-if="loginUser"
+        @click="drawer = !drawer"
+      >
+      </v-app-bar-nav-icon>
+
+      <v-toolbar-title>
         <NuxtLink 
           to="/"
           class="header-logo my-auto"
         >
           LOGO
         </NuxtLink>
-        <h2>{{ $store.state.auth.loggedIn }}</h2>
-        <h3>{{ $auth.loggedIn }}</h3>
-        <v-btn to="/rangeLogin">練習場管理者の方はこちら</v-btn>
-        <div v-if ="$auth.loggedIn">
-          <v-btn @click ="$auth.logout()">
+      </v-toolbar-title>
+      <div>{{ $store.state.auth.loggedIn }}</div>
+      <v-row align="center">
+        <v-spacer></v-spacer>
+        <div v-if="$store.state.auth.loggedIn">
+          <v-btn @click="logout()">
             LOGOUT
           </v-btn>
-          <v-btn icon large to="/post">
-            <v-icon>
-              {{ 'mdi-pencil-plus' }}
-            </v-icon>
+          <v-btn large to="/post">
+            <v-icon>{{ 'mdi-pencil-plus' }}</v-icon>
+            <div>投稿する</div>
           </v-btn>
-          <v-menu 
-            bottom
-            offset-y
-          >
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                color="primary"
-                dark
-                v-bind="attrs"
-                v-on="on"
-              >
-                @{{ loginUser.user_id }}
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item to ="/user/profile">
-                <v-list-item-title>マイページ</v-list-item-title>
-              </v-list-item>
-              <v-list-item to ="/user/myAccount">
-                <v-list-item-title>アカウント設定</v-list-item-title>
-              </v-list-item>
-              <v-divider></v-divider>
-              <v-list-item to ="/logout">
-                <v-list-item-title>ログアウト</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
         </div>
         <div v-else>
-          <v-btn @click ="$auth.logout()">
-            logout
-          </v-btn>
           <v-btn
             color="primary" 
             dark 
             large
+            text
             to ="/loginForm"
           >
             ログイン
@@ -67,11 +43,10 @@
           </v-btn>
 
           <v-btn 
-            color="" 
             class="my-1"
             to="/user/create" 
             outlined 
-            dark
+            rounded 
             large
           >
             新規登録
@@ -79,6 +54,42 @@
         </div>
       </v-row>
     </v-app-bar>
+    <v-navigation-drawer
+      v-if="loginUser"
+      v-model="drawer"
+      fixed
+      temporary
+    >
+      <v-sheet
+        color="grey lighten-5"
+        class="pa-4"
+      >
+        <v-avatar
+          v-if="loginUser.avatar && loginUser.avatar.url"
+          class="mb-4"
+          size="100"
+        >
+          <img :src="loginUser.avatar.url">
+        </v-avatar>
+        <div class="text-h5">{{ loginUser.name }}</div>
+        <div class="text-subtitle-2">@{{ loginUser.user_id }}</div>
+      </v-sheet>
+
+      <v-divider></v-divider>
+
+      <v-list>
+        <v-list-item to ="/user/profile">
+          <v-list-item-title>マイページ</v-list-item-title>
+        </v-list-item>
+        <v-list-item to ="/user/myAccount">
+          <v-list-item-title>アカウント設定</v-list-item-title>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list-item to ="/logout">
+          <v-list-item-title>ログアウト</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
   </div>
 </template>
 
@@ -86,11 +97,15 @@
 import { mapState } from 'vuex'
 
 export default {
+  data: () => ({
+    drawer: null
+  }),
 
   methods: {
     logout() {
       this.$auth.logout();
-      this.$store.commmit('myData/loginUser', false)
+      this.$store.commit('myData/setLoginUser', null)
+      // window.localStorage.removeItem('persisted-key')
     }
   },
 
