@@ -41,7 +41,7 @@
             :key="i"
             cols="12"
             xs="12"
-            sm="3"
+            sm="4"
           >
             <v-card justify="space-around">
               <v-card-text class="my-0 pa-2 black--text">
@@ -50,7 +50,7 @@
                     <div class="grey--text text--darken-2" v-text="place.city"></div>
                     <div v-text="place.ruby"></div>
                     <div 
-                      class="text-h5"
+                      class="text-h6"
                       v-text="place.name"
                     >
                     </div>
@@ -63,14 +63,14 @@
                 </div>
               </v-card-text>
               <v-divider class="my-2"></v-divider>
-              <table class="table-price">
+              <!-- <table class="table-price">
                 <tr>
                   <td class="empty"></td> <th class="th-price">平日</th><th class="th-price">土日</th>
                 </tr>
                 <tr>
                   <th class="th-price">ボール単価</th> <td class="td-price">10円/1球</td><td class="td-price">12円/1球</td>
                 </tr>
-              </table>
+              </table> -->
 
               <Equipment :equipment="place.equipment" />
 
@@ -82,8 +82,8 @@
         </template>
         <template v-else>
           <v-col
-            cols="3"
-            v-for="n in 21"
+            cols="4"
+            v-for="n in 24"
             :key="n"
           >
             <v-skeleton-loader
