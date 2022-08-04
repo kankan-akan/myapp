@@ -2,6 +2,7 @@ FROM ruby:3.0.3
 
 ARG WORKDIR
 
+ENV RAILS_ENV=production
 ENV HOME=/${WORKDIR} \
         LANG=C.UTF-8 \
         TZ=Asia/Tokyo

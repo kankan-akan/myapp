@@ -98,7 +98,6 @@ export default {
     async login () {
       if (this.$refs.form.validate()) {
         try {
-          // this.setLogin(this.data)
           const res = await this.$axios.post('/v1/range_auth/sign_in', {
             // name: this.name,
             email: this.email,

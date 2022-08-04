@@ -34,7 +34,7 @@ import { mapActions, mapState } from 'vuex';
 
   computed: {
     ...mapState ({
-      loginUser: (state) => state.authentication.loginUser,
+      loginUser: (state) => state.myData.loginUser,
       posts: (state) => state.myData.posts,
       likes: (state) => state.myData.likes,
       bookmarks: (state) => state.myData.bookmarks,

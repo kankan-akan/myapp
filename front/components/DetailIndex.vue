@@ -24,18 +24,19 @@
               
           <v-divider class="grey lighten-2 my-2"></v-divider>
               
-          <table class="table-price">
+          <!-- <table class="table-price">
             <tr>
               <td class="empty-price"></td> <th class="th-price">平日</th><th class="th-price">土日</th>
             </tr>
             <tr>
               <th class="th-price">ボール単価</th> <td class="td-price">10円/1球</td><td class="td-price">12円/1球</td>
             </tr>
-          </table>
+          </table> -->
 
           <Equipment :equipment="place.equipment" />
-
-          <v-col class="kaigyo">{{ place.features }}</v-col>
+          <v-card outlined shaped>
+            <v-col class="kaigyo text--primary">{{ place.features }}</v-col>
+          </v-card>
           <v-col>ホームページ: {{ place.link }}</v-col>
           <v-col>電話番号: {{ place.phone_number }}</v-col>
           <v-col>打席数: {{ place.booths }}打席</v-col>

@@ -10,8 +10,17 @@ ENV HOME=/${WORKDIR} \
 
 WORKDIR ${HOME}
 
+# aws
+COPY package.json .
+COPY . .
+
 RUN apk update
 RUN apk upgrade
-RUN npm install -g npm
+# RUN npm install -g npm
+RUN npm install
+
+RUN npm run build
 
 EXPOSE 3000
+
+CMD ["npm", "run", "start"]

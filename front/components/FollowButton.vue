@@ -31,10 +31,10 @@ export default {
 
   computed: {
     ...mapState({
-      loginUser: (state) => state.authentication.loginUser
+      loginUser: (state) => state.myData.loginUser
     }),
     userFollow() {
-      return this.$store.state.authentication.loginUser
+      return this.$store.state.myData.loginUser
     },
   },
 
@@ -64,7 +64,7 @@ export default {
 
   methods: {
     ...mapActions({
-      getLoginUser: 'authentication/getLoginUser'
+      getLoginUser: 'myData/getLoginUser'
     }),
     mouseover() {
       this.color = 'red white--text'

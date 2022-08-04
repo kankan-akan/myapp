@@ -146,8 +146,6 @@
             ></v-checkbox>
           </v-col>
           <h5>'＊'は必須項目です</h5>
-          <div>{{ test }}</div>
-          <div>{{ selectedLesson.id }}</div>
           <v-card-actions>
             <v-btn
               class="mr-4"
@@ -208,14 +206,13 @@ export default {
       wed: this.selectedLesson.calendar.wed,
       thu: this.selectedLesson.calendar.thu,
       fri: this.selectedLesson.calendar.fri,
-      sat: this.selectedLesson.calendar.sat,
-      test: []
+      sat: this.selectedLesson.calendar.sat
     }
   },
 
   computed: {
     ...mapState({
-      loginRange: (state) => state.rangeAuth.loginRange.data,
+      loginRange: (state) => state.rangeAuth.loginRange,
       rangeData: (state) => state.rangeAuth.rangeData,
     })
   },

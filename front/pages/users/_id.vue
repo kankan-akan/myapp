@@ -20,7 +20,7 @@ export default {
 
   computed: {
     ...mapState({
-      loginUser: (state) => state.authentication.loginUser,
+      loginUser: (state) => state.myData.loginUser,
       selectedUser: (state) => state.selectedUser,
       userPosts: (state) => state.userPosts,
       userLikes: (state) => state.userLikes,

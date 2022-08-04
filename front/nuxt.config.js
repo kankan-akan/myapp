@@ -1,16 +1,11 @@
-var env = process.env.NODE_ENV || 'development';
-if (env === 'development' || env === 'test') {
-  var API_URL='http://localhost:3000'
-  // var API_URL='http://api:3000'
-}
-else{
-  var API_URL=process.env.API_URL
-}
 
 export default {
+  // publicRuntimeConfig: {
+  //   baseURL: process.env.baseURL || 'https://par-match-api.com'
+  // },
+
   server: {
-  port: process.env.PORT || 8080,
-  // port: 8080
+  port: 8080
   },
 
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -68,8 +63,9 @@ export default {
 
  proxy: {
   '/api': {
-    target: API_URL,
-    // target: 'http://localhost:3000',
+    target: 'http://localhost:3000',
+    // target: 'http://api:3000'
+    // target: 'https://par-match-api.com',
       pathRewrite: {
         '^/api' : ''
       },

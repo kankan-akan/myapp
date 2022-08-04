@@ -1,12 +1,16 @@
 export const state = () => ({
-  posts: [ ],
-  likes: [ ],
-  bookmarks: [ ],
-  reservations: [ ],
-  reviews: [ ]
+  loginUser: [],
+  posts: [],
+  likes: [],
+  bookmarks: [],
+  reservations: [],
+  reviews: []
 })
 
 export const mutations = {
+  setLoginUser (state, loginUser ) {
+    state.loginUser = loginUser
+  },
   setPost ( state, posts ){
     state.posts = posts;
   },
@@ -26,6 +30,15 @@ export const mutations = {
 }
 
 export const actions = {
+  getLoginUser ({ commit }) {
+    this.$axios.get('/v1/auth/user')
+    .then((res) => {
+      commit('setLoginUser', res.data)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  },
   async getPost ({ commit }) {
     await this.$axios.get('/v1/posts/my_post')
     .then((res) => {
