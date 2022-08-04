@@ -52,7 +52,7 @@ export default {
   },
 
   mounted() {
-    if (this.$auth.loggedIn) {
+    if (this.$auth.loggedIn && this.user.followings) {
       this.follow = false
       this.loginUser.followings.forEach((f) => {
         if (this.user.id === f.id) {
