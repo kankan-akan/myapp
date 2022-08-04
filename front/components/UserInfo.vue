@@ -9,7 +9,7 @@
 
     <div class="d-flex justify-space-around">
       <div class="ma-4">
-        <v-avatar v-if="user.avatar.url" size="120">
+        <v-avatar v-if="user.avatar && user.avatar.url" size="120">
           <img :src="user.avatar.url">
         </v-avatar>
         <v-avatar v-else size="120" color="indigo">
