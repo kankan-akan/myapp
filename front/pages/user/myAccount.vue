@@ -1,133 +1,131 @@
 <template>
-  <v-main>
-    <v-container justify="center">
-      <v-col>アカウント設定</v-col>
-      <v-col>変更したい項目を書き換えてください。</v-col>
-      <v-form
-        ref="form"
-        v-model="valid"
-        lazy-validation
-      >
-        <v-col class="text-center">
-          <v-file-input
-            v-model="inputImage"
-            accept="image/png, image/jpeg, image/bmp"
-            
-            prepend-icon="mdi-camera-plus-outline"
-            label="画像を選択してください"
-            @change="uploadImage"
-          ></v-file-input>
-          <template v-if="avatar == null">
-            <v-avatar v-if="preImage !== ''" size="200">
-              <img :src="preImage">
-            </v-avatar>
-            <v-avatar v-else size="200" color="indigo">
-              <v-icon dark size="120">mdi-account</v-icon>
-            </v-avatar>
-            <v-chip
-              v-if="preImage !== ''"
-              @click="deletePreImage()"
-            >
-              cancel
-            </v-chip>
-          </template>
-          <template v-else>
-            <v-avatar size="200">
-              <img v-if="preImage !== ''" :src="preImage">
-              <img v-else :src="avatar">
-            </v-avatar>
-            <v-chip
-              v-if="preImage !== ''"
-              @click="deletePreImage()"
-            >
-              cancel
-            </v-chip>
-            <v-btn
-              v-else
-              small
-              icon
-              @click="deleteAvatar()"
-            >
-              <v-icon small>{{ 'mdi-close' }}</v-icon>
-            </v-btn>
-          </template>
-        </v-col>
-        
-        <v-divider class="mb-3"></v-divider>
+  <v-container>
+    <v-col class="text-h5 font-weight-bold">アカウント設定</v-col>
+    <v-col>変更したい項目を書き換えてください。</v-col>
+    <v-form
+      ref="form"
+      v-model="valid"
+      lazy-validation
+    >
+      <v-col class="text-center">
+        <v-file-input
+          v-model="inputImage"
+          accept="image/png, image/jpeg, image/bmp"
+          
+          prepend-icon="mdi-camera-plus-outline"
+          label="画像を選択してください"
+          @change="uploadImage"
+        ></v-file-input>
+        <template v-if="avatar == null">
+          <v-avatar v-if="preImage !== ''" size="200">
+            <img :src="preImage">
+          </v-avatar>
+          <v-avatar v-else size="200" color="indigo">
+            <v-icon dark size="120">mdi-account</v-icon>
+          </v-avatar>
+          <v-chip
+            v-if="preImage !== ''"
+            @click="deletePreImage()"
+          >
+            cancel
+          </v-chip>
+        </template>
+        <template v-else>
+          <v-avatar size="200">
+            <img v-if="preImage !== ''" :src="preImage">
+            <img v-else :src="avatar">
+          </v-avatar>
+          <v-chip
+            v-if="preImage !== ''"
+            @click="deletePreImage()"
+          >
+            cancel
+          </v-chip>
+          <v-btn
+            v-else
+            small
+            icon
+            @click="deleteAvatar()"
+          >
+            <v-icon small>{{ 'mdi-close' }}</v-icon>
+          </v-btn>
+        </template>
+      </v-col>
+      
+      <v-divider class="mb-3"></v-divider>
 
-        <v-col>
-          <v-text-field
-            outlined
-            v-model="name"
-            :rules="nameRules"
-            label="登録名"
-            required
-          ></v-text-field>
-        </v-col>
+      <v-col>
+        <v-text-field
+          outlined
+          v-model="name"
+          :rules="nameRules"
+          label="登録名"
+          required
+        ></v-text-field>
+      </v-col>
 
-        <v-divider class="mb-3"></v-divider>
+      <v-divider class="mb-3"></v-divider>
 
-        <v-col>
-          <v-text-field
-            outlined
-            v-model="userId"
-            :counter="15"
-            :rules="userIdRules"
-            label="ユーザー名（半角英数字・記号(.?/-_)で15文字以内"
-            required
-          ></v-text-field>
-        </v-col>
+      <v-col>
+        <v-text-field
+          outlined
+          v-model="userId"
+          :counter="15"
+          :rules="userIdRules"
+          label="ユーザー名（半角英数字・記号(.?/-_)で15文字以内"
+          required
+        ></v-text-field>
+      </v-col>
 
-        <v-divider class="mb-3"></v-divider>
+      <v-divider class="mb-3"></v-divider>
 
-        <v-col>
-          <v-text-field
-            outlined
-            v-model="email"
-            :rules="emailRules"
-            label="メールアドレス"
-            required
-          ></v-text-field>
-        </v-col>
+      <v-col>
+        <v-text-field
+          outlined
+          v-model="email"
+          :rules="emailRules"
+          label="メールアドレス"
+          required
+        ></v-text-field>
+      </v-col>
 
-        <v-divider class="mb-3"></v-divider>
+      <v-divider class="mb-3"></v-divider>
 
-        <v-col>
-          <v-text-field
-            outlined
-            v-model="phoneNumber"
-            label="電話番号"
-            required
-          ></v-text-field>
-        </v-col>
+      <v-col>
+        <v-text-field
+          outlined
+          v-model="phoneNumber"
+          label="電話番号"
+          required
+        ></v-text-field>
+      </v-col>
 
         <!-- <v-divider class="mb-3"></v-divider> -->
 
-        <!-- <v-col>
-          <v-text-field
-            outlined
-            v-model="password"
-            :rules="passwordRules"
-            :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-            :type="show? 'text' : 'password'"
-            label="パスワード（半角英数字・記号(.?/-_)を各1つ含む8文字以上30文字以内）"
-            required
-            @click:append="show = !show"
-          ></v-text-field>
-        </v-col> -->
-        <v-btn
-          class="mr-4"
-          :disabled="!valid || loading" 
-          :loading="loading"
-          @click.prevent="editInfo"
-          large
+      <!-- <v-col>
+        <v-text-field
           outlined
-        >
-          登録
-        </v-btn>
-      </v-form>
-    </v-container>
-  </v-main>
+          v-model="password"
+          :rules="passwordRules"
+          :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="show? 'text' : 'password'"
+          label="パスワード（半角英数字・記号(.?/-_)を各1つ含む8文字以上30文字以内）"
+          required
+          @click:append="show = !show"
+        ></v-text-field>
+      </v-col> -->
+      <v-btn
+        class="mr-4"
+        :disabled="!valid || loading" 
+        :loading="loading"
+        @click.prevent="editInfo"
+        large
+        outlined
+      >
+        登録
+      </v-btn>
+    </v-form>
+  </v-container>
 </template>
 
 <script>

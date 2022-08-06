@@ -1,24 +1,24 @@
 <template>
-  <v-main>
-    <v-snackbar
-      top
-      v-model="snackbar"
-    >
-      {{ text }}
-      <template v-slot:action="{ attrs }">
-      <v-btn
-          color="pink"
-          text
-          v-bind="attrs"
-          @click="snackbar = false"
-        >
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
-    <v-col cols="10">
-    <v-card>
-      <v-card-title>新規登録</v-card-title>
+  <v-container>
+  <!-- <v-snackbar
+    top
+    v-model="snackbar"
+  >
+    {{ text }}
+    <template v-slot:action="{ attrs }">
+    <v-btn
+        color="pink"
+        text
+        v-bind="attrs"
+        @click="snackbar = false"
+      >
+        Close
+      </v-btn>
+    </template>
+  </v-snackbar> -->
+
+    <v-card max-width="600" class="mx-auto mt-16 rounded-xl">
+      <v-card-title class="font-weight-bold">新規登録</v-card-title>
       <v-card-text>
         <v-form
           ref="form"
@@ -69,40 +69,33 @@
             required
             @click:append="show = !show"
           ></v-text-field>
-<!-- autocomple ="off" -->
-          <!-- <v-checkbox
-            v-model ="checkbox"
-            :rules ="[v => !!v || '新規登録には利用規約への同意が必要です。']"
-            label ="利用規約に同意"
-            required
-          ></v-checkbox> -->
-          <v-card-actions>
+
+          <v-card-actions class="justify-end">
             <v-btn
-              class="mr-4"
+              class="mr-4 font-weight-bold"
               type="submit"
               :disabled="!valid || loading" 
               :loading="loading"
               @click.prevent="submit"
+              color="indigo accent-2"
               large
-              outlined
+              dark
             >
               登録
             </v-btn>
             <v-btn
-              color ="error"
-              class ="mr-4"
-              @click ="reset"
+              color="error"
+              @click="reset"
               large
-              outlined
+              text
             >
-              やり直す
+              リセット
             </v-btn>
           </v-card-actions>
         </v-form>
       </v-card-text>
     </v-card>
-    </v-col>
-  </v-main>
+  </v-container>
 </template>
 
 <script src ="./create.js"></script>

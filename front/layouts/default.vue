@@ -2,9 +2,10 @@
   <v-app>
     
     <Header />
-
-    <Nuxt />
-
+    <v-main class="color">
+      <Nuxt />
+    </v-main>
+    
   </v-app>
 </template>
 

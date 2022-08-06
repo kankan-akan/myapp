@@ -1,76 +1,71 @@
 <template>
-  <v-main>
-    <v-card max-width = "600">
-                <v-card-title>
-                  <div class="text-h5">ログイン</div>
-                </v-card-title>
-                <v-card-text>
-                  <v-form
-                    ref="form"
-                    v-model ="valid"
-                    lazy-validation 
-                  >
-                    <v-row>
-                      <!-- <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model ="userId"
-                          :rules="userIdRules"
-                          label="ユーザー名*"
-                          required
-                        ></v-text-field>
-                      </v-col> -->
-                      <v-col cols="12">
-                        <v-text-field
-                          outlined
-                          v-model ="email"
-                          :rules="emailRules"
-                          label="メールアドレス*"
-                          required
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12">
-                        <v-text-field
-                          outlined
-                          v-model ="password"
-                          :rules ="passwordRules"
-                          :append-icon ="show ? 'mdi-eye' : 'mdi-eye-off'"
-                          :type ="show? 'text' : 'password'"
-                          label ="パスワード（半角英数字・記号(.?/-_)を各1つ含む8文字以上30文字以内）"
-                          required
-                          @click:append ="show = !show"
-                        ></v-text-field>
-                      </v-col>
-                    </v-row>
-                  </v-form>
-                  <small>*は必須項目です</small>
-                </v-card-text>
-                <div>
-                  <v-card-actions class="justify-end">
-                    <v-btn
-                      :disabled="!valid" 
-                      @click="login"
-                      large
-                    >
-                      ログイン
-                    </v-btn>
-                    <v-btn 
-                      class="mr-4"
-                      color="blue darken-1" 
-                      text 
-                      to ="/"
-                    >
-                      閉じる
-                    </v-btn>
-                  </v-card-actions>
-                </div>
-                <v-card-text>
-                  <div>
-                    ユーザー登録はお済みですか？
-                    <NuxtLink to="/user/create">ー新規登録</NuxtLink>
-                  </div>
-                </v-card-text>
-              </v-card>
-  </v-main>
+  <v-container>
+    <v-card max-width="600" class="mx-auto mt-16 rounded-xl">
+      <v-card-title class="font-weight-bold">
+        ログイン
+      </v-card-title>
+      <v-card-text>
+        <v-form
+          ref="form"
+          v-model ="valid"
+          lazy-validation 
+        >
+          <v-row>
+            <!-- <v-col cols="12" sm="6" md="4">
+              <v-text-field
+                v-model ="userId"
+                :rules="userIdRules"
+                label="ユーザー名*"
+                required
+              ></v-text-field>
+            </v-col> -->
+            <v-col cols="12">
+              <v-text-field
+                outlined
+                v-model ="email"
+                :rules="emailRules"
+                label="メールアドレス*"
+                required
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12">
+              <v-text-field
+                outlined
+                v-model="password"
+                :rules="passwordRules"
+                :append-icon ="show ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="show? 'text' : 'password'"
+                label="パスワード（半角英数字・記号(.?/-_)を各1つ含む8文字以上30文字以内）"
+                required
+                @click:append="show = !show"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+        </v-form>
+        <small>*は必須項目です</small>
+      </v-card-text>
+      <div>
+        <v-card-actions class="justify-end">
+          <v-btn
+            class="mr-4 font-weight-bold"
+            :disabled="!valid" 
+            @click="login"
+            color="indigo accent-2"
+            large
+            dark
+          >
+            ログイン
+          </v-btn>
+        </v-card-actions>
+      </div>
+      <v-card-text>
+        <div>
+          ユーザー登録はお済みですか？
+          <NuxtLink to="/user/create">ー新規登録ページへ</NuxtLink>
+        </div>
+      </v-card-text>
+    </v-card>
+  </v-container>
 </template>
 
 <script>

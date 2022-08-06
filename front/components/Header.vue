@@ -2,7 +2,7 @@
   <div>
     <v-app-bar 
       app
-      color="light-blue lighten-5"
+      color="blue lighten-4"
     >
       <v-app-bar-nav-icon 
         v-if="loginUser"
@@ -33,13 +33,12 @@
         <div v-else>
           <v-btn
             color="primary" 
-            dark 
             large
             text
             to ="/loginForm"
           >
-            ログイン
             <v-icon>mdi-account-arrow-left-outline</v-icon>
+            ログイン
           </v-btn>
 
           <v-btn 

@@ -1,11 +1,9 @@
 <template>
-    <v-main>
-      <v-container>
-        <v-card max-width="700" class="justify-center mx-auto">
-          <UserInfo :user="loginUser" :posts="posts" :likes="likes" :bookmarks="bookmarks" :reservations="reservations" :reviews="reviews" />
-        </v-card>
-      </v-container>
-    </v-main>
+  <v-container>
+    <v-card max-width="700" class="justify-center mx-auto">
+      <UserInfo :user="loginUser" :posts="posts" :likes="likes" :bookmarks="bookmarks" :reservations="reservations" :reviews="reviews" />
+    </v-card>
+  </v-container>
 </template>
 
 <script>

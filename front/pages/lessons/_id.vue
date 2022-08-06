@@ -1,19 +1,19 @@
 <template>
-  <v-main>
     <v-container>
-      <v-row justify="center">
-        <v-col cols="10">
-          <div v-if="selectedLesson == ''">Lesson is undefined.</div>
+      <v-sheet class="rounded-xl mx-auto">
+        <v-col >
+          <div v-if="selectedLesson == ''">レッスンが見つかりません</div>
           <template v-else>
-            <div class="text-h4">{{ selectedLesson.lesson.title }}</div>
-            <div class="text-h6">{{ selectedLesson.lesson.coach }}プロ</div>
-            <div class="mt-6 ml-3">{{ selectedLesson.lesson.content }}</div>
+            <v-col class="text-h4 font-weight-bold">{{ selectedLesson.lesson.title }}</v-col>
+            <div class="text-h6 pl-3">指導担当：{{ selectedLesson.lesson.coach }}プロ</div>
+            <v-col class="my-6">{{ selectedLesson.lesson.content }}</v-col>
           </template>
 
-          <h2 class="my-2 mt-6">予約日一覧</h2>
-          <div class="my-2">予約したい日時を選択してください。</div>
-          <v-row align="center">
-            <v-col>
+          <v-col class="text-h5">予約日一覧</v-col>
+          <v-divider></v-divider>
+          <v-col class="my-2">予約する日時を選択してください。</v-col>
+          <v-row>
+            <v-col class="d-flex justify-center align-center">
               <v-btn 
                 color="grey darken-2"
                 @click="previousWeek" 
@@ -37,10 +37,9 @@
               </v-btn>
             </v-col>
           </v-row>
-
           <v-row dense>
             <v-col>
-              <table class="table-date">
+              <table class="table-date mx-auto">
                 <thead>
                   <tr>
                     <td class="start">開始時間</td>
@@ -101,7 +100,6 @@
 
                     <v-card-actions>
                       <v-spacer></v-spacer>
-
                       <v-btn
                         color="green darken-1"
                         text
@@ -124,10 +122,11 @@
               </div>
             </v-col>
           </v-row>
-          <v-col>{{ startDate }}</v-col>
+          <!-- <v-col>{{ startDate }}</v-col> -->
 
-          <div class="text-h5">レビュー</div>
-          <div class="ml-2 d-flex align-center">
+          <v-col class="text-h5 mt-10">レビュー</v-col>
+          <v-divider></v-divider>
+          <v-col class="d-flex align-center">
             <span>平均評価：</span>
             <v-rating
               class="ml-1"
@@ -140,29 +139,31 @@
               readonly
             ></v-rating>
             <span>({{ rating }})</span>
-          </div>
-          <v-col
-            v-for="(review, i) in selectedLesson.lesson.reviews"
-            :key="i"
-          >
-            <v-col class="text-h6">{{ review.title }}</v-col>
-            <v-rating
-              class="ml-2"
-              v-model="review.rate"
-              background-color="grey"
-              color="yellow accent-4"
-              dense
-              half-increments
-              size="25"
-              readonly
-            ></v-rating>
-            <v-col class="kaigyo">{{ review.content }}</v-col>
           </v-col>
+          <template v-if="selectedLesson.lesson && selectedLesson.lesson.reviews">
+            <v-col
+              v-for="(review, i) in selectedLesson.lesson.reviews"
+              :key="i"
+            >
+              <v-col class="text-h6">{{ review.title }}</v-col>
+              <v-rating
+                class="ml-2"
+                v-model="review.rate"
+                background-color="grey"
+                color="yellow accent-4"
+                dense
+                half-increments
+                size="25"
+                readonly
+              ></v-rating>
+              <v-col class="kaigyo">{{ review.content }}</v-col>
+            </v-col>
+          </template>
         </v-col>
-      </v-row>
-
+        </v-sheet>
+        
+      
     </v-container>
-  </v-main>
 </template>
 
 <script>
@@ -176,37 +177,17 @@ import { mapState } from 'vuex';
       text: '',
       dateList: [],
       weekNumber: 7,
-      rating: 4,
-      total: 0
+      rating: 0,
+      total: 0,
       // startTime: [ "11:00", "12:00", "13:00"],
       // holiday: ['月', '火'],
-      // selectedLesson: []
+      selectedLesson: []
     }),
-
-    created () {
-      this.setDateList(this.startDate)
-      this.$axios.get(`/v1/lessons/${this.$route.params.id}`)
-        .then((res) => {
-          console.log(res)
-          // this.selectedLesson = res.data
-          this.$store.commit('setSelectedLesson', res.data)
-        })
-    },
-
-    mounted() {
-      this.selectedLesson.lesson.reviews.forEach((f) => {
-        this.total += f.rate
-      })
-      const average = this.total / this.selectedLesson.lesson.reviews.length
-      console.log(this.total / this.selectedLesson.lesson.reviews.length);
-      this.rating = average
-      
-    },
 
     computed: {
       ...mapState({
         loginUser: (state) => state.myData.loginUser,
-        selectedLesson: (state) => state.selectedLesson
+        // selectedLesson: (state) => state.selectedLesson
       }),
       startDate: {
         get() {
@@ -217,7 +198,30 @@ import { mapState } from 'vuex';
         }
       }
     },
+
+    created() {
+      this.setDateList(this.startDate)
+      this.$axios.get(`/v1/lessons/${this.$route.params.id}`)
+      .then((res) => {
+        console.log(res)
+        this.selectedLesson = res.data
+        // this.$store.commit('setSelectedLesson', res.data)
+      })
+    },
+
+    mounted() {
+      setTimeout(this.rateCount, 500)
+    },
+
     methods: {
+      rateCount() {
+        this.selectedLesson.lesson.reviews.forEach((f) => {
+          this.total += f.rate
+        })
+        const average = this.total / this.selectedLesson.lesson.reviews.length
+        console.log(average)
+        this.rating = average
+      },
       nextWeek() {
         this.startDate = this.startDate.add(this.weekNumber, 'day')
       },
@@ -262,6 +266,3 @@ import { mapState } from 'vuex';
     }
   }
 </script>
-
-<style scoped>
-</style>

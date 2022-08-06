@@ -147,6 +147,7 @@ export default {
         .then((res) => {
           console.log(res)
           this.dialog = false
+          this.isActive = false
           this.getReview()
 
         })

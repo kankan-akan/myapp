@@ -59,16 +59,16 @@ export default {
     }),
   },
 
+  mounted () {
+    setTimeout(this.getRangeData, 100)
+    this.getLesson()
+  },
+
   methods: {
     ...mapActions({
       getRangeData: 'rangeAuth/getRangeData',
       getLesson: 'rangeAuth/getLesson'
     })
-  },
-
-  mounted () {
-    setTimeout(this.getRangeData, 100)
-    this.getLesson()
   }
 
 }

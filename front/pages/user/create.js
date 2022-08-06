@@ -7,7 +7,6 @@ export default {
     valid: true,
     // eye icon
     show: false,
-    // checkbox: false,
     loader: 'null',
     loading: false,
     name: '田中一郎', 
