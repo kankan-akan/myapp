@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   props: ['outline'],
@@ -46,18 +46,25 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      loginCheck: 'snackbar/loginCheck'
+    }),
     postBookmark() {
-      this.$axios.post('/v1/bookmarks', {
-        user_id: this.loginUser.id,
-        range_outline_id: this.outline.id
-      })
-      .then((res) => {
-        console.log(res)
-        this.isActive = true
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      if(this.$auth.loggedIn) {
+        this.$axios.post('/v1/bookmarks', {
+          user_id: this.loginUser.id,
+          range_outline_id: this.outline.id
+        })
+        .then((res) => {
+          console.log(res)
+          this.isActive = true
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      }else{
+        this.loginCheck()
+      }
     },
     deleteBookmark() {
       this.$axios.delete('/v1/bookmarks', {

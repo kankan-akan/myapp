@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    
+    <Snackbar />
     <RangeHeader />
 
     <Nuxt />

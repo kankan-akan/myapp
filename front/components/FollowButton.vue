@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-if="loginUser.id !== user.id">
+    <template v-if="loginUser && loginUser.id !== user.id">
       <v-btn
         v-if="follow"
         :color="color"

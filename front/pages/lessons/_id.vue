@@ -68,7 +68,7 @@
                         <a 
                           class="d-flex justify-center"
                           @mouseover="selectedDay(date, time)"
-                          @click="overlay = !overlay"
+                          @click="detailReservation()"
                           v-bind="attrs"
                           v-on="on"
                         >
@@ -166,7 +166,7 @@
 
 <script>
 import moment from 'moment';
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
   moment.locale('ja');
 
   export default {
@@ -212,6 +212,16 @@ import { mapState } from 'vuex';
     },
 
     methods: {
+       ...mapActions({
+        loginCheck: 'snackbar/loginCheck'
+      }),
+      detailReservation () {
+        if(this.$store.state.auth.loggedIn) {
+          this.overlay = !overlay
+        } else {
+          this.loginCheck()
+        }
+      },
       rateCount() {
         this.selectedLesson.lesson.reviews.forEach((f) => {
           this.total += f.rate
@@ -258,6 +268,28 @@ import { mapState } from 'vuex';
           .then((res) => {
             console.log(res)
             this.overlay = false
+            this.$store.dispatch(
+              'snackbar/showMessage', {
+                icon: 'mdi-checkbox-marked-circle-outline',
+                message: '予約が完了しました。',
+                type: 'success',
+                status: true,
+              },
+              { root: true }
+            )
+          })
+          .catch((err) => {
+            console.log(err)
+            this.overlay = false
+            this.$store.dispatch(
+              'snackbar/showMessage', {
+                icon: 'mdi-alert-outline',
+                message: '予約に失敗しました。',
+                type: 'error',
+                status: true,
+              },
+              { root: true }
+            )
           })
         }
       }

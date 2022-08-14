@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   props: [ 'post' ],
@@ -55,20 +55,27 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      loginCheck: 'snackbar/loginCheck'
+    }),
     postLike() {
-      this.$axios.post('/v1/likes', {
-        user_id: this.loginUser.id,
-        post_id: this.post.id
-      })
-      .then((res) => {
-        if(res.data.status == 200) {
-          this.isActive = true
-        }
-        this.increment()
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      if(this.$auth.loggedIn) {
+        this.$axios.post('/v1/likes', {
+          user_id: this.loginUser.id,
+          post_id: this.post.id
+        })
+        .then((res) => {
+          if(res.data.status == 200) {
+            this.isActive = true
+          }
+          this.increment()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      } else {
+        this.loginCheck()
+      }
     },
     unlike() {
       this.$axios.delete('/v1/likes', {

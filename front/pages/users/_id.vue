@@ -44,10 +44,12 @@ export default {
         this.userLikes = res.data
         // this.$store.commit('setUserLikes', res.data)
       })
-      if (this.loginUser.id == this.$route.params.id) {
-        this.getBookmark()
-        this.getReservation()
-        this.getReview()
+      if (this.$store.state.auth.loggedIn) {
+        if (this.loginUser.id == this.$route.params.id) {
+          this.getBookmark()
+          this.getReservation()
+          this.getReview()
+        }
       }
   },
 

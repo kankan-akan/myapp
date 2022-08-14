@@ -87,9 +87,27 @@ export default {
         })
         .then((res) => {
           console.log(res)
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-checkbox-marked-circle-outline',
+              message: '投稿が保存されました。',
+              type: 'success',
+              status: true,
+            },
+            { root: true }
+          )
         })
         .catch((err) => {
           console.log(err)
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-alert-outline',
+              message: '投稿に失敗しました。',
+              type: 'error',
+              status: true,
+            },
+            { root: true }
+          )
         })
       }
     },

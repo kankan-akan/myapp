@@ -149,10 +149,27 @@ export default {
           this.dialog = false
           this.isActive = false
           this.getReview()
-
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-checkbox-marked-circle-outline',
+              message: 'レビューを投稿しました。',
+              type: 'success',
+              status: true,
+            },
+            { root: true }
+          )
         })
         .catch((err) => {
           console.log(err)
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-alert-outline',
+              message: 'レビューの投稿に失敗しました。',
+              type: 'error',
+              status: true,
+            },
+            { root: true }
+          )
         })
       }
     }

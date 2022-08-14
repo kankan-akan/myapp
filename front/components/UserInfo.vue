@@ -28,7 +28,7 @@
       <v-tabs  fixed-tabs color="cyan">
         <v-tab>post</v-tab>
         <v-tab>like</v-tab>
-        <template v-if="loginUser.id == user.id">
+        <template v-if="loginUser && loginUser.id == user.id">
           <v-tab>bookmark</v-tab>
           <v-tab>reservation</v-tab>
           <v-tab>review</v-tab>

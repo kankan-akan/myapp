@@ -257,9 +257,27 @@ export default {
           console.log(res)
           this.getLesson()
           this.dialog = false
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-checkbox-marked-circle-outline',
+              message: 'レッスンが追加されました。',
+              type: 'success',
+              status: true,
+            },
+            { root: true }
+          )
         })
         .catch((err) => {
           console.log(err)
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-alert-outline',
+              message: 'レッスンの追加に失敗しました。',
+              type: 'error',
+              status: true,
+            },
+            { root: true }
+          )
         })
       }
     }

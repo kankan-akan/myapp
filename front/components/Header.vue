@@ -5,7 +5,7 @@
       color="blue lighten-4"
     >
       <v-app-bar-nav-icon 
-        v-if="loginUser"
+        v-if="$store.state.auth.loggedIn"
         @click="drawer = !drawer"
       >
       </v-app-bar-nav-icon>
@@ -18,7 +18,8 @@
           LOGO
         </NuxtLink>
       </v-toolbar-title>
-      <div>{{ $store.state.auth.loggedIn }}</div>
+      <div>$store.state.auth.loggedIn: {{ $store.state.auth.loggedIn }}</div>
+      <div>$auth.loggedIn: {{ $auth.loggedIn }}</div>
       <v-row align="center">
         <v-spacer></v-spacer>
         <div v-if="$store.state.auth.loggedIn">
@@ -54,7 +55,7 @@
       </v-row>
     </v-app-bar>
     <v-navigation-drawer
-      v-if="loginUser"
+      v-if="$store.state.auth.loggedIn"
       v-model="drawer"
       fixed
       temporary

@@ -248,9 +248,27 @@ export default {
           console.log(res)
           this.getRangeData()
           this.dialog = false
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-checkbox-marked-circle-outline',
+              message: '変更が保存されました。',
+              type: 'success',
+              status: true,
+            },
+            { root: true }
+          )
         })
         .catch((err) => {
           console.log(err)
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-alert-outline',
+              message: '変更に失敗しました。',
+              type: 'error',
+              status: true,
+            },
+            { root: true }
+          )
         })
       }
     },

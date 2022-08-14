@@ -69,9 +69,27 @@ export default {
       .then((res) => {
         console.log(res)
         this.getReservation()
+        this.$store.dispatch(
+          'snackbar/showMessage', {
+            icon: 'mdi-checkbox-marked-circle-outline',
+            message: '予約が削除されました。',
+            type: 'success',
+            status: true,
+          },
+          { root: true }
+        )
       })
       .catch((err) => {
         console.log(err)
+        this.$store.dispatch(
+          'snackbar/showMessage', {
+            icon: 'mdi-alert-outline',
+            message: '予約の削除に失敗しました。',
+            type: 'error',
+            status: true,
+          },
+          { root: true }
+        )
       })
     }
   }

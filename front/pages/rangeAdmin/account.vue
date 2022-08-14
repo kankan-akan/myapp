@@ -126,14 +126,32 @@ export default {
     async editInfo () {
       if (this.$refs.form.validate()) {
         try {
-        const res = await this.$axios.put('/v1/range_auth', {
-            name: this.name,
-            email: this.email
-        })
-        console.log(res)
-        this.getLoginRange()
+          const res = await this.$axios.put('/v1/range_auth', {
+              name: this.name,
+              email: this.email
+          })
+          console.log(res)
+          this.getLoginRange()
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-checkbox-marked-circle-outline',
+              message: '設定が更新されました。',
+              type: 'success',
+              status: true,
+            },
+            { root: true }
+          )
         }catch(err) {
           console.log(err)
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-alert-outline',
+              message: '設定の更新に失敗しました。',
+              type: 'error',
+              status: true,
+            },
+            { root: true }
+          )
         }
       }
     },

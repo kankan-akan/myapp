@@ -5,7 +5,8 @@ export default {
   // },
 
   server: {
-  port: 8080
+    port: 8080,
+    // host: '0'
   },
 
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -56,28 +57,28 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-//   axios: {
-//     proxy: true,
-//     prefix: '/api'
-//   },
-
-//  proxy: {
-//   '/api': {
-//     target: 'http://localhost:3000',
-//     // target: 'http://api:3000'
-//     // target: 'https://par-match-api.com',
-//       pathRewrite: {
-//         '^/api' : ''
-//       },
-//     }
-//   },
-
   axios: {
-    baseURL:
-      process.env.NODE_ENV === 'production'
-        ? 'https://par-match.com'
-        : 'http://localhost:8080'
+    proxy: true,
+    prefix: '/api'
   },
+
+ proxy: {
+  '/api': {
+    target: 'http://localhost:3000',
+    // target: 'http://api:3000',    //docker-compose
+    // target: 'https://par-match-api.com',
+      pathRewrite: {
+        '^/api' : ''
+      },
+    }
+  },
+
+  // axios: {
+  //   baseURL:
+  //     process.env.NODE_ENV === 'production'
+  //       ? 'https://par-match-api.com'
+  //       : 'http://localhost:3000'
+  // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
