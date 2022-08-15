@@ -27,7 +27,7 @@
         </div>
         <v-divider></v-divider>
         <div class="pa-2 d-flex justify-end align-center">
-          <PostLike :post="post"/>
+          <BtnLike :post="post"/>
         </div>
        
         <!-- <v-avatar tile size="210" class="mx-auto">

@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-btn to="/allPost">all post</v-btn>
-      <v-btn to="/rangeLogin">練習場管理者の方はこちら</v-btn>
+      <v-btn to="/rangeAdmin/info">練習場管理者の方はこちら</v-btn>
     </v-row>
     <v-row justify="center">
       <v-col cols="6">
@@ -56,7 +56,7 @@
                   <div>{{ place.distance }}yd</div>
                 </div>
 
-                <BookmarkButton v-if="place" :outline="place" />
+                <BtnBookmark v-if="place" :outline="place" />
 
               </div>
             </v-card-text>

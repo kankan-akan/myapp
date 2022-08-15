@@ -33,6 +33,15 @@ export default {
     logout() {
       this.$auth.logout()
       this.$store.commit('myData/setLoginUser', null)
+      this.$store.dispatch(
+        'snackbar/showMessage', {
+          icon: 'mdi-checkbox-marked-circle-outline',
+          message: 'ログアウトしました。',
+          type: 'success',
+          status: true,
+        },
+        { root: true }
+      )
     },
   },
  

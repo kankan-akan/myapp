@@ -6,12 +6,13 @@
 
 <script>
   export default {
-    middleware: 'rangeAuth',
-
-    layout: 'rangeAdmin',
+    middleware: 'userAuth',
     
+    layout: 'default',
+
     validate ({ route }) {
-      return route.name !== 'rangeAdmin'
+      return route.name !== 'user'
     }
+
   }
 </script>

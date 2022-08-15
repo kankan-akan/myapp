@@ -44,7 +44,7 @@
 
           <v-btn 
             class="my-1"
-            to="/user/create" 
+            to="/create" 
             outlined 
             rounded 
             large
@@ -61,6 +61,7 @@
       temporary
     >
       <v-sheet
+        v-if="loginUser"
         color="grey lighten-5"
         class="pa-4"
       >
@@ -70,6 +71,9 @@
           size="100"
         >
           <img :src="loginUser.avatar.url">
+        </v-avatar>
+        <v-avatar v-else class="mb-4" size="100" color="indigo">
+          <v-icon dark size="80">mdi-account</v-icon>
         </v-avatar>
         <div class="text-h5">{{ loginUser.name }}</div>
         <div class="text-subtitle-2">@{{ loginUser.user_id }}</div>
@@ -85,7 +89,7 @@
           <v-list-item-title>アカウント設定</v-list-item-title>
         </v-list-item>
         <v-divider></v-divider>
-        <v-list-item to ="/logout">
+        <v-list-item to ="/user/logout">
           <v-list-item-title>ログアウト</v-list-item-title>
         </v-list-item>
       </v-list>

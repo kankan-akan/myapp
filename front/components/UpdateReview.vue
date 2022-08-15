@@ -147,11 +147,30 @@ export default {
       })
       .then((res) => {
         console.log(res)
-        this.dialog = false
         this.getReview()
+        this.dialog = false
+        this.$store.dispatch(
+          'snackbar/showMessage', {
+            icon: 'mdi-checkbox-marked-circle-outline',
+            message: 'レビューを編集しました。',
+            type: 'success',
+            status: true,
+          },
+          { root: true }
+        )
       })
       .catch((err) => {
         console.log(err)
+        this.dialog = false
+        this.$store.dispatch(
+          'snackbar/showMessage', {
+            icon: 'mdi-alert-outline',
+            message: '編集に失敗しました。',
+            type: 'error',
+            status: true,
+          },
+          { root: true }
+        )
       })
     },
     deleteReview(id) {
@@ -159,9 +178,29 @@ export default {
       .then((res) => {
         console.log(res)
         this.getReview()
+        this.dialog = false
+        this.$store.dispatch(
+          'snackbar/showMessage', {
+            icon: 'mdi-checkbox-marked-circle-outline',
+            message: 'レビューを削除しました。',
+            type: 'success',
+            status: true,
+          },
+          { root: true }
+        )
       })
       .catch((err) => {
         console.log(err)
+        this.dialog = false
+        this.$store.dispatch(
+          'snackbar/showMessage', {
+            icon: 'mdi-alert-outline',
+            message: '削除に失敗しました。',
+            type: 'error',
+            status: true,
+          },
+          { root: true }
+        )
       })
     }
   }

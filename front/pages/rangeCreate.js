@@ -20,7 +20,7 @@ export default {
     //   v => (v && v.length <= 15) || '15文字以下で入力してください',
     //   v => /^(?=.*[a-zA-Z])[a-zA-Z0-9\d.?/-_]{1,15}$/.test(v) || '',
     // ],
-    email: 'a@example.com',
+    email: 'aa-1@example.com',
     emailRules: [
       v => !!v || '入力してください',
       v => /.+@.+\..+/.test(v) || '',

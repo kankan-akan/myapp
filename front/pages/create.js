@@ -60,15 +60,34 @@ export default {
           // this.loading = true
           const res = await this.$axios.post('/v1/auth', this.params)
           await this.$auth.loginWith('local', {
+            data: {
               // name: this.name,
               // user_id: this.userId,
               email: this.email,
               password: this.password
+            }
           })
             console.log(res)
-            // this.snackbar = true
+            this.$store.dispatch(
+              'snackbar/showMessage', {
+                icon: 'mdi-golf-tee',
+                message: 'Welcome！',
+                type: 'info',
+                status: true,
+              },
+              { root: true }
+            )
         }catch(err) {
             console.log(err)
+            this.$store.dispatch(
+              'snackbar/showMessage', {
+                icon: 'mdi-alert-outline',
+                message: 'ログインに失敗しました。',
+                type: 'error',
+                status: true,
+              },
+              { root: true }
+            )
           }
       }
 

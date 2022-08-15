@@ -35,7 +35,7 @@ export const actions = {
     commit('setStatus', status)
     setTimeout(() => {
       commit('setStatus', !status)
-    }, 5000)
+    }, 4000)
   },
 
   loginCheck({ commit }) {

@@ -3,8 +3,7 @@
     v-model="status"
     transition="slide-y-transition"
     :color="type"
-    elevation="24"
-    multi-line
+    elevation="20"
     top
   >
   <div class="d-flex align-center justify-center">

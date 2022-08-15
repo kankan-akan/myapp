@@ -1,22 +1,5 @@
 <template>
   <v-container>
-  <!-- <v-snackbar
-    top
-    v-model="snackbar"
-  >
-    {{ text }}
-    <template v-slot:action="{ attrs }">
-    <v-btn
-        color="pink"
-        text
-        v-bind="attrs"
-        @click="snackbar = false"
-      >
-        Close
-      </v-btn>
-    </template>
-  </v-snackbar> -->
-
     <v-card max-width="600" class="mx-auto mt-16 rounded-xl">
       <v-card-title class="font-weight-bold">新規登録</v-card-title>
       <v-card-text>

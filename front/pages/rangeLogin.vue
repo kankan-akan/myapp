@@ -1,11 +1,8 @@
 <template>
-  <v-main>
-    <v-card max-width = "600">
-      <v-container>
-        <v-card-title>
-          <div class="text-h5">ログイン</div>
-        </v-card-title>
-        <v-card-text>
+  <v-container>
+    <v-card max-width="600" class="mx-auto mt-16 rounded-xl">
+      <v-card-title class="font-weight-bold">ログイン＜練習場管理者専用＞</v-card-title>
+      <v-card-text>
         <v-form
           ref="form"
           v-model="valid"
@@ -34,7 +31,6 @@
                 :rules="passwordRules"
                 :append-icon ="show ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show? 'text' : 'password'"
-               
                 required
                 @click:append="show = !show"
               ></v-text-field>
@@ -44,18 +40,12 @@
           <v-card-actions class="justify-end">
             <v-btn 
               color="blue darken-1" 
-              text 
+              outlined
+              large
               :disabled="!valid" 
               @click="login"
             >
               ログイン
-            </v-btn>
-            <v-btn 
-              color="blue darken-1" 
-              text 
-              to="/"
-            >
-              閉じる
             </v-btn>
           </v-card-actions>
           <div>
@@ -64,10 +54,8 @@
           </div>
           </v-form>
         </v-card-text>
-        
-      </v-container>
     </v-card>
-  </v-main>
+  </v-container>
 </template>
 
 <script>
@@ -107,8 +95,26 @@ export default {
           this.getLoginRange()
           this.$store.commit('rangeAuth/setIsLoggedIn', true)
           this.$router.push('/rangeAdmin/info')
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-checkbox-marked-circle-outline',
+              message: 'ログインしました！',
+              type: 'success',
+              status: true,
+            },
+            { root: true }
+          )
         }catch(err) {
           console.log(err)
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-alert-outline',
+              message: 'ログインに失敗しました。',
+              type: 'error',
+              status: true,
+            },
+            { root: true }
+          )
         }
       }
     },

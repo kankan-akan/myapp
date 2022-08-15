@@ -2,7 +2,7 @@
   <v-container>
     <div class="d-flex flex-no-wrap justify-space-between">
     <v-card-title class="pa-2">@{{ user.user_id }}</v-card-title>
-    <FollowButton :user="user" />
+    <BtnFollow :user="user" />
     </div>
 
     <v-divider></v-divider>
@@ -48,7 +48,7 @@
                     <div class="kaigyo">{{ post.content }}</div>
                   </v-card-text>
                   <div class="like-btn">
-                    <PostLike :post="post" />
+                    <BtnLike :post="post" />
                   </div>
                   </div>
                 </div>
@@ -67,7 +67,7 @@
                   <v-card-text>
                     <div class="kaigyo">{{ like.post.content }}</div>
                     <div class="like-btn">
-                      <PostLike :post="like.post" />
+                      <BtnLike :post="like.post" />
                     </div>
                   </v-card-text>
                 </div>
@@ -90,7 +90,7 @@
                 </div>
                 <div class="d-flex">
                   <DetailIndex class="align-center" :place="bookmark.range_outline" />
-                  <BookmarkButton :outline="bookmark.range_outline" />
+                  <BtnBookmark :outline="bookmark.range_outline" />
                 </div>
               </v-card-text>
               <v-divider v-if="i < bookmark.length -1" :key="i"></v-divider>
@@ -127,7 +127,7 @@
               <v-card-text>
                 <div class="d-flex justify-space-between">
                   <div class="ml-3 d-flex align-end">レッスン名：{{ review.lesson.title }}</div>
-                  <ReviewButton :review="review" />
+                  <UpdateReview :review="review" />
                 </div>
                 <v-col class="text-h6">{{ review.title }}</v-col>
                 <v-rating

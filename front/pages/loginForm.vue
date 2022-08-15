@@ -61,7 +61,7 @@
       <v-card-text>
         <div>
           ユーザー登録はお済みですか？
-          <NuxtLink to="/user/create">ー新規登録ページへ</NuxtLink>
+          <NuxtLink to="/create">ー新規登録ページへ</NuxtLink>
         </div>
       </v-card-text>
     </v-card>
@@ -97,7 +97,7 @@ export default {
       if (this.$refs.form.validate()) {
         try {
         const res = await this.$auth.loginWith('local', {
-          data:{
+          data: {
           // user_id: this.userId,
             email: this.email,
             password: this.password
@@ -105,8 +105,26 @@ export default {
         })
         console.log(res)
         console.log(this.$auth)
+        this.$store.dispatch(
+          'snackbar/showMessage', {
+            icon: 'mdi-checkbox-marked-circle-outline',
+            message: 'ログインしました！',
+            type: 'success',
+            status: true,
+          },
+          { root: true }
+        )
         }catch(err) {
           console.log(err)
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-alert-outline',
+              message: 'ログインに失敗しました。',
+              type: 'error',
+              status: true,
+            },
+            { root: true }
+          )
         }
       }
     },

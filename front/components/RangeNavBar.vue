@@ -63,9 +63,27 @@
         this.$store.commit('rangeAuth/setIsLoggedIn', false)
         this.$store.commit('rangeAuth/setLoginRange', null)
         this.$store.commit('rangeAuth/setRangeData', null)
+        this.$store.dispatch(
+          'snackbar/showMessage', {
+            icon: 'mdi-checkbox-marked-circle-outline',
+            message: 'ログアウトしました。',
+            type: 'success',
+            status: true,
+          },
+          { root: true }
+        )
       }
       catch(err){
         console.log(err)
+        this.$store.dispatch(
+          'snackbar/showMessage', {
+            icon: 'mdi-alert-outline',
+            message: 'ログアウトに失敗しました。',
+            type: 'error',
+            status: true,
+          },
+          { root: true }
+        )
       }
     }
   }

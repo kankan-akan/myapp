@@ -44,7 +44,7 @@ export default {
     },
 
   mounted() {
-    if (this.$auth.loggedIn) {
+    if (this.$store.state.auth.loggedIn) {
       this.isActive = false
         this.post.like_users.forEach((f) => {
           if (this.loginUser.id === f.id) {
@@ -59,7 +59,7 @@ export default {
       loginCheck: 'snackbar/loginCheck'
     }),
     postLike() {
-      if(this.$auth.loggedIn) {
+      if(this.$store.state.auth.loggedIn) {
         this.$axios.post('/v1/likes', {
           user_id: this.loginUser.id,
           post_id: this.post.id

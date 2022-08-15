@@ -38,7 +38,7 @@ export default {
     if (this.$store.state.auth.loggedIn) {
       this.isActive = false
       this.outline.bookmark_users.forEach((f) => {
-        if (this.loginUser.id === f.id) {
+        if (this.loginUser && this.loginUser.id === f.id) {
           this.isActive = true
         }
       })
@@ -50,7 +50,7 @@ export default {
       loginCheck: 'snackbar/loginCheck'
     }),
     postBookmark() {
-      if(this.$auth.loggedIn) {
+      if(this.$store.state.auth.loggedIn) {
         this.$axios.post('/v1/bookmarks', {
           user_id: this.loginUser.id,
           range_outline_id: this.outline.id
