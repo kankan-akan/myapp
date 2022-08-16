@@ -55,14 +55,12 @@
 
           <v-card-actions class="justify-end">
             <v-btn
-              class="mr-4 font-weight-bold"
-              type="submit"
+              class="mr-4 font-weight-bold white--text"
               :disabled="!valid || loading" 
               :loading="loading"
-              @click.prevent="submit"
+              @click="submit"
               color="indigo accent-2"
               large
-              dark
             >
               登録
             </v-btn>

@@ -39,10 +39,11 @@
           <small>*は必須項目です</small>
           <v-card-actions class="justify-end">
             <v-btn 
+              :disabled="!valid || loading"
+              :loading="loading" 
               color="blue darken-1" 
               outlined
               large
-              :disabled="!valid" 
               @click="login"
             >
               ログイン
@@ -65,6 +66,7 @@ export default {
   data: () => ({
     valid: true,
     show: false,
+    loading: false,
     nameRules: [ v => !!v || '入力してください' ],
     emailRules: [
       v => !!v || '入力してください',
@@ -85,6 +87,7 @@ export default {
     }),
     async login () {
       if (this.$refs.form.validate()) {
+        this.loading = true
         try {
           const res = await this.$axios.post('/v1/range_auth/sign_in', {
             // name: this.name,
@@ -92,6 +95,7 @@ export default {
             password: this.password
           })
           console.log(res)
+          this.loading = false
           this.getLoginRange()
           this.$store.commit('rangeAuth/setIsLoggedIn', true)
           this.$router.push('/rangeAdmin/info')
@@ -106,6 +110,7 @@ export default {
           )
         }catch(err) {
           console.log(err)
+          this.loading = false
           this.$store.dispatch(
             'snackbar/showMessage', {
               icon: 'mdi-alert-outline',
@@ -118,7 +123,6 @@ export default {
         }
       }
     },
-
   },
 
 }

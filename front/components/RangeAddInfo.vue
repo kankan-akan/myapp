@@ -1,5 +1,5 @@
 <template>
-  <v-row >
+  <div>
     <v-dialog
       v-model="dialog"
       width="800"
@@ -8,6 +8,7 @@
         <v-btn 
           v-on="on"
           v-bind="attrs"
+          color="light-green lighten-4"
         >
           <v-icon>{{ 'mdi-pen' }}</v-icon>
           登録
@@ -171,7 +172,7 @@
         </v-card-text>
       </v-card>
     </v-dialog>
-  </v-row>
+  </div>
 </template>
 
 <script>

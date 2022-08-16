@@ -47,12 +47,12 @@
       <div>
         <v-card-actions class="justify-end">
           <v-btn
-            class="mr-4 font-weight-bold"
-            :disabled="!valid" 
-            @click="login"
+            class="mr-4 font-weight-bold white--text"
+            :disabled="!valid || loading" 
+            :loading="loading"
             color="indigo accent-2"
+            @click="login"
             large
-            dark
           >
             ログイン
           </v-btn>
@@ -74,6 +74,7 @@ export default {
   data: () => ({
     valid: true,
     show: false,
+    loading: false,
     // userId: 'ichiro_tanaka',
     // userIdRules: [
     //   v => !!v || '入力してください',
@@ -95,6 +96,7 @@ export default {
   methods: {
     async login () {
       if (this.$refs.form.validate()) {
+        this.loading = true
         try {
         const res = await this.$auth.loginWith('local', {
           data: {
@@ -105,6 +107,7 @@ export default {
         })
         console.log(res)
         console.log(this.$auth)
+        this.loading = false
         this.$store.dispatch(
           'snackbar/showMessage', {
             icon: 'mdi-checkbox-marked-circle-outline',
@@ -116,6 +119,7 @@ export default {
         )
         }catch(err) {
           console.log(err)
+          this.loading = false
           this.$store.dispatch(
             'snackbar/showMessage', {
               icon: 'mdi-alert-outline',

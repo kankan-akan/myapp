@@ -1,21 +1,15 @@
 <template>
-  <v-main >
-    <v-container >
-      <v-row>
-        <v-col>
-          <div>基本情報</div>
-        </v-col>
+  <v-main>
+    <v-container>
+      <v-col class="d-flex align-center">
+        <div class="text-h5 font-weight-bold mr-4">基本情報</div>
         <template v-if="rangeData == null">
-          <v-col>
-            <RangeAddInfo />
-          </v-col>
+          <RangeAddInfo />
         </template>
         <template v-else>
-          <v-col>
-            <RangeEditInfo />
-          </v-col>
+          <RangeEditInfo />
         </template>
-      </v-row>
+      </v-col>
 
       <template v-if="rangeData == null">
         <v-row>
@@ -26,7 +20,7 @@
       </template>
       <template v-else>
       <v-row dense class="justify-center">
-      <v-col cols="10">
+      <v-col cols="8">
         <v-card>
           <v-card-text>
             <v-row>
@@ -41,7 +35,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="10">
+      <v-col cols="8">
         <v-card>
           <v-card-text>
             <v-row>
@@ -56,7 +50,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="10">
+      <v-col cols="8">
         <v-card>
           <v-card-text>
             <v-row>
@@ -71,7 +65,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="10">
+      <v-col cols="8">
         <v-card>
           <v-card-text>
             <v-row>
@@ -86,7 +80,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="10">
+      <v-col cols="8">
         <v-card>
             <v-card-text>
               <v-row>
@@ -101,7 +95,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="10">
+      <v-col cols="8">
         <v-card>
           <v-card-text>
             <v-row>
@@ -119,7 +113,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="10">
+      <v-col cols="8">
         <v-card>
           <v-card-text>
             <v-row>
@@ -134,7 +128,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="10">
+      <v-col cols="8">
         <v-card>
           <v-card-text>
             <v-row>
@@ -149,7 +143,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="10">
+      <v-col cols="8">
         <v-card>
           <v-card-text>
             <v-row>
@@ -165,7 +159,6 @@
       </v-col>
       </v-row>
       </template>
-    
     </v-container>
   </v-main>
 </template>

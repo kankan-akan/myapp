@@ -1,130 +1,156 @@
 <template>
   <v-container>
-    <v-col class="text-h5 font-weight-bold">アカウント設定</v-col>
-    <v-col>変更したい項目を書き換えてください。</v-col>
-    <v-form
-      ref="form"
-      v-model="valid"
-      lazy-validation
-    >
-      <v-col class="text-center">
-        <v-file-input
-          v-model="inputImage"
-          accept="image/png, image/jpeg, image/bmp"
-          
-          prepend-icon="mdi-camera-plus-outline"
-          label="画像を選択してください"
-          @change="uploadImage"
-        ></v-file-input>
-        <template v-if="avatar == null">
-          <v-avatar v-if="preImage !== ''" size="200">
-            <img :src="preImage">
-          </v-avatar>
-          <v-avatar v-else size="200" color="indigo">
-            <v-icon dark size="120">mdi-account</v-icon>
-          </v-avatar>
-          <v-chip
-            v-if="preImage !== ''"
-            @click="deletePreImage()"
+    <v-sheet class="rounded-xl">
+      <v-col class="text-h5 font-weight-bold">アカウント設定</v-col>
+      <div class="text-h6 ml-6 mb-6 font-weight-bold">登録情報変更</div>
+      <div class="ml-6">変更したい項目を書き換えてください。</div>
+      <v-row justify="center">
+        <v-col class="mt-6" cols="8">
+          <v-form
+            ref="formInfo"
+            v-model="validInfo"
+            lazy-validation
           >
-            cancel
-          </v-chip>
-        </template>
-        <template v-else>
-          <v-avatar size="200">
-            <img v-if="preImage !== ''" :src="preImage">
-            <img v-else :src="avatar">
-          </v-avatar>
-          <v-chip
-            v-if="preImage !== ''"
-            @click="deletePreImage()"
+            <v-col class="text-center">
+              <v-file-input
+                v-model="inputImage"
+                accept="image/png, image/jpeg, image/bmp"
+                prepend-icon="mdi-camera-plus-outline"
+                label="画像を選択してください"
+                @change="uploadImage"
+              ></v-file-input>
+              <template v-if="avatar && avatar.url !== null">
+                <v-avatar size="200">
+                  <img v-if="preImage !== ''" :src="preImage">
+                  <img v-else :src="avatar.url">
+                </v-avatar>
+                <v-chip
+                  v-if="preImage !== ''"
+                  @click="deletePreImage()"
+                >
+                  cancel
+                </v-chip>
+                <v-btn
+                  v-else
+                  small
+                  icon
+                  @click="deleteAvatar()"
+                >
+                  <v-icon small>{{ 'mdi-close' }}</v-icon>
+                </v-btn>
+              </template>
+              <template v-else>
+                <v-avatar v-if="preImage !== ''" size="200">
+                  <img :src="preImage">
+                </v-avatar>
+                <v-avatar v-else size="200" color="indigo">
+                  <v-icon dark size="120">mdi-account</v-icon>
+                </v-avatar>
+                <v-chip
+                  v-if="preImage !== ''"
+                  @click="deletePreImage()"
+                >
+                  cancel
+                </v-chip>
+              </template>
+            </v-col>
+
+            <v-divider class="my-10"></v-divider>
+
+            <v-text-field
+              outlined
+              v-model="name"
+              :rules="nameRules"
+              label="登録名"
+              required
+            ></v-text-field>
+
+            <v-text-field
+              outlined
+              v-model="userId"
+              :counter="15"
+              :rules="userIdRules"
+              label="ユーザー名（半角英数字・記号(.?/-_)で15文字以内"
+              required
+            ></v-text-field>
+
+            <v-text-field
+              outlined
+              v-model="email"
+              :rules="emailRules"
+              label="メールアドレス"
+              required
+            ></v-text-field>
+
+            <v-text-field
+              outlined
+              v-model="phoneNumber"
+              label="電話番号"
+              required
+            ></v-text-field>
+            <div class="d-flex justify-end">
+              <v-btn
+                class="mr-4"
+                :disabled="!validInfo || loading" 
+                :loading="loading"
+                @click="editInfo"
+                large
+                outlined
+              >
+                登録
+              </v-btn>
+            </div>
+          </v-form>
+        </v-col>
+      </v-row>
+
+      <v-divider class="my-10"></v-divider>
+
+      <div class="text-h6 ml-6 mb-6 font-weight-bold">パスワード変更</div>
+      <v-row justify="center">
+        <v-col cols="8">
+          <v-form
+            ref="form"
+            v-model="valid"
+            lazy-validation
           >
-            cancel
-          </v-chip>
-          <v-btn
-            v-else
-            small
-            icon
-            @click="deleteAvatar()"
-          >
-            <v-icon small>{{ 'mdi-close' }}</v-icon>
-          </v-btn>
-        </template>
-      </v-col>
-      
-      <v-divider class="mb-3"></v-divider>
+            <v-text-field
+              outlined
+              v-model="password"
+              :rules="passwordRules"
+              :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="show? 'text' : 'password'"
+              label="新しいパスワード（半角英数字・記号(.?/-_)を各1つ含む8文字以上30文字以内）"
+              @click:append="show = !show"
+              required
+            ></v-text-field>
 
-      <v-col>
-        <v-text-field
-          outlined
-          v-model="name"
-          :rules="nameRules"
-          label="登録名"
-          required
-        ></v-text-field>
-      </v-col>
-
-      <v-divider class="mb-3"></v-divider>
-
-      <v-col>
-        <v-text-field
-          outlined
-          v-model="userId"
-          :counter="15"
-          :rules="userIdRules"
-          label="ユーザー名（半角英数字・記号(.?/-_)で15文字以内"
-          required
-        ></v-text-field>
-      </v-col>
-
-      <v-divider class="mb-3"></v-divider>
-
-      <v-col>
-        <v-text-field
-          outlined
-          v-model="email"
-          :rules="emailRules"
-          label="メールアドレス"
-          required
-        ></v-text-field>
-      </v-col>
-
-      <v-divider class="mb-3"></v-divider>
-
-      <v-col>
-        <v-text-field
-          outlined
-          v-model="phoneNumber"
-          label="電話番号"
-          required
-        ></v-text-field>
-      </v-col>
-
-        <!-- <v-divider class="mb-3"></v-divider> -->
-
-      <!-- <v-col>
-        <v-text-field
-          outlined
-          v-model="password"
-          :rules="passwordRules"
-          :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-          :type="show? 'text' : 'password'"
-          label="パスワード（半角英数字・記号(.?/-_)を各1つ含む8文字以上30文字以内）"
-          required
-          @click:append="show = !show"
-        ></v-text-field>
-      </v-col> -->
-      <v-btn
-        class="mr-4"
-        :disabled="!valid || loading" 
-        :loading="loading"
-        @click.prevent="editInfo"
-        large
-        outlined
-      >
-        登録
-      </v-btn>
-    </v-form>
+            <v-text-field
+              outlined
+              v-model="passwordConfirmation"
+              :rules="passwordRules"
+              :append-icon="showConfirm ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="showConfirm? 'text' : 'password'"
+              label="新しいパスワード（確認用）"
+              required
+              @click:append="showConfirm = !showConfirm"
+            ></v-text-field>
+            <div class="d-flex justify-end">
+              <v-btn
+                class="mr-4"
+                :disabled="!valid || loading2" 
+                :loading="loading2"
+                @click="editPassword"
+                large
+                outlined
+              >
+                登録
+              </v-btn>
+            </div>
+          </v-form>
+        </v-col>
+      </v-row>
+    </v-sheet>
   </v-container>
 </template>
 
@@ -137,10 +163,13 @@ export default {
       /* open dialog */
       dialog: false,
       /* register validate */
+      validInfo: true,
       valid: true,
       // eye icon
       show: false,
+      showConfirm: false,
       loading: false,
+      loading2: false,
       name: this.$store.state.myData.loginUser.name, 
       nameRules: [
       ],
@@ -155,12 +184,13 @@ export default {
         v => /.+@.+\..+/.test(v) || '',
       ],
       phoneNumber: this.$store.state.myData.loginUser.phone_number,
-      // password: 'password.',
-      // passwordRules: [
-      //   v => !!v || '入力してください',
-      //   v => /^(?=.*[a-z])(?=.*[.?/-_])[a-zA-Z0-9\d.?/-_]{8,30}$/.test(v) || '',
-      // ],
-      avatar: this.$store.state.myData.loginUser.avatar.url,
+      password: '',
+      passwordConfirmation: '',
+      passwordRules: [
+        v => !!v || '入力してください',
+        v => /^(?=.*[a-z])(?=.*[.?/-_])[a-zA-Z0-9\d.?/-_]{8,30}$/.test(v) || '',
+      ],
+      avatar: this.$store.state.myData.loginUser.avatar,
       // avatar: null,
       // avatar: 'https://cdn.vuetifyjs.com/images/john.jpg',
       inputImage: null,
@@ -175,8 +205,44 @@ export default {
   },
 
   methods: {
-    async editInfo () {
+    editPassword () {
       if (this.$refs.form.validate()) {
+        this.loading2 = true
+        this.$axios.put('/v1/auth/password', {
+          password: this.password,
+          password_confirmation: this.passwordConfirmation
+        })
+        .then((res) => {
+          console.log(res)
+          this.loading2 = false
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-checkbox-marked-circle-outline',
+              message: 'パスワードが変更されました。',
+              type: 'success',
+              status: true,
+            },
+            { root: true }
+          )
+        })
+        .catch((err) => {
+          console.log(err)
+          this.loading2 = false
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-alert-outline',
+              message: 'パスワードの変更に失敗しました。もう一度やり直してください。',
+              type: 'error',
+              status: true,
+            },
+            { root: true }
+          )
+        })
+      }
+    },
+    async editInfo () {
+      if (this.$refs.formInfo.validate()) {
+        this.loading = true
         const formData = new FormData()
           formData.append('name', this.name)
           formData.append('user_id', this.userId)
@@ -192,6 +258,7 @@ export default {
         })
         .then((res) => {
           console.log(res)
+          this.loading = false
           this.$store.dispatch(
             'snackbar/showMessage', {
               icon: 'mdi-checkbox-marked-circle-outline',
@@ -204,6 +271,7 @@ export default {
         })
         .catch((err) => {
           console.log(err)
+          this.loading = false
           this.$store.dispatch(
             'snackbar/showMessage', {
               icon: 'mdi-alert-outline',
@@ -226,7 +294,7 @@ export default {
     //   }
     //   reader.readAsDataURL(this.inputImage);
     // },
-    uploadImage(file) {
+    uploadImage (file) {
       if (file !== undefined && file !== null) {
         if (file.name.lastIndexOf('.') <= 0) {
           return
@@ -240,12 +308,12 @@ export default {
         this.preImage = ''
       }
     },
-    deletePreImage() {
+    deletePreImage () {
       this.preImage = ''
       this.inputImage = null
     },
-    deleteAvatar() {
-      this.avatar = null
+    deleteAvatar () {
+      this.avatar = ''
       this.inputImage = null
     }
   }

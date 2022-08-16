@@ -9,9 +9,7 @@ export default {
     // eye icon
     show: false,
     // checkbox: false,
-    loader: 'null',
     loading: false,
-
     name: 'hogeゴルフ練習場', 
     nameRules: [ v => !!v || '入力してください' ],
     // userId: '',
@@ -49,6 +47,7 @@ export default {
     }),
     async submit () {
       if (this.$refs.form.validate()) {
+        this.loading = true
         try {
           const res = await this.$axios.post('/v1/range_auth', this.params)
           await this.$axios.post('/v1/range_auth/sign_in', {
@@ -57,11 +56,31 @@ export default {
             password: this.password
           })
           console.log(res)
+          this.loading = false
           this.getLoginRange()
           this.$store.commit('rangeAuth/setIsLoggedIn', true)
           this.$router.push('/rangeAdmin/info')
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-golf-tee',
+              message: 'Welcome！',
+              type: 'info',
+              status: true,
+            },
+            { root: true }
+          )
         }catch(err) {
           console.log(err)
+          this.loading = false
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-alert-outline',
+              message: 'ログインに失敗しました。',
+              type: 'error',
+              status: true,
+            },
+            { root: true }
+          )
         }
       }
     },

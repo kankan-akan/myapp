@@ -7,6 +7,7 @@
       <v-btn
         v-on="on"
         v-bind="attrs"
+        outlined
       >
         <v-icon>{{ 'mdi-pen' }}</v-icon>
         編集

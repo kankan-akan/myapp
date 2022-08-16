@@ -7,7 +7,6 @@ export default {
     valid: true,
     // eye icon
     show: false,
-    loader: 'null',
     loading: false,
     name: '田中一郎', 
     nameRules: [
@@ -56,6 +55,7 @@ export default {
     //全て入力されているか
     async submit () {
       if (this.$refs.form.validate()) {
+        this.loading = true 
         try {
           // this.loading = true
           const res = await this.$axios.post('/v1/auth', this.params)
@@ -68,6 +68,7 @@ export default {
             }
           })
             console.log(res)
+            this.loading = false
             this.$store.dispatch(
               'snackbar/showMessage', {
                 icon: 'mdi-golf-tee',
@@ -79,6 +80,7 @@ export default {
             )
         }catch(err) {
             console.log(err)
+            this.loading = false
             this.$store.dispatch(
               'snackbar/showMessage', {
                 icon: 'mdi-alert-outline',

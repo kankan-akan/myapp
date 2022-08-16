@@ -52,10 +52,10 @@
             label ="利用規約に同意"
             required
           ></v-checkbox> -->
-          <v-card-actions>
+          <v-card-actions class="justify-end">
             <v-btn
               class ="mr-4"
-              :disabled="!valid" 
+              :disabled="!valid || loading" 
               :loading="loading"
               @click="submit"
               large

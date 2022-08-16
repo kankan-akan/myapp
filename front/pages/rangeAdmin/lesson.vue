@@ -1,14 +1,11 @@
 <template>
   <v-main>
     <v-container v-if="$store.state.rangeAuth.rangeData">
-      <v-row>
-        <v-col>
-          <div>開講レッスン一覧</div>
-        </v-col>
-        <v-col>
-          <RangeAddLesson />
-        </v-col>
-      </v-row>
+      <v-col class="d-flex align-center">
+        <div class="text-h5 font-weight-bold mr-4">開講レッスン一覧</div>
+        <RangeAddLesson />
+      </v-col>
+
       <template v-if="lessons == ''">
         <v-row>
           <v-col class="d-flex justify-center">
@@ -21,7 +18,7 @@
           <v-col
             v-for="(lesson, i) in lessons"
             :key="i"
-            cols="10"
+            cols="8"
           >
             <v-card>
               <v-card-actions class="d-inline-flex float-right">

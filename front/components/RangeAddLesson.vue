@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <div>
     <v-dialog
       v-model="dialog"
       width="900"
@@ -8,6 +8,7 @@
         <v-btn
           v-on="on"
           v-bind="attrs"
+          color="light-green lighten-4"
         >
           <v-icon>{{ 'mdi-plus' }}</v-icon>
           新規作成
@@ -173,7 +174,7 @@
       </v-card>
 
     </v-dialog>
-  </v-row>
+  </div>
 </template>
 
 <script>
