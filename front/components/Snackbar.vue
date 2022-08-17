@@ -23,14 +23,16 @@ export default {
       icon: 'snackbar/icon',
       message: 'snackbar/message',
       type: 'snackbar/type',
-      status: 'snackbar/status',
+      // status: 'snackbar/status',
     }),
+    status: {
+      get () {
+        return this.$store.getters['snackbar/status']
+      },
+      set (val) {
+        return val
+      }
+    }
   },
 }
 </script>
-
-<style scoped>
-/* .message {
-  color: transparent;
-} */
-</style>
