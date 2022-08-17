@@ -155,7 +155,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   data: function () {
@@ -193,7 +193,7 @@ export default {
       avatar: this.$store.state.myData.loginUser.avatar,
       // avatar: null,
       // avatar: 'https://cdn.vuetifyjs.com/images/john.jpg',
-      inputImage: null,
+      inputImage: '',
       preImage: ''
     }
   },
@@ -205,6 +205,9 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      getLoginUser: 'myData/getLoginUser'
+    }),
     editPassword () {
       if (this.$refs.form.validate()) {
         this.loading2 = true
@@ -259,6 +262,7 @@ export default {
         .then((res) => {
           console.log(res)
           this.loading = false
+          this.getLoginUser()
           this.$store.dispatch(
             'snackbar/showMessage', {
               icon: 'mdi-checkbox-marked-circle-outline',
@@ -310,10 +314,10 @@ export default {
     },
     deletePreImage () {
       this.preImage = ''
-      this.inputImage = null
+      this.inputImage = ''
     },
     deleteAvatar () {
-      this.avatar = ''
+      this.avatar = null
       this.inputImage = null
     }
   }
