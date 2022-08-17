@@ -24,14 +24,8 @@
                   <img v-if="preImage !== ''" :src="preImage">
                   <img v-else :src="avatar.url">
                 </v-avatar>
-                <v-chip
-                  v-if="preImage !== ''"
-                  @click="deletePreImage()"
-                >
-                  cancel
-                </v-chip>
                 <v-btn
-                  v-else
+                  v-if="!preImage"
                   small
                   icon
                   @click="deleteAvatar()"
@@ -46,12 +40,6 @@
                 <v-avatar v-else size="200" color="indigo">
                   <v-icon dark size="120">mdi-account</v-icon>
                 </v-avatar>
-                <v-chip
-                  v-if="preImage !== ''"
-                  @click="deletePreImage()"
-                >
-                  cancel
-                </v-chip>
               </template>
             </v-col>
 
@@ -193,7 +181,7 @@ export default {
       avatar: this.$store.state.myData.loginUser.avatar,
       // avatar: null,
       // avatar: 'https://cdn.vuetifyjs.com/images/john.jpg',
-      inputImage: '',
+      inputImage: {},
       preImage: ''
     }
   },
@@ -251,7 +239,7 @@ export default {
           formData.append('user_id', this.userId)
           formData.append('email', this.email)
           formData.append('phone_number', this.phoneNumber)
-          if (this.inputImage !== '') {
+          if (this.inputImage || this.inputImage == '') {
             formData.append('avatar', this.inputImage)
           }
         await this.$axios.put('/v1/auth', formData, { 
@@ -312,13 +300,9 @@ export default {
         this.preImage = ''
       }
     },
-    deletePreImage () {
-      this.preImage = ''
-      this.inputImage = ''
-    },
     deleteAvatar () {
       this.avatar = null
-      this.inputImage = null
+      this.inputImage = ''
     }
   }
 }
