@@ -6,10 +6,12 @@
       </v-card-text>
       <v-card-actions class="justify-center">
         <v-btn 
+          class="white--text"
           color="indigo accent-2"
-          dark
+          :disabled="loading"
+          :loading="loading"
           large
-          @click ="logout()"
+          @click ="logout"
         >
           OK
         </v-btn>
@@ -28,10 +30,14 @@
 <script>
 
 export default {
+  data: () => ({
+    loading: false
+  }),
 
   methods: {
     logout() {
       this.$auth.logout()
+      this.loading = true
       this.$store.commit('myData/setLoginUser', null)
       this.$store.dispatch(
         'snackbar/showMessage', {
@@ -42,6 +48,7 @@ export default {
         },
         { root: true }
       )
+      this.loading = false
     },
   },
  
