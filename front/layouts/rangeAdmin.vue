@@ -10,7 +10,8 @@
 
 <script>
 export default {
-  name: "rangeAdmin"
+  name: "rangeAdmin",
+  middleware: 'rangeAuth',
 
 }
 </script>

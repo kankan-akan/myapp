@@ -7,7 +7,6 @@
 <script>
   export default {
     middleware: 'userAuth',
-    
     layout: 'default',
 
     validate ({ route }) {

@@ -85,7 +85,6 @@ export default {
   },
 
   // router: {
-  //   middleware: 'userAuth'
   // },
   
   auth: {

@@ -6,10 +6,8 @@
 
 <script>
   export default {
-    middleware: 'rangeAuth',
-
     layout: 'rangeAdmin',
-    
+
     validate ({ route }) {
       return route.name !== 'rangeAdmin'
     }
