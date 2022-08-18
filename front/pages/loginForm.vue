@@ -107,7 +107,6 @@ export default {
         })
         console.log(res)
         console.log(this.$auth)
-        this.loading = false
         this.$store.dispatch(
           'snackbar/showMessage', {
             icon: 'mdi-checkbox-marked-circle-outline',
@@ -117,9 +116,9 @@ export default {
           },
           { root: true }
         )
+        this.loading = false
         }catch(err) {
           console.log(err)
-          this.loading = false
           this.$store.dispatch(
             'snackbar/showMessage', {
               icon: 'mdi-alert-outline',
@@ -129,6 +128,7 @@ export default {
             },
             { root: true }
           )
+          this.loading = false
         }
       }
     },

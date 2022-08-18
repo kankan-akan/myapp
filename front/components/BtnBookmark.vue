@@ -35,20 +35,23 @@ export default {
   },
 
   mounted() {
-    if (this.$store.state.auth.loggedIn) {
-      this.isActive = false
-      this.outline.bookmark_users.forEach((f) => {
-        if (this.loginUser && this.loginUser.id === f.id) {
-          this.isActive = true
-        }
-      })
-    }
+    setTimeout(this.activeCheck, 1000)
   },
 
   methods: {
     ...mapActions({
       loginCheck: 'snackbar/loginCheck'
     }),
+    activeCheck() {
+      if (this.$store.state.auth.loggedIn) {
+        this.isActive = false
+        this.outline.bookmark_users.forEach((f) => {
+          if (this.loginUser && this.loginUser.id === f.id) {
+            this.isActive = true
+          }
+        })
+      }
+    },
     postBookmark() {
       if(this.$store.state.auth.loggedIn) {
         this.$axios.post('/v1/bookmarks', {

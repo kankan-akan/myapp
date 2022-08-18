@@ -89,10 +89,10 @@ export default {
   
   auth: {
     redirect: {
-        login: '/',
-        logout: '/',
-        callback: false,
-        home: '/',
+      login: '/',
+      logout: '/',
+      callback: false,
+      home: '/',
     },
 
     strategies: {
