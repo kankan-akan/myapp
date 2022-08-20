@@ -66,7 +66,59 @@
               persistent-hint
             ></v-text-field>
           </v-col>
-          <div class="px-3">＊設備</div>
+          <div class="px-3 mt-4">画像</div>
+          <v-row no-gutter justify="center">
+            <v-col cols="10">
+              <v-file-input
+                v-model="inputImage"
+                accept="image/png, image/jpeg, image/bmp"
+                prepend-icon="mdi-camera-plus-outline"
+                label="画像を選択してください"
+                @change="uploadImage"
+              ></v-file-input>
+              <template v-if="image && image.url !== null">
+                <v-img 
+                  v-if="preImage !== ''" 
+                  :src="preImage"
+                  contain
+                  aspect-ratio="1.7"
+                ></v-img>
+                <v-img 
+                  v-else 
+                  :src="image.url"
+                  contain
+                  aspect-ratio="1.7"
+                ></v-img>
+                <div class="d-flex justify-end">
+                  <v-btn
+                    v-if="!preImage"
+                    icon
+                    @click="deleteImage()"
+                  >
+                    <v-icon small>{{ 'mdi-close' }}</v-icon>
+                  </v-btn>
+                </div>
+              </template>
+              <template v-else>
+                <v-img 
+                  v-if="preImage !== ''" 
+                  :src="preImage"
+                  contain
+                  aspect-ratio="1.7"
+                ></v-img>
+                <v-sheet
+                  v-else
+                  class="d-flex justify-center align-center"
+                  color="grey lighten-2"
+                  height="280"
+                  aspect-ratio="1.7"
+                >
+                  <v-icon size="80">{{ 'mdi-image' }}</v-icon>
+                </v-sheet>
+              </template>
+            </v-col>
+          </v-row>
+          <div class="px-3 mt-8">＊設備</div>
           <v-row class="px-3">
             <v-col>
               <v-checkbox
@@ -192,6 +244,9 @@ export default {
       name: this.$store.state.rangeAuth.rangeData.name, 
       address: this.$store.state.rangeAuth.rangeData.address,
       distance: this.$store.state.rangeAuth.rangeData.distance,
+      image: this.$store.state.rangeAuth.rangeData.image,
+      inputImage: [],
+      preImage: '',
       features:this.$store.state.rangeAuth.rangeData.features,
       booths: this.$store.state.rangeAuth.rangeData.booths,
       link: this.$store.state.rangeAuth.rangeData.link,
@@ -212,28 +267,7 @@ export default {
     ...mapState({
       loginRange: (state) => state.rangeAuth.loginRange,
       rangeData: (state) => state.rangeAuth.rangeData
-    }),
-    params() {
-      return {
-        city: this.city,
-        name: this.name,
-        address: this.address,
-        distance: this.distance,
-        features: this.features,
-        booths: this.booths,
-        link: this.link,
-        phone_number: this.phone_number,
-        uchihoudai: this.uchihoudai,
-        approach: this.approach,
-        lefty: this.lefty,
-        patting: this.patting,
-        bunker:this.bunker,
-        shop: this.shop,
-        restaurant: this.restaurant,
-        lesson: this.lesson
-      }
-    }
-
+    })
   },
 
   methods: {
@@ -242,9 +276,32 @@ export default {
     }),
     async edit () {
       if (this.$refs.form.validate()) {
-        await this.$axios.put(`/v1/outlines/${this.loginRange.id}`,
-          this.params
-        )
+        const formData = new FormData()
+        formData.append('city', this.city)
+        formData.append('name', this.name)
+        formData.append('address', this.address)
+        formData.append('distance', this.distance)
+        formData.append('features', this.features)
+        formData.append('booths', this.booths)
+        formData.append('link', this.link)
+        formData.append('phone_number', this.phone_number)
+        formData.append('uchihoudai', this.uchihoudai)
+        formData.append('approach', this.approach)
+        formData.append('lefty', this.lefty)
+        formData.append('patting', this.patting)
+        formData.append('bunker', this.bunker)
+        formData.append('shop', this.shop)
+        formData.append('restaurant', this.restaurant)
+        formData.append('lesson', this.lesson)
+        formData.append('admin_range_id', this.loginRange.id)
+        if (this.inputImage || this.inputImage !== null) {
+          formData.append('image', this.inputImage)
+        }
+        await this.$axios.put(`/v1/outlines/${this.loginRange.id}`, formData, { 
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
         .then((res) => {
           console.log(res)
           this.getRangeData()
@@ -276,6 +333,24 @@ export default {
     reset () {
       this.$refs.form.reset()
     },
+    uploadImage (file) {
+      if (file !== undefined && file !== null) {
+        if (file.name.lastIndexOf('.') <= 0) {
+          return
+        }
+        const fr = new FileReader()
+        fr.readAsDataURL(file)
+        fr.addEventListener('load', () => {
+          this.preImage = fr.result
+        })
+      } else {
+        this.preImage = ''
+      }
+    },
+    deleteImage () {
+      this.image = null
+      this.inputImage = ''
+    }
   },
 }
 </script>

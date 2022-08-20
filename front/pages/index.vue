@@ -60,7 +60,21 @@
 
               </div>
             </v-card-text>
-            <v-divider class="my-2"></v-divider>
+            <template v-if="place.image && place.image.url">
+              <v-img
+                v-if="place.image.url"
+                height="230"
+                :src="place.image.url"
+              ></v-img>
+            </template>
+            <v-sheet
+              v-else
+              class="d-flex justify-center align-center"
+              color="grey lighten-1"
+              height="230"
+            >
+                <v-icon size="80">{{ 'mdi-image' }}</v-icon>
+              </v-sheet>
             <!-- <table class="table-price">
               <tr>
                 <td class="empty"></td> <th class="th-price">平日</th><th class="th-price">土日</th>

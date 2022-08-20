@@ -82,6 +82,30 @@
 
       <v-col cols="8">
         <v-card>
+          <template v-if="rangeData.image && rangeData.image.url">
+            <v-img
+              v-if="rangeData.image.url"
+              class="grey lighten-2"
+              contain
+              aspect-ratio="1.7"
+              :src="rangeData.image.url"
+            ></v-img>
+          </template>
+          <template v-else>
+            <v-sheet
+              class="d-flex justify-center align-center"
+              color="grey lighten-2"
+              height="250"
+              aspect-ratio="1.7"
+            >
+              <v-icon size="80">{{ 'mdi-image' }}</v-icon>
+            </v-sheet>
+          </template>
+        </v-card>
+      </v-col>
+
+      <v-col cols="8">
+        <v-card>
             <v-card-text>
               <v-row>
               <v-col cols="2">

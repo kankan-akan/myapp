@@ -1,4 +1,6 @@
 class RangeOutline < ApplicationRecord
+  mount_uploader :image, ImageUploader
+
   belongs_to :admin_range
   validates :admin_range_id, presence: true
 

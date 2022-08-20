@@ -4,7 +4,6 @@ export default {
   data: function () {
     return {
       dialog: false,
-      panel: [],
       city: [],
       loading: false,
       items: [],
@@ -49,18 +48,15 @@ export default {
     showLesson(id) {
       this.$router.push(`/lessons/${id}`)
     },
-    nonePanel() {
-      this.panel = []
-    },
-    querySelections (v) {
-      this.loading = true
-      // Simulated ajax query
-      setTimeout(() => {
-        this.items = this.ranges.filter(e => {
-          return (e || '').toLowerCase().indexOf((v || '').toLowerCase()) > -1
-        })
-        this.loading = false
-      }, 500)
-    },
+    // querySelections (v) {
+    //   this.loading = true
+    //   // Simulated ajax query
+    //   setTimeout(() => {
+    //     this.items = this.ranges.filter(e => {
+    //       return (e || '').toLowerCase().indexOf((v || '').toLowerCase()) > -1
+    //     })
+    //     this.loading = false
+    //   }, 500)
+    // },
   }
 }

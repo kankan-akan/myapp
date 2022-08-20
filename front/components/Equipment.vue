@@ -2,20 +2,20 @@
   <v-container v-if="equipment">
     <v-row no-gutters>
     <v-col>
-      <div class="e1" v-bind:class="{ 'active' : equipment.uchihoudai }">打ち放題</div>
-      <div class="e1" v-bind:class="{ 'active' : equipment.approach }">アプローチ</div>
+      <div class="e1 d-flex justify-center align-center" :class="{ 'active' : equipment.uchihoudai }">打ち放題</div>
+      <div class="e1 d-flex justify-center align-center" :class="{ 'active' : equipment.approach }">アプローチ</div>
     </v-col>
     <v-col>
-      <div class="e1" v-bind:class="{ 'active' : equipment.lefty }">左打席</div>
-      <div class="e1" v-bind:class="{ 'active' : equipment.patting }">パター</div>
+      <div class="e1 d-flex justify-center align-center" :class="{ 'active' : equipment.lefty }">左打席</div>
+      <div class="e1 d-flex justify-center align-center" :class="{ 'active' : equipment.patting }">パター</div>
     </v-col>
     <v-col>
-      <div class="e1" v-bind:class="{ 'active' : equipment.bunker }">バンカー</div>
-      <div class="e1" v-bind:class="{ 'active' : equipment.shop }">ショップ</div>
+      <div class="e1 d-flex justify-center align-center" :class="{ 'active' : equipment.bunker }">バンカー</div>
+      <div class="e1 d-flex justify-center align-center" :class="{ 'active' : equipment.shop }">ショップ</div>
     </v-col>
     <v-col>
-      <div class="e1" v-bind:class="{ 'active' : equipment.restaurant }">レストラン</div>
-      <div class="e1" v-bind:class="{ 'active' : equipment.lesson }">レッスン</div>
+      <div class="e1 d-flex justify-center align-center" :class="{ 'active' : equipment.restaurant }">レストラン</div>
+      <div class="e1 d-flex justify-center align-center" :class="{ 'active' : equipment.lesson }">レッスン</div>
     </v-col>
     </v-row>
   </v-container>
@@ -38,7 +38,6 @@ export default {
 }
 
 .e1 {
-  text-align: center;
   margin: 2px;
   font-size: 10px;
   font-weight: 800;

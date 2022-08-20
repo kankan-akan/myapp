@@ -9,6 +9,7 @@ class CreateRangeOutlines < ActiveRecord::Migration[5.2]
       t.string :phone_number
       t.string :distance
       t.string :booths
+      t.string :image
       t.references :admin_range, foreign_key: true
 
       t.timestamps
