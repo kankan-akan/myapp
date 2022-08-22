@@ -1,54 +1,64 @@
 <template>
-  <v-main>
-    <v-container>
-      <v-card>
-        <v-card-title>New Post</v-card-title>
-        <v-form 
-          ref="form"
-          v-model ="valid"
-          lazy-validation 
-        >
-        <v-col>
-          <v-textarea
-            outlined
-            v-model="content"
-            label="ご利用になった練習場はいかがでしたか？"
-            :counter="140"
-            :rules="contentRules"
-            required
-          ></v-textarea>
-        </v-col>
-        <v-col>
-          <v-file-input
-            v-model="inputImage"
-            accept="image/png, image/jpeg, image/bmp"
-            
-            prepend-icon="mdi-image-plus"
-            @change="uploadImage"
-            
-          ></v-file-input>
-          <!-- <template v-for="(image, i) in preImage">
-          <img 
-            v-if="preImage" 
-            :key="i"
-            :src="image"
+  <v-container>
+    <v-card max-width="900" class="mx-auto rounded-xl">
+      <v-card-title class="font-weight-bold">新しい投稿</v-card-title>
+      <v-row justify="center">
+        <v-col cols="8">
+          <v-form 
+            ref="form"
+            v-model ="valid"
+            lazy-validation 
           >
-          </template> -->
-          <v-sheet class="image grey lighten-3">
-            <v-row v-if="preImage == ''" justify="center" align="center" class="fill-height">
-              <v-icon size="82">mdi-image</v-icon>
-            </v-row>
-            <img v-else class="image" :src="preImage">
-          </v-sheet>
-          
+            <v-textarea
+              outlined
+              v-model="content"
+              label="ご利用になった練習場はいかがでしたか？"
+              :counter="140"
+              :rules="contentRules"
+              required
+            ></v-textarea>
+            <v-file-input
+              v-model="inputImage"
+              accept="image/png, image/jpeg, image/bmp"
+              prepend-icon="mdi-image-plus"
+              @change="uploadImage"
+            ></v-file-input>
+            <!-- <template v-for="(image, i) in preImage">
+            <img 
+              v-if="preImage" 
+              :key="i"
+              :src="image"
+            >
+            </template> -->
+            <div class="d-flex justify-center">
+              <v-sheet v-if="preImage == ''" class="image grey lighten-3">
+                <v-row justify="center" align="center" class="fill-height">
+                  <v-icon size="82">mdi-image</v-icon>
+                </v-row>
+              </v-sheet>
+              <v-img 
+                v-else 
+                :src="preImage"
+                max-height="250px"
+                contain
+              ></v-img>
+            </div>
+          </v-form>
         </v-col>
-        </v-form>
-        <v-card-actions>
-          <v-btn @click="submit()">post</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-container>
-  </v-main>
+      </v-row>
+      <v-card-actions class="justify-end">
+        <v-btn
+          class="mr-4 font-weight-bold white--text"
+          :disabled="!valid"
+          color="indigo accent-2"
+          @click="submit()"
+          large
+        >
+          投稿する
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-container>
 </template>
 
 <script>

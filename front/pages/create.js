@@ -71,7 +71,7 @@ export default {
             this.loading = false
             this.$store.dispatch(
               'snackbar/showMessage', {
-                icon: 'mdi-golf-tee',
+                icon: 'mdi-golf',
                 message: 'Welcome！',
                 type: 'info',
                 status: true,

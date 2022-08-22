@@ -61,9 +61,24 @@
           <v-card outlined shaped>
             <v-col class="kaigyo text--primary">{{ place.features }}</v-col>
           </v-card>
-          <v-col>ホームページ: {{ place.link }}</v-col>
-          <v-col>電話番号: {{ place.phone_number }}</v-col>
-          <v-col>打席数: {{ place.booths }}打席</v-col>
+          <v-col class="d-flex align-center">
+            <v-icon>{{ 'mdi-golf-tee' }}</v-icon>
+            <div class="text-subtitle-1 ml-2 mr-15">打席数</div>
+            <v-divider vertical class="mr-3 grey lighten-1"></v-divider>
+            <span>{{ place.booths }}打席</span>
+          </v-col>
+          <v-col class="d-flex align-center">
+            <v-icon>{{ 'mdi-phone' }}</v-icon>
+            <div class="text-subtitle-1 ml-2 mr-11">電話番号</div>
+            <v-divider vertical class="mr-3 grey lighten-1"></v-divider>
+            <span>{{ place.phone_number }}</span>
+          </v-col>
+          <v-col class="d-flex align-center">
+            <v-icon>{{ 'mdi-monitor' }}</v-icon>
+            <div class="text-subtitle-1 ml-2">ホームページ</div>
+            <v-divider vertical class="mx-3 grey lighten-1"></v-divider>
+            <span>{{ place.link }}</span>
+          </v-col>
           <v-card-title 
             v-if="place.lessons.length !== 0"
             class="font-weight-bold"
