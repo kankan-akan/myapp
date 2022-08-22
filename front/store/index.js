@@ -32,6 +32,9 @@ export const actions = {
       commit('rangeAuth/setIsLoggedIn', data.rangeAuth.isLoggedIn)
       commit('rangeAuth/setLoginRange', data.rangeAuth.loginRange)
     }
+    if (data.auth.loggedIn) {
+      commit('myData/setLoginUser', data.myData.loginUser)
+    }
   },
   async getOutline({ commit }){
     await this.$axios.get('/v1/outlines')
