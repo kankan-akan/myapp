@@ -64,7 +64,8 @@ export default {
 
   methods: {
     ...mapActions({
-      getLoginUser: 'myData/getLoginUser'
+      getLoginUser: 'myData/getLoginUser',
+      loginCheck: 'snackbar/loginCheck'
     }),
     mouseover() {
       this.color = 'red white--text'
@@ -75,18 +76,22 @@ export default {
       this.message = 'フォロー中'
     },
     followUser () {
-      this.$axios.post('/v1/relationships', {
-        user_id: this.loginUser.id,
-        follower_id: this.user.id
-      })
-      .then((res) => {
-        console.log(res)
-        this.follow = true
-        this.getLoginUser()
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      if (this.$store.state.auth.loggedIn) {
+        this.$axios.post('/v1/relationships', {
+          user_id: this.loginUser.id,
+          follower_id: this.user.id
+        })
+        .then((res) => {
+          console.log(res)
+          this.follow = true
+          this.getLoginUser()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      } else {
+        this.loginCheck()
+      }
     },
     unFollowUser () {
       this.$axios.delete('/v1/relationships', {
