@@ -68,16 +68,14 @@ import { mapState } from 'vuex';
 
   export default {
     data: () => ({
-      
     }),
-    created () {
-      
-    },
+
     computed: {
       ...mapState({
       lessons: (state) => state.rangeAuth.lessons
       }),
     },
+
     methods: {
      status(id) {
        this.$router.push(`/rangeAdmin/reservation/${id}`)

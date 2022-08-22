@@ -27,8 +27,9 @@ export const mutations = {
 
 export const actions = {
   nuxtClientInit({ commit }, context) {
-    const data = JSON.parse(localStorage.getItem('persisted-key')) || []
-    if(data.rangeAuth.loginRange) {
+    const data = JSON.parse(sessionStorage.getItem('persisted-key')) || []
+    if(data.rangeAuth.isLoggedIn) {
+      commit('rangeAuth/setIsLoggedIn', data.rangeAuth.isLoggedIn)
       commit('rangeAuth/setLoginRange', data.rangeAuth.loginRange)
     }
   },

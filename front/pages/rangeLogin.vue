@@ -95,10 +95,10 @@ export default {
             password: this.password
           })
           console.log(res)
-          this.loading = false
           this.getLoginRange()
           this.$store.commit('rangeAuth/setIsLoggedIn', true)
           this.$router.push('/rangeAdmin/info')
+          this.loading = false
           this.$store.dispatch(
             'snackbar/showMessage', {
               icon: 'mdi-checkbox-marked-circle-outline',
