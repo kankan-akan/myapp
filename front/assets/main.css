@@ -10,6 +10,10 @@
 
 }
 
+.range-color {
+  background-color: rgb(255, 251, 251);
+}
+
 .table-price {
   width: 95%;
   margin: 5px 5px;

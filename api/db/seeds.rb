@@ -222,7 +222,7 @@ Lesson.create!([
 ])
 
 Calendar.create!([
-  { lesson_time: "60", start_time1: "09:00",  start_time3: "11:00", start_time4: "13:00", start_time5: "15:00", start_time6: "17:00", start_time7: "19:00", tue: "火", wed: "水", lesson_id: 1},
+  { lesson_time: "60", start_time1: "09:00",  start_time2: "11:00", start_time3: "13:00", start_time4: "15:00", start_time5: "17:00", start_time6: "19:00", tue: "火", wed: "水", lesson_id: 1},
   { lesson_time: "90", start_time1: "10:00", start_time2: "15:00", start_time3: "17:00", start_time4: "19:00", sun: "日", mon: "月", lesson_id: 2}
 ])
 

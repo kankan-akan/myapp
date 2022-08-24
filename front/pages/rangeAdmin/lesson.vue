@@ -1,5 +1,5 @@
 <template>
-  <v-main>
+  <v-main class="range-color">
     <v-container v-if="$store.state.rangeAuth.rangeData">
       <v-col class="d-flex align-center">
         <div class="text-h5 font-weight-bold mr-4">開講レッスン一覧</div>
@@ -24,16 +24,12 @@
               <v-card-actions class="d-inline-flex float-right">
                 <RangeEditLesson :selectedLesson="lesson" />
               </v-card-actions>
-              <v-card-title>{{ lesson.title }}</v-card-title>
-              <v-card-subtitle>{{ lesson.coach }}</v-card-subtitle>
-              <v-card-text>
-                <div
-                  style="white-space:pre-wrap; word-wrap:break-word;"
-                >{{ lesson.content }}</div>
-                  <!-- <div>レッスン時間: {{ lesson.calendar.lesson_time }}</div>
-                  <div>開始時間: {{ lesson.calendar.start_time }}</div>
-                  <div>休業日: {{ lesson.calendar.holiday }}</div> -->
-              </v-card-text>
+              <v-card-title class="font-weight-bold">{{ lesson.title }}</v-card-title>
+              <v-card-subtitle>インストラクター：{{ lesson.coach }}</v-card-subtitle>
+              <v-col>
+                <v-col class="kaigyo">{{ lesson.content }}</v-col>
+                <LessonSchedule :calendar="lesson.calendar" />
+              </v-col>
             </v-card>
           </v-col>
         </v-row>

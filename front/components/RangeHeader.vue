@@ -2,9 +2,10 @@
   <div>
     <RangeNavBar />
     <v-app-bar 
+      dense
       app
       clipped-left
-      color="blue lighten-2"
+      color="blue lighten-4"
     >
       <v-row class ="justify-space-between">
         <NuxtLink 
@@ -30,7 +31,7 @@ export default {
   },
 
   mounted () {
-    setTimeout(this.getRangeData, 200)
+    setTimeout(this.getRangeData, 300)
     this.getLesson()
   },
 

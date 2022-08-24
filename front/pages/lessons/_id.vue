@@ -5,7 +5,7 @@
         <div v-if="selectedLesson == ''">レッスンが見つかりません</div>
         <template v-else>
           <v-col class="text-h4 font-weight-bold">{{ selectedLesson.lesson.title }}</v-col>
-          <div class="text-h6 pl-3">指導担当：{{ selectedLesson.lesson.coach }}プロ</div>
+          <div class="text-h6 pl-3">インストラクター：{{ selectedLesson.lesson.coach }}プロ</div>
           <v-col class="my-6">{{ selectedLesson.lesson.content }}</v-col>
         </template>
 
