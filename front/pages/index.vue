@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="6">
-        <div class="text-subtitle-1">市町村から検索</div>
+        <div class="text-subtitle-1 font-weight-bold">市町村から検索</div>
         <v-autocomplete
           v-model="city"
           :items="cities"

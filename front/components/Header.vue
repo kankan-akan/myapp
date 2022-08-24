@@ -24,7 +24,7 @@
       <v-row align="center">
         <v-spacer></v-spacer>
         <div 
-          class="mr-4"
+          class="mr-8"
           v-if="$store.state.auth.loggedIn"
         >
           <v-btn @click="logout()">
@@ -134,6 +134,10 @@
         <v-list-item to ="/user/logout">
           <v-list-item-title>ログアウト</v-list-item-title>
         </v-list-item>
+        <v-list-item to ="/user/delete">
+          <v-list-item-title class="red--text">退会</v-list-item-title>
+        </v-list-item>
+
       </v-list>
     </v-navigation-drawer>
   </div>

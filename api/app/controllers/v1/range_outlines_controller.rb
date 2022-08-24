@@ -46,10 +46,6 @@ class V1::RangeOutlinesController < ApplicationController
     end
   end
 
-  # def search
-  #   @outline = RangeOutline.find
-  # end
-
   private
     def outline_params
       params.permit(:city, :name, :features, :link, :address, :phone_number, :distance, :booths, :image, :admin_range_id)
