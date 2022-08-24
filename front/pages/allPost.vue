@@ -6,7 +6,7 @@
         :key=" i "
         cols="3"
       > 
-        <v-card @click.stop="openDialog(post)">
+        <v-card @click.stop="openPost(post)">
 
           <UserIdLavel :user="post.user" />
 
@@ -36,7 +36,41 @@
         </v-card>
       </v-col>
     </v-row>
-    <DetailPost :dialog="dialog" :post="currentPost" @result="response"/>
+    <v-dialog
+      v-model="dialog"
+      v-if="currentPost"
+      width="850"
+      @click.stop="dialog = false"
+    >
+      <v-card>
+        <div class="d-flex flex-nowrap justify-space-between">
+          <v-img
+            v-if="currentPost.image.url"
+            :src="currentPost.image.url"
+            max-height="500"
+            max-width="480"
+            contain
+          ></v-img>
+          <v-sheet
+            v-else
+            class="grey lighten-2 d-flex justify-center align-center"
+            height="500"
+            width="480"
+          >
+            <v-icon size="80">mdi-image</v-icon>
+          </v-sheet>
+          <v-col>
+            <div class="d-flex justify-space-around">
+              <UserIdLavel :user=currentPost.user />
+              <div>
+                <v-icon large @click.stop="dialog = false">mdi-close</v-icon>
+              </div>
+            </div>
+            <v-col class="kaigyo">{{ currentPost.content }}</v-col>
+          </v-col>
+        </div>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -57,14 +91,10 @@ export default {
   },
 
   methods: {
-    openDialog(post) {
-      this.dialog = true
+    openPost(post) {
       this.currentPost = post
-    },
-    response() {
-    this.dialog = false
+      this.dialog = true
     }
-    
   }
 
 }

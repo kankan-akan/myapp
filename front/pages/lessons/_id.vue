@@ -138,7 +138,7 @@
             size="25"
             readonly
           ></v-rating>
-          <span>({{ rating }})</span>
+          <span>( {{ rating }} )</span>
         </v-col>
         <template v-if="selectedLesson.lesson && selectedLesson.lesson.reviews">
           <v-col
@@ -175,7 +175,7 @@ import { mapState, mapActions } from 'vuex';
       text: '',
       dateList: [],
       weekNumber: 7,
-      rating: 0,
+      rating: '',
       total: 0,
       // startTime: [ "11:00", "12:00", "13:00"],
       // holiday: ['月', '火'],
@@ -223,12 +223,16 @@ import { mapState, mapActions } from 'vuex';
         }
       },
       rateCount() {
-        this.selectedLesson.lesson.reviews.forEach((f) => {
-          this.total += f.rate
-        })
-        const average = this.total / this.selectedLesson.lesson.reviews.length
-        console.log(average)
-        this.rating = average
+        if (this.selectedLesson.lesson.reviews.length !== 0 ) {
+          this.selectedLesson.lesson.reviews.forEach((f) => {
+            this.total += f.rate
+          })
+          const average = this.total / this.selectedLesson.lesson.reviews.length
+          console.log(average)
+          this.rating = average
+        } else {
+          this.rating = 0
+        }
       },
       nextWeek() {
         this.startDate = this.startDate.add(this.weekNumber, 'day')
