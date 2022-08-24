@@ -18,18 +18,60 @@
           LOGO
         </NuxtLink>
       </v-toolbar-title>
-      <div>$store.state.auth.loggedIn: {{ $store.state.auth.loggedIn }}</div>
-      <div>$auth.loggedIn: {{ $auth.loggedIn }}</div>
+      <v-btn text to="/rangeAdmin/info">練習場管理者の方はこちら</v-btn>
+      <!-- <div>$store.state.auth.loggedIn: {{ $store.state.auth.loggedIn }}</div>
+      <div>$auth.loggedIn: {{ $auth.loggedIn }}</div> -->
       <v-row align="center">
         <v-spacer></v-spacer>
-        <div v-if="$store.state.auth.loggedIn">
+        <div 
+          class="mr-4"
+          v-if="$store.state.auth.loggedIn"
+        >
           <v-btn @click="logout()">
             LOGOUT
           </v-btn>
-          <v-btn large to="/post">
-            <v-icon>{{ 'mdi-pencil-plus' }}</v-icon>
-            <div>投稿する</div>
-          </v-btn>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn 
+                large 
+                icon 
+                to="/"
+                v-bind="attrs"
+                v-on="on"
+              >
+                  <v-icon>mdi-home</v-icon>
+                </v-btn>
+            </template>
+            <span>ホーム</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn 
+                large 
+                icon 
+                to="/post"
+                v-bind="attrs"
+                v-on="on"
+              >
+                  <v-icon>mdi-pencil-plus-outline</v-icon>
+                </v-btn>
+            </template>
+            <span>新しい投稿</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn 
+                large 
+                icon 
+                to="/allPost"
+                v-bind="attrs"
+                v-on="on"
+              >
+                  <v-icon>mdi-magnify</v-icon>
+                </v-btn>
+            </template>
+            <span>みんなの投稿</span>
+          </v-tooltip>
         </div>
         <div v-else>
           <v-btn

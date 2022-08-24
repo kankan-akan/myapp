@@ -1,9 +1,5 @@
 <template>
   <v-container>
-    <v-row>
-      <v-btn to="/allPost">all post</v-btn>
-      <v-btn to="/rangeAdmin/info">練習場管理者の方はこちら</v-btn>
-    </v-row>
     <v-row justify="center">
       <v-col cols="6">
         <div class="text-subtitle-1">市町村から検索</div>
