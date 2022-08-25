@@ -27,9 +27,6 @@
           class="mr-8"
           v-if="$store.state.auth.loggedIn"
         >
-          <v-btn @click="logout()">
-            LOGOUT
-          </v-btn>
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
               <v-btn 

@@ -4,7 +4,8 @@ export const state = () => ({
   selectedLesson: [],
   selectedUser: [],
   userPosts: [],
-  userLikes: []
+  userLikes: [],
+  guestLoggedIn: false
 })
 
 export const mutations = {
@@ -22,6 +23,9 @@ export const mutations = {
   },
   setUserLikes (state, userLikes) {
     state.userLikes = userLikes
+  },
+  setGuestLoggedIn (state, guestLoggedIn) {
+    state.guestLoggedIn = guestLoggedIn
   }
 }
 

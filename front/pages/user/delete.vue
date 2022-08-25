@@ -36,11 +36,10 @@ export default {
 
   methods: {
     deleteUser() {
+      this.loading = true
       this.$axios.delete('/v1/auth')
       .then((res) => {
         console.log(res)
-        this.loading = true
-        this.$auth.logout()
         this.$store.commit('myData/setLoginUser', null)
         this.$store.dispatch(
           'snackbar/showMessage', {
@@ -56,6 +55,7 @@ export default {
       .catch((err) => {
         console.log(err)
       })
+      this.$auth.logout()
     },
   },
  

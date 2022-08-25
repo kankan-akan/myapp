@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     }
     namespace :auth do
       get 'user', to: 'users#members_only'
+      resources :guests, only: [:create]
     end
     resources :users, only: [:index, :show]
 
