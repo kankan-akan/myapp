@@ -21,3 +21,16 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .cursor:hover {
+    opacity: 0.8;
+    color: rgb(130, 130, 130);
+
+  }
+
+  .cursor {
+    transition: color 0.2s;
+    
+  }
+</style>
