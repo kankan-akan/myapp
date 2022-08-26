@@ -35,7 +35,7 @@
                     <div class="text-h6">{{ following.name }}</div>
                     <div>@{{ following.user_id }}</div>
                   </div>
-                  <FollowButton :user="following" />
+                  <BtnFollow :user="following" />
                 </v-col>
               </v-row>
             </v-col>
@@ -79,7 +79,7 @@
                     <div class="text-h6">{{ follower.name }}</div>
                     <div>@{{ follower.user_id }}</div>
                   </div>
-                  <FollowButton :user="follower" />
+                  <BtnFollow :user="follower" />
                 </v-col>
               </v-row>
             </v-col>

@@ -40,7 +40,7 @@ export default {
 
   watch: {
     userFollow() {
-      if (this.$auth.loggedIn) {
+      if (this.$store.state.auth.loggedIn) {
         this.follow = false
         this.loginUser.followings.forEach((f) => {
           if (this.user.id === f.id) {
@@ -52,7 +52,7 @@ export default {
   },
 
   mounted() {
-    if (this.$auth.loggedIn && this.user.id) {
+    if (this.$store.state.auth.loggedIn && this.user.id) {
       this.follow = false
       this.loginUser.followings.forEach((f) => {
         if (this.user.id === f.id) {

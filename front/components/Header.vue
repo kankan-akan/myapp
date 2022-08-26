@@ -34,8 +34,8 @@
                 v-bind="attrs"
                 v-on="on"
               >
-                  <v-icon>mdi-home</v-icon>
-                </v-btn>
+                <v-icon>mdi-home</v-icon>
+              </v-btn>
             </template>
             <span>ホーム</span>
           </v-tooltip>

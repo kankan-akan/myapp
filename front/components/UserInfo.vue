@@ -93,7 +93,7 @@
                   <BtnBookmark :outline="bookmark.range_outline" />
                 </div>
               </v-card-text>
-              <v-divider v-if="i < bookmark.length -1" :key="i"></v-divider>
+              <v-divider v-if="i < bookmarks.length -1" :key="i" class="grey lighten-2"></v-divider>
             </v-col>
           </v-card>
         </v-tab-item>
@@ -117,7 +117,7 @@
                   <DeleteReservation :reservation="reservation" />
                 </div>
               </v-card-text>
-              <v-divider></v-divider>
+              <v-divider v-if="i < reservations.length -1" :key="i" class="grey lighten-2"></v-divider>
             </v-col>
           </v-card>
         </v-tab-item>
@@ -142,7 +142,7 @@
                 ></v-rating>
                 <v-col class="kaigyo">{{ review.content }}</v-col>
               </v-card-text>
-              <v-divider></v-divider>
+              <v-divider v-if="i < reviews.length -1" :key="i" class="grey lighten-2"></v-divider>
             </v-col>
           </v-card>
         </v-tab-item>

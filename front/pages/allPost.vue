@@ -8,7 +8,7 @@
       > 
         <v-card @click.stop="openPost(post)">
 
-          <UserIdLavel :user="post.user" />
+          <UserIdLavel @click.stop :user="post.user" />
 
           <v-img
             v-if="post.image && post.image.url"
@@ -30,7 +30,7 @@
           </v-list-item>
        
           <v-divider></v-divider>
-          <div class="pa-2 d-flex justify-end align-center">
+          <div @click.stop class="pa-2 d-flex justify-end align-center">
             <BtnLike :post="post"/>
           </div>
         </v-card>
