@@ -9,24 +9,22 @@
         @click="drawer = !drawer"
       >
       </v-app-bar-nav-icon>
+      <v-row align="center" justify="space-between">
+        <div class="d-flex align-center">
+        <v-toolbar-title>
+          <NuxtLink 
+            to="/"
+            class="header-logo mx-2"
+          >
+            LOGO
+          </NuxtLink>
+        </v-toolbar-title>
+        <v-btn text to="/rangeAdmin/info">練習場管理者の方はこちら</v-btn>
+        </div>
+        <!-- <div>$store.state.auth.loggedIn: {{ $store.state.auth.loggedIn }}</div>
+        <div>$auth.loggedIn: {{ $auth.loggedIn }}</div> -->
 
-      <v-toolbar-title>
-        <NuxtLink 
-          to="/"
-          class="header-logo my-auto"
-        >
-          LOGO
-        </NuxtLink>
-      </v-toolbar-title>
-      <v-btn text to="/rangeAdmin/info">練習場管理者の方はこちら</v-btn>
-      <!-- <div>$store.state.auth.loggedIn: {{ $store.state.auth.loggedIn }}</div>
-      <div>$auth.loggedIn: {{ $auth.loggedIn }}</div> -->
-      <v-row align="center">
-        <v-spacer></v-spacer>
-        <div 
-          class="mr-8"
-          v-if="$store.state.auth.loggedIn"
-        >
+        <div class="mr-8">
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
               <v-btn 
@@ -41,20 +39,22 @@
             </template>
             <span>ホーム</span>
           </v-tooltip>
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn 
-                large 
-                icon 
-                to="/post"
-                v-bind="attrs"
-                v-on="on"
-              >
-                  <v-icon>mdi-pencil-plus-outline</v-icon>
-                </v-btn>
-            </template>
-            <span>新しい投稿</span>
-          </v-tooltip>
+          <template v-if="$store.state.auth.loggedIn">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn 
+                  large 
+                  icon 
+                  to="/post"
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                    <v-icon>mdi-pencil-plus-outline</v-icon>
+                  </v-btn>
+              </template>
+              <span>新しい投稿</span>
+            </v-tooltip>
+          </template>
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
               <v-btn 
@@ -70,7 +70,7 @@
             <span>みんなの投稿</span>
           </v-tooltip>
         </div>
-        <div v-else>
+        <div v-if="!$store.state.auth.loggedIn" class="mr-2">
           <v-btn
             color="primary" 
             large
