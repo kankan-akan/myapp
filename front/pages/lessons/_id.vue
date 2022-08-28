@@ -6,7 +6,7 @@
         <template v-else>
           <v-col class="text-h4 font-weight-bold">{{ selectedLesson.lesson.title }}</v-col>
           <div class="text-h6 pl-3">インストラクター：{{ selectedLesson.lesson.coach }}プロ</div>
-          <v-col class="my-6">{{ selectedLesson.lesson.content }}</v-col>
+          <v-col class="kaigyo my-6">{{ selectedLesson.lesson.content }}</v-col>
         </template>
 
         <v-col class="text-h5">予約日一覧</v-col>
@@ -175,7 +175,7 @@ import { mapState, mapActions } from 'vuex';
       text: '',
       dateList: [],
       weekNumber: 7,
-      rating: '',
+      rating: 0,
       total: 0,
       // startTime: [ "11:00", "12:00", "13:00"],
       // holiday: ['月', '火'],
@@ -227,7 +227,8 @@ import { mapState, mapActions } from 'vuex';
           this.selectedLesson.lesson.reviews.forEach((f) => {
             this.total += f.rate
           })
-          const average = this.total / this.selectedLesson.lesson.reviews.length
+          const val = this.total / this.selectedLesson.lesson.reviews.length
+          const average = Math.round( val * 10) / 10
           console.log(average)
           this.rating = average
         } else {
@@ -263,7 +264,7 @@ import { mapState, mapActions } from 'vuex';
         this.text = date + time
       },
       sendReservation() {
-        if(this.$auth.loggedIn) {
+        if(this.$store.state.auth.loggedIn) {
           this.$axios.post('/v1/reservations', {
             lesson_id: this.selectedLesson.lesson.id,
             user_id: this.loginUser.id,
