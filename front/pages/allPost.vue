@@ -13,7 +13,7 @@
           <v-img
             v-if="post.image && post.image.url"
             :src="post.image.url"
-            max-height="280"
+            height="280"
           ></v-img>
           <v-sheet
             v-else

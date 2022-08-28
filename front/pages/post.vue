@@ -97,6 +97,7 @@ export default {
         })
         .then((res) => {
           console.log(res)
+          this.$router.push('/allPost')
           this.$store.dispatch(
             'snackbar/showMessage', {
               icon: 'mdi-checkbox-marked-circle-outline',
