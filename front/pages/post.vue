@@ -6,16 +6,26 @@
         <v-col cols="8">
           <v-form 
             ref="form"
-            v-model ="valid"
+            v-model="valid"
             lazy-validation 
           >
+            <v-autocomplete
+              v-model="range"
+              :loading="loading"
+              :items="items"
+              :search-input.sync="search"
+              cache-items
+              class="mx-4"
+              hide-no-data
+              solo
+              label="利用した練習場"
+            ></v-autocomplete>
             <v-textarea
               outlined
               v-model="content"
               label="ご利用になった練習場はいかがでしたか？"
               :counter="140"
               :rules="contentRules"
-              required
             ></v-textarea>
             <v-file-input
               v-model="inputImage"
@@ -23,13 +33,6 @@
               prepend-icon="mdi-image-plus"
               @change="uploadImage"
             ></v-file-input>
-            <!-- <template v-for="(image, i) in preImage">
-            <img 
-              v-if="preImage" 
-              :key="i"
-              :src="image"
-            >
-            </template> -->
             <div class="d-flex justify-center">
               <v-sheet v-if="preImage == ''" class="image grey lighten-3">
                 <v-row justify="center" align="center" class="fill-height">
@@ -67,26 +70,44 @@ import { mapState } from 'vuex'
 export default {
   data: () => ({
     valid: true,
+    range: '',
     content: '',
     contentRules: [
-      v => !!v && (v && v.length <= 140)
+      v => v.length <= 140 || '140字以内で入力してください。'
     ],
     inputImage: null,
-    preImage: ''
+    preImage: '',
+    loading: false,
+    items: [],
+    search: null,
+    rangeNames: []
   }),
 
   computed:{
     ...mapState({
-      loginUser: (state) => state.myData.loginUser
+      loginUser: (state) => state.myData.loginUser,
+      outline: (state) => state.outline
     })
   },
 
-  methods:{
+  watch: {
+    search (val) {
+      val && val !== this.range && this.querySelections(val)
+    }
+  },
+
+  created () {
+    const val = this.outline.map(value => value.name)
+    this.rangeNames = val
+  },
+
+  methods: {
     async submit () {
-      if (this.$refs.form.validate()) {
+      if (this.content || this.inputImage) {
         const formData = new FormData()
           formData.append('user_id', this.loginUser.id)
           formData.append('content', this.content)
+          formData.append('range', this.range)
           if (this.inputImage !== '') {
             formData.append('image', this.inputImage)
           }
@@ -120,18 +141,18 @@ export default {
             { root: true }
           )
         })
+      } else {
+        this.$store.dispatch(
+          'snackbar/showMessage', {
+            icon: 'mdi-alert-outline',
+            message: '本文・画像いずれかを入力のうえ投稿してください。',
+            type: 'error',
+            status: true,
+          },
+          { root: true }
+        )
       }
     },
-    // uploadImage(){
-    //   // if (this.avatar == null) {
-    //   //   return;
-    //   // }
-    //   const reader = new FileReader();
-    //   reader.onload = (e) => {
-    //     this.preImage = e.target.result;
-    //   }
-    //   reader.readAsDataURL(this.inputImage);
-    // },
     uploadImage(file) {
       if (file !== undefined && file !== null) {
         if (file.name.lastIndexOf('.') <= 0) {
@@ -145,6 +166,16 @@ export default {
       } else {
         this.preImage = ''
       }
+    },
+    querySelections (v) {
+      this.loading = true
+      // Simulated ajax query
+      setTimeout(() => {
+        this.items = this.rangeNames.filter(e => {
+          return (e || '').toLowerCase().indexOf((v || '').toLowerCase()) > -1
+        })
+        this.loading = false
+      }, 500)
     },
   }
 }

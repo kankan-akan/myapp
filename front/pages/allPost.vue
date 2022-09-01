@@ -12,15 +12,19 @@
 
           <v-img
             v-if="post.image && post.image.url"
+            class="align-end"
             :src="post.image.url"
             height="280"
-          ></v-img>
+          >
+            <v-chip v-if="post.range" class="ma-1" >#{{ post.range }}</v-chip>
+          </v-img>
           <v-sheet
             v-else
-            class="d-flex justify-center align-center grey lighten-2"
+            class="d-flex justify-center align-center grey lighten-2 sheet"
             height="280"
           >
             <v-icon size="80">mdi-image</v-icon>
+            <v-chip outlined v-if="post.range" class="chip">#{{ post.range }}</v-chip>
           </v-sheet>
           
           <v-list-item>
@@ -108,6 +112,16 @@ export default {
 
   .show-content {
   color: rgba(255, 255, 255, 1) !important;
+}
+
+.sheet {
+  position: relative;
+}
+
+.chip {
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
 }
 
 </style>
