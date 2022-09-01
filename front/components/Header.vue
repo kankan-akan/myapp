@@ -45,7 +45,7 @@
                 <v-btn 
                   large 
                   icon 
-                  to="/post"
+                  to="/user/post"
                   v-bind="attrs"
                   v-on="on"
                 >
