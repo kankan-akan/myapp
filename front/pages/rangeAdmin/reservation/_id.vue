@@ -4,7 +4,8 @@
       <v-row>
         <v-col cols="10">
           <v-col>
-            <v-btn 
+            <v-btn
+              class="mr-4"
               color="grey darken-2"
               @click="previousWeek" 
               outlined
@@ -14,6 +15,7 @@
             </v-btn>
             <strong>{{startDate.format('YY/MM')}}月</strong>
             <v-btn 
+              class="ml-4"
               color="grey darken-2"
               @click="nextWeek" 
               outlined

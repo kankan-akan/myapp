@@ -15,6 +15,7 @@
         <v-row>
           <v-col class="d-flex justify-center align-center">
             <v-btn 
+              class="mr-4"
               color="grey darken-2"
               @click="previousWeek" 
               outlined
@@ -25,7 +26,8 @@
               1週間前
             </v-btn>
             <strong>{{startDate.format('YY/MM')}}月</strong>
-            <v-btn 
+            <v-btn
+              class="ml-4"
               color="grey darken-2"
               @click="nextWeek" 
               outlined
