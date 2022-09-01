@@ -3,13 +3,13 @@ class V1::LikesController < ApplicationController
   # before_action :authenticate_v1_user!, except: [:user_likes, :count, :index]
 
   def my_like
-    @like = current_v1_user.likes.includes(:post)
+    @like = current_v1_user.likes.includes(:post).order(id: "DESC")
     render json: @like.as_json(include: [{post: { include: [like_users: { only: [:id, :name, :user_id, :avatar]} ] }} ])
   end
 
   def user_likes
     @user = User.find(params[:id])
-    @like = @user.likes.includes(:post)
+    @like = @user.likes.includes(:post).order(id: "DESC")
     render json: @like.as_json(include: [{post: { include: [like_users: { only: [:id, :name, :user_id, :avatar]} ] }} ])
   end
 
