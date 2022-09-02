@@ -7,13 +7,13 @@
       <v-app-bar-nav-icon 
         v-if="$store.state.auth.loggedIn"
         @click="drawer = !drawer"
-      >
-      </v-app-bar-nav-icon>
+        class="mr-4"
+      ></v-app-bar-nav-icon>
       <v-row align="center" justify="space-between">
         <div class="d-flex align-center">
           <v-toolbar-title>
             <NuxtLink to="/">
-              <img class="my-auto" src="~/assets/image/logo.png" width="280">
+              <img class="my-auto" src="~/assets/image/logo.png" width="260">
             </NuxtLink>
           </v-toolbar-title>
         </div>
