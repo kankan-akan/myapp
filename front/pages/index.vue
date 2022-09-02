@@ -28,7 +28,7 @@
         ></v-autocomplete>
       </v-col> -->
     </v-row>
-    <v-btn text to="/rangeAdmin/info">練習場管理者の方はこちら</v-btn>
+    <v-btn v-if="!$store.state.auth.loggedIn" text to="/rangeAdmin/info">練習場管理者の方はこちら</v-btn>
     <v-row>
       <template v-if="filteredOutlines.length !== 0">
         <v-col
