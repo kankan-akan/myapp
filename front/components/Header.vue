@@ -11,15 +11,11 @@
       </v-app-bar-nav-icon>
       <v-row align="center" justify="space-between">
         <div class="d-flex align-center">
-        <v-toolbar-title>
-          <NuxtLink 
-            to="/"
-            class="header-logo mx-2"
-          >
-            LOGO
-          </NuxtLink>
-        </v-toolbar-title>
-        <v-btn text to="/rangeAdmin/info">練習場管理者の方はこちら</v-btn>
+          <v-toolbar-title>
+            <NuxtLink to="/">
+              <img class="my-auto" src="~/assets/image/logo.png" width="280">
+            </NuxtLink>
+          </v-toolbar-title>
         </div>
         <!-- <div>$store.state.auth.loggedIn: {{ $store.state.auth.loggedIn }}</div>
         <div>$auth.loggedIn: {{ $auth.loggedIn }}</div> -->

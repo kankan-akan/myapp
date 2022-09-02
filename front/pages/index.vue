@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row justify="center">
+    <v-row justify="center" no-gutter>
       <v-col cols="6">
         <div class="text-subtitle-1 font-weight-bold">市町村から検索</div>
         <v-autocomplete
@@ -28,6 +28,7 @@
         ></v-autocomplete>
       </v-col> -->
     </v-row>
+    <v-btn text to="/rangeAdmin/info">練習場管理者の方はこちら</v-btn>
     <v-row>
       <template v-if="filteredOutlines.length !== 0">
         <v-col
