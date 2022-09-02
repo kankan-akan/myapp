@@ -83,7 +83,7 @@
                 </tr>
               </tbody>
             </table>
-            <div v-if="overlay" @click="overlay = false">
+            <div @click="overlay = false">
               <v-overlay
                 :value="overlay"
                 max-width="300"
@@ -219,7 +219,7 @@ import { mapState, mapActions } from 'vuex';
       }),
       detailReservation () {
         if(this.$store.state.auth.loggedIn) {
-          this.overlay = !overlay
+          this.overlay = true
         } else {
           this.loginCheck()
         }
