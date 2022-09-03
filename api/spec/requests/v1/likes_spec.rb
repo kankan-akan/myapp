@@ -38,14 +38,6 @@ RSpec.describe "Likes", type: :request do
         expect(response).to have_http_status "200" 
       end
     end
-
-    context "count" do
-      it "いいね数を取得できる" do
-        post = create(:post)
-        get "/v1/posts/#{post.id}/likes/count"
-        expect(response).to have_http_status "200"
-      end
-    end
   end
 
 end
