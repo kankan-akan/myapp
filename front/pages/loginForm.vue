@@ -81,18 +81,18 @@ export default {
     valid: true,
     show: false,
     loading: false,
-    // userId: 'ichiro_tanaka',
+    // userId: '',
     // userIdRules: [
     //   v => !!v || '入力してください',
     //   v => (v && v.length <= 15) || '15文字以下で入力してください',
     //   v => /^(?=.*[a-zA-Z])[a-zA-Z0-9\d.?/-_]{1,15}$/.test(v) || '',
     // ],
-    email: 'a@example.com',
+    email: '',
     emailRules: [
       v => !!v || '入力してください',
       v => /.+@.+\..+/.test(v) || '',
     ],
-    password: 'password.',
+    password: '',
     passwordRules: [
       v => !!v || '入力してください',
       v => /^(?=.*[a-z])(?=.*[.?/-_])[a-zA-Z0-9\d.?/-_]{8,30}$/.test(v) || '',

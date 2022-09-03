@@ -179,8 +179,6 @@ import { mapState, mapActions } from 'vuex';
       weekNumber: 7,
       rating: 0,
       total: 0,
-      // startTime: [ "11:00", "12:00", "13:00"],
-      // holiday: ['月', '火'],
       selectedLesson: []
     }),
 
@@ -231,7 +229,6 @@ import { mapState, mapActions } from 'vuex';
           })
           const val = this.total / this.selectedLesson.lesson.reviews.length
           const average = Math.round( val * 10) / 10
-          console.log(average)
           this.rating = average
         } else {
           this.rating = 0

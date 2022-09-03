@@ -10,7 +10,7 @@ export default {
     show: false,
     // checkbox: false,
     loading: false,
-    name: 'hogeゴルフ練習場', 
+    name: '', 
     nameRules: [ v => !!v || '入力してください' ],
     // userId: '',
     // userIdRules: [
@@ -18,12 +18,12 @@ export default {
     //   v => (v && v.length <= 15) || '15文字以下で入力してください',
     //   v => /^(?=.*[a-zA-Z])[a-zA-Z0-9\d.?/-_]{1,15}$/.test(v) || '',
     // ],
-    email: 'aa-1@example.com',
+    email: '',
     emailRules: [
       v => !!v || '入力してください',
       v => /.+@.+\..+/.test(v) || '',
     ],
-    password: 'password.',
+    password: '',
     passwordRules: [
       v => !!v || '入力してください',
       v => /^(?=.*[a-z])(?=.*[.?/-_])[a-zA-Z0-9\d.?/-_]{8,30}$/.test(v) || '',
@@ -33,7 +33,6 @@ export default {
   computed:{
     params() {
       return {
-        // user_id: this.userId,
         name: this.name,
         email: this.email,
         password: this.password

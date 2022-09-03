@@ -105,14 +105,6 @@ export default {
 </script>
 
 <style scoped>
-  .on-hover {
-    opacity: 0.6;
-    transition: opacity .4s ease-in-out;
-  }
-
-  .show-content {
-  color: rgba(255, 255, 255, 1) !important;
-}
 
 .sheet {
   position: relative;
