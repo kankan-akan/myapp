@@ -49,10 +49,10 @@
               ログイン
             </v-btn>
           </v-card-actions>
-          <div>
+          <!-- <div>
             管理者登録はお済みですか？
             <NuxtLink to="/rangeCreate">ー新規登録</NuxtLink>
-          </div>
+          </div> -->
           </v-form>
         </v-card-text>
     </v-card>
