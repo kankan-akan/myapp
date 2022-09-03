@@ -1,8 +1,9 @@
 FactoryBot.define do
   factory :review do
-    sequence(:review) { |n| "review content#{n}"}
+    sequence(:title) { |n| "review-#{n}"}
+    sequence(:content) { |n| "review content#{n}"}
     rate { 4.5 }
-    sequence(:reservation_id) { |n| "#{n}"}
+    association :reservation
     association :lesson
     association :user
   end
