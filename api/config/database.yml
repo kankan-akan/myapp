@@ -71,7 +71,9 @@ production:
   # password: 2cd68913
 
 # aws
-  database: myapp_production
-  host: <%= Rails.application.credentials.rds[:host] %>  
-  username: <%= Rails.application.credentials.rds[:username] %>
-  password: <%= Rails.application.credentials.rds[:password] %>
+  <% if Rails.env.production? %>
+    database: myapp_production
+    host: <%= Rails.application.credentials.rds[:host] %>  
+    username: <%= Rails.application.credentials.rds[:username] %>
+    password: <%= Rails.application.credentials.rds[:password] %>
+  <% end %>
