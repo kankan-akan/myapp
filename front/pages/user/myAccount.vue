@@ -181,7 +181,7 @@ export default {
       avatar: this.$store.state.myData.loginUser.avatar,
       // avatar: null,
       // avatar: 'https://cdn.vuetifyjs.com/images/john.jpg',
-      inputImage: {},
+      inputImage: null,
       preImage: ''
     }
   },
@@ -276,16 +276,6 @@ export default {
         })
       }
     },
-    // uploadImage(){
-    //   if (this.avatar == null) {
-    //     return;
-    //   }
-    //   const reader = new FileReader();
-    //   reader.onload = (e) => {
-    //     this.preImage = e.target.result;
-    //   }
-    //   reader.readAsDataURL(this.inputImage);
-    // },
     uploadImage (file) {
       if (file !== undefined && file !== null) {
         if (file.name.lastIndexOf('.') <= 0) {
@@ -302,7 +292,7 @@ export default {
     },
     deleteAvatar () {
       this.avatar = null
-      this.inputImage = ''
+      this.inputImage = []
     }
   }
 }
