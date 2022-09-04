@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <div class="d-flex flex-no-wrap justify-space-between">
-    <v-card-title class="pa-2">@{{ user.user_id }}</v-card-title>
-    <BtnFollow :user="user" />
+      <v-card-title class="pa-2">@{{ user.user_id }}</v-card-title>
+      <BtnFollow v-if="loginUser.id !== user.id" :user="user" />
     </div>
 
     <v-divider></v-divider>
@@ -18,9 +18,7 @@
       </div>
       <v-col>
         <v-col class="text-h5 mx-1">{{ user.name }}</v-col>
-        <div>
-          <FollowCount :user="user" />
-        </div>
+        <FollowCount :user="user" />
       </v-col>
     </div>
 

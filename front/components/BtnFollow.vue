@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-if="loginUser && loginUser.id !== user.id">
+    <template v-if="loginUser.id !== user.id">
       <v-btn
         v-if="follow"
         :color="color"
@@ -52,14 +52,16 @@ export default {
   },
 
   mounted() {
-    if (this.$store.state.auth.loggedIn && this.user.id) {
-      this.follow = false
-      this.loginUser.followings.forEach((f) => {
-        if (this.user.id === f.id) {
-          this.follow = true
-        }
-      })
-    }
+    setTimeout(() => {
+      if (this.$store.state.auth.loggedIn) {
+        this.follow = false
+        this.loginUser.followings.forEach((f) => {
+          if (this.user.id === f.id) {
+            this.follow = true
+          }
+        })
+      }
+    }, 300)
   },
 
   methods: {
@@ -82,7 +84,6 @@ export default {
           follower_id: this.user.id
         })
         .then((res) => {
-          console.log(res)
           this.follow = true
           this.getLoginUser()
         })
@@ -101,7 +102,6 @@ export default {
         }
       })
       .then((res) => {
-        console.log(res)
         this.follow = false
         this.getLoginUser()
       })

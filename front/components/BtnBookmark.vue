@@ -59,7 +59,6 @@ export default {
           range_outline_id: this.outline.id
         })
         .then((res) => {
-          console.log(res)
           this.isActive = true
         })
         .catch((err) => {
