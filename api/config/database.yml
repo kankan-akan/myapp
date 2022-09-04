@@ -24,7 +24,7 @@ development:
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: yusukekan
   password: yskan
-  # host: localhost
+  host: localhost
   database: myapp_development  #docker起動時必要
 
 # Warning: The database defined as "test" will be erased and
