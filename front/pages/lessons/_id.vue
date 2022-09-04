@@ -54,32 +54,34 @@
               </thead>
               <tbody>
                 <tr v-for="(time, i) in selectedLesson.start_times" :key="i">
-                  <td class="td-date time">{{ time }} ~</td>
-                  <td class="td-date" v-for="(date, j) in dateList" :key="j">
-                    <a
-                      v-if="isActive(date, time)"
-                      class="d-flex justify-center"
-                    >
-                      <v-icon>{{ 'mdi-close' }}</v-icon>
-                    </a>
-                    <v-tooltip
-                      v-else
-                      right
-                    >
-                      <template v-slot:activator="{ on, attrs }">
-                        <a 
-                          class="d-flex justify-center"
-                          @mouseover="selectedDay(date, time)"
-                          @click="detailReservation()"
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          <v-icon>{{ 'mdi-circle-outline' }}</v-icon>
-                        </a>
-                      </template>
-                      <span>{{ text }}</span>
-                    </v-tooltip>
-                  </td>
+                  <template  v-if="time !== ''">
+                    <td class="td-date time">{{ time }} ~</td>
+                    <td class="td-date" v-for="(date, j) in dateList" :key="j">
+                      <a
+                        v-if="isActive(date, time)"
+                        class="d-flex justify-center"
+                      >
+                        <v-icon>{{ 'mdi-close' }}</v-icon>
+                      </a>
+                      <v-tooltip
+                        v-else
+                        right
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                          <a 
+                            class="d-flex justify-center"
+                            @mouseover="selectedDay(date, time)"
+                            @click="detailReservation()"
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            <v-icon>{{ 'mdi-circle-outline' }}</v-icon>
+                          </a>
+                        </template>
+                        <span>{{ text }}</span>
+                      </v-tooltip>
+                    </td>
+                  </template>
                 </tr>
               </tbody>
             </table>
@@ -94,7 +96,7 @@
                     予約しますか？
                   </v-card-title>
 
-                  <v-card-text class="black--text">
+                  <v-card-text class="black--text" v-if="loginUser">
                     <v-col class="text-h5">日時: {{ text }}</v-col>
                     <v-col>予約者: {{ this.loginUser.name }}</v-col>
                     <v-col>電話番号: {{ this.loginUser.phone_number }}</v-col>
