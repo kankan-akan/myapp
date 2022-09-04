@@ -66,6 +66,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
+            :disabled="!valid"
             color="blue"
             text
             @click="updateReview(review.id)"
@@ -137,41 +138,41 @@ export default {
       getReview: 'myData/getReview'
     }),
     updateReview(id) {
-      this.$axios.put(`/v1/reviews/${id}`, {
-        title: this.title,
-        rate: this.rate,
-        content: this.content,
-        user_id: this.loginUser.id,
-        lesson_id: this.review.lesson_id,
-        reservation_id: this.review.reservation_id
-      })
-      .then((res) => {
-        console.log(res)
-        this.getReview()
-        this.dialog = false
-        this.$store.dispatch(
-          'snackbar/showMessage', {
-            icon: 'mdi-checkbox-marked-circle-outline',
-            message: 'レビューを編集しました。',
-            type: 'success',
-            status: true,
-          },
-          { root: true }
-        )
-      })
-      .catch((err) => {
-        console.log(err)
-        this.dialog = false
-        this.$store.dispatch(
-          'snackbar/showMessage', {
-            icon: 'mdi-alert-outline',
-            message: '編集に失敗しました。',
-            type: 'error',
-            status: true,
-          },
-          { root: true }
-        )
-      })
+      if (this.$refs.form.validate()) {
+        this.$axios.put(`/v1/reviews/${id}`, {
+          title: this.title,
+          rate: this.rate,
+          content: this.content,
+          user_id: this.loginUser.id,
+          lesson_id: this.review.lesson_id,
+          reservation_id: this.review.reservation_id
+        })
+        .then((res) => {
+          this.getReview()
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-checkbox-marked-circle-outline',
+              message: 'レビューを編集しました。',
+              type: 'success',
+              status: true,
+            },
+            { root: true }
+          )
+          this.dialog = false
+        })
+        .catch((err) => {
+          console.log(err)
+          this.$store.dispatch(
+            'snackbar/showMessage', {
+              icon: 'mdi-alert-outline',
+              message: '編集に失敗しました。',
+              type: 'error',
+              status: true,
+            },
+            { root: true }
+          )
+        })
+      }
     },
     deleteReview(id) {
       this.$axios.delete(`/v1/reviews/${id}`)

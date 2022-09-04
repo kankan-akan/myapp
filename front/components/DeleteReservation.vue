@@ -67,7 +67,6 @@ export default {
     deleteReservation(id) {
       this.$axios.delete(`/v1/reservations/${id}`)
       .then((res) => {
-        console.log(res)
         this.getReservation()
         this.$store.dispatch(
           'snackbar/showMessage', {
@@ -78,6 +77,7 @@ export default {
           },
           { root: true }
         )
+        this.dialog = false
       })
       .catch((err) => {
         console.log(err)
