@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <div class="d-flex flex-no-wrap justify-space-between">
-    <v-card-title class="pa-2">@{{ user.user_id }}</v-card-title>
-    <BtnFollow :user="user" />
+      <v-card-title class="pa-2">@{{ user.user_id }}</v-card-title>
+      <BtnFollow v-if="loginUser.id !== user.id" :user="user" />
     </div>
 
     <v-divider></v-divider>
@@ -18,9 +18,7 @@
       </div>
       <v-col>
         <v-col class="text-h5 mx-1">{{ user.name }}</v-col>
-        <div>
-          <FollowCount :user="user" />
-        </div>
+        <FollowCount :user="user" />
       </v-col>
     </div>
 
@@ -40,16 +38,42 @@
             <v-col class="pa-1" v-for="post in posts" :key="post.id">
               <v-card class="pa-2">
                 <div class="d-flex">
-                  <v-avatar tile size="140">
+                  <v-avatar v-if="post.image && post.image.url" tile size="140">
                     <img :src="post.image.url">
                   </v-avatar>
+                  <v-avatar v-else color="grey lighten-2" tile size="140">
+                    <v-icon>mdi-image-outline</v-icon>
+                  </v-avatar>
                   <div>
-                  <v-card-text>
-                    <div class="kaigyo">{{ post.content }}</div>
-                  </v-card-text>
-                  <div class="like-btn">
-                    <BtnLike :post="post" />
-                  </div>
+                      <v-chip v-if="post.range" class="ml-2" outlined># {{ post.range }}</v-chip>
+                    <v-card-text>
+                      <div class="kaigyo">{{ post.content }}</div>
+                    </v-card-text>
+                    <v-menu v-if="loginUser && loginUser.id == user.id" offset-y>
+                      <template v-if="loginUser && loginUser.id == user.id" v-slot:activator="{ on, attrs }">
+                        <v-btn
+                          class="post-trash"
+                          v-bind="attrs"
+                          v-on="on"
+                          icon
+                        >
+                          <v-icon color="red">mdi-trash-can-outline</v-icon>
+                        </v-btn>
+                      </template>
+                      <v-list>
+                        <v-list-item>
+                          <v-list-item-title 
+                            class="cursor" 
+                            @click="deletePost(post.id)"
+                          >
+                            投稿を削除
+                          </v-list-item-title>
+                        </v-list-item>  
+                      </v-list>
+                    </v-menu>
+                    <div class="like-btn">
+                      <BtnLike :post="post" />
+                    </div>
                   </div>
                 </div>
               </v-card>
@@ -93,7 +117,7 @@
                   <BtnBookmark :outline="bookmark.range_outline" />
                 </div>
               </v-card-text>
-              <v-divider v-if="i < bookmark.length -1" :key="i"></v-divider>
+              <v-divider v-if="i < bookmarks.length -1" :key="i" class="grey lighten-2"></v-divider>
             </v-col>
           </v-card>
         </v-tab-item>
@@ -117,7 +141,7 @@
                   <DeleteReservation :reservation="reservation" />
                 </div>
               </v-card-text>
-              <v-divider></v-divider>
+              <v-divider v-if="i < reservations.length -1" :key="i" class="grey lighten-2"></v-divider>
             </v-col>
           </v-card>
         </v-tab-item>
@@ -142,7 +166,7 @@
                 ></v-rating>
                 <v-col class="kaigyo">{{ review.content }}</v-col>
               </v-card-text>
-              <v-divider></v-divider>
+              <v-divider v-if="i < reviews.length -1" :key="i" class="grey lighten-2"></v-divider>
             </v-col>
           </v-card>
         </v-tab-item>
@@ -152,7 +176,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   props: ['user', 'posts', 'likes', 'bookmarks', 'reservations', 'reviews'], 
@@ -167,9 +191,47 @@ export default {
   },
 
   methods: {
+    ...mapActions ({
+      getPost: 'myData/getPost'
+    }),
     showLesson(id) {
       this.$router.push(`/lessons/${id}`)
+    },
+    deletePost (id) {
+      this.$axios.delete(`v1/posts/${id}`)
+      .then((res) => {
+        this.getPost()
+        this.$store.dispatch(
+          'snackbar/showMessage', {
+            icon: 'mdi-checkbox-marked-circle-outline',
+            message: '投稿を削除しました。',
+            type: 'success',
+            status: true,
+          },
+          { root: true }
+        )
+      })
+      .catch((err) => {
+        this.$store.dispatch(
+          'snackbar/showMessage', {
+            icon: 'mdi-alert-outline',
+            message: '削除に失敗しました。',
+            type: 'error',
+            status: true,
+          },
+          { root: true }
+        )
+      })
     }
   }
 }
 </script>
+
+<style scoped>
+  .post-trash {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+
+  }
+</style>

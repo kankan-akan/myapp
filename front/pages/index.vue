@@ -1,12 +1,8 @@
 <template>
   <v-container>
-    <v-row>
-      <v-btn to="/allPost">all post</v-btn>
-      <v-btn to="/rangeAdmin/info">練習場管理者の方はこちら</v-btn>
-    </v-row>
-    <v-row justify="center">
+    <v-row justify="center" no-gutter>
       <v-col cols="6">
-        <div class="text-subtitle-1">市町村から検索</div>
+        <div class="text-subtitle-1 font-weight-bold">市町村から検索</div>
         <v-autocomplete
           v-model="city"
           :items="cities"
@@ -32,6 +28,7 @@
         ></v-autocomplete>
       </v-col> -->
     </v-row>
+    <v-btn v-if="!$store.state.auth.loggedIn" text to="/rangeAdmin/info">練習場管理者の方はこちら</v-btn>
     <v-row>
       <template v-if="filteredOutlines.length !== 0">
         <v-col

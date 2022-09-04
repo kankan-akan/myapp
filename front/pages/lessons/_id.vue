@@ -5,8 +5,8 @@
         <div v-if="selectedLesson == ''">レッスンが見つかりません</div>
         <template v-else>
           <v-col class="text-h4 font-weight-bold">{{ selectedLesson.lesson.title }}</v-col>
-          <div class="text-h6 pl-3">指導担当：{{ selectedLesson.lesson.coach }}プロ</div>
-          <v-col class="my-6">{{ selectedLesson.lesson.content }}</v-col>
+          <div class="text-h6 pl-3">インストラクター：{{ selectedLesson.lesson.coach }}プロ</div>
+          <v-col class="kaigyo my-6">{{ selectedLesson.lesson.content }}</v-col>
         </template>
 
         <v-col class="text-h5">予約日一覧</v-col>
@@ -15,6 +15,7 @@
         <v-row>
           <v-col class="d-flex justify-center align-center">
             <v-btn 
+              class="mr-4"
               color="grey darken-2"
               @click="previousWeek" 
               outlined
@@ -25,7 +26,8 @@
               1週間前
             </v-btn>
             <strong>{{startDate.format('YY/MM')}}月</strong>
-            <v-btn 
+            <v-btn
+              class="ml-4"
               color="grey darken-2"
               @click="nextWeek" 
               outlined
@@ -52,36 +54,38 @@
               </thead>
               <tbody>
                 <tr v-for="(time, i) in selectedLesson.start_times" :key="i">
-                  <td class="td-date time">{{ time }} ~</td>
-                  <td class="td-date" v-for="(date, j) in dateList" :key="j">
-                    <a
-                      v-if="isActive(date, time)"
-                      class="d-flex justify-center"
-                    >
-                      <v-icon>{{ 'mdi-close' }}</v-icon>
-                    </a>
-                    <v-tooltip
-                      v-else
-                      right
-                    >
-                      <template v-slot:activator="{ on, attrs }">
-                        <a 
-                          class="d-flex justify-center"
-                          @mouseover="selectedDay(date, time)"
-                          @click="detailReservation()"
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          <v-icon>{{ 'mdi-circle-outline' }}</v-icon>
-                        </a>
-                      </template>
-                      <span>{{ text }}</span>
-                    </v-tooltip>
-                  </td>
+                  <template  v-if="time !== ''">
+                    <td class="td-date time">{{ time }} ~</td>
+                    <td class="td-date" v-for="(date, j) in dateList" :key="j">
+                      <a
+                        v-if="isActive(date, time)"
+                        class="d-flex justify-center"
+                      >
+                        <v-icon>{{ 'mdi-close' }}</v-icon>
+                      </a>
+                      <v-tooltip
+                        v-else
+                        right
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                          <a 
+                            class="d-flex justify-center"
+                            @mouseover="selectedDay(date, time)"
+                            @click="detailReservation()"
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            <v-icon>{{ 'mdi-circle-outline' }}</v-icon>
+                          </a>
+                        </template>
+                        <span>{{ text }}</span>
+                      </v-tooltip>
+                    </td>
+                  </template>
                 </tr>
               </tbody>
             </table>
-            <div v-if="overlay" @click="overlay = false">
+            <div @click="overlay = false">
               <v-overlay
                 :value="overlay"
                 max-width="300"
@@ -92,7 +96,7 @@
                     予約しますか？
                   </v-card-title>
 
-                  <v-card-text class="black--text">
+                  <v-card-text class="black--text" v-if="loginUser">
                     <v-col class="text-h5">日時: {{ text }}</v-col>
                     <v-col>予約者: {{ this.loginUser.name }}</v-col>
                     <v-col>電話番号: {{ this.loginUser.phone_number }}</v-col>
@@ -138,7 +142,7 @@
             size="25"
             readonly
           ></v-rating>
-          <span>({{ rating }})</span>
+          <span>( {{ rating }} )</span>
         </v-col>
         <template v-if="selectedLesson.lesson && selectedLesson.lesson.reviews">
           <v-col
@@ -177,8 +181,6 @@ import { mapState, mapActions } from 'vuex';
       weekNumber: 7,
       rating: 0,
       total: 0,
-      // startTime: [ "11:00", "12:00", "13:00"],
-      // holiday: ['月', '火'],
       selectedLesson: []
     }),
 
@@ -217,18 +219,22 @@ import { mapState, mapActions } from 'vuex';
       }),
       detailReservation () {
         if(this.$store.state.auth.loggedIn) {
-          this.overlay = !overlay
+          this.overlay = true
         } else {
           this.loginCheck()
         }
       },
       rateCount() {
-        this.selectedLesson.lesson.reviews.forEach((f) => {
-          this.total += f.rate
-        })
-        const average = this.total / this.selectedLesson.lesson.reviews.length
-        console.log(average)
-        this.rating = average
+        if (this.selectedLesson.lesson.reviews.length !== 0 ) {
+          this.selectedLesson.lesson.reviews.forEach((f) => {
+            this.total += f.rate
+          })
+          const val = this.total / this.selectedLesson.lesson.reviews.length
+          const average = Math.round( val * 10) / 10
+          this.rating = average
+        } else {
+          this.rating = 0
+        }
       },
       nextWeek() {
         this.startDate = this.startDate.add(this.weekNumber, 'day')
@@ -259,7 +265,7 @@ import { mapState, mapActions } from 'vuex';
         this.text = date + time
       },
       sendReservation() {
-        if(this.$auth.loggedIn) {
+        if(this.$store.state.auth.loggedIn) {
           this.$axios.post('/v1/reservations', {
             lesson_id: this.selectedLesson.lesson.id,
             user_id: this.loginUser.id,

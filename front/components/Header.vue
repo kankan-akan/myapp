@@ -7,51 +7,91 @@
       <v-app-bar-nav-icon 
         v-if="$store.state.auth.loggedIn"
         @click="drawer = !drawer"
-      >
-      </v-app-bar-nav-icon>
-
-      <v-toolbar-title>
-        <NuxtLink 
-          to="/"
-          class="header-logo my-auto"
-        >
-          LOGO
-        </NuxtLink>
-      </v-toolbar-title>
-      <div>$store.state.auth.loggedIn: {{ $store.state.auth.loggedIn }}</div>
-      <div>$auth.loggedIn: {{ $auth.loggedIn }}</div>
-      <v-row align="center">
-        <v-spacer></v-spacer>
-        <div v-if="$store.state.auth.loggedIn">
-          <v-btn @click="logout()">
-            LOGOUT
-          </v-btn>
-          <v-btn large to="/post">
-            <v-icon>{{ 'mdi-pencil-plus' }}</v-icon>
-            <div>投稿する</div>
-          </v-btn>
+        class="mr-4"
+      ></v-app-bar-nav-icon>
+      <v-row align="center" justify="space-between">
+        <div class="d-flex align-center">
+          <v-toolbar-title>
+            <NuxtLink to="/">
+              <img class="my-auto" src="~/assets/image/logo.png" width="260">
+            </NuxtLink>
+          </v-toolbar-title>
         </div>
-        <div v-else>
-          <v-btn
-            color="primary" 
-            large
-            text
-            to ="/loginForm"
-          >
-            <v-icon>mdi-account-arrow-left-outline</v-icon>
-            ログイン
-          </v-btn>
+        <!-- <div>$store.state.auth.loggedIn: {{ $store.state.auth.loggedIn }}</div>
+        <div>$auth.loggedIn: {{ $auth.loggedIn }}</div> -->
 
-          <v-btn 
-            class="my-1"
-            to="/create" 
-            outlined 
-            rounded 
-            large
-          >
-            新規登録
-          </v-btn>
+        <div class="mr-8">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn 
+                large 
+                icon 
+                to="/"
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon>mdi-home</v-icon>
+              </v-btn>
+            </template>
+            <span>ホーム</span>
+          </v-tooltip>
+          <template v-if="$store.state.auth.loggedIn">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn 
+                  large 
+                  icon 
+                  to="/user/post"
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                    <v-icon>mdi-pencil-plus-outline</v-icon>
+                  </v-btn>
+              </template>
+              <span>新しい投稿</span>
+            </v-tooltip>
+          </template>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn 
+                large 
+                icon 
+                to="/allPost"
+                v-bind="attrs"
+                v-on="on"
+              >
+                  <v-icon>mdi-magnify</v-icon>
+                </v-btn>
+            </template>
+            <span>みんなの投稿</span>
+          </v-tooltip>
         </div>
+        <template v-if="$store.state.rangeAuth.isLoggedIn">
+          <div class="mr-4">練習場管理者としてログイン中</div>
+        </template>
+        <template v-else>
+          <div v-if="!$store.state.auth.loggedIn" class="mr-2">
+            <v-btn
+              color="primary" 
+              large
+              text
+              to ="/loginForm"
+            >
+              <v-icon>mdi-account-arrow-left-outline</v-icon>
+              ログイン
+            </v-btn>
+
+            <v-btn 
+              class="my-1"
+              to="/create" 
+              outlined 
+              rounded 
+              large
+            >
+              新規登録
+            </v-btn>
+          </div>
+        </template>
       </v-row>
     </v-app-bar>
     <v-navigation-drawer
@@ -92,6 +132,10 @@
         <v-list-item to ="/user/logout">
           <v-list-item-title>ログアウト</v-list-item-title>
         </v-list-item>
+        <v-list-item to ="/user/delete">
+          <v-list-item-title class="red--text">退会</v-list-item-title>
+        </v-list-item>
+
       </v-list>
     </v-navigation-drawer>
   </div>

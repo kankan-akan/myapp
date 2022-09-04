@@ -31,15 +31,15 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  # <<: *default
-  adapter: mysql2
-  encoding: utf8
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: yusukekan
-  password: yskan
-  host: localhost 
+  <<: *default
+  # adapter: mysql2
+  # encoding: utf8
+  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # username: yusukekan
+  # password: yskan
+  # host: localhost 
   
-  # # host: 127.0.0.1 #circleci
+  host: 127.0.0.1 #circleci
   database: myapp_test  #docker/circleci起動時必要
 
 # As with config/secrets.yml, you never want to store sensitive information,
@@ -71,7 +71,9 @@ production:
   # password: 2cd68913
 
 # aws
-  database: myapp_production
-  host: <%= Rails.application.credentials.rds[:host] %>  
-  username: <%= Rails.application.credentials.rds[:username] %>
-  password: <%= Rails.application.credentials.rds[:password] %>
+  <% if Rails.env.production? %>
+    database: myapp_production
+    host: <%= Rails.application.credentials.rds[:host] %>  
+    username: <%= Rails.application.credentials.rds[:username] %>
+    password: <%= Rails.application.credentials.rds[:password] %>
+  <% end %>

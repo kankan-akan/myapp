@@ -4,7 +4,8 @@
       <v-row>
         <v-col cols="10">
           <v-col>
-            <v-btn 
+            <v-btn
+              class="mr-4"
               color="grey darken-2"
               @click="previousWeek" 
               outlined
@@ -14,6 +15,7 @@
             </v-btn>
             <strong>{{startDate.format('YY/MM')}}月</strong>
             <v-btn 
+              class="ml-4"
               color="grey darken-2"
               @click="nextWeek" 
               outlined
@@ -99,7 +101,10 @@
                   </th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody v-if="selectedStatus.length == 0">
+                {{ message }}
+              </tbody>
+              <tbody v-else>
                 <tr
                   v-for="(item,i) in selectedStatus"
                   :key="i"
@@ -133,7 +138,8 @@ import { mapState } from 'vuex';
       //   holiday: ['月', '火'],
       // },
       status: [],
-      selectedStatus: []
+      selectedStatus: [],
+      message: ''
     }),
     created () {
       this.setDateList(this.startDate)
@@ -197,6 +203,9 @@ import { mapState } from 'vuex';
           .then((res) => {
             console.log(res)
             this.selectedStatus = res.data
+            if(res.data == '') {
+              this.message = "予約者が存在しません。"
+            }
           })
           .catch((err) => {
             console.log(err)

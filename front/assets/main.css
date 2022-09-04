@@ -1,13 +1,11 @@
 
-.header-logo {
-  font-size: 45px;
-  text-decoration: none;
- 
- }
-
 .color {
   background-color: #f6fdf6;
 
+}
+
+.range-color {
+  background-color: rgb(255, 251, 251);
 }
 
 .table-price {

@@ -1,5 +1,5 @@
 class V1::LessonsController < ApplicationController
-  # before_action :authenticate_v1_admin_range!, except: [:index]
+  before_action :authenticate_v1_admin_range!, except: [:index, :show]
 
   def range_lesson
     @lesson = current_v1_admin_range.lessons.includes(:calendar, :reservations)
@@ -18,11 +18,6 @@ class V1::LessonsController < ApplicationController
     start_times = Calendar.where(lesson_id: params[:id]).pluck(:start_time1, :start_time2, :start_time3, :start_time4, :start_time5, :start_time6, :start_time7, :start_time8, :start_time9,:start_time10, :start_time11, :start_time12).flatten.compact
     render json: { lesson: @lesson.as_json(include: :reviews), calendar: calendar, holiday: holiday, start_times: start_times }
   end
-
-  # def show
-  #   @lesson = Lesson.includes(:calendar, :reviews, :calendar).find(params[:id])
-  #   render json: @lesson.as_json(include: [:calendar, :reviews, :calendar])
-  # end
 
   def create
     @lesson = Lesson.new(lesson_params)

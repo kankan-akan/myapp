@@ -1,8 +1,9 @@
 class V1::ReservationsController < ApplicationController
-  # before_action :authenticate_v1_user!
+  before_action :authenticate_v1_user!, except: [:search_reservation]
+  before_action :authenticate_v1_admin_range!, only: [:search_reservation]
 
   def my_reservation
-    @reservation = current_v1_user.reservations.includes(:lesson)
+    @reservation = current_v1_user.reservations.includes(:lesson).order(id: "DESC")
     render json: @reservation.as_json(include: :lesson)
   end
 

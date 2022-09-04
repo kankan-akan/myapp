@@ -24,7 +24,7 @@
                 outlined
                 v-model ="email"
                 :rules="emailRules"
-                label="メールアドレス*"
+                label="＊メールアドレス"
                 required
               ></v-text-field>
             </v-col>
@@ -35,7 +35,7 @@
                 :rules="passwordRules"
                 :append-icon ="show ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show? 'text' : 'password'"
-                label="パスワード（半角英数字・記号(.?/-_)を各1つ含む8文字以上30文字以内）"
+                label="＊パスワード（半角英数字・記号(.?/-_)を各1つ含む8文字以上30文字以内）"
                 required
                 @click:append="show = !show"
               ></v-text-field>
@@ -45,17 +45,23 @@
         <small>*は必須項目です</small>
       </v-card-text>
       <div>
-        <v-card-actions class="justify-end">
+        <v-card-actions>
+          <v-row no-gutter>
+            <v-col>
           <v-btn
-            class="mr-4 font-weight-bold white--text"
+            class="mb-3 font-weight-bold white--text"
             :disabled="!valid || loading" 
             :loading="loading"
             color="indigo accent-2"
             @click="login"
             large
+            block
           >
             ログイン
           </v-btn>
+          <GuestUserLogin />
+          </v-col>
+          </v-row>
         </v-card-actions>
       </div>
       <v-card-text>
@@ -75,18 +81,18 @@ export default {
     valid: true,
     show: false,
     loading: false,
-    // userId: 'ichiro_tanaka',
+    // userId: '',
     // userIdRules: [
     //   v => !!v || '入力してください',
     //   v => (v && v.length <= 15) || '15文字以下で入力してください',
     //   v => /^(?=.*[a-zA-Z])[a-zA-Z0-9\d.?/-_]{1,15}$/.test(v) || '',
     // ],
-    email: 'a@example.com',
+    email: '',
     emailRules: [
       v => !!v || '入力してください',
       v => /.+@.+\..+/.test(v) || '',
     ],
-    password: 'password.',
+    password: '',
     passwordRules: [
       v => !!v || '入力してください',
       v => /^(?=.*[a-z])(?=.*[.?/-_])[a-zA-Z0-9\d.?/-_]{8,30}$/.test(v) || '',

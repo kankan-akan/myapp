@@ -1,5 +1,5 @@
 class V1::RangeOutlinesController < ApplicationController
-  # before_action :authenticate_v1_admin_range!, except: [:index]
+  before_action :authenticate_v1_admin_range!, except: [:index]
 
   # def range_info
   #   @outline = current_v1_admin_range.range_outline&.includes(:equipment)
@@ -45,10 +45,6 @@ class V1::RangeOutlinesController < ApplicationController
       render json: { status: 400 }
     end
   end
-
-  # def search
-  #   @outline = RangeOutline.find
-  # end
 
   private
     def outline_params

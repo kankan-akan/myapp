@@ -1,18 +1,16 @@
 <template>
   <div>
     <RangeNavBar />
-    <v-app-bar 
+    <v-app-bar
       app
       clipped-left
-      color="blue lighten-2"
+      color="blue lighten-4"
     >
-      <v-row class ="justify-space-between">
-        <NuxtLink 
-          to="/"
-          class="header-logo my-auto"
-        >
-          LOGO
+      <v-row>
+        <NuxtLink to="/">
+          <img class="my-2" src="~/assets/image/logo.png" width="280">
         </NuxtLink>
+        <div class="d-flex align-end my-auto font-weight-bold">＜練習場管理者専用ページ＞</div>
       </v-row>
     </v-app-bar>
   </div>
@@ -30,7 +28,7 @@ export default {
   },
 
   mounted () {
-    setTimeout(this.getRangeData, 100)
+    setTimeout(this.getRangeData, 300)
     this.getLesson()
   },
 

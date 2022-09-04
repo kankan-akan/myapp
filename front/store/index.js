@@ -4,7 +4,8 @@ export const state = () => ({
   selectedLesson: [],
   selectedUser: [],
   userPosts: [],
-  userLikes: []
+  userLikes: [],
+  guestLoggedIn: false
 })
 
 export const mutations = {
@@ -22,14 +23,21 @@ export const mutations = {
   },
   setUserLikes (state, userLikes) {
     state.userLikes = userLikes
+  },
+  setGuestLoggedIn (state, guestLoggedIn) {
+    state.guestLoggedIn = guestLoggedIn
   }
 }
 
 export const actions = {
   nuxtClientInit({ commit }, context) {
-    const data = JSON.parse(localStorage.getItem('persisted-key')) || []
-    if(data.rangeAuth.loginRange) {
+    const data = JSON.parse(sessionStorage.getItem('persisted-key')) || []
+    if(data.rangeAuth) {
+      commit('rangeAuth/setIsLoggedIn', data.rangeAuth.isLoggedIn)
       commit('rangeAuth/setLoginRange', data.rangeAuth.loginRange)
+    }
+    if (data.auth) {
+      commit('myData/setLoginUser', data.myData.loginUser)
     }
   },
   async getOutline({ commit }){

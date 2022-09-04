@@ -37,7 +37,6 @@ export default {
     // this.$store.commit('rangeAuth/setIsLoggedIn', false)
     // this.$store.commit('rangeAuth/setLoginRange', null)
     // this.$store.commit('rangeAuth/setRangeData', null)
-    // this.$store.commit('setOutline', null)
   },
 
   methods: {

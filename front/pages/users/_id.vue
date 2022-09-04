@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-card max-width="700" class="justify-center mx-auto">
-      <UserInfo v-if="userLikes !== undefined" :user="selectedUser" :posts="userPosts" :likes="userLikes" :bookmarks="bookmarks" :reservations="reservations" :reviews="reviews"/>
+      <UserInfo :user="selectedUser" :posts="userPosts" :likes="userLikes" :bookmarks="bookmarks" :reservations="reservations" :reviews="reviews"/>
     </v-card>
   </v-container>
 </template>

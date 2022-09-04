@@ -88,19 +88,20 @@
                   :src="image.url"
                   contain
                   aspect-ratio="1.7"
-                ></v-img>
-                <div class="d-flex justify-end">
-                  <v-btn
-                    v-if="!preImage"
-                    icon
-                    @click="deleteImage()"
-                  >
-                    <v-icon small>{{ 'mdi-close' }}</v-icon>
-                  </v-btn>
-                </div>
+                >
+                  <div class="d-flex justify-end my-2">
+                    <v-btn
+                      dark
+                      icon
+                      @click="deleteImage()"
+                    >  
+                      <v-icon large>mdi-close</v-icon>
+                    </v-btn>
+                  </div>
+                </v-img>
               </template>
               <template v-else>
-                <v-img 
+                <v-img
                   v-if="preImage !== ''" 
                   :src="preImage"
                   contain
@@ -245,7 +246,7 @@ export default {
       address: this.$store.state.rangeAuth.rangeData.address,
       distance: this.$store.state.rangeAuth.rangeData.distance,
       image: this.$store.state.rangeAuth.rangeData.image,
-      inputImage: [],
+      inputImage: null,
       preImage: '',
       features:this.$store.state.rangeAuth.rangeData.features,
       booths: this.$store.state.rangeAuth.rangeData.booths,
@@ -294,7 +295,7 @@ export default {
         formData.append('restaurant', this.restaurant)
         formData.append('lesson', this.lesson)
         formData.append('admin_range_id', this.loginRange.id)
-        if (this.inputImage || this.inputImage !== null) {
+        if (this.inputImage || this.inputImage == '') {
           formData.append('image', this.inputImage)
         }
         await this.$axios.put(`/v1/outlines/${this.loginRange.id}`, formData, { 
@@ -349,7 +350,7 @@ export default {
     },
     deleteImage () {
       this.image = null
-      this.inputImage = ''
+      this.inputImage = []
     }
   },
 }

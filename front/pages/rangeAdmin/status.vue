@@ -1,5 +1,5 @@
 <template>
-  <v-main>
+  <v-main class="range-color">
     <v-container>
       <v-col class="d-flex align-center">
         <div class="text-h5 font-weight-bold mr-4">予約状況</div>
@@ -20,35 +20,11 @@
               cols="10"
             >
               <v-card @click="status(lesson.id)">
-                <v-card-title>{{ lesson.title }}</v-card-title>
-                <v-card-subtitle>{{ lesson.coach }}</v-card-subtitle>
-                <v-card-text>
-                  <v-col class="d-flex align-center">
-                    <p class="youbi">開始時間:</p>
-                    <p v-if="lesson.calendar.start_time1" class="youbi">{{ lesson.calendar.start_time1 }}</p>
-                    <p v-if="lesson.calendar.start_time2" class="youbi">{{ lesson.calendar.start_time2 }}</p>
-                    <p v-if="lesson.calendar.start_time3" class="youbi">{{ lesson.calendar.start_time3 }}</p>
-                    <p v-if="lesson.calendar.start_time4" class="youbi">{{ lesson.calendar.start_time4 }}</p>
-                    <p v-if="lesson.calendar.start_time5" class="youbi">{{ lesson.calendar.start_time5 }}</p>
-                    <p v-if="lesson.calendar.start_time6" class="youbi">{{ lesson.calendar.start_time6 }}</p>
-                    <p v-if="lesson.calendar.start_time7" class="youbi">{{ lesson.calendar.start_time7 }}</p>
-                    <p v-if="lesson.calendar.start_time8" class="youbi">{{ lesson.calendar.start_time8 }}</p>
-                    <p v-if="lesson.calendar.start_time9" class="youbi">{{ lesson.calendar.start_time9 }}</p>
-                    <p v-if="lesson.calendar.start_time10" class="youbi">{{ lesson.calendar.start_time10 }}</p>
-                    <p v-if="lesson.calendar.start_time11" class="youbi">{{ lesson.calendar.start_time11 }}</p>
-                    <p v-if="lesson.calendar.start_time12" class="youbi">{{ lesson.calendar.start_time12 }}</p>
-                  </v-col>
-                  <v-col class="d-flex align-center">
-                    <p class="youbi">休業日:</p>
-                    <p v-if="lesson.calendar.sun" class="youbi">{{ lesson.calendar.sun }}</p>
-                    <p v-if="lesson.calendar.mon" class="youbi">{{ lesson.calendar.mon }}</p>
-                    <p v-if="lesson.calendar.tue" class="youbi">{{ lesson.calendar.tue }}</p>
-                    <p v-if="lesson.calendar.wed" class="youbi">{{ lesson.calendar.wed }}</p>
-                    <p v-if="lesson.calendar.thu" class="youbi">{{ lesson.calendar.thu }}</p>
-                    <p v-if="lesson.calendar.fri" class="youbi">{{ lesson.calendar.fri }}</p>
-                    <p v-if="lesson.calendar.sat" class="youbi">{{ lesson.calendar.sat }}</p>
-                  </v-col>
-                </v-card-text>
+                <v-card-title class="font-weight-bold">{{ lesson.title }}</v-card-title>
+                <v-card-subtitle>インストラクター：{{ lesson.coach }}</v-card-subtitle>
+
+                <LessonSchedule :calendar="lesson.calendar" />
+                
               </v-card>
             </v-col>
           </v-row>
@@ -68,16 +44,14 @@ import { mapState } from 'vuex';
 
   export default {
     data: () => ({
-      
     }),
-    created () {
-      
-    },
+
     computed: {
       ...mapState({
       lessons: (state) => state.rangeAuth.lessons
       }),
     },
+
     methods: {
      status(id) {
        this.$router.push(`/rangeAdmin/reservation/${id}`)
@@ -85,10 +59,3 @@ import { mapState } from 'vuex';
     }
   }
 </script>
-  
-<style scoped>
-  .youbi {
-    margin-right: 20px;
-  }
-
-</style>

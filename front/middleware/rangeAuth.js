@@ -1,9 +1,6 @@
 export default function ({ store, redirect, route }) {
-  // ユーザーが認証されていない場合
-  // if (route.path == '/rangeAdmin/info') {
-    if (!store.state.rangeAuth.loginRange && route.path !== '/') {
-      console.log('middleware-rangeAuth')
+  // ユーザー認証がされていない場合
+    if (!store.state.rangeAuth.isLoggedIn && route.path !== '/') {
       return redirect('/rangeLogin')
     }
-  // }
 }

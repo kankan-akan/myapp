@@ -67,31 +67,47 @@ Relationship.create!([
 
 Post.create!([
   {
-    content: "examle post1",
-    image: Rails.root.join('app/assets/images/post/IMG_1164_2.jpeg').open,
+    content: "ゴルフ日和でした！",
+    image: Rails.root.join('app/assets/images/post/24395982_s.jpg').open,
     user_id: 1
   },
   {
-    content: "example post2",
-    image: Rails.root.join('app/assets/images/post/IMG_2190.jpeg').open,
+    content: "Newパター購入！\nこれでもう練習はサボれない。。。",
+    image: Rails.root.join('app/assets/images/post/golf-12089.jpg').open,
     user_id: 2
   },
   {
-    content: "250ydくらいで広めの練習場だった。崖の上まで届くと300yd！\n待合室は冷房が効いていて快適。",
-    image: Rails.root.join('app/assets/images/post/IMG_2139.jpg').open,
-    user_id: 1
+    content: "今日はラウンド。\n昨日練習したから大丈夫！",
+    image: Rails.root.join('app/assets/images/post/IMG_1186.JPG').open,
+    user_id: 5
   },
   {
-    content: "example post4",
+    content: "ラウンド終わりにサクッと練習。\n夕方は太陽で眩しくなる。\nここの練習場は休憩室に食べ物の自販機とかも置いてあるからとても便利。一日中いることができる！",
+    image: Rails.root.join('app/assets/images/post/2202368_s.jpg').open,
+    range: "明石ゴルフ練習場",
+    user_id: 2
+  },
+  {
+    content: "",
+    image: Rails.root.join('app/assets/images/post/golf-83876.jpg').open,
     user_id: 3,
   },
   {
-    content: "example post5",
-    user_id: 3
+    content: "今日は初バーディー取れました！",
+    image: Rails.root.join('app/assets/images/post/2566314_s.jpg').open,
+    user_id: 4
   },
   {
-    content: "examle post 6",
-    user_id: 2
+    content: "久々の練習。午前中は空いてるから周り気にせず打てます。",
+    image: Rails.root.join('app/assets/images/post/24111431_s.jpg').open,
+    range: "姫路ゴルフ練習場",
+    user_id: 6
+  },
+  {
+    content: "今日は息子と一緒に練習場へ。ゴルフ習わせようかな。",
+    image: Rails.root.join('app/assets/images/post/23081256_s.jpg').open,
+    range: "神戸ゴルフ練習場",
+    user_id: 1
   }
 ])
 
@@ -136,10 +152,10 @@ AdminRange.create!([
 ])
 
 RangeOutline.create!([
-  { city: "神戸市", name: "神戸ゴルフ練習場", features: "駐車場有", link: "www.example.com", address: "兵庫県神戸市中央区99-99", phone_number: "078-123-1234", distance: "250", booths: "70", admin_range_id: 1 },
-  { city: "明石市", name: "明石ゴルフ倶楽部", features: "駐車場有", link: "www.example.com", address: "兵庫県明石市11-2", phone_number: "078-123-1234", distance: "200", booths: "70", admin_range_id: 2 },
-  { city: "姫路市", name: "姫路ゴルフ練習場", features: "駐車場有", link: "www.example.com", address: "兵庫県姫路市12-3", phone_number: "079-123-1234", distance: "250", booths: "120", admin_range_id: 3 },
-  { city: "相生市", name: "相生ゴルフ練習場", features: "駐車場有", link: "www.example.com", address: "兵庫県相生市中央区99-99", phone_number: "0791-23-1234", distance: "270", booths: "90", admin_range_id: 4 },
+  { city: "神戸市", name: "神戸ゴルフ練習場", features: "全面に天然芝を張った全長２００ydのドライビングレンジには、グリーンを模したものを設置し、実際のコースさながらの雰囲気が楽しめます。", link: "www.example.com", address: "兵庫県神戸市中央区99-99", phone_number: "078-123-1234", distance: "200", booths: "70", image: Rails.root.join('app/assets/images/range/kobe_sample.jpg').open, admin_range_id: 1 },
+  { city: "明石市", name: "明石ゴルフ倶楽部", features: "打席はフルオートティーアップ機を導入。\n広々としたブースに２７０ydのゴルフレンジで気持ちよく練習することができます。", link: "www.example.com", address: "兵庫県明石市11-2", phone_number: "078-123-1234", distance: "270", booths: "70", image: Rails.root.join('app/assets/images/range/akashi_sample.jpg').open, admin_range_id: 2 },
+  { city: "姫路市", name: "姫路ゴルフ練習場", features: "駅より徒歩３分のところにある駅近練習場！\nアプローチ・バンカー・パッティング練習場を完備した総合練習場です。", link: "www.example.com", address: "兵庫県姫路市12-3", phone_number: "079-123-1234", distance: "230", booths: "120", image: Rails.root.join('app/assets/images/range/himeji_sample.jpg').open, admin_range_id: 3 },
+  { city: "相生市", name: "相生ゴルフ練習場", features: "開放感あふれる自然の中に作られた大型練習場です。\nゴルフスクール、プロショップ、レストラン、パッティンググリーン・バンカー練習場があります。\n駐車場有(200台)", link: "www.example.com", address: "兵庫県相生市中央区99-99", phone_number: "0791-23-1234", distance: "270", booths: "90", image: Rails.root.join('app/assets/images/range/aioi_sample.jpg').open, admin_range_id: 4 },
   { city: "姫路市", name: "書写グリーン倶楽部", features: "200ヤードのたっぷりとしたドライビングレンジ(イーグルレンジ)では奥に行くほどに狭くなり、実際のコースさながらの緊張感が望めます。\nボールの落とし所にも、天然芝を敷き詰めたり、グリーンやクリークを模したりと様々な工夫が施されています。", link: "https://golf.shoshagc.co.jp/", address: "兵庫県姫路市書写634-13", phone_number: "079-266-0082", distance: "200", booths: "74", image: Rails.root.join('app/assets/images/range/syosya.jpeg').open, admin_range_id: 5 },
   { city: "姫路市", name: "大塩ゴルフリンクス", features: "姫路シーサイドGCが隣接し、海が見える景色です。\n駐車場あり（70台）\n天然芝のアプローチ練習場やパター練習場も完備しております。\n隣接した姫路シーサイドゴルフコースへの前後にもお気軽にお立ち寄り下さい。", link: "https://www.ooshio-golflinks.jp/", address: "兵庫県姫路市大塩町2125", phone_number: "079-254-5755", distance: "200", booths: "60", image: Rails.root.join('app/assets/images/range/ohsio.jpeg').open, admin_range_id: 6 },
   { city: "たつの市", name: "相生水上ゴルフセンター", features: "ネットに囲まれていない自然の中の練習場!\n奥行き300Yの豪快なショットが楽しめます。", link: "https://aioi-sgc.com/", address: "兵庫県たつの市揖西町土師", phone_number: "0791-66-1015", distance: "300", booths: "30", image: Rails.root.join('app/assets/images/range/aioi_suijyo.png').open, admin_range_id: 7 },
@@ -217,16 +233,43 @@ Equipment.create!([
 ])
 
 Lesson.create!([
-  { title: "初心者向けレッスン", coach: "佐藤和雄", content: "初心者におすすめのレッスンです。", admin_range_id: 1, range_outline_id: 1},
-  { title: "中級者向けレッスン", coach: "田中花子", content: "100切りを目指したい方におすすめのレッスンです。", admin_range_id: 1, range_outline_id: 1 }
+  { title: "初心者向けコース", coach: "佐藤和雄", content: "「これからゴルフを始めたい」「少しゴルフに興味がある」といったっ方におすすめのレッスンです！\nゴルフのマナーやエチケットを学びながらクラブの握り方から構え方、スイングの基本などを身につけることができるレッスンです。\n一度やめてしまったが、もう一度やり直したいといった方にもおすすめです！プロのインストラクターが丁寧に指導いたします。", admin_range_id: 1, range_outline_id: 1},
+  { title: "中級者向けコース", coach: "田中花子", content: "コースに出てある程度はボールを打てるようになったが、なかなかスコアが伸びないという方や、100切りを目指したい方におすすめのレッスンです！\nなかなかスコアが伸びないという方には、これまで自己流でやってきた方が多いです。自己流だけでは難しい客観的な視点で見たアドバイスを、インストラクターが丁寧にさせて頂きます。\n様々な情報が行き交う時代であるからこそ、その人に合った指導ができるよう心がけております。", admin_range_id: 1, range_outline_id: 1 },
+  { title: "ラウンドレッスンコース", coach: "鈴木敏夫", content: "３〜４人で１組となって頂き、１ラウンドをインストラクターと一緒に回って頂きます。\n練習場ではできているのに、コースに出るとできないことが多くあると思います。本番の状況でどのような対応をすれば良いかをインストラクターが一人一人見回りながら指導していきます。新しい発見や苦手克服のためにぜひご利用ください。", admin_range_id: 1, range_outline_id: 1 },
+  { title: "これから始める方のためのゴルフレッスン", coach: "井上一郎", content: "こちらのレッスンはゴルフ未経験・超初心者限定のプログラムです。\nゴルフをはじめたい！でもどうすれはいいかわからないあなたへ。\nインストラクターが、クラブの握り方からスイング、ゴルフのルールをわかりやすくレッスンいたします。\n手ぶらで参加OK！", admin_range_id: 2, range_outline_id: 2 },
+  { title: "パーソナルレッスン", coach: "伊藤和樹", content: "弾道追跡機器を使用して、ショットデータやスイング分析をマンツーマンで行うレッスンです。\nなぜ曲がるのか、なぜ飛ばないのか、なぜ当たらないのか、そのような悩みは弾道追跡機器でフェースの入射角・スイング分析を行えば、数字で明確に明らかになります。\nあなたのスイングを解析し、課題を明確にすることで、日頃のレッスンや日々の練習がより効果的なものになります。お悩みの解消や、スイングの定期検診にもおすすめのレッスンです！", admin_range_id: 2, range_outline_id: 2 },
+  { title: "楽しく通えるゴルフスクール", coach: "杉本俊也", content: "こちらのレッスンは杉本俊也インストラクターのレッスンになります。\n＜たっぷり70分のレッスン＞\nレッスン時間はたっぷり70分。個人メニューを作成したわかりやすいレッスンになっています。\n \n＜定員７名の少人数制＞\n同じレッスンでゴルフ仲間が出来たり、仲間の成長やスイングを見てモチベーションを上げたり、少人数だから楽しく通えます。\n \n＜貸クラブ無料＞\nクラブをお持ちでなくても大丈夫！無料でクラブの貸し出しを行っております。", admin_range_id: 3, range_outline_id: 3 },
+  { title: "楽しく通えるゴルフスクール", coach: "川上陽菜", content: "こちらのレッスンは川上陽菜インストラクターのレッスンになります。\n＜たっぷり70分のレッスン＞\nレッスン時間はたっぷり70分。個人メニューを作成したわかりやすいレッスンになっています。\n \n＜定員７名の少人数制＞\n同じレッスンでゴルフ仲間が出来たり、仲間の成長やスイングを見てモチベーションを上げたり、少人数だから楽しく通えます。\n \n＜貸クラブ無料＞\nクラブをお持ちでなくても大丈夫！無料でクラブの貸し出しを行っております。", admin_range_id: 3, range_outline_id: 3 },
+  { title: "一般クラス", coach: "小川洋一", content: "当スクール専属のティーチングプロが、初心者から上級者まであなたのレベルに合わせてレッスンを行います。", admin_range_id: 4, range_outline_id: 4 },
+  { title: "レディスクラス", coach: "山下美奈", content: "こちらのレッスンは女性専用のクラスです。\nレディスクラスはLPGAからの認定を受けた女性のティーチングプロが、女性にあったスイングを指導します。ゴルフを楽しみたい方から、スコアアップを目指す方まで、どなたにも分かりやすく指導いたします。それぞれの個性を生かしながらも、結果につながる美しいスイングとなるようサポートします。", admin_range_id: 4, range_outline_id: 4 },
+  { title: "シニアクラス", coach: "小森隆史", content: "60歳以上の男女を対象としたクラスです。ゴルフの上達だけでなく、ゴルフ仲間作りにも最適です！\nシニアならではのゴルフの醍醐味をお伝えしていきます。体力の低下を様々なテクニックでカバーし、無理なく楽しみながら続けていけるよう指導いたします。", admin_range_id: 4, range_outline_id: 4 },
+  { title: "ジュニアクラス", coach: "森田剛", content: "ジュニアクラスのレッスンは、子ども好きなプロが楽しく丁寧に指導します。競技大会への出場をめざすジュニアにも対応します。\nジュニアクラスはPGA/LPGAからの認定を受けたティーチングプロが、ゴルフに慣れ親しむところからスタートし、ゆくゆくは競技大会への出場をめざしてレッスンを行います。\nまた、ゴルフに必要なマナーや競技会に参加する上で必要となる礼儀などもしっかりと指導し、子どもの成長過程において大切なことをゴルフを通じて伝える場としても意識しております。ジュニアクラスの体験レッスンは体験料・ボール代共に無料ですので、お気軽にお申し込みください。", admin_range_id: 4, range_outline_id: 4 },
 ])
 
 Calendar.create!([
-  { lesson_time: "60", start_time1: "09:00",  start_time3: "11:00", start_time4: "13:00", start_time5: "15:00", start_time6: "17:00", start_time7: "19:00", tue: "火", wed: "水", lesson_id: 1},
-  { lesson_time: "90", start_time1: "10:00", start_time2: "15:00", start_time3: "17:00", start_time4: "19:00", sun: "日", mon: "月", lesson_id: 2}
+  { lesson_time: "60", start_time1: "09:00",  start_time2: "11:00", start_time3: "13:00", start_time4: "15:00", start_time5: "17:00", start_time6: "19:00", tue: "火", wed: "水", lesson_id: 1},
+  { lesson_time: "90", start_time1: "10:00", start_time2: "15:00", start_time3: "17:00", start_time4: "19:00", sun: "日", mon: "月", lesson_id: 2},
+  { start_time1: "9:00", tue: "火", wed: "水", thu: "木", lesson_id: 3 },
+  { lesson_time: "80", start_time1: "09:00", start_time2: "10:00", start_time3: "11:00", start_time4: "13:00", start_time5: "14:00", start_time6: "15:00", start_time7: "16:00", mon: "月", thu: "木", lesson_id: 4 },
+  { lesson_time: "30", start_time1: "09:00", start_time2: "10:00", start_time3: "11:00", start_time4: "13:00", start_time5: "14:00", start_time6: "15:00", start_time7: "16:00", mon: "月", thu: "木", lesson_id: 5 },
+  { lesson_time: "70", start_time1: "09:00", start_time2: "10:00", start_time3: "11:00", start_time4: "13:00", start_time5: "14:00", start_time6: "15:00", start_time7: "16:00", sat: "土", sun: "日", lesson_id: 6 },
+  { lesson_time: "70", start_time1: "09:00", start_time2: "10:00", start_time3: "11:00", start_time4: "13:00", start_time5: "14:00", start_time6: "15:00", start_time7: "16:00", wed: "水", thu: "木", lesson_id: 7 },
+  { lesson_time: "90", start_time1: "09:00", start_time2: "13:00", start_time3: "15:00", start_time4: "19:00", tue: "火", thu: "木", lesson_id: 8 },
+  { lesson_time: "60", start_time1: "09:00", start_time2: "15:00", start_time3: "18:00", start_time4: "20:00", thu: "木", fri: "金", lesson_id: 9 },
+  { lesson_time: "60", start_time1: "08:00", start_time2: "13:00", start_time3: "17:00", start_time4: "20:00", mon: "月", tue: "火", lesson_id: 10 },
+  { lesson_time: "40", start_time1: "09:00", start_time2: "15:00", start_time3: "18:00", start_time4: "20:00", wed: "水", thu: "木", lesson_id: 11 }
 ])
 
 Reservation.create!([
-  { lesson_id: 1, user_id: 1, date: "22/01/23(日)10:00"},
-  { lesson_id: 1, user_id: 1, date: "22/07/30(土)09:00" }
+  { lesson_id: 1, user_id: 1, date: "22/01/23(日)10:00" },
+  { lesson_id: 1, user_id: 2, date: "22/07/30(土)09:00" },
+  { lesson_id: 2, user_id: 5, date: "22/07/30(土)10:00" },
+  { lesson_id: 9, user_id: 3, date: "22/07/30(土)09:00" }
+])
+
+Review.create!([
+  { title: "丁寧でわかりやすかった", content: "初めてゴルフレッスンに参加しましたが、インストラクターの方がとても丁寧に指導して頂き、初心者の僕でも楽しくレッスンを受けることができました。", rate: 5, reservation_id: 1, lesson_id: 1, user_id: 1},
+  { title: "これからゴルフを始める方におすすめ", content: "くらぶの握り方や、構え方など基本的なことから教えてもらえたため、すごく勉強になりました。\nですが、本当に基本的なことからのレッスンなのである程度できる方は向かないかもしれません。", rate: 4, reservation_id: 2, lesson_id: 1, user_id: 2 },
+  { title: "ミスが減りました！", content: "アドバイスされたようにスイングすると、ボールが嘘のようにまっすぐ飛びました。", rate: 5, reservation_id: 3, lesson_id: 2, user_id: 1 },
+  { title: "ゴルフ仲間が増えた", content: "他のレッスン生も女性の方なので、今度一緒にラウンドを回るようになったりと、ゴルフ仲間を増やすことができました。最近はゴルフを始める女性の方が多くなってきたように思います。\nこれを機にもっと交流を増やしていきたいと思います。", rate: 4, reservation_id: 4, lesson_id: 9, user_id: 3 },
 ])

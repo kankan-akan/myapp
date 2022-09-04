@@ -3,7 +3,7 @@ class V1::BookmarksController < ApplicationController
   before_action :set_user, only: [:destroy]
 
   def my_bookmark
-    @bookmark = current_v1_user.bookmarks.includes(range_outline: [:equipment, :lessons])
+    @bookmark = current_v1_user.bookmarks.includes(range_outline: [:equipment, :lessons]).order(id: "DESC")
     render json: @bookmark.as_json(include: [{ range_outline: {include: [:equipment, :lessons, bookmark_users: { only: [:id, :name, :user_id, :avatar]} ]} }])
   end
 
