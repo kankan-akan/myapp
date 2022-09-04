@@ -66,27 +66,32 @@
             <span>みんなの投稿</span>
           </v-tooltip>
         </div>
-        <div v-if="!$store.state.auth.loggedIn" class="mr-2">
-          <v-btn
-            color="primary" 
-            large
-            text
-            to ="/loginForm"
-          >
-            <v-icon>mdi-account-arrow-left-outline</v-icon>
-            ログイン
-          </v-btn>
+        <template v-if="$store.state.rangeAuth.isLoggedIn">
+          <div class="mr-4">練習場管理者としてログイン中</div>
+        </template>
+        <template v-else>
+          <div v-if="!$store.state.auth.loggedIn" class="mr-2">
+            <v-btn
+              color="primary" 
+              large
+              text
+              to ="/loginForm"
+            >
+              <v-icon>mdi-account-arrow-left-outline</v-icon>
+              ログイン
+            </v-btn>
 
-          <v-btn 
-            class="my-1"
-            to="/create" 
-            outlined 
-            rounded 
-            large
-          >
-            新規登録
-          </v-btn>
-        </div>
+            <v-btn 
+              class="my-1"
+              to="/create" 
+              outlined 
+              rounded 
+              large
+            >
+              新規登録
+            </v-btn>
+          </div>
+        </template>
       </v-row>
     </v-app-bar>
     <v-navigation-drawer
