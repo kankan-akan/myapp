@@ -107,17 +107,16 @@
                     <v-btn
                       color="green darken-1"
                       text
-                      @click="overlay = false"
-                    >
-                      キャンセル
-                    </v-btn>
-
-                    <v-btn
-                      color="green darken-1"
-                      text
                       @click="sendReservation()"
                     >
                       予約
+                    </v-btn>
+                    <v-btn
+                      color="green darken-1"
+                      text
+                      @click="overlay = false"
+                    >
+                      キャンセル
                     </v-btn>
                   </v-card-actions>
                   </v-container>
