@@ -28,7 +28,7 @@ export default {
   },
 
   mounted () {
-    setTimeout(this.getRangeData, 300)
+    setTimeout(this.getRangeData, 700)
     this.getLesson()
   },
 
