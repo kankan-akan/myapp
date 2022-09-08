@@ -1,6 +1,6 @@
 # ポートフォリオ紹介
-[https://par-match.com](https://par-match.com)
-<!-- （＊AWSコスト削減の為、７：３０〜２２：３０の間のみ起動しております。） -->
+[https://par-match.com](https://par-match.com)<br>
+（＊AWSコスト削減の為、７：３０〜２２：３０の間のみ起動しております。）
 
  __ParMatch__ は、ゴルフ練習場検索・ゴルフレッスン予約ができるアプリケーションです。
  
