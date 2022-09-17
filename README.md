@@ -30,8 +30,7 @@
 ![myapp-infra](https://user-images.githubusercontent.com/86819225/190859062-f4142afd-bd5d-44ff-aabd-cb9c79dd053d.svg)
 
 ## ER図 
-![myapp-er](https://user-images.githubusercontent.com/86819225/190859114-91112409-763d-41cb-9a59-742aafb8a8ad.svg)
-
+![myapp-er](https://user-images.githubusercontent.com/86819225/190859440-a037deab-6833-4b89-bd9c-b0778d636c26.svg)
 
 ## 使用技術
 **フロントエンド**
