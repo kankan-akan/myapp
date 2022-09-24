@@ -3,7 +3,7 @@
     <v-navigation-drawer 
       permanent
       app 
-      clipped 
+      clipped
     >
       <v-list rounded>
         <v-list-item-group

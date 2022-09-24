@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <v-container>
+    <v-container fluid>
       <v-row>
         <v-col cols="10">
           <v-col>

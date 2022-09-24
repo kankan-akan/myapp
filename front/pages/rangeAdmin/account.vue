@@ -1,6 +1,6 @@
 <template>
   <v-main class="range-color">
-    <v-container>
+    <v-container fluid>
       <v-col class="text-h5 font-weight-bold mr-4">アカウント設定</v-col>
       <div class="text-h6 ml-6 mb-6 font-weight-bold">登録情報変更</div>
       <div class="ml-6">変更したい項目を書き換えてください。</div>

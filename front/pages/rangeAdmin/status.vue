@@ -1,6 +1,6 @@
 <template>
   <v-main class="range-color">
-    <v-container>
+    <v-container fluid>
       <v-col class="d-flex align-center">
         <div class="text-h5 font-weight-bold mr-4">予約状況</div>
       </v-col>
