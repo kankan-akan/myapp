@@ -64,9 +64,9 @@ export default {
 
  proxy: {
   '/api': {
-    // target: 'http://localhost:3000',
+    target: 'http://localhost:3000',
     // target: 'http://api:3000',    //docker-compose
-    target: 'https://par-match-api.com',
+    // target: 'https://par-match-api.com',
       pathRewrite: {
         '^/api' : ''
       },
