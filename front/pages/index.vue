@@ -15,18 +15,20 @@
           label="市町村を選択"
         ></v-autocomplete>
       </v-col>
-      <!-- <v-col cols="6">
-        <div class="text-subtitle-1">練習場名から検索</div>
+      <v-col cols="6">
+        <div class="text-subtitle-1 font-weight-bold">練習場名で検索</div>
         <v-autocomplete
           v-model="range"
           :loading="loading"
           :items="items"
+          :search-input.sync="search"
+          hide-no-data
           clearable
           solo
           rounded
           label="練習場名を入力"
         ></v-autocomplete>
-      </v-col> -->
+      </v-col>
     </v-row>
     <v-btn v-if="!$store.state.auth.loggedIn" text to="/rangeAdmin/info">練習場管理者の方はこちら</v-btn>
     <v-row>
