@@ -19,12 +19,17 @@ class V1::ReservationsController < ApplicationController
   end
 
   def create
-    @reservation = Reservation.new(reservation_params)
-      if @reservation.save
-        render json: @reservation
-      else
-        render json: { status: 400 }
-      end
+    @user = User.find(params[:user_id])
+    if @user.reservations.where('date LIKE ?', "#{params[:date]}").count < 1
+      @reservation = Reservation.new(reservation_params)
+        if @reservation.save
+          render json: @reservation
+        else
+          render json: { status: 400 }
+        end
+    else
+      render status: 409  #日付の重複
+    end
   end
 
   def update
