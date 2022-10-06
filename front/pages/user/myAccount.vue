@@ -5,7 +5,7 @@
       <div class="text-h6 ml-6 mb-6 font-weight-bold">登録情報変更</div>
       <div class="ml-6">変更したい項目を書き換えてください。</div>
       <v-row justify="center">
-        <v-col class="mt-6" cols="8">
+        <v-col class="my-6" cols="8">
           <v-form
             ref="formInfo"
             v-model="validInfo"
@@ -78,6 +78,7 @@
             ></v-text-field>
             <div class="d-flex justify-end">
               <v-btn
+                v-if="!$store.state.guestLoggedIn"
                 class="mr-4"
                 :disabled="!validInfo || loading" 
                 :loading="loading"
@@ -87,16 +88,19 @@
               >
                 登録
               </v-btn>
+              <v-btn v-else disabled>
+                ゲストユーザーのため変更出来ません
+              </v-btn>
             </div>
           </v-form>
         </v-col>
       </v-row>
 
-      <v-divider class="my-10"></v-divider>
+      <v-divider class="my-6"></v-divider>
 
       <div class="text-h6 ml-6 mb-6 font-weight-bold">パスワード変更</div>
       <v-row justify="center">
-        <v-col cols="8">
+        <v-col class="my-6" cols="8">
           <v-form
             ref="form"
             v-model="valid"
@@ -125,6 +129,7 @@
             ></v-text-field>
             <div class="d-flex justify-end">
               <v-btn
+                v-if="!$store.state.guestLoggedIn"
                 class="mr-4"
                 :disabled="!valid || loading2" 
                 :loading="loading2"
@@ -133,6 +138,9 @@
                 outlined
               >
                 登録
+              </v-btn>
+              <v-btn v-else disabled>
+                ゲストユーザーのため変更出来ません
               </v-btn>
             </div>
           </v-form>
