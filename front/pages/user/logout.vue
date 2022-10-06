@@ -3,7 +3,6 @@
     <v-card max-width="600" class="mx-auto mt-16 rounded-xl">
       <v-card-text class="text-center">
        <div class="text-h6">ログアウトを実行します。</div>
-       <div class="text-caption">＊ゲストユーザーとしてログインした場合、ログアウトと同時に全てのデータが削除されます</div>
       </v-card-text>
       <v-card-actions class="justify-center">
         <v-btn 
@@ -38,42 +37,19 @@ export default {
   methods: {
     logout() {
       this.loading = true
-      if(this.$store.state.guestLoggedIn) {
-        this.$axios.delete('/v1/auth')
-        .then((res) => {
-          console.log(res)
-          this.$store.commit('setGuestLoggedIn', false)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-        this.$auth.logout()
-        this.$store.commit('myData/setLoginUser', null)
-        this.$store.dispatch(
-          'snackbar/showMessage', {
-            icon: 'mdi-checkbox-marked-circle-outline',
-            message: 'ログアウトしました。',
-            type: 'success',
-            status: true,
-          },
-          { root: true }
-        )
-        this.loading = false
-      } else {
-        this.$auth.logout()
-        this.$store.commit('myData/setLoginUser', null)
-        this.$store.dispatch(
-          'snackbar/showMessage', {
-            icon: 'mdi-checkbox-marked-circle-outline',
-            message: 'ログアウトしました。',
-            type: 'success',
-            status: true,
-          },
-          { root: true }
-        )
-        this.loading = false
-      }
-    },
+      this.$auth.logout()
+      this.$store.commit('myData/setLoginUser', null)
+      this.$store.dispatch(
+        'snackbar/showMessage', {
+          icon: 'mdi-checkbox-marked-circle-outline',
+          message: 'ログアウトしました。',
+          type: 'success',
+          status: true,
+        },
+        { root: true }
+      )
+      this.loading = false
+    }
   },
  
 }

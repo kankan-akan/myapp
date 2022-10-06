@@ -17,64 +17,48 @@
 <script>
 export default {
   data: () => ({
-    loading: false
+    loading: false,
+    email: 'guest-user@example.com',
+    password: 'password.guestUser'
   }),
 
   methods: {
     async guestLogin () {
       this.loading = true
-      await this.$axios.post('/v1/auth/guests')
-      .then((res) => {
-        console.log(res)
-        this.$auth.loginWith('local', {
+      try {
+        const res = await this.$auth.loginWith('local', {
           data: {
-            email: res.data.email,
-            password: res.data.password
+          // user_id: this.userId,
+            email: this.email,
+            password: this.password
           }
         })
-        .then((res) => {
-          console.log(res)
-          // console.log(this.$auth)
-          this.$store.commit('setGuestLoggedIn', true)
-          this.$store.dispatch(
-            'snackbar/showMessage', {
-              icon: 'mdi-checkbox-marked-circle-outline',
-              message: 'ゲストユーザーとしてログインしました！',
-              type: 'success',
-              status: true,
-            },
-            { root: true }
-          )
-          this.loading = false
-        })
-        .catch((err) => {
-          console.log(err)
-          this.$store.dispatch(
-            'snackbar/showMessage', {
-              icon: 'mdi-alert-outline',
-              message: 'ログインに失敗しました。',
-              type: 'error',
-              status: true,
-            },
-            { root: true }
-          )
-          this.loading = false
-        })
-      })
-      .catch((err) => {
-        console,log(err)
+        console.log(res)
+        console.log(this.$auth)
+        this.$store.dispatch(
+          'snackbar/showMessage', {
+            icon: 'mdi-checkbox-marked-circle-outline',
+            message: 'ゲストユーザーとしてログインしました！',
+            type: 'success',
+            status: true,
+          },
+          { root: true }
+        )
+        this.loading = false
+      }catch(err) {
+        console.log(err)
         this.$store.dispatch(
           'snackbar/showMessage', {
             icon: 'mdi-alert-outline',
-            message: 'ユーザー登録に失敗しました。',
+            message: 'ログインに失敗しました。',
             type: 'error',
             status: true,
           },
           { root: true }
         )
         this.loading = false
-      })
-    },
+      }
+    }
   },
 }
 </script>

@@ -52,6 +52,13 @@ User.create!([
     email: "f@example.com", 
     phone_number: "090-3343-4454", 
     password: "password."
+  },
+  {
+    name: "ゲストユーザー",
+    user_id: "guest_user01",
+    email: "guest-user@example.com",
+    phone_number: "090-1111-2222",
+    password: "password.guestUser"
   }
 ])
 

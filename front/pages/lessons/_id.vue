@@ -273,7 +273,7 @@ import { mapState, mapActions } from 'vuex';
           .then((res) => {
             console.log(res)
             this.overlay = false
-            this.$store.dispatch(
+             this.$store.dispatch(
               'snackbar/showMessage', {
                 icon: 'mdi-checkbox-marked-circle-outline',
                 message: '予約が完了しました。',
@@ -286,15 +286,27 @@ import { mapState, mapActions } from 'vuex';
           .catch((err) => {
             console.log(err)
             this.overlay = false
-            this.$store.dispatch(
-              'snackbar/showMessage', {
-                icon: 'mdi-alert-outline',
-                message: '予約に失敗しました。',
-                type: 'error',
-                status: true,
-              },
-              { root: true }
-            )
+            if (err.response.status == 409) { 
+              this.$store.dispatch(
+                'snackbar/showMessage', {
+                  icon: 'mdi-checkbox-marked-circle-outline',
+                  message: '予約がすでに存在します。',
+                  type: 'warning',
+                  status: true,
+                },
+                { root: true }
+              )
+            } else {
+              this.$store.dispatch(
+                'snackbar/showMessage', {
+                  icon: 'mdi-alert-outline',
+                  message: '予約に失敗しました。',
+                  type: 'error',
+                  status: true,
+                },
+                { root: true }
+              )
+            }
           })
         }
       }
