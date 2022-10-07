@@ -37,7 +37,6 @@ gem 'devise_token_auth'
 gem 'carrierwave'
 gem 'fog-aws'
 
-gem 'activeadmin'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
