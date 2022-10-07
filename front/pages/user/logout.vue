@@ -38,6 +38,9 @@ export default {
     logout() {
       this.loading = true
       this.$auth.logout()
+      if (this.$store.state.guestLoggedIn) {
+        this.$store.commit('setGuestLoggedIn', false)
+      }
       this.$store.commit('myData/setLoginUser', null)
       this.$store.dispatch(
         'snackbar/showMessage', {

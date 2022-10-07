@@ -132,11 +132,9 @@
         <v-list-item to ="/user/logout">
           <v-list-item-title>ログアウト</v-list-item-title>
         </v-list-item>
-        <template v-if="!$store.state.guestLoggedIn">
-          <v-list-item to ="/user/delete">
-            <v-list-item-title class="red--text">退会</v-list-item-title>
-          </v-list-item>
-        </template>
+        <v-list-item to="/user/delete">
+          <v-list-item-title class="red--text">退会</v-list-item-title>
+        </v-list-item>
 
       </v-list>
     </v-navigation-drawer>

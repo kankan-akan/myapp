@@ -35,6 +35,7 @@ export default {
         })
         console.log(res)
         console.log(this.$auth)
+        this.$store.commit('setGuestLoggedIn', true)
         this.$store.dispatch(
           'snackbar/showMessage', {
             icon: 'mdi-checkbox-marked-circle-outline',

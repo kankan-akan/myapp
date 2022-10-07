@@ -77,8 +77,11 @@
               required
             ></v-text-field>
             <div class="d-flex justify-end">
+              <v-btn v-if="$store.state.guestLoggedIn" disabled>
+                ゲストユーザーのため変更出来ません
+              </v-btn>
               <v-btn
-                v-if="!$store.state.guestLoggedIn"
+                v-else
                 class="mr-4"
                 :disabled="!validInfo || loading" 
                 :loading="loading"
@@ -87,9 +90,6 @@
                 outlined
               >
                 登録
-              </v-btn>
-              <v-btn v-else disabled>
-                ゲストユーザーのため変更出来ません
               </v-btn>
             </div>
           </v-form>
@@ -128,8 +128,11 @@
               @click:append="showConfirm = !showConfirm"
             ></v-text-field>
             <div class="d-flex justify-end">
+              <v-btn v-if="$store.state.guestLoggedIn" disabled>
+                ゲストユーザーのため変更出来ません
+              </v-btn>
               <v-btn
-                v-if="!$store.state.guestLoggedIn"
+                v-else
                 class="mr-4"
                 :disabled="!valid || loading2" 
                 :loading="loading2"
@@ -138,9 +141,6 @@
                 outlined
               >
                 登録
-              </v-btn>
-              <v-btn v-else disabled>
-                ゲストユーザーのため変更出来ません
               </v-btn>
             </div>
           </v-form>

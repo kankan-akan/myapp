@@ -5,23 +5,30 @@
        <div>退会処理を実行します。よろしいですか？</div>
       </v-card-text>
       <v-card-actions class="justify-center">
-        <v-btn 
-          class="white--text"
-          color="indigo accent-2"
-          :disabled="loading"
-          :loading="loading"
-          large
-          @click ="deleteUser"
-        >
-          退会
-        </v-btn>
-        <v-btn 
-          large
-          text
-          to="/"
-        >
-          キャンセル
-        </v-btn>
+        <template v-if="$store.state.guestLoggedIn">
+          <v-btn disabled>
+            ゲストユーザーのため実行出来ません
+          </v-btn>
+        </template>
+        <template v-else>
+          <v-btn 
+            class="white--text"
+            color="indigo accent-2"
+            :disabled="loading"
+            :loading="loading"
+            large
+            @click ="deleteUser"
+          >
+            退会
+          </v-btn>
+          <v-btn 
+            large
+            text
+            to="/"
+          >
+            キャンセル
+          </v-btn>
+        </template>
       </v-card-actions>
     </v-card>
   </v-container>
