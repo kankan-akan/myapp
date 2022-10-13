@@ -28,6 +28,10 @@ export default {
     phoneNumberRules: [
       v => !!v || '入力してください'
     ],
+    score: '',
+    scoreRules: [
+      v => /^[0-9]*$/.test(v) || '',
+    ],
     password: '',
     passwordRules: [
       v => !!v || '入力してください',
@@ -45,6 +49,7 @@ export default {
         user_id: this.userId,
         email: this.email,
         phone_number: this.phoneNumber,
+        score: this.score,
         password: this.password
       }
     }

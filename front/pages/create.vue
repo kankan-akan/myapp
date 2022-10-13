@@ -44,6 +44,14 @@
 
           <v-text-field
             outlined
+            v-model="score"
+            :rules="scoreRules"
+            label="あなたのベストスコアは？"
+            required
+          ></v-text-field>
+
+          <v-text-field
+            outlined
             v-model="password"
             :rules="passwordRules"
             :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
