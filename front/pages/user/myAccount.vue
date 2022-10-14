@@ -76,6 +76,14 @@
               label="電話番号"
               required
             ></v-text-field>
+
+            <v-text-field
+              outlined
+              v-model="score"
+              label="あなたのベストスコア"
+              :rules="scoreRules"
+              required
+            ></v-text-field>
             <div class="d-flex justify-end">
               <v-btn v-if="$store.state.guestLoggedIn" disabled>
                 ゲストユーザーのため変更出来ません
@@ -180,6 +188,11 @@ export default {
         v => /.+@.+\..+/.test(v) || '',
       ],
       phoneNumber: this.$store.state.myData.loginUser.phone_number,
+      score: this.$store.state.myData.loginUser.score,
+      scoreRules: [
+        v => (v.length <= 3) || '3文字以下で入力してください',
+        v => /^[0-9]{0,3}$/.test(v) || '半角数字で入力してください',
+      ],
       password: '',
       passwordConfirmation: '',
       passwordRules: [
@@ -247,6 +260,7 @@ export default {
           formData.append('user_id', this.userId)
           formData.append('email', this.email)
           formData.append('phone_number', this.phoneNumber)
+          formData.append('score', this.score)
           if (this.inputImage || this.inputImage == '') {
             formData.append('avatar', this.inputImage)
           }
