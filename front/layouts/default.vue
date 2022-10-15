@@ -5,7 +5,6 @@
     <v-main class="color">
       <Nuxt />
     </v-main>
-    
   </v-app>
 </template>
 

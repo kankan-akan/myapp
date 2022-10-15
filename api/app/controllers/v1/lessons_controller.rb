@@ -1,5 +1,14 @@
 class V1::LessonsController < ApplicationController
-  before_action :authenticate_v1_admin_range!, except: [:index, :show]
+  before_action :authenticate_v1_admin_range!, except: [:index, :show, :reccomend_lesson]
+  before_action :authenticate_v1_user!, only: [:reccomend_lesson]
+
+  def reccomend_lesson
+    if params[:score].present?
+      score = params[:score].to_i
+      reserved_lesson = Lesson.includes(:users).where(users: {score: score - 10 .. score + 7}).uniq.sample(5)
+      render json: reserved_lesson
+    end
+  end
 
   def range_lesson
     @lesson = current_v1_admin_range.lessons.includes(:calendar, :reservations)

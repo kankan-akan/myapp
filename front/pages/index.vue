@@ -104,6 +104,7 @@
         </v-col>
       </template>
     </v-row>
+    <ReccomendLesson v-if="loginUser" />
   </v-container>
 </template>
 

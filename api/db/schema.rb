@@ -190,6 +190,7 @@ ActiveRecord::Schema.define(version: 2022_05_09_155814) do
     t.string "email"
     t.string "phone_number"
     t.string "avatar"
+    t.integer "score"
     t.text "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

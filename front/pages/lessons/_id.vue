@@ -1,7 +1,8 @@
 <template>
   <v-container>
-    <v-sheet class="rounded-xl mx-auto">
+    <v-row>
       <v-col>
+    <v-sheet class="rounded-xl mx-auto">
         <div v-if="selectedLesson == ''">レッスンが見つかりません</div>
         <template v-else>
           <v-col class="text-h4 font-weight-bold">{{ selectedLesson.lesson.title }}</v-col>
@@ -162,8 +163,10 @@
             <v-col class="kaigyo">{{ review.content }}</v-col>
           </v-col>
         </template>
+      </v-sheet>
       </v-col>
-    </v-sheet>
+    </v-row>
+    <ReccomendLesson v-if="loginUser" />
   </v-container>
 </template>
 

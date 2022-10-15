@@ -12,6 +12,7 @@ User.create!([
     user_id: "taichi_kondo",
     email: "a@example.com",
     phone_number: "090-1234-1234",
+    score: 115,
     password: "password.",
     avatar: Rails.root.join('app/assets/images/avatar/youngman_25.png').open
   },
@@ -21,6 +22,7 @@ User.create!([
     email: "b@example.com",
     phone_number: "090-7980-7887",
     password: "password.",
+    score: 98,
     avatar: Rails.root.join('app/assets/images/avatar/golf_jou_man_edit.jpeg').open
   },
   {
@@ -28,7 +30,8 @@ User.create!([
     user_id: "flower_sato",
     email: "c@example.com",
     phone_number: "090-6789-6789",
-    password: "password."
+    password: "password.",
+    score: 113,
   },
   {
     name: "小林幸子", 
@@ -36,6 +39,7 @@ User.create!([
     email: "d@example.com", 
     phone_number: "090-1122-2211", 
     password: "password.",
+    score: 128,
     avatar: Rails.root.join('app/assets/images/avatar/sports_golf_woman.png').open
   },
   {
@@ -44,6 +48,7 @@ User.create!([
     email: "e@example.com", 
     phone_number: "090-2232-2344", 
     password: "password.",
+    score: 100,
     avatar: Rails.root.join('app/assets/images/avatar/yaruki_moeru_man.png').open
   },
   {
@@ -51,14 +56,16 @@ User.create!([
     user_id: "kojima_dayo", 
     email: "f@example.com", 
     phone_number: "090-3343-4454", 
-    password: "password."
+    password: "password.",
+    score: 103
   },
   {
     name: "ゲストユーザー",
     user_id: "guest_user01",
     email: "guest-user@example.com",
     phone_number: "090-1111-2222",
-    password: "password.guestUser"
+    password: "password.guestUser",
+    score: 110
   }
 ])
 
@@ -256,7 +263,7 @@ Lesson.create!([
 Calendar.create!([
   { lesson_time: "60", start_time1: "09:00",  start_time2: "11:00", start_time3: "13:00", start_time4: "15:00", start_time5: "17:00", start_time6: "19:00", tue: "火", wed: "水", lesson_id: 1},
   { lesson_time: "90", start_time1: "10:00", start_time2: "15:00", start_time3: "17:00", start_time4: "19:00", sun: "日", mon: "月", lesson_id: 2},
-  { start_time1: "9:00", tue: "火", wed: "水", thu: "木", lesson_id: 3 },
+  { start_time1: "09:00", tue: "火", wed: "水", thu: "木", lesson_id: 3 },
   { lesson_time: "80", start_time1: "09:00", start_time2: "10:00", start_time3: "11:00", start_time4: "13:00", start_time5: "14:00", start_time6: "15:00", start_time7: "16:00", mon: "月", thu: "木", lesson_id: 4 },
   { lesson_time: "30", start_time1: "09:00", start_time2: "10:00", start_time3: "11:00", start_time4: "13:00", start_time5: "14:00", start_time6: "15:00", start_time7: "16:00", mon: "月", thu: "木", lesson_id: 5 },
   { lesson_time: "70", start_time1: "09:00", start_time2: "10:00", start_time3: "11:00", start_time4: "13:00", start_time5: "14:00", start_time6: "15:00", start_time7: "16:00", sat: "土", sun: "日", lesson_id: 6 },
@@ -269,14 +276,20 @@ Calendar.create!([
 
 Reservation.create!([
   { lesson_id: 1, user_id: 1, date: "22/01/23(日)10:00" },
+  { lesson_id: 6, user_id: 1, date: "22/10/14(金)13:00" },
+  { lesson_id: 8, user_id: 1, date: "22/10/14(金)13:00" },
   { lesson_id: 1, user_id: 2, date: "22/07/30(土)09:00" },
-  { lesson_id: 2, user_id: 5, date: "22/07/30(土)10:00" },
-  { lesson_id: 9, user_id: 3, date: "22/07/30(土)09:00" }
+  { lesson_id: 2, user_id: 2, date: "22/07/30(土)10:00" },
+  { lesson_id: 3, user_id: 2, date: "22/07/30(土)09:00" },
+  { lesson_id: 7, user_id: 3, date: "22/07/30(土)09:00" },
+  { lesson_id: 9, user_id: 3, date: "22/07/30(土)09:00" },
+  { lesson_id: 5, user_id: 4, date: "22/07/30(土)09:00" },
+  { lesson_id: 2, user_id: 5, date: "22/07/30(土)10:00" }
 ])
 
 Review.create!([
   { title: "丁寧でわかりやすかった", content: "初めてゴルフレッスンに参加しましたが、インストラクターの方がとても丁寧に指導して頂き、初心者の僕でも楽しくレッスンを受けることができました。", rate: 5, reservation_id: 1, lesson_id: 1, user_id: 1},
-  { title: "これからゴルフを始める方におすすめ", content: "くらぶの握り方や、構え方など基本的なことから教えてもらえたため、すごく勉強になりました。\nですが、本当に基本的なことからのレッスンなのである程度できる方は向かないかもしれません。", rate: 4, reservation_id: 2, lesson_id: 1, user_id: 2 },
+  { title: "これからゴルフを始める方におすすめ", content: "クラブの握り方や、構え方など基本的なことから教えてもらえたため、すごく勉強になりました。\nですが、本当に基本的なことからのレッスンなのである程度できる方は向かないかもしれません。", rate: 4, reservation_id: 2, lesson_id: 1, user_id: 2 },
   { title: "ミスが減りました！", content: "アドバイスされたようにスイングすると、ボールが嘘のようにまっすぐ飛びました。", rate: 5, reservation_id: 3, lesson_id: 2, user_id: 1 },
   { title: "ゴルフ仲間が増えた", content: "他のレッスン生も女性の方なので、今度一緒にラウンドを回るようになったりと、ゴルフ仲間を増やすことができました。最近はゴルフを始める女性の方が多くなってきたように思います。\nこれを機にもっと交流を増やしていきたいと思います。", rate: 4, reservation_id: 4, lesson_id: 9, user_id: 3 },
 ])
