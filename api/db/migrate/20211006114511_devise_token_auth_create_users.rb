@@ -43,6 +43,7 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.2]
       t.string :email
       t.string :phone_number
       t.string :avatar
+      t.integer :score
 
       ## Tokens
       t.text :tokens

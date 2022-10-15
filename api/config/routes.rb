@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     resources :outlines, controller: 'range_outlines', only: [:index, :show, :create, :update, :destroy]
     # get '/range_outlines/range_info', to: 'range_outlines#range_info'
 
+    get '/lessons/reccomends', to: 'lessons#reccomend_lesson'
     get '/lessons/range_lesson', to: 'lessons#range_lesson'
     resources :lessons, only: [:index, :show, :create, :update, :destroy] do
       resources :reservations, only: [:show]

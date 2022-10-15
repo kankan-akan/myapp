@@ -1,8 +1,9 @@
 <template>
   <div>
-    <v-app-bar 
+    <v-app-bar
       app
       color="blue lighten-4"
+      absolute
     >
       <v-app-bar-nav-icon 
         v-if="$store.state.auth.loggedIn"
