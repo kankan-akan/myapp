@@ -47,30 +47,43 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
   export default {
     data: function () {
       return {
         model: null,
-        score: this.$store.state.myData.loginUser.score,
         reccomendLesson: []
+        // score: this.$store.state.myData.loginUser.score,
       }
     },
 
+    computed: {
+      ...mapState({
+      loginUser: (state) => state.myData.loginUser
+      })
+    },
+
     mounted () {
-      this.$axios.get('/v1/lessons/reccomends', {
-        params: {
-          score: this.score
-        }
-      })
-      .then((res) => {
-        console.log(res)
-        this.reccomendLesson = res.data
-      })
+      setTimeout(this.getReccomends, 500)
     },
 
     methods: {
       showLesson(id) {
         this.$router.push(`/lessons/${id}`)
+      },
+      getReccomends () {
+        if (this.$store.state.auth.loggedIn) {
+          this.$axios.get('/v1/lessons/reccomends', {
+            params: {
+              score: this.loginUser.score
+            }
+          })
+          .then((res) => {
+            console.log(res)
+            this.reccomendLesson = res.data
+          })
+        }
       }
     }
   }
