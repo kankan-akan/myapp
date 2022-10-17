@@ -66,7 +66,10 @@ export default {
   '/api': {
     // target: 'http://localhost:3000',
     // target: 'http://api:3000',    //docker-compose
-    target: 'https://par-match-api.com',
+    // target: 'https://par-match-api.com',
+    target: process.env.NODE_ENV === 'production'
+          ? 'https://par-match-api.com'
+          : 'http://localhost:3000',
       pathRewrite: {
         '^/api' : ''
       },

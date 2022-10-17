@@ -104,7 +104,7 @@
         </v-col>
       </template>
     </v-row>
-    <ReccomendLesson v-if="loginUser" />
+    <ReccomendLesson v-if="$store.state.auth.loggedIn" />
   </v-container>
 </template>
 
