@@ -65,7 +65,7 @@ import { mapState } from 'vuex'
     },
 
     mounted () {
-      setTimeout(this.getReccomends, 500)
+      setTimeout(this.getReccomends, 900)
     },
 
     methods: {
