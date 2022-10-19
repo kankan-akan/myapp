@@ -1,6 +1,6 @@
 <template>
   <div>
-    <RangeNavBar />
+    <!-- <RangeNavBar /> -->
     <v-app-bar
       app
       clipped-left
