@@ -1,8 +1,7 @@
 <template>
-  <v-main>
-    <v-container fluid>
+  <v-col>
       <v-row>
-        <v-col cols="10">
+        <v-sheet>
           <v-col>
             <v-btn
               class="mr-4"
@@ -81,7 +80,7 @@
               </tbody>
             </table>
           </v-sheet>
-        </v-col>
+        </v-sheet>
       </v-row>
         
       <v-row>
@@ -118,8 +117,7 @@
           </v-simple-table>
         </v-col>
       </v-row>
-    </v-container>
-  </v-main>
+    </v-col>
 </template>
 
 <script>
