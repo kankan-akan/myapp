@@ -1,10 +1,10 @@
 <template>
   <div>
-    <RangeNavBar />
     <v-app-bar
       app
       clipped-left
       color="blue lighten-4"
+      
     >
       <v-row>
         <NuxtLink to="/">

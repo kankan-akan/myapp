@@ -1,8 +1,8 @@
 <template>
-  <v-main>
-    <v-container fluid>
-      <v-row>
-        <v-col cols="10">
+  <v-col>
+    <v-row justify="center">
+      <div>
+        <v-sheet>
           <v-col>
             <v-btn
               class="mr-4"
@@ -81,10 +81,11 @@
               </tbody>
             </table>
           </v-sheet>
-        </v-col>
+        </v-sheet>
+      </div>
       </v-row>
         
-      <v-row>
+      <v-row justify="center">
         <v-col cols="10">
           <v-simple-table>
             <template v-slot:default>
@@ -101,8 +102,8 @@
                   </th>
                 </tr>
               </thead>
-              <tbody v-if="selectedStatus.length == 0">
-                {{ message }}
+              <tbody v-if="selectedStatus.length == 0" class="font-weight-bold grey--text lighten-1">
+                <v-col>{{ message }}</v-col>
               </tbody>
               <tbody v-else>
                 <tr
@@ -118,8 +119,7 @@
           </v-simple-table>
         </v-col>
       </v-row>
-    </v-container>
-  </v-main>
+  </v-col>
 </template>
 
 <script>

@@ -34,6 +34,7 @@
 
 ## 使用技術
 **フロントエンド**
+- Vue.js v2.7.8
 - Nuxt.js v2.15.7（SPAモード）
 - Vuetify（UIフレームワーク）
 - JavaScript

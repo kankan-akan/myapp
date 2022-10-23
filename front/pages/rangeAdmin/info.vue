@@ -1,6 +1,5 @@
 <template>
-  <v-main class="range-color">
-    <v-container fluid>
+  <v-col>
     <v-col class="d-flex align-center">
       <div class="text-h5 font-weight-bold mr-4">基本情報</div>
       <template v-if="rangeData == null">
@@ -183,8 +182,7 @@
         </v-col>
       </v-row>
     </template>
-    </v-container>
-  </v-main>
+</v-col>
 </template>
 
 <script>
