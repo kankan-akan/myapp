@@ -65,7 +65,7 @@ import { mapState } from 'vuex'
     },
 
     mounted () {
-      setTimeout(this.getReccomends, 900)
+      setTimeout(this.getReccomends, 300)
     },
 
     methods: {
@@ -93,7 +93,7 @@ import { mapState } from 'vuex'
   .reccomend {
     position: sticky;
     bottom: 0;
-    background-color: rgba(212, 255, 211, 0.8);
+    background-color: rgba(228, 228, 228, 0.8);
 
   }
 </style>
