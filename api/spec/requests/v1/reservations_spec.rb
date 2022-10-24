@@ -24,7 +24,7 @@ RSpec.describe "Reservations", type: :request do
 
     context "create" do
       it "予約できる" do
-        post '/v1/reservations' 
+        post '/v1/reservations', params: { user_id: @reservation.user_id }
         expect(response).to have_http_status "200"
       end
     end
