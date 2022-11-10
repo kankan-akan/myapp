@@ -1,6 +1,7 @@
 # ポートフォリオ紹介
-[https://par-match.com](https://par-match.com)<br>
-（＊AWSコスト削減の為、７：３０〜２２：３０の間のみ起動しております。）
+<!-- [https://par-match.com](https://par-match.com)<br> -->
+<!-- （＊AWSコスト削減の為、７：３０〜２２：３０の間のみ起動しております。） -->
+~~https://par-match.com~~ （現在停止中）
 
  __ParMatch__ は、ゴルフ練習場検索・ゴルフレッスン予約ができるアプリケーションです。
  
@@ -34,6 +35,7 @@
 
 ## 使用技術
 **フロントエンド**
+- Vue.js v2.7.8
 - Nuxt.js v2.15.7（SPAモード）
 - Vuetify（UIフレームワーク）
 - JavaScript

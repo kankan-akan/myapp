@@ -1,39 +1,35 @@
 <template>
-  <div>
-    <v-navigation-drawer 
-      permanent
-      app 
-      clipped
-    >
-      <v-list rounded>
-        <v-list-item-group
-          mandatory
-          color="primary"
-        >
-        <v-list-item 
-          v-for="item in items"
-          :key="item.title"
-          :to="item.to"
-        >
-          <v-list-item-icon>
-            <v-icon></v-icon> 
-          </v-list-item-icon> 
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        </v-list-item-group>
-      </v-list>
+    <div>
+      <v-card class="rounded-xl ma-4 sticky" elevation="8">
+        <v-navigation-drawer floating>
+        <v-list rounded>
+          <v-list-item
+            color="primary"
+            v-for="item in items"
+            :key="item.title"
+            :to="item.to"
+          >
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
 
-      <template v-slot:append>
-        <div class="pa-2">
-          <v-btn block @click="logout()">
-            Logout
-          </v-btn>
-        </div>
-      </template>
-    </v-navigation-drawer>
-  </div>
+          <v-divider class="my-2"></v-divider>
+
+          <v-list-item
+            link
+            color="grey lighten-4"
+          >
+            <v-list-item-content>
+              <v-list-item-title @click="logout()">
+                ログアウト
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+        </v-navigation-drawer>
+      </v-card>
+    </div>
 </template>
 
 <script>
@@ -88,3 +84,11 @@
   
   }
 </script>
+
+<style scoped>
+  .sticky {
+    position: sticky;
+    top: 80px;
+
+  }
+</style>

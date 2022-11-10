@@ -1,6 +1,5 @@
 <template>
-  <v-main class="range-color">
-    <v-container fluid v-if="$store.state.rangeAuth.rangeData">
+    <v-col v-if="$store.state.rangeAuth.rangeData">
       <v-col class="d-flex align-center">
         <div class="text-h5 font-weight-bold mr-4">開講レッスン一覧</div>
         <RangeAddLesson />
@@ -34,13 +33,12 @@
           </v-col>
         </v-row>
       </template>
-    </v-container>
-    <v-container v-else>
+    </v-col>
+    <v-col v-else>
       <v-col class="d-flex justify-center" style="margin: 20px;">
         <h2 class="grey--text lighten-1">基本情報を登録して下さい。</h2>
       </v-col>
-    </v-container>
-  </v-main>
+    </v-col>
 </template>
 
 <script>

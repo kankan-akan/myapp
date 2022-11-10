@@ -1,40 +1,39 @@
 <template>
-  <v-main class="range-color">
-    <v-container fluid>
-      <v-col class="text-h5 font-weight-bold mr-4">アカウント設定</v-col>
-      <div class="text-h6 ml-6 mb-6 font-weight-bold">登録情報変更</div>
-      <div class="ml-6">変更したい項目を書き換えてください。</div>
-      <v-row justify="center">
-        <v-col class="mt-6" cols="8">
-          <v-form
-            ref="formInfo"
-            v-model="validInfo"
-            lazy-validation
-          >
-            <v-text-field
-              outlined
-              v-model="name"
-              :rules="nameRules"
-              label="登録名"
-              required
-            ></v-text-field>
+  <v-col>
+    <v-col class="text-h5 font-weight-bold mr-4">アカウント設定</v-col>
+    <div class="text-h6 ml-6 mb-6 font-weight-bold">登録情報変更</div>
+    <div class="ml-6">変更したい項目を書き換えてください。</div>
+    <v-row justify="center">
+      <v-col class="mt-6" cols="8">
+        <v-form
+          ref="formInfo"
+          v-model="validInfo"
+          lazy-validation
+        >
+          <v-text-field
+            outlined
+            v-model="name"
+            :rules="nameRules"
+            label="登録名"
+            required
+          ></v-text-field>
 
-            <!-- <v-text-field
-              outlined
-              v-model="userId"
-              :counter="15"
-              :rules="userIdRules"
-              label="ユーザー名（半角英数字・記号(.?/-_)で15文字以内"
-              required
-            ></v-text-field>  -->
+          <!-- <v-text-field
+            outlined
+            v-model="userId"
+            :counter="15"
+            :rules="userIdRules"
+            label="ユーザー名（半角英数字・記号(.?/-_)で15文字以内"
+            required
+          ></v-text-field>  -->
 
-            <v-text-field
-              outlined
-              v-model="email"
-              :rules="emailRules"
-              label="メールアドレス"
-              required
-            ></v-text-field>
+          <v-text-field
+            outlined
+            v-model="email"
+            :rules="emailRules"
+            label="メールアドレス"
+            required
+          ></v-text-field>
 
             <!-- <v-col>
               <v-text-field
@@ -45,70 +44,69 @@
               ></v-text-field>
             </v-col> -->
 
-            <div class="d-flex justify-end">
+          <div class="d-flex justify-end">
+          <v-btn
+            class="mr-4"
+            :disabled="!validInfo || loading" 
+            :loading="loading"
+            @click="editInfo"
+            large
+            outlined
+          >
+            登録
+          </v-btn>
+          </div>
+        </v-form>
+      </v-col>
+    </v-row>
+
+    <v-divider class="my-10"></v-divider>
+
+    <div class="text-h6 ml-6 mb-6 font-weight-bold">パスワード変更</div>
+    <v-row justify="center">
+      <v-col cols="8">
+        <v-form
+          ref="form"
+          v-model="valid"
+          lazy-validation
+        >
+          <v-text-field
+            v-model="password"
+            :rules="passwordRules"
+            :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="show? 'text' : 'password'"
+            label="新しいパスワード（半角英数字・記号(.?/-_)を各1つ含む8文字以上30文字以内）"
+            @click:append="show = !show"
+            outlined
+            required
+          ></v-text-field>
+
+          <v-text-field
+            v-model="passwordConfirmation"
+            :rules="passwordRules"
+            :append-icon="showConfirm ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="showConfirm? 'text' : 'password'"
+            label="新しいパスワード（確認用）"
+            @click:append="showConfirm = !showConfirm"
+            outlined
+            required
+          ></v-text-field>
+          <div class="d-flex justify-end">
             <v-btn
               class="mr-4"
-              :disabled="!validInfo || loading" 
-              :loading="loading"
-              @click="editInfo"
+              :disabled="!valid || loading2" 
+              :loading="loading2"
+              @click="editPassword"
               large
               outlined
             >
               登録
             </v-btn>
-            </div>
-          </v-form>
-        </v-col>
-      </v-row>
-
-      <v-divider class="my-10"></v-divider>
-
-      <div class="text-h6 ml-6 mb-6 font-weight-bold">パスワード変更</div>
-      <v-row justify="center">
-        <v-col cols="8">
-          <v-form
-            ref="form"
-            v-model="valid"
-            lazy-validation
-          >
-            <v-text-field
-              v-model="password"
-              :rules="passwordRules"
-              :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-              :type="show? 'text' : 'password'"
-              label="新しいパスワード（半角英数字・記号(.?/-_)を各1つ含む8文字以上30文字以内）"
-              @click:append="show = !show"
-              outlined
-              required
-            ></v-text-field>
-
-            <v-text-field
-              v-model="passwordConfirmation"
-              :rules="passwordRules"
-              :append-icon="showConfirm ? 'mdi-eye' : 'mdi-eye-off'"
-              :type="showConfirm? 'text' : 'password'"
-              label="新しいパスワード（確認用）"
-              @click:append="showConfirm = !showConfirm"
-              outlined
-              required
-            ></v-text-field>
-            <div class="d-flex justify-end">
-              <v-btn
-                class="mr-4"
-                :disabled="!valid || loading2" 
-                :loading="loading2"
-                @click="editPassword"
-                large
-                outlined
-              >
-                登録
-              </v-btn>
-            </div>
-          </v-form>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-main>
+          </div>
+        </v-form>
+      </v-col>
+    </v-row>
+  </v-col>
 </template>
 
 <script>

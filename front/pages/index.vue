@@ -104,7 +104,7 @@
         </v-col>
       </template>
     </v-row>
-    <ReccomendLesson v-if="$store.state.auth.loggedIn" />
+    <ReccomendLesson v-if="$store.state.auth.loggedIn && this.$store.state.myData.loginUser.score" />
   </v-container>
 </template>
 
