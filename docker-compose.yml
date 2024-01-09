@@ -20,7 +20,7 @@ services:
       context: ./api
       args:
         WORKDIR: app
-    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'" 
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       API_DOMAIN: "localhost:8080"

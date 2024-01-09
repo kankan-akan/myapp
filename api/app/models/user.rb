@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   def unlike(other_post)
     likes.find_by(post_id: other_post.id).destroy!
   end
-  
+
   def unbookmark(other_outline)
     bookmarks.find_by(range_outline_id: other_outline.id).destroy!
   end

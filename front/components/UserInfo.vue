@@ -62,13 +62,13 @@
                       </template>
                       <v-list>
                         <v-list-item>
-                          <v-list-item-title 
-                            class="cursor" 
+                          <v-list-item-title
+                            class="cursor"
                             @click="deletePost(post.id)"
                           >
                             投稿を削除
                           </v-list-item-title>
-                        </v-list-item>  
+                        </v-list-item>
                       </v-list>
                     </v-menu>
                     <div class="like-btn">
@@ -101,9 +101,9 @@
         </v-tab-item>
         <v-tab-item>
           <v-card>
-            <v-col 
+            <v-col
               class="pa-1"
-              v-for="(bookmark, i) in bookmarks" 
+              v-for="(bookmark, i) in bookmarks"
               :key="bookmark.id"
             >
               <v-card-text class="d-flex justify-space-between">
@@ -179,7 +179,7 @@
 import { mapState, mapActions } from 'vuex';
 
 export default {
-  props: ['user', 'posts', 'likes', 'bookmarks', 'reservations', 'reviews'], 
+  props: ['user', 'posts', 'likes', 'bookmarks', 'reservations', 'reviews'],
 
   data:() => ({
   }),
@@ -232,6 +232,5 @@ export default {
     position: absolute;
     top: 4px;
     right: 8px;
-
   }
 </style>

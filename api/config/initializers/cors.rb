@@ -5,15 +5,15 @@
 
 # Read more: https://github.com/cyu/rack-cors
 
- Rails.application.config.middleware.insert_before 0, Rack::Cors do
-   allow do
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
     #  origins ENV["API_DOMAIN"] || 'localhost:8080' || ''
     #  origins ENV["API_DOMAIN"] || ''    #docker-compose
     #  origins ENV["API_DOMAIN"] || 'par-aim-front.herokuapp.com'
     origins [ 'https://par-match.com', 'http://localhost:8080' ]
 
-       resource '*',
-       headers: :any,
-       methods: [:get, :post, :put, :patch, :delete, :options, :head]
-   end
- end
+      resource '*',
+      headers: :any,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  end
+end

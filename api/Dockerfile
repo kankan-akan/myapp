@@ -14,9 +14,9 @@ WORKDIR ${HOME}
 COPY Gemfile* ./
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-        && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list 
-RUN apt-get update -qq 
-RUN apt-get install -y nodejs yarn 
+        && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update -qq
+RUN apt-get install -y nodejs yarn
 RUN /usr/bin/mysql*
 RUN bundle install -j4
 # RUN gem install rails

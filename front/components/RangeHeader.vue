@@ -4,7 +4,7 @@
       app
       clipped-left
       color="blue lighten-4"
-      
+
     >
       <v-row>
         <NuxtLink to="/">
@@ -20,7 +20,7 @@
 import { mapActions, mapState } from 'vuex';
 
 export default {
-  
+
   computed: {
     ...mapState({
       loginRange: (state) => state.rangeAuth.loginRange

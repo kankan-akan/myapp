@@ -10,7 +10,7 @@ export default {
     show: false,
     // checkbox: false,
     loading: false,
-    name: '', 
+    name: '',
     nameRules: [ v => !!v || '入力してください' ],
     // userId: '',
     // userIdRules: [

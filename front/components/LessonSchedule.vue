@@ -9,84 +9,84 @@
       <v-chip
         class="youbi"
         color="indigo"
-        v-if="calendar.start_time1" 
+        v-if="calendar.start_time1"
       >
         {{ calendar.start_time1 }}
       </v-chip>
-      <v-chip 
+      <v-chip
         class="youbi"
         color="indigo"
         v-if="calendar.start_time2"
       >
         {{ calendar.start_time2 }}
       </v-chip>
-      <v-chip 
+      <v-chip
         class="youbi"
         color="indigo"
-        v-if="calendar.start_time3" 
+        v-if="calendar.start_time3"
       >
         {{ calendar.start_time3 }}
       </v-chip>
-      <v-chip 
+      <v-chip
         class="youbi"
         color="indigo"
-        v-if="calendar.start_time4" 
+        v-if="calendar.start_time4"
       >
         {{ calendar.start_time4 }}
       </v-chip>
-      <v-chip 
+      <v-chip
         class="youbi"
         color="indigo"
-        v-if="calendar.start_time5" 
+        v-if="calendar.start_time5"
       >
         {{ calendar.start_time5 }}
       </v-chip>
-      <v-chip 
+      <v-chip
         class="youbi"
         color="indigo"
-        v-if="calendar.start_time6" 
+        v-if="calendar.start_time6"
       >
         {{ calendar.start_time6 }}
       </v-chip>
-      <v-chip 
+      <v-chip
         class="youbi"
         color="indigo"
-        v-if="calendar.start_time7" 
+        v-if="calendar.start_time7"
       >
         {{ calendar.start_time7 }}
       </v-chip>
-      <v-chip 
+      <v-chip
         class="youbi"
         color="indigo"
-        v-if="calendar.start_time8" 
+        v-if="calendar.start_time8"
       >
         {{ calendar.start_time8 }}
       </v-chip>
-      <v-chip 
+      <v-chip
         class="youbi"
         color="indigo"
-        v-if="calendar.start_time9" 
+        v-if="calendar.start_time9"
       >
         {{ calendar.start_time9 }}
       </v-chip>
-      <v-chip 
+      <v-chip
         class="youbi"
         color="indigo"
-        v-if="calendar.start_time10" 
+        v-if="calendar.start_time10"
       >
         {{ calendar.start_time10 }}
       </v-chip>
-      <v-chip 
+      <v-chip
         class="youbi"
         color="indigo"
-        v-if="calendar.start_time11" 
+        v-if="calendar.start_time11"
       >
         {{ calendar.start_time11 }}
       </v-chip>
-      <v-chip 
+      <v-chip
         class="youbi"
         color="indigo"
-        v-if="calendar.start_time12" 
+        v-if="calendar.start_time12"
       >
         {{ calendar.start_time12 }}
       </v-chip>

@@ -3,7 +3,7 @@
     <v-btn
       class="mr-4 font-weight-bold"
       color="blue lighten-5"
-      :disabled="loading" 
+      :disabled="loading"
       :loading="loading"
       @click="guestLogin"
       large

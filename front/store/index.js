@@ -19,7 +19,7 @@ export const mutations = {
     state.selectedUser = selectedUser
   },
   setUserPosts (state, userPosts) {
-    state.userPosts = userPosts 
+    state.userPosts = userPosts
   },
   setUserLikes (state, userLikes) {
     state.userLikes = userLikes

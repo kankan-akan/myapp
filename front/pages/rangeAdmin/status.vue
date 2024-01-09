@@ -23,7 +23,7 @@
                 <v-card-subtitle>インストラクター：{{ lesson.coach }}</v-card-subtitle>
 
                 <LessonSchedule :calendar="lesson.calendar" />
-                
+
               </v-card>
             </v-col>
           </v-row>
@@ -51,9 +51,9 @@ import { mapState } from 'vuex';
     },
 
     methods: {
-     status(id) {
-       this.$router.push(`/rangeAdmin/reservation/${id}`)
-     }
+      status(id) {
+        this.$router.push(`/rangeAdmin/reservation/${id}`)
+      }
     }
   }
 </script>

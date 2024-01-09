@@ -1,7 +1,6 @@
 
 .color {
   background-color: #f6fdf6;
-
 }
 
 .range-color {
@@ -11,7 +10,6 @@
 .table-price {
   width: 95%;
   margin: 5px 5px;
-   
 }
 
 .table-price,.th-price,.td-price{
@@ -19,17 +17,14 @@
   border-collapse: collapse;
   font-size: 13px;
   empty-cells: hide;
+}
 
- }
- 
 .th-price {
   background-color: rgb(224, 224, 224);
-   
 }
 
 .empty-price {
   visibility: hidden;
-
 }
 
 .content {
@@ -41,39 +36,33 @@
   border: solid 1px #d8d8d8;
   border-collapse: collapse;
   padding: 5px;
-
 }
 
 .th-date {
   border-bottom: solid 2px #d8d8d8;
   background-color: rgb(227, 240, 255);
-
 }
 
 .start {
   border-bottom: solid 2.5px #d8d8d8;
   border-right: solid 2.5px #d8d8d8;
-
 }
 
 .time {
   border-right: solid 2.5px #d8d8d8;
-
 }
 
 .kaigyo {
-  white-space: pre-wrap; 
+  white-space: pre-wrap;
   word-wrap: break-word;
 }
 
 .cursor {
   cursor: pointer;
-
 }
 
 .like-btn {
   position: absolute;
   right: 20px;
   bottom: 4px;
-
 }

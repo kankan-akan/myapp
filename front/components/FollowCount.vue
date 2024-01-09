@@ -2,8 +2,8 @@
   <v-row>
     <v-col v-if="user.followings">
       <div class="d-flex justify-center">フォロー中</div>
-      <div 
-        class="cursor d-flex justify-center" 
+      <div
+        class="cursor d-flex justify-center"
         @click.stop="followingDialog = true"
       >
         {{ user.followings.length }}

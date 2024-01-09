@@ -22,7 +22,7 @@ class CreateCalendars < ActiveRecord::Migration[6.1]
       t.string :fri
       t.string :sat
       t.references :lesson, foreign_key: true
-    
+
       t.timestamps
     end
   end

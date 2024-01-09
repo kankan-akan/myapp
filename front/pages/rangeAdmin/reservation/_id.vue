@@ -7,17 +7,17 @@
             <v-btn
               class="mr-4"
               color="grey darken-2"
-              @click="previousWeek" 
+              @click="previousWeek"
               outlined
             >
               <v-icon small>mdi-chevron-left</v-icon>
               1週間前
             </v-btn>
             <strong>{{startDate.format('YY/MM')}}月</strong>
-            <v-btn 
+            <v-btn
               class="ml-4"
               color="grey darken-2"
-              @click="nextWeek" 
+              @click="nextWeek"
               outlined
             >
               1週間後
@@ -84,7 +84,7 @@
         </v-sheet>
       </div>
       </v-row>
-        
+
       <v-row justify="center">
         <v-col cols="10">
           <v-simple-table>
@@ -218,6 +218,6 @@ import { mapState } from 'vuex';
 <style scoped>
   th {
     background-color: rgb(227, 255, 235);
-    
+
   }
 </style>

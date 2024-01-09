@@ -6,7 +6,6 @@
     <div class="mx-4 pt-2 text-subtitle-1 font-weight-bold">ベストスコアが近いユーザーが利用しているレッスン</div>
     <template v-if="reccomendLesson">
       <v-slide-group
-        
         v-model="model"
         class="pa-3"
         active-class="success"
@@ -94,6 +93,5 @@ import { mapState } from 'vuex'
     position: sticky;
     bottom: 0;
     background-color: rgba(228, 228, 228, 0.8);
-
   }
 </style>

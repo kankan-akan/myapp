@@ -15,10 +15,10 @@
         <v-col class="my-2">予約する日時を選択してください。</v-col>
         <v-row>
           <v-col class="d-flex justify-center align-center">
-            <v-btn 
+            <v-btn
               class="mr-4"
               color="grey darken-2"
-              @click="previousWeek" 
+              @click="previousWeek"
               outlined
             >
               <v-icon small>
@@ -30,7 +30,7 @@
             <v-btn
               class="ml-4"
               color="grey darken-2"
-              @click="nextWeek" 
+              @click="nextWeek"
               outlined
             >
               1週間後
@@ -69,7 +69,7 @@
                         right
                       >
                         <template v-slot:activator="{ on, attrs }">
-                          <a 
+                          <a
                             class="d-flex justify-center"
                             @mouseover="selectedDay(date, time)"
                             @click="detailReservation()"
@@ -216,7 +216,7 @@ import { mapState, mapActions } from 'vuex';
     },
 
     methods: {
-       ...mapActions({
+      ...mapActions({
         loginCheck: 'snackbar/loginCheck'
       }),
       detailReservation () {
@@ -289,7 +289,7 @@ import { mapState, mapActions } from 'vuex';
           .catch((err) => {
             console.log(err)
             this.overlay = false
-            if (err.response.status == 409) { 
+            if (err.response.status == 409) {
               this.$store.dispatch(
                 'snackbar/showMessage', {
                   icon: 'mdi-checkbox-marked-circle-outline',

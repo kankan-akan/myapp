@@ -5,7 +5,7 @@
       width="800"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn 
+        <v-btn
           v-on="on"
           v-bind="attrs"
           color="light-green lighten-4"
@@ -22,7 +22,7 @@
           <v-form
             ref="form"
             v-model ="valid"
-            lazy-validation 
+            lazy-validation
           >
           <v-col cols="3">
             <v-select
@@ -77,14 +77,14 @@
                 @change="uploadImage"
               ></v-file-input>
               <template v-if="image && image.url !== null">
-                <v-img 
-                  v-if="preImage !== ''" 
+                <v-img
+                  v-if="preImage !== ''"
                   :src="preImage"
                   contain
                   aspect-ratio="1.7"
                 ></v-img>
-                <v-img 
-                  v-else 
+                <v-img
+                  v-else
                   :src="image.url"
                   contain
                   aspect-ratio="1.7"
@@ -94,7 +94,7 @@
                       dark
                       icon
                       @click="deleteImage()"
-                    >  
+                    >
                       <v-icon large>mdi-close</v-icon>
                     </v-btn>
                   </div>
@@ -102,7 +102,7 @@
               </template>
               <template v-else>
                 <v-img
-                  v-if="preImage !== ''" 
+                  v-if="preImage !== ''"
                   :src="preImage"
                   contain
                   aspect-ratio="1.7"
@@ -239,10 +239,10 @@ export default {
       valid: true,
       rules: {
         required: v => !!v || '入力してください' ,
-        phoneNumber: v => /^\d{1,4}-\d{3}-\d{4}$/.test(v) || '入力が正しくありません' 
+        phoneNumber: v => /^\d{1,4}-\d{3}-\d{4}$/.test(v) || '入力が正しくありません'
       },
       city: this.$store.state.rangeAuth.rangeData.city,
-      name: this.$store.state.rangeAuth.rangeData.name, 
+      name: this.$store.state.rangeAuth.rangeData.name,
       address: this.$store.state.rangeAuth.rangeData.address,
       distance: this.$store.state.rangeAuth.rangeData.distance,
       image: this.$store.state.rangeAuth.rangeData.image,
@@ -298,7 +298,7 @@ export default {
         if (this.inputImage || this.inputImage == '') {
           formData.append('image', this.inputImage)
         }
-        await this.$axios.put(`/v1/outlines/${this.loginRange.id}`, formData, { 
+        await this.$axios.put(`/v1/outlines/${this.loginRange.id}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

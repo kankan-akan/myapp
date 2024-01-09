@@ -5,7 +5,7 @@
         v-for="(post, i) in allPost"
         :key=" i "
         cols="3"
-      > 
+      >
         <v-card @click.stop="openPost(post)">
 
           <UserIdLavel @click.stop :user="post.user" />
@@ -26,13 +26,13 @@
             <v-icon size="80">mdi-image</v-icon>
             <v-chip outlined v-if="post.range" class="chip">#{{ post.range }}</v-chip>
           </v-sheet>
-          
+
           <v-list-item>
             <v-list-item-content>
               <v-list-item-subtitle>{{ post.content }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
-       
+
           <v-divider></v-divider>
           <div @click.stop class="pa-2 d-flex justify-end align-center">
             <BtnLike :post="post"/>

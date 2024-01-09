@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     mount_devise_token_auth_for 'AdminRange', at: 'range_auth', controllers: {
       registrations: 'v1/range_auth/registrations'
     }
-    namespace :range_auth do 
+    namespace :range_auth do
       get '/range', to: 'ranges#ranges_only'
       resources :ranges,  only: [:index]
     end

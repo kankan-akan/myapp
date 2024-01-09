@@ -4,10 +4,10 @@
       <v-card-title class="font-weight-bold">新しい投稿</v-card-title>
       <v-row justify="center">
         <v-col cols="8">
-          <v-form 
+          <v-form
             ref="form"
             v-model="valid"
-            lazy-validation 
+            lazy-validation
           >
             <v-autocomplete
               v-model="range"
@@ -39,8 +39,8 @@
                   <v-icon size="82">mdi-image</v-icon>
                 </v-row>
               </v-sheet>
-              <v-img 
-                v-else 
+              <v-img
+                v-else
                 :src="preImage"
                 max-height="250px"
                 contain
@@ -111,7 +111,7 @@ export default {
           if (this.inputImage !== '') {
             formData.append('image', this.inputImage)
           }
-        await this.$axios.post('/v1/posts', formData, { 
+        await this.$axios.post('/v1/posts', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

@@ -43,11 +43,11 @@ export const actions = {
       commit('setRangeData', res.data)
     })
   },
-   getLesson({ commit }){
-     this.$axios.get('/v1/lessons/range_lesson')
+    getLesson({ commit }){
+      this.$axios.get('/v1/lessons/range_lesson')
     .then((res) => {
       commit('setLesson', res.data)
     })
-  } 
+  }
 
 }

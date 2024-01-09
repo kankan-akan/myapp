@@ -11,7 +11,7 @@
           </v-btn>
         </template>
         <template v-else>
-          <v-btn 
+          <v-btn
             class="white--text"
             color="indigo accent-2"
             :disabled="loading"
@@ -21,7 +21,7 @@
           >
             退会
           </v-btn>
-          <v-btn 
+          <v-btn
             large
             text
             to="/"
@@ -65,6 +65,6 @@ export default {
       this.$auth.logout()
     },
   },
- 
+
 }
 </script>

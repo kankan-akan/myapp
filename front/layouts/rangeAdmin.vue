@@ -7,7 +7,7 @@
     <v-main class="range-color">
       <v-container fluid>
         <v-row>
-          
+
           <RangeNavBar />
 
           <Nuxt />

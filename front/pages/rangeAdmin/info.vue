@@ -126,7 +126,7 @@
                 <h3>特徴</h3>
                 </v-col>
                 <v-col>
-                  <div 
+                  <div
                     class="content"
                     style="white-space:pre-wrap; word-wrap:break-word;"
                   >{{ rangeData.features }}</div>

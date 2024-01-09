@@ -4,7 +4,7 @@ class V1::RangeAuth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
     def sign_up_params
       params.permit(:name, :email, :password)
     end
- 
+
     def account_update_params
       params.permit(:name, :email, :password)
     end

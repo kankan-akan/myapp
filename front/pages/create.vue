@@ -6,7 +6,7 @@
         <v-form
           ref="form"
           v-model="valid"
-          lazy-validation 
+          lazy-validation
         >
           <v-text-field
             outlined
@@ -25,7 +25,7 @@
             label="ユーザー名（半角英数字・記号(.?/-_)で15文字以内）"
             required
           ></v-text-field>
-          
+
           <v-text-field
             outlined
             v-model="email"
@@ -64,7 +64,7 @@
           <v-card-actions class="justify-end">
             <v-btn
               class="mr-4 font-weight-bold white--text"
-              :disabled="!valid || loading" 
+              :disabled="!valid || loading"
               :loading="loading"
               @click="submit"
               color="indigo accent-2"

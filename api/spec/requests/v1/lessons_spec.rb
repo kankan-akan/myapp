@@ -32,8 +32,8 @@ RSpec.describe "Lessons", type: :request do
 
     context "destroy" do
       it "レッスンを削除できる" do
-       delete "/v1/lessons/#{@lesson.id}"
-       expect(response).to have_http_status "200"
+        delete "/v1/lessons/#{@lesson.id}"
+        expect(response).to have_http_status "200"
       end
     end
 

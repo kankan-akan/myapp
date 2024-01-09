@@ -26,7 +26,7 @@ export const mutations = {
   setReview( state, reviews ){
     state.reviews = reviews;
   }
-  
+
 }
 
 export const actions = {

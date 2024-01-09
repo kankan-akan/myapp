@@ -41,8 +41,8 @@ class V1::PostsController < ApplicationController
   end
 
   private
-   def post_params 
-    params.permit(:user_id, :content, :range, :image)
-   end
+    def post_params
+      params.permit(:user_id, :content, :range, :image)
+    end
 
 end

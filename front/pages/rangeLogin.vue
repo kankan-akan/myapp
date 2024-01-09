@@ -38,10 +38,10 @@
           </v-row>
           <small>*は必須項目です</small>
           <v-card-actions class="justify-end">
-            <v-btn 
+            <v-btn
               :disabled="!valid || loading"
-              :loading="loading" 
-              color="blue darken-1" 
+              :loading="loading"
+              color="blue darken-1"
               outlined
               large
               @click="login"

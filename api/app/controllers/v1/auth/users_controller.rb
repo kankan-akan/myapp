@@ -5,4 +5,3 @@ class V1::Auth::UsersController < ApplicationController
     render json: @user.as_json(include: [followers: { only: [:id, :name, :user_id, :avatar] }, followings: { only: [:id, :name, :user_id, :avatar] } ])
   end
 end
-  

@@ -24,7 +24,7 @@
           <v-form
             ref="form"
             v-model="valid"
-            lazy-validation 
+            lazy-validation
           >
             <v-col>
               <v-text-field
@@ -83,7 +83,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    
+
     <v-menu offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -98,13 +98,13 @@
       </template>
       <v-list>
         <v-list-item>
-          <v-list-item-title 
-            class="cursor" 
+          <v-list-item-title
+            class="cursor"
             @click="deleteReview(review.id)"
           >
             レビューを削除
           </v-list-item-title>
-        </v-list-item>  
+        </v-list-item>
       </v-list>
     </v-menu>
   </div>

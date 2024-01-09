@@ -22,7 +22,7 @@
           <v-form
             ref="form"
             v-model ="valid"
-            lazy-validation 
+            lazy-validation
           >
             <v-col>
               <v-text-field
@@ -151,7 +151,7 @@
             <v-card-actions>
               <v-btn
                 class="mr-4"
-                :disabled="!valid" 
+                :disabled="!valid"
                 @click="edit()"
                 large
                 outlined
@@ -252,10 +252,10 @@ export default {
     // this.setHoliday()
   },
 
- methods: {
+  methods: {
     ...mapActions({
-     getLesson: 'rangeAuth/getLesson'
-   }),
+      getLesson: 'rangeAuth/getLesson'
+    }),
     edit() {
       if (this.$refs.form.validate()) {
         this.$axios.put(`/v1/lessons/${this.selectedLesson.id}`, {
@@ -266,18 +266,18 @@ export default {
           range_outline_id: this.rangeData.id,
           calendar_attributes: {
             lesson_time: this.lessonTime,
-            start_time1: this.startTime1, 
-            start_time2: this.startTime2, 
-            start_time3: this.startTime3, 
-            start_time4: this.startTime4, 
-            start_time5: this.startTime5, 
-            start_time6: this.startTime6, 
-            start_time7: this.startTime7, 
-            start_time8: this.startTime8, 
-            start_time9: this.startTime9, 
-            start_time10: this.startTime10, 
-            start_time11: this.startTime11, 
-            start_time12: this.startTime12, 
+            start_time1: this.startTime1,
+            start_time2: this.startTime2,
+            start_time3: this.startTime3,
+            start_time4: this.startTime4,
+            start_time5: this.startTime5,
+            start_time6: this.startTime6,
+            start_time7: this.startTime7,
+            start_time8: this.startTime8,
+            start_time9: this.startTime9,
+            start_time10: this.startTime10,
+            start_time11: this.startTime11,
+            start_time12: this.startTime12,
             sun: this.sun,
             mon: this.mon,
             tue: this.tue,
@@ -357,7 +357,7 @@ export default {
 
 <style scoped>
   .input {
-    padding: 12px; 
+    padding: 12px;
     margin: 5px;
     background-color: rgb(233, 246, 255);
     border-radius: 15px;

@@ -15,14 +15,14 @@ RSpec.describe "Likes", type: :request do
       end
     end
 
-    context "create" do 
+    context "create" do
       it "ログイン状態でいいねできる" do
         post '/v1/likes'
         expect(response).to have_http_status "200"
       end
     end
 
-    context "destroy" do 
+    context "destroy" do
       it "ログイン状態で取り消しできる" do
         delete '/v1/likes', params: { user_id: @like.user_id, post_id: @like.post_id }
         expect(response).to have_http_status "200"
@@ -31,11 +31,11 @@ RSpec.describe "Likes", type: :request do
   end
 
   describe "Test likes" do
-    context "user_likes" do 
+    context "user_likes" do
       it "選択したユーザーのいいねを取得できる" do
         user = create(:user)
         get "/v1/likes/user_likes/#{user.id}"
-        expect(response).to have_http_status "200" 
+        expect(response).to have_http_status "200"
       end
     end
   end

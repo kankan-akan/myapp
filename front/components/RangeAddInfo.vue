@@ -5,7 +5,7 @@
       width="800"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn 
+        <v-btn
           v-on="on"
           v-bind="attrs"
           color="light-green lighten-4"
@@ -22,7 +22,7 @@
           <v-form
             ref="form"
             v-model ="valid"
-            lazy-validation 
+            lazy-validation
           >
           <v-col cols="3">
             <v-select
@@ -170,7 +170,7 @@
             <v-card-actions>
               <v-btn
                 class="mr-4"
-                :disabled="!valid" 
+                :disabled="!valid"
                 @click="register()"
                 large
                 outlined
@@ -205,7 +205,7 @@ export default {
       valid: true,
       rules: {
         required: v => !!v || '入力してください' ,
-        phoneNumber: v => /^\d{1,4}-\d{3}-\d{4}$/.test(v) || '入力が正しくありません' 
+        phoneNumber: v => /^\d{1,4}-\d{3}-\d{4}$/.test(v) || '入力が正しくありません'
       },
       cities: [ '相生市', '赤穂市', '明石市', '朝来市', '芦屋市', '尼崎市', '淡路市', '伊丹市', '市川町', '猪名川町', '稲美町', '小野市', '加古川市', '加西市', '加東市', '神河町', '香美町', '上郡町', '川西市','神戸市', '佐用町', '三田市', '宍粟市', '新温泉町', '洲本市', '太子町', '多可町', '高砂市', '宝塚市', 'たつの市', '丹波市', '丹波篠山市', '豊岡市', '西宮市', '西脇市', '播磨町', '姫路市', '福崎町', '三木市', '南あわじ市', '養父市' ],
       city: '',
@@ -262,7 +262,7 @@ export default {
         if (this.inputImage || this.inputImage !== null) {
           formData.append('image', this.inputImage)
         }
-        await this.$axios.post('/v1/outlines', formData, { 
+        await this.$axios.post('/v1/outlines', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

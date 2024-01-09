@@ -19,5 +19,3 @@ RSpec.describe "AdminRanges", type: :request do
 
   end
 end
-
- 

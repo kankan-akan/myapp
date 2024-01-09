@@ -10,7 +10,7 @@ RSpec.describe "Reviews", type: :request do
 
     context "my_review" do
       it "作成したレビューを取得できる" do
-        get '/v1/reviews/my_review' 
+        get '/v1/reviews/my_review'
         expect(response).to have_http_status "200"
       end
     end

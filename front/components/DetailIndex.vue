@@ -1,7 +1,7 @@
 <template>
   <v-row dense>
     <v-col>
-    <v-btn 
+    <v-btn
       block
       depressed
       rounded
@@ -28,7 +28,7 @@
           <v-tabs color="success">
             <v-tab class="text-subtitle-1 font-weight-bold">概要</v-tab>
             <v-tab class="text-subtitle-1 font-weight-bold">レッスン</v-tab>
-          
+
             <v-tab-item>
               <v-row no-gutter justify="center">
                 <v-col cols="10" class="mt-2">
@@ -87,14 +87,14 @@
             </v-tab-item>
 
             <v-tab-item>
-              <v-card-title 
+              <v-card-title
                 class="font-weight-bold"
               >
               レッスン一覧
               </v-card-title>
               <v-row dense>
                 <template v-if="place.lessons.length !== 0">
-                  <v-col 
+                  <v-col
                     v-for="(lesson, i) in place.lessons"
                     :key="i"
                     cols="12"

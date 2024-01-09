@@ -28,13 +28,13 @@
       </template>
       <v-card>
         <v-card-title class="text-h5">
-        
+
         </v-card-title>
         <v-card-text>
           <v-form
             ref="form"
             v-model="valid"
-            lazy-validation 
+            lazy-validation
           >
             <v-col>
               <v-text-field

@@ -23,7 +23,7 @@ RSpec.describe "Bookmarks", type: :request do
     end
 
     context "destroy" do
-      it "bookmarkを削除できる" do 
+      it "bookmarkを削除できる" do
         delete "/v1/bookmarks", params: { user_id:@bookmark.user_id, range_outline_id:@bookmark.range_outline_id}
         expect(response).to have_http_status "200"
       end

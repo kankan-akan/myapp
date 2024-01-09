@@ -91,7 +91,7 @@
               <v-btn
                 v-else
                 class="mr-4"
-                :disabled="!validInfo || loading" 
+                :disabled="!validInfo || loading"
                 :loading="loading"
                 @click="editInfo"
                 large
@@ -142,7 +142,7 @@
               <v-btn
                 v-else
                 class="mr-4"
-                :disabled="!valid || loading2" 
+                :disabled="!valid || loading2"
                 :loading="loading2"
                 @click="editPassword"
                 large
@@ -174,7 +174,7 @@ export default {
       showConfirm: false,
       loading: false,
       loading2: false,
-      name: this.$store.state.myData.loginUser.name, 
+      name: this.$store.state.myData.loginUser.name,
       nameRules: [
       ],
       userId: this.$store.state.myData.loginUser.user_id,
@@ -264,7 +264,7 @@ export default {
           if (this.inputImage || this.inputImage == '') {
             formData.append('avatar', this.inputImage)
           }
-        await this.$axios.put('/v1/auth', formData, { 
+        await this.$axios.put('/v1/auth', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

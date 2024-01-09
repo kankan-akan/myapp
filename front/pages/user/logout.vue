@@ -2,10 +2,10 @@
   <v-container>
     <v-card max-width="600" class="mx-auto mt-16 rounded-xl">
       <v-card-text class="text-center">
-       <div class="text-h6">ログアウトを実行します。</div>
+        <div class="text-h6">ログアウトを実行します。</div>
       </v-card-text>
       <v-card-actions class="justify-center">
-        <v-btn 
+        <v-btn
           class="white--text"
           color="indigo accent-2"
           :disabled="loading"
@@ -15,7 +15,7 @@
         >
           OK
         </v-btn>
-        <v-btn 
+        <v-btn
           large
           text
           to="/"
@@ -54,6 +54,6 @@ export default {
       this.loading = false
     }
   },
- 
+
 }
 </script>

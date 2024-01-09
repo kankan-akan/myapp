@@ -31,6 +31,6 @@ export default {
 
   .cursor {
     transition: color 0.2s;
-    
+
   }
 </style>

@@ -1,6 +1,6 @@
 class DeviseTokenAuthCreateAdminRanges < ActiveRecord::Migration[5.2]
   def change
-    
+
     create_table(:admin_ranges) do |t|
       ## Required
       t.string :provider, :null => false, :default => "email"

@@ -5,7 +5,7 @@
       color="blue lighten-4"
       absolute
     >
-      <v-app-bar-nav-icon 
+      <v-app-bar-nav-icon
         v-if="$store.state.auth.loggedIn"
         @click="drawer = !drawer"
         class="mr-4"
@@ -24,9 +24,9 @@
         <div class="mr-8">
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn 
-                large 
-                icon 
+              <v-btn
+                large
+                icon
                 to="/"
                 v-bind="attrs"
                 v-on="on"
@@ -39,9 +39,9 @@
           <template v-if="$store.state.auth.loggedIn">
             <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn 
-                  large 
-                  icon 
+                <v-btn
+                  large
+                  icon
                   to="/user/post"
                   v-bind="attrs"
                   v-on="on"
@@ -54,9 +54,9 @@
           </template>
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn 
-                large 
-                icon 
+              <v-btn
+                large
+                icon
                 to="/allPost"
                 v-bind="attrs"
                 v-on="on"
@@ -73,7 +73,7 @@
         <template v-else>
           <div v-if="!$store.state.auth.loggedIn" class="mr-2">
             <v-btn
-              color="primary" 
+              color="primary"
               large
               text
               to ="/loginForm"
@@ -82,11 +82,11 @@
               ログイン
             </v-btn>
 
-            <v-btn 
+            <v-btn
               class="my-1"
-              to="/create" 
-              outlined 
-              rounded 
+              to="/create"
+              outlined
+              rounded
               large
             >
               新規登録

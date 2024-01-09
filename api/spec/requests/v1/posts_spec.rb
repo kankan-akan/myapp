@@ -15,9 +15,9 @@ RSpec.describe "Posts", type: :request do
       end
     end
 
-    context "create" do 
+    context "create" do
       it "投稿を保存できる" do
-        post '/v1/posts' 
+        post '/v1/posts'
         expect(response).to have_http_status "200"
       end
     end
@@ -39,14 +39,14 @@ RSpec.describe "Posts", type: :request do
       end
     end
 
-    context "index" do 
+    context "index" do
       it "全投稿を取得できる" do
         get "/v1/posts"
         expect(response).to have_http_status "200"
       end
     end
 
-    context "show" do 
+    context "show" do
       it "選択した投稿を取得できる" do
         post = create(:post)
         get "/v1/posts/#{post.id}"

@@ -6,7 +6,7 @@
         <v-form
           ref="form"
           v-model="valid"
-          lazy-validation 
+          lazy-validation
         >
           <v-text-field
             outlined
@@ -25,7 +25,7 @@
             label ="ユーザー名（半角英数字・記号(.?/-_)で15文字以内）"
             required
           ></v-text-field> -->
-          
+
           <v-text-field
             outlined
             v-model="email"
@@ -42,7 +42,7 @@
             :type="show? 'text' : 'password'"
             label="パスワード（半角英数字・記号(.?/-_)を各1つ含む8文字以上30文字以内）"
             required
-            
+
             @click:append="show = !show"
           ></v-text-field>
           <!-- autocomple ="off" -->
@@ -55,7 +55,7 @@
           <v-card-actions class="justify-end">
             <v-btn
               class ="mr-4"
-              :disabled="!valid || loading" 
+              :disabled="!valid || loading"
               :loading="loading"
               @click="submit"
               large

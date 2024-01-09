@@ -10,7 +10,7 @@ class V1::RelationshipsController < ApplicationController
         render json: { status: 400 }
       end
   end
- 
+
   def destroy
     @relationship = @user.unfollow(@follower)
     if @relationship.destroy

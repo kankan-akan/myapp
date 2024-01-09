@@ -22,13 +22,13 @@ import { mapActions, mapState } from 'vuex';
     })
   },
 
-  created () {
-   this.getPost()
-   this.getLike()
-   this.getBookmark()
-   this.getReservation()
-   this.getReview()
-  },
+    created () {
+    this.getPost()
+    this.getLike()
+    this.getBookmark()
+    this.getReservation()
+    this.getReview()
+    },
 
   computed: {
     ...mapState ({

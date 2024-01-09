@@ -10,7 +10,7 @@
       <v-icon>{{ 'mdi-heart' }}</v-icon>
     </v-btn>
     <v-btn
-      v-else 
+      v-else
       icon
       @click="postLike()"
     >
@@ -40,7 +40,7 @@ export default {
   },
 
   watch: {
-    
+
     },
 
   mounted() {
@@ -95,7 +95,7 @@ export default {
       })
     },
     // count() {
-    //   this.$axios.get(`/v1/posts/${this.post.id}/likes/count`) 
+    //   this.$axios.get(`/v1/posts/${this.post.id}/likes/count`)
     //   .then((res) => {
     //     this.countLike = res.data
     //   })

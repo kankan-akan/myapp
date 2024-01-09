@@ -29,7 +29,7 @@ RSpec.describe "Reservations", type: :request do
       end
     end
 
-    context "update" do 
+    context "update" do
       it "予約を変更できる" do
         put "/v1/reservations/#{@reservation.id}", params: { date: "22/1/24(月)10:00" }
         expect(response).to have_http_status "200"
