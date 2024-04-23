@@ -40,13 +40,13 @@
           xs="12"
           sm="4"
         >
-          <v-card justify="space-around">
-            <v-card-text class="my-0 pa-2 black--text">
+          <v-card class="rounded-xl" justify="space-around">
+            <v-card-text class="pa-3 black--text">
               <div class="d-flex justify-space-between">
                 <div>
                   <div class="grey--text text--darken-2" v-text="place.city"></div>
                   <div v-text="place.ruby"></div>
-                  <div 
+                  <div
                     class="text-h6"
                     v-text="place.name"
                   >
