@@ -10,10 +10,10 @@
 レッスン予約は、これからゴルフを始めたい方・ある程度上手くなったがスコアをもうひと伸びさせたい方等に向けたレッスンを練習場が掲載・管理し、ユーザーがそれらを予約することができます。
 
 **ユーザー側ホーム画面**
-<img width="1440" alt="スクリーンショット 2022-09-02 23 59 58" src="https://user-images.githubusercontent.com/86819225/188180777-44751016-ead1-4aa4-87ae-c0cff94b4a80.png">
+<img width="1440" alt="スクリーンショット 2024-04-24 0 52 34" src="https://github.com/kankan-akan/myapp/assets/86819225/cf4cb191-a554-45ea-b22e-9f1fb1acaf30">
 
 **練習場管理者側ホーム画面**
-<img width="1440" alt="スクリーンショット 2022-09-03 0 23 45" src="https://user-images.githubusercontent.com/86819225/188182289-5fb7b6fe-d9c3-49a9-9636-aca8f738501e.png">
+<img width="1440" alt="スクリーンショット 2024-04-24 0 56 08" src="https://github.com/kankan-akan/myapp/assets/86819225/8eb296a6-a40f-465d-bda1-f015f1216719">
 
 ## 制作背景
 自分自身の趣味であるゴルフをする中で、ゴルフレッスンを受けるにはどうすれば良いのかと考えることがありました。<br>
