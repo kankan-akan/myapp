@@ -1,32 +1,32 @@
 <template>
     <div>
       <v-card class="rounded-xl ma-4 sticky" elevation="8">
-        <v-navigation-drawer floating>
-        <v-list rounded>
-          <v-list-item
-            color="primary"
-            v-for="item in items"
-            :key="item.title"
-            :to="item.to"
-          >
-            <v-list-item-content>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+        <v-navigation-drawer floating permanent>
+          <v-list rounded>
+            <v-list-item
+              color="primary"
+              v-for="item in items"
+              :key="item.title"
+              :to="item.to"
+            >
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
 
-          <v-divider class="my-2"></v-divider>
+            <v-divider class="my-2"></v-divider>
 
-          <v-list-item
-            link
-            color="grey lighten-4"
-          >
-            <v-list-item-content>
-              <v-list-item-title @click="logout()">
-                ログアウト
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
+            <v-list-item
+              link
+              color="grey lighten-4"
+            >
+              <v-list-item-content @click="logout()">
+                <v-list-item-title>
+                  ログアウト
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
         </v-navigation-drawer>
       </v-card>
     </div>
@@ -88,7 +88,7 @@
 <style scoped>
   .sticky {
     position: sticky;
-    top: 80px;
+    top: 120px;
 
   }
 </style>

@@ -2,8 +2,7 @@
   <div>
     <v-app-bar
       app
-      color="blue lighten-4"
-      absolute
+      height=90
     >
       <v-app-bar-nav-icon
         v-if="$store.state.auth.loggedIn"
@@ -14,7 +13,7 @@
         <div class="d-flex align-center">
           <v-toolbar-title>
             <NuxtLink to="/">
-              <img class="my-auto" src="~/assets/image/logo.png" width="260">
+              <img class="align-center" src="~/assets/image/Design1.png" width="150">
             </NuxtLink>
           </v-toolbar-title>
         </div>
@@ -31,10 +30,10 @@
                 v-bind="attrs"
                 v-on="on"
               >
-                <v-icon>mdi-home</v-icon>
+                <v-icon>mdi-magnify</v-icon>
               </v-btn>
             </template>
-            <span>ホーム</span>
+            <span>検索</span>
           </v-tooltip>
           <template v-if="$store.state.auth.loggedIn">
             <v-tooltip bottom>
@@ -61,7 +60,7 @@
                 v-bind="attrs"
                 v-on="on"
               >
-                  <v-icon>mdi-magnify</v-icon>
+                  <v-icon>mdi-golf-tee</v-icon>
                 </v-btn>
             </template>
             <span>みんなの投稿</span>
@@ -95,6 +94,54 @@
         </template>
       </v-row>
     </v-app-bar>
+
+    <div class="mr-8">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                large
+                icon
+                to="/"
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon>mdi-magnify</v-icon>
+              </v-btn>
+            </template>
+            <span>検索</span>
+          </v-tooltip>
+          <template v-if="$store.state.auth.loggedIn">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  large
+                  icon
+                  to="/user/post"
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                    <v-icon>mdi-pencil-plus-outline</v-icon>
+                  </v-btn>
+              </template>
+              <span>新しい投稿</span>
+            </v-tooltip>
+          </template>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                large
+                icon
+                to="/allPost"
+                v-bind="attrs"
+                v-on="on"
+              >
+                  <v-icon>mdi-golf-tee</v-icon>
+                </v-btn>
+            </template>
+            <span>みんなの投稿</span>
+          </v-tooltip>
+        </div>
+
     <v-navigation-drawer
       v-if="$store.state.auth.loggedIn"
       v-model="drawer"

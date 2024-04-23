@@ -4,13 +4,13 @@
       app
       clipped-left
       color="blue lighten-4"
-
+      height=90
     >
       <v-row>
         <NuxtLink to="/">
-          <img class="my-2" src="~/assets/image/logo.png" width="280">
+          <img class="d-flex align-center my-auto" src="~/assets/image/Design1.png" width="150">
         </NuxtLink>
-        <div class="d-flex align-end my-auto font-weight-bold">＜練習場管理者専用ページ＞</div>
+        <div class="d-flex my-auto font-weight-bold">＜練習場管理者専用ページ＞</div>
       </v-row>
     </v-app-bar>
   </div>
