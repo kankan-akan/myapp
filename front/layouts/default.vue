@@ -3,6 +3,7 @@
     <Snackbar />
     <Header />
     <v-main class="color">
+      <ContentBar />
       <Nuxt />
     </v-main>
   </v-app>
