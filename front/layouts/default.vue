@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="body">
     <Snackbar />
     <Header />
     <v-main class="color">
@@ -15,3 +15,9 @@ export default {
 
 }
 </script>
+
+<style>
+  .body {
+    font-family: "Kosugi Maru", "Quicksand";
+  }
+</style>
