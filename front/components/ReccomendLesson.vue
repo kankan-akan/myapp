@@ -1,13 +1,13 @@
 <template>
   <v-sheet
-    class="my-2 reccomend rounded-xl"
+    class="reccomend my-2 ma-8 rounded-lg"
     elevation="8"
   >
-    <div class="mx-4 pt-2 text-subtitle-1 font-weight-bold">ベストスコアが近いユーザーが利用しているレッスン</div>
+    <div class="title pt-2 px-2 font-weight-bold rounded-lg">ベストスコアが近いユーザーが利用しているレッスン</div>
     <template v-if="reccomendLesson">
       <v-slide-group
         v-model="model"
-        class="pa-3"
+        class="py-2"
         active-class="success"
         show-arrows
       >
@@ -16,28 +16,33 @@
           :key="i"
         >
           <v-card
-            class="mx-5"
-            height="100"
+            class="mx-2 rounded-lg"
+            height="110"
             width="300"
+            elevation="4"
             @click="showLesson(lesson.id)"
           >
-            <v-row class="fill-height">
-              <v-list three-line>
-                <v-list-item>
-                  <v-list-item-content>
-                    <v-list-item-title class="font-weight-bold">{{ lesson.title }}</v-list-item-title>
-                    <v-list-item-subtitle class="mb-2">{{ lesson.coach }} インストラクター</v-list-item-subtitle>
-                    <v-list-item-subtitle>{{ lesson.content }}</v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-            </v-row>
+            <v-list
+              class="mx-auto"
+              width="295"
+              height="95"
+              three-line
+            >
+              <v-list-item dense>
+                <v-list-item-content>
+                  <v-list-item-title class="font-weight-bold">{{ lesson.title }}</v-list-item-title>
+                  <v-list-item-subtitle>{{ lesson.coach }} インストラクター</v-list-item-subtitle>
+                  <v-divider></v-divider>
+                  <v-list-item-subtitle class="mt-2">{{ lesson.content }}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
           </v-card>
         </v-slide-item>
       </v-slide-group>
     </template>
     <template v-else>
-      <v-col class="d-flex justify-center align-center">
+        <v-col class="d-flex justify-center align-center">
         <div class="mx-6 grey--text lighten-1 font-weight-bold">ベストスコアを登録してみよう！</div>
         <v-btn rounded outlined to="/user/myAccount">アカウント設定</v-btn>
       </v-col>
@@ -64,7 +69,7 @@ import { mapState } from 'vuex'
     },
 
     mounted () {
-      setTimeout(this.getReccomends, 300)
+      setTimeout(this.getReccomends, 500)
     },
 
     methods: {
@@ -92,6 +97,14 @@ import { mapState } from 'vuex'
   .reccomend {
     position: sticky;
     bottom: 0;
-    background-color: rgba(228, 228, 228, 0.8);
+    background-color: #96ffa97e;
   }
+
+  .title {
+    background-color: #ffff;
+    background: linear-gradient(#ffff, #f0f0f0);
+    box-shadow: 0 5px 5px #f0f0f0;
+    border-top: 5px solid #0ca111;
+  }
+
 </style>

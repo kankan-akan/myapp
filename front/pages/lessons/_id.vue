@@ -1,4 +1,5 @@
 <template>
+  <div>
   <v-container>
     <v-row>
       <v-col>
@@ -166,8 +167,9 @@
       </v-sheet>
       </v-col>
     </v-row>
-    <ReccomendLesson v-if="$store.state.auth.loggedIn" />
   </v-container>
+    <ReccomendLesson v-if="$store.state.auth.loggedIn" />
+  </div>
 </template>
 
 <script>
@@ -276,7 +278,7 @@ import { mapState, mapActions } from 'vuex';
           .then((res) => {
             console.log(res)
             this.overlay = false
-             this.$store.dispatch(
+            this.$store.dispatch(
               'snackbar/showMessage', {
                 icon: 'mdi-checkbox-marked-circle-outline',
                 message: '予約が完了しました。',

@@ -106,8 +106,36 @@
         </template>
       </v-row>
     </v-container>
-    <ReccomendLesson v-if="$store.state.auth.loggedIn && this.$store.state.myData.loginUser.score" />
+    <v-sheet
+      v-if="!$store.state.auth.loggedIn"
+      class="reccomend my-2 ma-8 rounded-lg"
+      elevation="8"
+    >
+      <div class="title pa-2 font-weight-bold rounded-lg">ベストスコアが近いユーザーが利用しているレッスン</div>
+      <v-col class="d-flex justify-center align-center">
+        <div class="mx-6 font-weight-bold">ログインしてみましょう！</div>
+        <v-btn rounded outlined to="/loginForm">ログイン</v-btn>
+      </v-col>
+    </v-sheet>
+    <ReccomendLesson v-if="$store.state.auth.loggedIn && loginUser" />
   </div>
 </template>
 
 <script src ="./index.js"></script>
+
+<style scoped>
+  .reccomend {
+    position: sticky;
+    bottom: 0;
+    background-color: #96ffa97e;
+  }
+
+  .title {
+    position: relative;
+    background-color: #ffff;
+    background: linear-gradient(#ffff, #f0f0f0);
+    box-shadow: 0 8px 5px #f0f0f0;
+    border-top: 5px solid #0ca111;
+  }
+
+</style>

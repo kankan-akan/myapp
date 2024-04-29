@@ -16,7 +16,8 @@ export default {
 
   computed: {
     ...mapState({
-      outline: (state) => state.outline
+      outline: (state) => state.outline,
+      loginUser: (state) => state.myData.loginUser
     }),
     filteredOutlines() {
       if (this.city.length === 0 && !this.range) {
