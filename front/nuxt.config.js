@@ -45,8 +45,16 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@nuxtjs/google-fonts'
   ],
+
+  googleFonts: {
+    families: {
+      'Kosugi Maru': [400],
+      'Quicksand': [400]
+    }
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -62,19 +70,19 @@ export default {
     prefix: '/api'
   },
 
- proxy: {
-  '/api': {
-    // target: 'http://localhost:3000',
-    // target: 'http://api:3000',    //docker-compose
-    // target: 'https://par-match-api.com',
-    target: process.env.NODE_ENV === 'production'
-          ? 'https://par-match-api.com'
-          : 'http://localhost:3000',
-      pathRewrite: {
-        '^/api' : ''
-      },
-    }
-  },
+  proxy: {
+    '/api': {
+      // target: 'http://localhost:3000',
+      // target: 'http://api:3000',    //docker-compose
+      // target: 'https://par-match-api.com',
+      target: process.env.NODE_ENV === 'production'
+            ? 'https://par-match-api.com'
+            : 'http://localhost:3000',
+        pathRewrite: {
+          '^/api' : ''
+        },
+      }
+    },
 
   // axios: {
   //   baseURL:
@@ -89,7 +97,7 @@ export default {
 
   // router: {
   // },
-  
+
   auth: {
     redirect: {
       login: '/',

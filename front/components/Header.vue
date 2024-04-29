@@ -20,67 +20,20 @@
         <!-- <div>$store.state.auth.loggedIn: {{ $store.state.auth.loggedIn }}</div>
         <div>$auth.loggedIn: {{ $auth.loggedIn }}</div> -->
 
-        <div class="mr-8">
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                large
-                icon
-                to="/"
-                v-bind="attrs"
-                v-on="on"
-              >
-                <v-icon>mdi-magnify</v-icon>
-              </v-btn>
-            </template>
-            <span>検索</span>
-          </v-tooltip>
-          <template v-if="$store.state.auth.loggedIn">
-            <v-tooltip bottom>
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  large
-                  icon
-                  to="/user/post"
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                    <v-icon>mdi-pencil-plus-outline</v-icon>
-                  </v-btn>
-              </template>
-              <span>新しい投稿</span>
-            </v-tooltip>
-          </template>
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                large
-                icon
-                to="/allPost"
-                v-bind="attrs"
-                v-on="on"
-              >
-                  <v-icon>mdi-golf-tee</v-icon>
-                </v-btn>
-            </template>
-            <span>みんなの投稿</span>
-          </v-tooltip>
-        </div>
         <template v-if="$store.state.rangeAuth.isLoggedIn">
           <div class="mr-4">練習場管理者としてログイン中</div>
         </template>
         <template v-else>
           <div v-if="!$store.state.auth.loggedIn" class="mr-2">
             <v-btn
-              color="primary"
+              class="font-weight-bold"
+              color="blue darken-1 white--text"
               large
-              text
               to ="/loginForm"
             >
               <v-icon>mdi-account-arrow-left-outline</v-icon>
               ログイン
             </v-btn>
-
             <v-btn
               class="my-1"
               to="/create"
@@ -91,56 +44,21 @@
               新規登録
             </v-btn>
           </div>
+          <div v-else>
+            <v-btn
+              class="font-weight-bold"
+              color="blue darken-1"
+              large
+              text
+              to ="/user/logout"
+            >
+              <v-icon>mdi-account-arrow-right</v-icon>
+              ログアウト
+            </v-btn>
+          </div>
         </template>
       </v-row>
     </v-app-bar>
-
-    <div class="mr-8">
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                large
-                icon
-                to="/"
-                v-bind="attrs"
-                v-on="on"
-              >
-                <v-icon>mdi-magnify</v-icon>
-              </v-btn>
-            </template>
-            <span>検索</span>
-          </v-tooltip>
-          <template v-if="$store.state.auth.loggedIn">
-            <v-tooltip bottom>
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  large
-                  icon
-                  to="/user/post"
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                    <v-icon>mdi-pencil-plus-outline</v-icon>
-                  </v-btn>
-              </template>
-              <span>新しい投稿</span>
-            </v-tooltip>
-          </template>
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                large
-                icon
-                to="/allPost"
-                v-bind="attrs"
-                v-on="on"
-              >
-                  <v-icon>mdi-golf-tee</v-icon>
-                </v-btn>
-            </template>
-            <span>みんなの投稿</span>
-          </v-tooltip>
-        </div>
 
     <v-navigation-drawer
       v-if="$store.state.auth.loggedIn"
