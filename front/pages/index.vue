@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-container>
+      <!-- <SearchRange @outlines="test" /> -->
       <v-row justify="center" no-gutter>
         <v-col cols="6">
           <div class="text-subtitle-1 font-weight-bold">市町村から検索</div>
@@ -31,12 +32,105 @@
           ></v-autocomplete>
         </v-col>
       </v-row>
-      <v-btn v-if="!$store.state.auth.loggedIn" text to="/rangeAdmin/info">練習場管理者の方はこちら</v-btn>
+      <v-row
+        class="justify-end"
+        no-gutters
+      >
+        <v-btn
+          dense
+          small
+          text
+          @click="toggleSearchPanel = !toggleSearchPanel"
+        >
+          <v-icon>mdi-plus-circle-outline</v-icon>
+          詳細条件を指定
+        </v-btn>
+        <!-- <v-btn @click="sendEmit()">検索</v-btn> -->
+      </v-row>
+      <Transition name="slide-fade">
+        <v-card
+          v-if="toggleSearchPanel"
+          class="mx-auto"
+          elevation="4"
+          rounded="xl"
+          max-width="950"
+        >
+          <v-card-text>
+            <div class="text-subtitle-1 font-weight-bold">設備</div>
+            <v-row class="mx-auto">
+              <v-col cols="12" sm="3">
+                <v-checkbox
+                  class="label"
+                  v-model="uchihoudai"
+                  label="打ち放題"
+                ></v-checkbox>
+                <v-checkbox
+                  class="label"
+                  v-model="approach"
+                  label="アプローチ場"
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="12" sm="3">
+                <v-checkbox
+                  class="label"
+                  v-model="lefty"
+                  label="左打席"
+                ></v-checkbox>
+                <v-checkbox
+                  v-model="patting"
+                  label="パター場"
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="12" sm="3">
+                <v-checkbox
+                  class="label"
+                  v-model="bunker"
+                  label="バンカー場"
+                ></v-checkbox>
+                <v-checkbox
+                  class="label"
+                  v-model="shop"
+                  label="ショップ"
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="12" sm="3">
+                <v-checkbox
+                  class="label"
+                  v-model="restaurant"
+                  label="レストラン"
+                ></v-checkbox>
+                <v-checkbox
+                  class="label"
+                  v-model="lesson"
+                  label="レッスン"
+                ></v-checkbox>
+              </v-col>
+            </v-row>
+            <v-card-actions class="justify-end">
+            <v-btn
+              color="blue white--text"
+              small
+              @click="toggleSearchPanel = !toggleSearchPanel"
+            >
+              OK
+            </v-btn>
+            </v-card-actions>
+          </v-card-text>
+        </v-card>
+      </Transition>
+      <v-btn
+        class="mt-4"
+        v-if="!$store.state.auth.loggedIn"
+        text
+        to="/rangeAdmin/info"
+      >
+        練習場管理者の方はこちら
+      </v-btn>
       <v-row>
         <template v-if="filteredOutlines.length !== 0">
           <v-col
             v-for="(place, i) in filteredOutlines"
-            :key="i"
+            :key="`first-${i}`"
             cols="12"
             xs="12"
             sm="4"
@@ -136,6 +230,15 @@
     background: linear-gradient(#ffff, #f0f0f0);
     box-shadow: 0 8px 5px #f0f0f0;
     border-top: 5px solid #0ca111;
+  }
+
+  .slide-fade-enter-active, .slide-fade-leave-active {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .slide-fade-enter, .slide-fade-leave-to {
+    transform: translateY(-50px);
+    opacity: 0;
   }
 
 </style>
