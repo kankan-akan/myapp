@@ -42,9 +42,6 @@ export default {
           return f.name.includes(this.range)
         })
         return outline
-      } else if(this.uchihoudai == true) {
-        console.log('ggg')
-
       }
     }
   },

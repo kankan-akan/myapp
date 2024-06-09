@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-container>
-      <!-- <SearchRange @outlines="test" /> -->
       <v-row justify="center" no-gutter>
         <v-col cols="6">
           <div class="text-subtitle-1 font-weight-bold">市町村から検索</div>
@@ -32,7 +31,7 @@
           ></v-autocomplete>
         </v-col>
       </v-row>
-      <v-row
+      <!-- <v-row
         class="justify-end"
         no-gutters
       >
@@ -45,9 +44,8 @@
           <v-icon>mdi-plus-circle-outline</v-icon>
           詳細条件を指定
         </v-btn>
-        <!-- <v-btn @click="sendEmit()">検索</v-btn> -->
-      </v-row>
-      <Transition name="slide-fade">
+      </v-row> -->
+      <!-- <Transition name="slide-fade">
         <v-card
           v-if="toggleSearchPanel"
           class="mx-auto"
@@ -117,7 +115,7 @@
             </v-card-actions>
           </v-card-text>
         </v-card>
-      </Transition>
+      </Transition> -->
       <v-btn
         class="mt-4"
         v-if="!$store.state.auth.loggedIn"
