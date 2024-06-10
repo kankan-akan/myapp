@@ -41,7 +41,7 @@
             </v-btn>
           </v-col>
         </v-row>
-        <v-row dense>
+        <v-row class="scroll" dense>
           <v-col>
             <table class="table-date mx-auto">
               <thead>
@@ -55,8 +55,8 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(time, i) in selectedLesson.start_times" :key="i">
-                  <template  v-if="time !== ''">
+                <tr class="scroll" v-for="(time, i) in selectedLesson.start_times" :key="i">
+                  <template v-if="time !== ''">
                     <td class="td-date time">{{ time }} ~</td>
                     <td class="td-date" v-for="(date, j) in dateList" :key="j">
                       <a

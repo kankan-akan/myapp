@@ -46,6 +46,10 @@ body {
   background-color: rgb(227, 240, 255);
 }
 
+.scroll {
+  overflow: scroll;
+}
+
 .start {
   border-bottom: solid 2.5px #d8d8d8;
   border-right: solid 2.5px #d8d8d8;

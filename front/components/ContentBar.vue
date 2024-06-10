@@ -10,10 +10,10 @@
           v-bind="attrs"
           v-on="on"
         >
-          <v-icon>mdi-magnify</v-icon>
+          <v-icon>mdi-home-search-outline</v-icon>
         </v-btn>
       </template>
-      <span>検索</span>
+      <span>ホーム</span>
     </v-tooltip>
     <template v-if="$store.state.auth.loggedIn">
       <v-tooltip>

@@ -4,11 +4,6 @@
       app
       height=90
     >
-      <v-app-bar-nav-icon
-        v-if="$store.state.auth.loggedIn"
-        @click="drawer = !drawer"
-        class="mr-4"
-      ></v-app-bar-nav-icon>
       <v-row align="center" justify="space-between">
         <div class="d-flex align-center">
           <v-toolbar-title>
@@ -17,35 +12,60 @@
             </NuxtLink>
           </v-toolbar-title>
         </div>
-        <!-- <div>$store.state.auth.loggedIn: {{ $store.state.auth.loggedIn }}</div>
-        <div>$auth.loggedIn: {{ $auth.loggedIn }}</div> -->
 
         <template v-if="$store.state.rangeAuth.isLoggedIn">
           <div class="mr-4">練習場管理者としてログイン中</div>
         </template>
         <template v-else>
-          <div v-if="!$store.state.auth.loggedIn" class="mr-2">
-            <v-btn
-              class="font-weight-bold"
-              color="blue darken-1 white--text"
-              large
-              to ="/loginForm"
-            >
-              <v-icon>mdi-account-arrow-left-outline</v-icon>
-              ログイン
-            </v-btn>
-            <v-btn
-              class="my-1"
-              to="/create"
-              outlined
-              rounded
-              large
-            >
-              新規登録
-            </v-btn>
-          </div>
-          <div v-else>
-            <v-btn
+          <template v-if="!$store.state.auth.loggedIn">
+            <div class="regist-btn mr-2">
+              <v-btn
+                class="font-weight-bold"
+                color="blue darken-1 white--text"
+                large
+                to ="/loginForm"
+              >
+                <v-icon>mdi-account-arrow-left-outline</v-icon>
+                ログイン
+              </v-btn>
+              <v-btn
+                class="my-1"
+                to="/create"
+                outlined
+                rounded
+                large
+              >
+                新規登録
+              </v-btn>
+            </div>
+            <div class="regist-icon">
+              <v-menu
+                offset-y
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    class="mr-2"
+                    color="primary"
+                    dark
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    <v-icon dark size="30">mdi-account</v-icon>
+                  </v-btn>
+                </template>
+                <v-list>
+                  <v-list-item to="/create">
+                    <v-list-item-title>新規登録</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item to ="/loginForm">
+                    <v-list-item-title>ログイン</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </div>
+          </template>
+          <template v-else>
+            <!-- <v-btn
               class="font-weight-bold"
               color="blue darken-1"
               large
@@ -54,8 +74,13 @@
             >
               <v-icon>mdi-account-arrow-right</v-icon>
               ログアウト
-            </v-btn>
-          </div>
+            </v-btn> -->
+            <v-app-bar-nav-icon
+              v-if="$store.state.auth.loggedIn"
+              @click="drawer = !drawer"
+              class="mr-4"
+            ></v-app-bar-nav-icon>
+          </template>
         </template>
       </v-row>
     </v-app-bar>
@@ -65,6 +90,7 @@
       v-model="drawer"
       fixed
       temporary
+      right
     >
       <v-sheet
         v-if="loginUser"
@@ -130,3 +156,17 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+@media screen and (min-width: 601px) {
+  .regist-icon {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .regist-btn {
+    display: none;
+  }
+}
+</style>

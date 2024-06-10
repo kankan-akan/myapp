@@ -4,7 +4,9 @@
       <v-col
         v-for="(post, i) in allPost"
         :key=" i "
-        cols="3"
+        cols="12"
+        xs="12"
+        sm="4"
       >
         <v-card @click.stop="openPost(post)">
 
@@ -47,7 +49,8 @@
       @click.stop="dialog = false"
     >
       <v-card>
-        <div class="d-flex flex-nowrap justify-space-between">
+        <div class="d-flex flex-nowrap ">
+          <v-row>
           <v-img
             v-if="currentPost.image.url"
             :src="currentPost.image.url"
@@ -63,6 +66,8 @@
           >
             <v-icon size="80">mdi-image</v-icon>
           </v-sheet>
+          </v-row>
+          <v-row>
           <v-col>
             <div class="d-flex justify-space-around">
               <UserIdLavel :user=currentPost.user />
@@ -72,6 +77,7 @@
             </div>
             <v-col class="kaigyo">{{ currentPost.content }}</v-col>
           </v-col>
+          </v-row>
         </div>
       </v-card>
     </v-dialog>

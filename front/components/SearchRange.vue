@@ -1,3 +1,54 @@
+<template>
+  <div>
+    <v-row justify="center" no-gutter>
+      <v-col cols="6">
+        <div class="text-subtitle-1 font-weight-bold">市町村から検索</div>
+        <v-autocomplete
+          v-model="city"
+          :items="cities"
+          chips
+          clearable
+          deletable-chips
+          multiple
+          solo
+          rounded
+          label="市町村を選択"
+        ></v-autocomplete>
+      </v-col>
+      <v-col cols="6">
+        <div class="text-subtitle-1 font-weight-bold">練習場名で検索</div>
+        <v-autocomplete
+          v-model="range"
+          :loading="loading"
+          :items="items"
+          :search-input.sync="search"
+          hide-no-data
+          clearable
+          solo
+          rounded
+          label="練習場名を入力"
+        ></v-autocomplete>
+      </v-col>
+    </v-row>
+    <v-row
+      class="justify-end"
+      no-gutters
+    >
+      <v-btn
+        dense
+        small
+        text
+      >
+        <v-icon>mdi-plus-circle-outline</v-icon>
+          詳細条件を指定
+      </v-btn>
+      <v-btn @click="sendEmit()">検索</v-btn>
+    </v-row>
+      <!-- <div>{{ filteredOutlines }}</div> -->
+  </div>
+</template>
+
+<script>
 import { mapActions, mapState } from 'vuex';
 
 export default {
@@ -10,24 +61,13 @@ export default {
       loading: false,
       range: '',
       rangeName: '',
-      search: null,
-      toggleSearchPanel: false,
-      uchihoudai: true,
-      approach: false,
-      lefty: false,
-      patting: false,
-      bunker: false,
-      shop: false,
-      restaurant: false,
-      lesson: false,
-      // filteredOutlines: []
+      search: null
     }
   },
 
   computed: {
     ...mapState({
-      outline: (state) => state.outline,
-      loginUser: (state) => state.myData.loginUser
+      outline: (state) => state.outline
     }),
     filteredOutlines() {
       if (this.city.length === 0 && !this.range) {
@@ -37,13 +77,13 @@ export default {
           return this.city.some(x => f["city"] == x)
         })
         return outline
-      } else if(this.range.length !== 0) {
+      } else {
         const outline = this.outline.filter((f) => {
           return f.name.includes(this.range)
         })
         return outline
       }
-    }
+    },
   },
 
   watch: {
@@ -72,7 +112,7 @@ export default {
     showLesson(id) {
       this.$router.push(`/lessons/${id}`)
     },
-    querySelections(v) {
+    querySelections (v) {
       this.loading = true
       // Simulated ajax query
       setTimeout(() => {
@@ -82,8 +122,9 @@ export default {
         this.loading = false
       }, 500)
     },
-    // test(str) {
-    //   this.filteredOutlines.push({str});
-    // }
+    sendEmit() {
+      this.$emit('outlines', this.filteredOutlines)
+    }
   }
 }
+</script>

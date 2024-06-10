@@ -31,12 +31,104 @@
           ></v-autocomplete>
         </v-col>
       </v-row>
-      <v-btn v-if="!$store.state.auth.loggedIn" text to="/rangeAdmin/info">練習場管理者の方はこちら</v-btn>
+      <!-- <v-row
+        class="justify-end"
+        no-gutters
+      >
+        <v-btn
+          dense
+          small
+          text
+          @click="toggleSearchPanel = !toggleSearchPanel"
+        >
+          <v-icon>mdi-plus-circle-outline</v-icon>
+          詳細条件を指定
+        </v-btn>
+      </v-row> -->
+      <!-- <Transition name="slide-fade">
+        <v-card
+          v-if="toggleSearchPanel"
+          class="mx-auto"
+          elevation="4"
+          rounded="xl"
+          max-width="950"
+        >
+          <v-card-text>
+            <div class="text-subtitle-1 font-weight-bold">設備</div>
+            <v-row class="mx-auto">
+              <v-col cols="12" sm="3">
+                <v-checkbox
+                  class="label"
+                  v-model="uchihoudai"
+                  label="打ち放題"
+                ></v-checkbox>
+                <v-checkbox
+                  class="label"
+                  v-model="approach"
+                  label="アプローチ場"
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="12" sm="3">
+                <v-checkbox
+                  class="label"
+                  v-model="lefty"
+                  label="左打席"
+                ></v-checkbox>
+                <v-checkbox
+                  v-model="patting"
+                  label="パター場"
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="12" sm="3">
+                <v-checkbox
+                  class="label"
+                  v-model="bunker"
+                  label="バンカー場"
+                ></v-checkbox>
+                <v-checkbox
+                  class="label"
+                  v-model="shop"
+                  label="ショップ"
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="12" sm="3">
+                <v-checkbox
+                  class="label"
+                  v-model="restaurant"
+                  label="レストラン"
+                ></v-checkbox>
+                <v-checkbox
+                  class="label"
+                  v-model="lesson"
+                  label="レッスン"
+                ></v-checkbox>
+              </v-col>
+            </v-row>
+            <v-card-actions class="justify-end">
+            <v-btn
+              color="blue white--text"
+              small
+              @click="toggleSearchPanel = !toggleSearchPanel"
+            >
+              OK
+            </v-btn>
+            </v-card-actions>
+          </v-card-text>
+        </v-card>
+      </Transition> -->
+      <v-btn
+        class="mt-4"
+        v-if="!$store.state.auth.loggedIn"
+        text
+        to="/rangeAdmin/info"
+      >
+        練習場管理者の方はこちら
+      </v-btn>
       <v-row>
         <template v-if="filteredOutlines.length !== 0">
           <v-col
             v-for="(place, i) in filteredOutlines"
-            :key="i"
+            :key="`first-${i}`"
             cols="12"
             xs="12"
             sm="4"
@@ -108,12 +200,14 @@
     </v-container>
     <v-sheet
       v-if="!$store.state.auth.loggedIn"
-      class="reccomend my-2 ma-8 rounded-lg"
+      class="reccomend rounded-lg mx-2"
       elevation="8"
     >
-      <div class="title pa-2 font-weight-bold rounded-lg">ベストスコアが近いユーザーが利用しているレッスン</div>
+      <div class="title font-weight-bold rounded-lg">
+        <p class="title-content ml-2 my-1">ベストスコアが近いユーザーが利用しているレッスン</p>
+      </div>
       <v-col class="d-flex justify-center align-center">
-        <div class="mx-6 font-weight-bold">ログインしてみましょう！</div>
+        <div class="font-weight-bold">スコアを設定してみましょう！</div>
         <v-btn rounded outlined to="/loginForm">ログイン</v-btn>
       </v-col>
     </v-sheet>
@@ -127,7 +221,7 @@
   .reccomend {
     position: sticky;
     bottom: 0;
-    background-color: #96ffa97e;
+    background-color: #96ffa9e7;
   }
 
   .title {
@@ -136,6 +230,27 @@
     background: linear-gradient(#ffff, #f0f0f0);
     box-shadow: 0 8px 5px #f0f0f0;
     border-top: 5px solid #0ca111;
+  }
+
+  .slide-fade-enter-active, .slide-fade-leave-active {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media screen and (min-width: 601px) {
+    .title-content {
+      font-size: 20px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .title-content {
+      font-size: 13px;
+    }
+  }
+
+  .slide-fade-enter, .slide-fade-leave-to {
+    transform: translateY(-50px);
+    opacity: 0;
   }
 
 </style>
