@@ -4,11 +4,6 @@
       app
       height=90
     >
-      <v-app-bar-nav-icon
-        v-if="$store.state.auth.loggedIn"
-        @click="drawer = !drawer"
-        class="mr-4"
-      ></v-app-bar-nav-icon>
       <v-row align="center" justify="space-between">
         <div class="d-flex align-center">
           <v-toolbar-title>
@@ -70,7 +65,7 @@
             </div>
           </template>
           <template v-else>
-            <v-btn
+            <!-- <v-btn
               class="font-weight-bold"
               color="blue darken-1"
               large
@@ -79,7 +74,12 @@
             >
               <v-icon>mdi-account-arrow-right</v-icon>
               ログアウト
-            </v-btn>
+            </v-btn> -->
+            <v-app-bar-nav-icon
+              v-if="$store.state.auth.loggedIn"
+              @click="drawer = !drawer"
+              class="mr-4"
+            ></v-app-bar-nav-icon>
           </template>
         </template>
       </v-row>
@@ -90,6 +90,7 @@
       v-model="drawer"
       fixed
       temporary
+      right
     >
       <v-sheet
         v-if="loginUser"

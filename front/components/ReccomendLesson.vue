@@ -1,9 +1,11 @@
 <template>
   <v-sheet
-    class="reccomend my-2 ma-8 rounded-lg"
+    class="reccomend rounded-lg mx-2"
     elevation="8"
   >
-    <div class="title pt-2 px-2 font-weight-bold rounded-lg">ベストスコアが近いユーザーが利用しているレッスン</div>
+    <div class="title font-weight-bold rounded-lg">
+      <p class="title-content ml-2 my-1">ベストスコアが近いユーザーが利用しているレッスン</p>
+    </div>
     <template v-if="reccomendLesson">
       <v-slide-group
         v-model="model"
@@ -17,14 +19,14 @@
         >
           <v-card
             class="mx-2 rounded-lg"
-            height="110"
-            width="300"
+            height="100"
+            width="250"
             elevation="4"
             @click="showLesson(lesson.id)"
           >
             <v-list
               class="mx-auto"
-              width="295"
+              width="250"
               height="95"
               three-line
             >
@@ -97,7 +99,7 @@ import { mapState } from 'vuex'
   .reccomend {
     position: sticky;
     bottom: 0;
-    background-color: #96ffa97e;
+    background-color: #96ffa9e7;
   }
 
   .title {
@@ -105,6 +107,18 @@ import { mapState } from 'vuex'
     background: linear-gradient(#ffff, #f0f0f0);
     box-shadow: 0 5px 5px #f0f0f0;
     border-top: 5px solid #0ca111;
+  }
+
+  @media screen and (min-width: 601px) {
+    .title-content {
+      font-size: 20px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .title-content {
+      font-size: 13px;
+    }
   }
 
 </style>

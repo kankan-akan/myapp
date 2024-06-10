@@ -200,12 +200,14 @@
     </v-container>
     <v-sheet
       v-if="!$store.state.auth.loggedIn"
-      class="reccomend my-2 ma-8 rounded-lg"
+      class="reccomend rounded-lg mx-2"
       elevation="8"
     >
-      <div class="title pa-2 font-weight-bold rounded-lg">ベストスコアが近いユーザーが利用しているレッスン</div>
+      <div class="title font-weight-bold rounded-lg">
+        <p class="title-content ml-2 my-1">ベストスコアが近いユーザーが利用しているレッスン</p>
+      </div>
       <v-col class="d-flex justify-center align-center">
-        <div class="mx-6 font-weight-bold">ログインしてみましょう！</div>
+        <div class="font-weight-bold">スコアを設定してみましょう！</div>
         <v-btn rounded outlined to="/loginForm">ログイン</v-btn>
       </v-col>
     </v-sheet>
@@ -219,7 +221,7 @@
   .reccomend {
     position: sticky;
     bottom: 0;
-    background-color: #96ffa97e;
+    background-color: #96ffa9e7;
   }
 
   .title {
@@ -232,6 +234,18 @@
 
   .slide-fade-enter-active, .slide-fade-leave-active {
     transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media screen and (min-width: 601px) {
+    .title-content {
+      font-size: 20px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .title-content {
+      font-size: 13px;
+    }
   }
 
   .slide-fade-enter, .slide-fade-leave-to {
